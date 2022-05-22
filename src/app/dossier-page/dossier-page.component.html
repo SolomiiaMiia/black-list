@@ -13,34 +13,34 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Прізвище*</label>
-                  <input type="text" formControlName="lastName" id="lastName" class="form-control add-listing_form" >
-                  <small *ngIf="!this.dossierForm.get('lastName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                  <input type="text" formControlName="lastName" class="form-control add-listing_form" >
+                  <small *ngIf="this.submitted && !this.dossierForm.get('lastName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Ім'я*</label>
-                  <input type="text" formControlName="firstName" id="firstName" class="form-control add-listing_form">
-                  <small *ngIf="!this.dossierForm.get('lastName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                  <input type="text" formControlName="firstName" class="form-control add-listing_form">
+                  <small *ngIf="this.submitted && !this.dossierForm.get('firstName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label>По батькові*</label>
-                  <input type="text" formControlName="thirdName" id="thirdName" class="form-control add-listing_form">
-                  <small *ngIf="!this.dossierForm.get('lastName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                  <input type="text" formControlName="thirdName" class="form-control add-listing_form">
+                  <small *ngIf="this.submitted && !this.dossierForm.get('thirdName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Фото особи</label>
-                  <input type="file" formControlName="imageInput" id="imageInput" class="form-control add-listing_form">
+                  <input type="file" formControlName="imageInput" class="form-control add-listing_form">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Посада</label>
-                  <input type="text" formControlName="position" id="position" class="form-control add-listing_form">
+                  <input type="text" formControlName="position" class="form-control add-listing_form">
                 </div>
               </div>
               <div class="col-md-6">
@@ -53,14 +53,14 @@
                 <div class="form-group">
                   <label>Область*</label>
                   <input type="text" formControlName="region" class="form-control add-listing_form">
-                  <small *ngIf="!this.dossierForm.get('lastName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                  <small *ngIf="this.submitted && !this.dossierForm.get('region')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Район*</label>
                   <input type="text" formControlName="district" class="form-control add-listing_form">
-                  <small *ngIf="!this.dossierForm.get('lastName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                  <small *ngIf="this.submitted && !this.dossierForm.get('district')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col-md-6">
@@ -74,12 +74,12 @@
                 <div class="form-group">
                   <label>Підтверджуючі додатки до тексу (файли, фото та ін.)*</label>
                   <input type="file" formControlName="fileText" class="form-control add-listing_form">
-                  <small *ngIf="!this.dossierForm.get('lastName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                  <small *ngIf="this.submitted && !this.dossierForm.get('fileText')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Контакні дані автора</label>
+                  <label>Контактні дані автора</label>
                   <input type="text" formControlName="contactInfo" class="form-control add-listing_form">
                 </div>
               </div>
@@ -99,29 +99,29 @@
                 <div class="form-group">
                   <label>Текст, що викриває особу, підозрювану у корупції*</label>
                   <textarea formControlName="text" class="text form-control add-listing_form" rows="3"></textarea>
-                  <small *ngIf="!this.dossierForm.get('lastName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                  <small *ngIf="this.submitted && !this.dossierForm.get('text')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col">
                 <div class="col-md-6 responsive-wrap">
                     <div class="md-checkbox" style="margin-top: 20px;">
-                        <input type="checkbox" name="checkbox" id="i1">
-                        <label class="labelCheckbox" for="i1">Згода на обробку персональних даних</label>
-                        <p class="small" *ngIf="!this.dossierForm.get('lastName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</p>
+                        <input type="checkbox" id="agreeForData" formControlName="agreeForData" [checked]="this.dossierForm.get('agreeForData')?.value">
+                        <label for="agreeForData"  style="margin-top: 0; margin-left: 10px;">Згода на обробку персональних даних</label>
+                        <p *ngIf="this.submitted && !this.dossierForm.get('agreeForData')?.valid" class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
                     </div>
                 </div>
                 <div class="col-md-6 responsive-wrap">
                     <div class="md-checkbox">
-                        <input id="i2" type="checkbox">
-                        <label class="labelCheckbox" for="i2">Публічний договір щодо співпраці авторо досьє та сайту</label>
-                        <p class="small" *ngIf="!this.dossierForm.get('lastName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</p>
+                        <input type="checkbox" id="agreeForContract" formControlName="agreeForContract" [checked]="this.dossierForm.get('agreeForContract')?.value">
+                        <label for="agreeForContract" style="margin-top: 0; margin-left: 10px;">Публічний договір щодо співпраці авторо досьє та сайту</label>
+                        <p *ngIf="this.submitted && !this.dossierForm.get('agreeForContract')?.valid" class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
                     </div>
                 </div>
             </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="btn-wrap btn-wrap2">
-                    <button type="submit" [disabled]="!this.dossierForm.valid" (click)="submit()" class="btn btn-simple">Надіслати</button>
+                    <button type="submit" (click)="submit()" class="btn btn-simple" [disabled]="!this.canSubmit()">Надіслати</button>
                   </div>
                 </div>
               </div>

@@ -84,21 +84,24 @@ select.form-control:not([size]):not([multiple]) {
 
 .md-checkbox {
   position: relative;
-  margin: 0 0 15px;
+  margin: 10px 0 15px;
+
 }
 
-.md-checkbox .labelCheckbox {
+.md-checkbox label {
   cursor: pointer;
   color: #adadad;
   vertical-align: top;
-  margin-top: 0;
-  margin-left: 8px;
+   margin-top: .5rem;
  
 
   @media (max-width: 1230px) {
     font-size: 12px;
   }
 }
+
+
+
 
 .md-checkbox label:before,
 .md-checkbox label:after {
@@ -143,10 +146,6 @@ select.form-control:not([size]):not([multiple]) {
 *:before,
 *:after {
   box-sizing: border-box;
-}
-
-.small{
-  display: flex;
 }
 
 .listing-time {
