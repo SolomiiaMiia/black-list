@@ -1,0 +1,121 @@
+/* ==============================================================
+   NAV MENU
+   ============================================================== */
+
+.nav-menu {
+    background-color: black;
+    border-bottom: 1px solid #f3f0f0;
+}
+
+.nav-item {
+    a {
+        // color: #4e4e4e;
+        color: white;
+        font-weight: 400;
+        &:hover {
+            color: #ff6b6b;
+            background: none;
+        }
+    }
+    span {
+        font-size: 12px;
+    }
+}
+
+.nav-link {
+    opacity: 0.8;
+    transition: 0.3s;
+    
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
+    outline: none;
+}
+
+.btn-outline-danger {
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin: 2px 0 0;
+    &:hover,
+    &:focus {
+        color: #fff;
+        border-color: #ff6b6b;
+        background: #ff6b6b;
+        box-shadow: none;
+    }
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus {
+    outline: none;
+    cursor: pointer;
+}
+
+.navbar {
+    padding: 1rem 0;
+  .navbar-toggler{
+    background: #ff6b6b;
+  }
+}
+
+// Drodown
+.dropdown-item {
+    border-bottom: 1px solid #f5f0f0;
+    line-height: 1.8;
+    padding: 0.45rem 1.5rem;
+}
+
+// .dropdown-item.active,
+// .dropdown-item:active {
+//    background: #ff6b6b; 
+// }
+.dropdown-menu {
+    border-radius: 0;
+    padding: 0;
+}
+
+@media (min-width: 992px) {
+    .dropdown .dropdown-menu {
+        display: block;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.2s ease;
+        -moz-transition: all 0.2s ease;
+        -webkit-transition: all 0.2s ease;
+        -o-transition: all 0.2s ease;
+        -ms-transition: all 0.2s ease;
+    }
+    .dropdown:hover>.dropdown-menu {
+        visibility: visible;
+        opacity: 1;
+        // border: none;
+    }
+    .dropdown-submenu:hover .dropdown-menu1 {
+        visibility: visible;
+        opacity: 1;
+    }
+    .navbar-toggleable-md .navbar-collapse {
+        justify-content: center;
+    }
+    .navbar-toggleable-md .navbar-nav {
+        align-items: center;
+    }
+}
+
+@media (max-width: 992px) {
+    .navbar-nav {
+        margin: 20px 0;
+    }
+    .dropdown-menu {
+        background-color: #f7f7f7;
+        border: 0;
+    }
+}
