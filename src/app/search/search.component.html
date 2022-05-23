@@ -1,8 +1,23 @@
-<section class="main-block">
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-md-12">
-        <p> Пошук {{searchText}} </p>
+<section class="featured-wrap">
+  <div class="container-fluid container-subpage">
+    <div class="row">
+      <div class="col-md-12 responsive-wrap">
+        <div class="row detail-filter-wrap">
+          <div class="col-md-12 featured-responsive">
+            <div class="detail-filter-text">
+              <p>34 Results For <span>{{searchText}}</span></p>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-3 card-2">
+            <app-small-dossier></app-small-dossier>
+          </div>
+          <div class="col-md-3 card-2">
+            <app-small-dossier></app-small-dossier>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -19,4 +19,13 @@ export class APIService {
   addDossier(dto: AddDossierPageDto): Observable<any> {
     return this.httpClient.post(`${this.envService.apiUrl}/dossier`, dto);
   }
+
+  getLatestDossiers(): Observable<string[]> {
+    return this.httpClient.get<string[]>(`${this.envService.apiUrl}/dossier`);
+  }
+
+  getDossiers(searchText: string): Observable<string[]> {
+    return this.httpClient.get<string[]>(`${this.envService.apiUrl}/dossier/${searchText}`);
+  }
+
 }
