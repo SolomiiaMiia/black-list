@@ -4,11 +4,10 @@ import { AddDossierPageDto } from '../models/addDossierPageDto';
 import { APIService } from '../shared/services/api.service'
 
 @Component({
-  selector: 'app-dossier-page',
-  templateUrl: './dossier-page.component.html',
-  styleUrls: ['./dossier-page.component.scss']
+  templateUrl: './add-dossier-page.component.html',
+  styleUrls: ['./add-dossier-page.component.scss']
 })
-export class DossierPageComponent implements OnInit {
+export class AddDossierPageComponent implements OnInit {
 
   @Input() public dossierForm: FormGroup = new FormGroup({});
 
@@ -35,7 +34,6 @@ export class DossierPageComponent implements OnInit {
       district: this.fb.control('', { validators: [Validators.required] }),
       localCommunity: this.fb.control(''),
       fileText: this.fb.control('', { validators: [Validators.required] }),
-      contactInfo: this.fb.control(''),
       phone: this.fb.control('', { validators: Validators.pattern(new RegExp('^\\+?3?8?(0[5-9][0-9]\\d{7})$')) }),
       email: this.fb.control('', { validators: [Validators.email] }),
       text: this.fb.control('', { validators: [Validators.required] }),

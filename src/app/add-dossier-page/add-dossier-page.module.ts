@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule} from '@angular/forms';
 
-import { DossierPageComponent } from './dossier-page.component';
+import { AddDossierPageComponent } from './add-dossier-page.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 
@@ -11,11 +11,11 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   declarations: [
-    DossierPageComponent
+    AddDossierPageComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([{path: '', component: DossierPageComponent}]),
+    RouterModule.forChild([{ path: '', component: AddDossierPageComponent}]),
     ReactiveFormsModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot()
@@ -26,4 +26,4 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
   ]
 })
-export class DossierPageModule { }
+export class AddDossierPageModule { }

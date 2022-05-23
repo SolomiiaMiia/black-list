@@ -3,17 +3,21 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="listing-wrap">
+
           <div class="listing-title">
             <span class="ti-files"></span>
-            <h4>Дані про особу</h4>
+            <h4>Створити досьє</h4>
+            <p>Дані про особу</p>
           </div>
+
+
           <form [formGroup]="this.dossierForm">
             <div class="row">
 
               <div class="col-md-6">
                 <div class="form-group">
                   <label class="group-field">Прізвище</label>
-                  <input type="text" formControlName="lastName" class="form-control add-listing_form" >
+                  <input type="text" formControlName="lastName" class="form-control add-listing_form">
                   <small *ngIf="this.submitted && !this.dossierForm.get('lastName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
@@ -31,6 +35,12 @@
                   <small *ngIf="this.submitted && !this.dossierForm.get('thirdName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
+
+              <div class="listing-title">
+                <span class="ti-files"></span>
+                <p>Додаткові дані</p>
+              </div>
+
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Фото особи</label>
@@ -70,6 +80,19 @@
                 </div>
               </div>
 
+              <div class="listing-title">
+                <span class="ti-files"></span>
+                <p>Зміст досьє</p>
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="group-field">Текст, що викриває особу, підозрювану у корупції</label>
+                  <textarea [froalaEditor] formControlName="text" class="text form-control add-listing_form" rows="3"></textarea>
+                  <small *ngIf="this.submitted && !this.dossierForm.get('text')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                </div>
+              </div>
+
               <div class="col-md-6">
                 <div class="form-group">
                   <label class="group-field">Підтверджуючі додатки до тексу (файли, фото та ін.)</label>
@@ -77,12 +100,12 @@
                   <small *ngIf="this.submitted && !this.dossierForm.get('fileText')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Контактні дані автора</label>
-                  <input type="text" formControlName="contactInfo" class="form-control add-listing_form">
-                </div>
+
+              <div class="listing-title">
+                <span class="ti-files"></span>
+                <p>Контактні дані автора</p>
               </div>
+
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Контактний номер телефону</label>
@@ -93,25 +116,19 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Адреса електронної пошти</label>
-                  <input type="text" formControlName="email" class="form-control add-listing_form">
+                  <input placeholder="email@mail.com" type="text" formControlName="email" class="form-control add-listing_form">
                   <small *ngIf="this.submitted && !this.dossierForm.get('email')?.valid" class="form-text text-danger ml-2">Не валідна адреса електронної пошти</small>
                 </div>
               </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label class="group-field">Текст, що викриває особу, підозрювану у корупції</label>
-                  <textarea [froalaEditor] formControlName="text" class="text form-control add-listing_form" rows="3"></textarea>
-                  <small *ngIf="this.submitted && !this.dossierForm.get('text')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
-                </div>
-              </div>
+
               <div class="col">
                 <div class="col-md-12 responsive-wrap">
-                    <div class="md-checkbox" style="margin-top: 20px;">
-                        <input type="checkbox" id="agreeForData" formControlName="agreeForData" [checked]="this.dossierForm.get('agreeForData')?.value">
-                        <label for="agreeForData" class="group-field">Згода на обробку персональних даних</label>
-                        <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
-                        <p *ngIf="this.submitted && !this.dossierForm.get('agreeForData')?.valid" class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
-                    </div>
+                  <div class="md-checkbox" style="margin-top: 20px;">
+                    <input type="checkbox" id="agreeForData" formControlName="agreeForData" [checked]="this.dossierForm.get('agreeForData')?.value">
+                    <label for="agreeForData" class="group-field">Згода на обробку персональних даних</label>
+                    <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
+                    <p *ngIf="this.submitted && !this.dossierForm.get('agreeForData')?.valid" class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
+                  </div>
                 </div>
                 <div class="col-md-12 responsive-wrap">
                   <div class="md-checkbox">
@@ -121,7 +138,7 @@
                     <p *ngIf="this.submitted && !this.dossierForm.get('agreeForContract')?.valid" class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
                   </div>
                 </div>
-            </div>
+              </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="btn-wrap btn-wrap2">

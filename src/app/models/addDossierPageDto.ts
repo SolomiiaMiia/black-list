@@ -9,7 +9,6 @@ export class AddDossierPageDto {
   district: string = '';
   localCommunity: string = '';
   fileText: any;
-  contactInfo: string = '';
   phone: string = '';
   email: string = '';
   text: string = '';
