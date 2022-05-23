@@ -37,7 +37,7 @@ export class DossierPageComponent implements OnInit {
       fileText: this.fb.control('', { validators: [Validators.required] }),
       contactInfo: this.fb.control(''),
       phone: this.fb.control(''),
-      email: this.fb.control(''),
+      email: this.fb.control('', { validators: [Validators.email] }),
       text: this.fb.control('', { validators: [Validators.required] }),
       agreeForData: this.fb.control('', { validators: [Validators.required] }),
       agreeForContract: this.fb.control('', { validators: [Validators.required] }),
@@ -63,7 +63,7 @@ export class DossierPageComponent implements OnInit {
 
       console.log(dto);
 
-      this.apiService.get().subscribe(res => {
+      this.apiService.addDossier(dto).subscribe(res => {
         console.log(res);
       });
     }

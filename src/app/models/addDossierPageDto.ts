@@ -13,6 +13,4 @@ export class AddDossierPageDto {
   phone: string = '';
   email: string = '';
   text: string = '';
-  agreeForData: boolean = false;
-  agreeForContract: boolean = false;
 }

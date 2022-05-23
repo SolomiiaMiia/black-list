@@ -73,7 +73,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label class="group-field">Підтверджуючі додатки до тексу (файли, фото та ін.)</label>
-                  <input type="file" formControlName="fileText" class="form-control add-listing_form">
+                  <input type="file" multiple formControlName="fileText" class="form-control add-listing_form">
                   <small *ngIf="this.submitted && !this.dossierForm.get('fileText')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
@@ -93,6 +93,7 @@
                 <div class="form-group">
                   <label>Адреса електронної пошти</label>
                   <input type="text" formControlName="email" class="form-control add-listing_form">
+                  <small *ngIf="this.submitted && !this.dossierForm.get('email')?.valid" class="form-text text-danger ml-2">Не валідна адреса електронної пошти</small>
                 </div>
               </div>
               <div class="col-md-12">
