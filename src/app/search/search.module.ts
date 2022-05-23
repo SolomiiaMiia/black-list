@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule} from '@angular/forms';
 
 import { SearchComponent } from './search.component';
+import { SmallDossierModule } from '../small-dossier/small-dossier.module';
 
 
 
@@ -15,7 +16,8 @@ import { SearchComponent } from './search.component';
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: SearchComponent}]),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SmallDossierModule
   
   ],
   exports:
