@@ -94,15 +94,15 @@
                             <div class="col-md-6">
                                 <div class="search-box2">
                                     <div class="search-box-title">
-                                        <label>Текст</label><br>
-                                        <input type="text" name="#" class="search-form" placeholder="Пошук">
+                                        <label>Введіть текст</label><br>
+                                        <input [(ngModel)]="searchString" type="text" id="searchString" name="searchString" class="search-form" placeholder="Пошук">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="btn-search">
-                        <a href="#" class="btn btn-simple">Шукати →</a>
+                        <a [routerLink]="['/search']" [queryParams]="{text: this.searchString}" class="btn btn-simple">Шукати →</a>
                     </div>
                 </form>
             </div>

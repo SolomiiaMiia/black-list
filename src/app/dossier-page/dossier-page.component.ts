@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddDossierPageDto } from '../models/addDossierPageDto';
+import { APIService } from '../shared/services/api.service'
 
 @Component({
   selector: 'app-dossier-page',
@@ -11,11 +12,10 @@ export class DossierPageComponent implements OnInit {
 
   @Input() public dossierForm: FormGroup = new FormGroup({});
 
-  public list: any[];
   public submitted: boolean = false;
 
-  constructor(private fb: FormBuilder) {
-    this.list = []
+  constructor(private fb: FormBuilder,
+    private apiService: APIService) {
   }
 
 
@@ -63,6 +63,9 @@ export class DossierPageComponent implements OnInit {
 
       console.log(dto);
 
+      this.apiService.get().subscribe(res => {
+        console.log(res);
+      });
     }
 
   }

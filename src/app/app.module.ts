@@ -7,6 +7,8 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TheNavBarModule } from './layout/the-nav-bar/the-nav-bar.module';
 import { TheFooterModule } from './layout/the-footer/the-footer.module';
+import { EnvServiceProvider } from './shared/providers/env.service.provider';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -20,10 +22,11 @@ import { TheFooterModule } from './layout/the-footer/the-footer.module';
     FontAwesomeModule,
     TheNavBarModule,
     TheFooterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
 
   ],
-  providers: [],
+  providers: [EnvServiceProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
