@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule} from '@angular/forms';
 
 import { DossierPageComponent } from './dossier-page.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 
 
@@ -15,7 +16,9 @@ import { DossierPageComponent } from './dossier-page.component';
   imports: [
     CommonModule,
     RouterModule.forChild([{path: '', component: DossierPageComponent}]),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   
   ],
   exports:

@@ -36,7 +36,7 @@ export class DossierPageComponent implements OnInit {
       localCommunity: this.fb.control(''),
       fileText: this.fb.control('', { validators: [Validators.required] }),
       contactInfo: this.fb.control(''),
-      phone: this.fb.control(''),
+      phone: this.fb.control('', { validators: Validators.pattern(new RegExp('^\\+?3?8?(0[5-9][0-9]\\d{7})$')) }),
       email: this.fb.control('', { validators: [Validators.email] }),
       text: this.fb.control('', { validators: [Validators.required] }),
       agreeForData: this.fb.control('', { validators: [Validators.required] }),
@@ -45,7 +45,6 @@ export class DossierPageComponent implements OnInit {
 
     this.dossierForm.get('agreeForData')?.setValue(false);
     this.dossierForm.get('agreeForContract')?.setValue(false);
-
 
   }
 
