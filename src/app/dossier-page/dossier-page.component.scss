@@ -1,3 +1,12 @@
+
+.main-block {
+  padding:30px 0 70px 0;
+  @media (max-width: 992px) {
+      padding: 44px 0;
+  }
+}
+
+
 h4 {
   font-size: 25px;
   color: white;
@@ -92,8 +101,9 @@ select.form-control:not([size]):not([multiple]) {
   cursor: pointer;
   color: #adadad;
   vertical-align: top;
-   margin-top: 0;
- 
+  margin-top: 0;
+  margin-left: 10px;
+
 
   @media (max-width: 1230px) {
     font-size: 12px;
@@ -101,6 +111,10 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 
+.group-field::after {
+  content: '*';
+  color: red;
+}
 
 
 .md-checkbox label:before,
@@ -142,6 +156,20 @@ select.form-control:not([size]):not([multiple]) {
   border-right-style: none;
 }
 
+.md-checkbox .link {
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+i {
+  color: grey;
+
+  &:hover {
+    color: white;
+
+  }
+}
+
 *,
 *:before,
 *:after {
@@ -179,40 +207,40 @@ select.form-control:not([size]):not([multiple]) {
 
 
 .btn {
-    display: inline-block;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: .5rem .75rem;
-    font-size: 1rem;
-    line-height: 1.25;
-    border-radius: .25rem;
-    transition: all .15s ease-in-out;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .5rem .75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  border-radius: .25rem;
+  transition: all .15s ease-in-out;
 }
 
 .btn-simple {
-    font-size: 20px;
-    color: #ff6b6b;
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
+  font-size: 20px;
+  color: #ff6b6b;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .btn-wrap2 .btn-simple {
-    background: #ff6b6b;
-    padding: 10px 35px;
-    color: #fff;
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
+  background: #ff6b6b;
+  padding: 10px 35px;
+  color: #fff;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .btn-wrap {
-    // text-align: center;
-    margin: 10px 0 0;
+  // text-align: center;
+  margin: 10px 0 0;
 }
