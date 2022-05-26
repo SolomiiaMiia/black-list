@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'search',
     loadChildren: () => import('../search/search.module').then(m => m.SearchModule)
+  },
+  {
+    path: 'dossier',
+    loadChildren: () => import('../dossier/dossier.module').then(m => m.DossierModule)
   }
 
 
