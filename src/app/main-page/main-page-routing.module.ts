@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('../add-dossier-page/add-dossier-page.module').then(m => m.AddDossierPageModule)
   },
   {
+    path: 'add-dossier/anonymous',
+    loadChildren: () => import('../add-dossier-page/add-dossier-page.module').then(m => m.AddDossierPageModule)
+  },
+  {
     path: 'search',
     loadChildren: () => import('../search/search.module').then(m => m.SearchModule)
   }

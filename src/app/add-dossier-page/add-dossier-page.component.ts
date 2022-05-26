@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { AddDossierPageDto } from '../models/addDossierPageDto';
 import { APIService } from '../shared/services/api.service'
 
@@ -12,13 +13,17 @@ export class AddDossierPageComponent implements OnInit {
   @Input() public dossierForm: FormGroup = new FormGroup({});
 
   public submitted: boolean = false;
+  public isAnonymous: boolean = false;
 
   constructor(private fb: FormBuilder,
-    private apiService: APIService) {
+    private apiService: APIService,
+    private route: ActivatedRoute  ) {
   }
 
 
   ngOnInit(): void {
+    this.isAnonymous = this.route.snapshot.parent?.url.filter(v => v.path == 'anonymous').length == 1;
+    console.log(this.isAnonymous);
     this.createForm();
   }
 
@@ -33,21 +38,24 @@ export class AddDossierPageComponent implements OnInit {
       region: this.fb.control('', { validators: [Validators.required] }),
       district: this.fb.control('', { validators: [Validators.required] }),
       localCommunity: this.fb.control(''),
-      fileText: this.fb.control('', { validators: [Validators.required] }),
-      phone: this.fb.control('', { validators: Validators.pattern(new RegExp('^\\+?3?8?(0[5-9][0-9]\\d{7})$')) }),
-      email: this.fb.control('', { validators: [Validators.email] }),
+      fileText: this.fb.control('', { validators: [Validators.required] }), //can be multiple attachtments
       text: this.fb.control('', { validators: [Validators.required] }),
-      agreeForData: this.fb.control('', { validators: [Validators.required] }),
-      agreeForContract: this.fb.control('', { validators: [Validators.required] }),
     });
 
-    this.dossierForm.get('agreeForData')?.setValue(false);
-    this.dossierForm.get('agreeForContract')?.setValue(false);
+    if (!this.isAnonymous) {
+      this.dossierForm.addControl('phone', this.fb.control('', { validators: Validators.pattern(new RegExp('^\\+?3?8?(0[5-9][0-9]\\d{7})$')) }));
+      this.dossierForm.addControl('email', this.fb.control('', { validators: [Validators.email] }));
+      this.dossierForm.addControl('author', this.fb.control('', { validators: [Validators.required] }));
+      this.dossierForm.addControl('agreeForData', this.fb.control('', { validators: [Validators.required] }));
+      this.dossierForm.addControl('agreeForContract', this.fb.control('', { validators: [Validators.required] }));
 
+      this.dossierForm.get('agreeForData')?.setValue(false);
+      this.dossierForm.get('agreeForContract')?.setValue(false);
+    }
   }
 
   canSubmit(): boolean {
-    return this.dossierForm.get('agreeForData')?.value == true && this.dossierForm.get('agreeForContract')?.value == true;
+    return this.isAnonymous ? true: this.dossierForm.get('agreeForData')?.value == true && this.dossierForm.get('agreeForContract')?.value == true;
   }
 
   public submit() {

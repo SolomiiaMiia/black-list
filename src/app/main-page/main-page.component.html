@@ -80,16 +80,15 @@
                 <form>
                     <div class="search-box">
                         <div class="row">
-                            <div class="col-md-6 search-box_line">
-                                <div class="search-box1">
-                                    <div class="search-box-title">
-                                        <label>Текст</label><br>
-                                    </div>
-                                </div>
-                                <div class="btn-search btn-add">
-                                    <a [routerLink]="['/add-dossier']" class="btn btn-simple">Створити досьє</a>
-                                </div>
+                          <div class="col-md-6 search-box_line float-container">
+                            
+                            <div class="float-child">
+                              <a [routerLink]="['/add-dossier']" class="btn btn-simple">Створити досьє</a>
                             </div>
+                            <div class="float-child">
+                              <a [routerLink]="['/add-dossier/anonymous']" class="btn btn-simple">Анонімно</a>
+                            </div>
+                          </div>
 
                             <div class="col-md-6">
                                 <div class="search-box2">
