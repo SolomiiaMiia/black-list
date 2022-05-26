@@ -11,7 +11,7 @@
                   <input [(ngModel)]="searchText" type="text" id="searchString" name="searchString" class="search-form"
                     spellcheck="false" placeholder="Пошук">
                   <div class="btn-search">
-                    <a [routerLink]="['/search']" [queryParams]="{text: this.searchText}" class="btn btn-simple">Пошук
+                    <a href="#" (click)="this.search()" class="btn btn-simple">Пошук
                       досьє</a>
                   </div>
                 </div>
@@ -20,12 +20,11 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-3 card-2">
-            <app-small-dossier></app-small-dossier>
-          </div>
-          <div class="col-md-3 card-2">
-            <app-small-dossier></app-small-dossier>
-          </div>
+          <ng-container *ngFor="let dossier of this.searchResults">
+            <div class="col-md-3 card-2">
+              <app-small-dossier [dossier]="dossier"></app-small-dossier>
+            </div>
+          </ng-container>
         </div>
       </div>
     </div>

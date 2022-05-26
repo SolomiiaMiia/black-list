@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DossierSmallDto } from '../models/dossierSmallDto';
 
 @Component({
   selector: 'app-small-dossier',
@@ -8,35 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class SmallDossierComponent implements OnInit {
 
 
-  public info: DossierInfoSmall[] = [
-    {
-      img: 'assets/images/1.png',
-      fullName: 'ПІБ',
-      position: 'Посада',
-      placeOfWork: 'Місце роботи',
-      text: 'Текст, що викриває особу, підозрювану у корупції',
-      date: new Date,
-      status: 'Не спростовано',
-    },
-    {
-      img: 'assets/images/1.png',
-      fullName: 'ПІБ',
-      position: 'Посада',
-      placeOfWork: 'Місце роботи',
-      text: 'Текст, що викриває особу, підозрювану у корупції',
-      date: new Date,
-      status: 'Не спростовано',
-    },
-    {
-      img: 'assets/images/1.png',
-      fullName: 'ПІБ',
-      position: 'Посада',
-      placeOfWork: 'Місце роботи',
-      text: 'Текст, що викриває особу, підозрювану у корупції',
-      date: new Date,
-      status: 'Не спростовано',
-    }
-  ]
+  @Input('dossier') dossier: DossierSmallDto = new DossierSmallDto;
 
   constructor() {
 
@@ -50,14 +23,4 @@ export class SmallDossierComponent implements OnInit {
 
   }
 
-}
-
-export class DossierInfoSmall {
-  public img: string = '';
-  public fullName: string = ''
-  public position: string = '';
-  public placeOfWork: string = '';
-  public text: string = '';
-  public date: any = '';
-  public status: string = '';
 }
