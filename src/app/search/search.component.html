@@ -4,11 +4,20 @@
       <div class="col-md-12 responsive-wrap">
         <div class="row detail-filter-wrap">
           <div class="col-md-12 featured-responsive">
-            <div class="detail-filter-text">
-              <p>34 Results For <span>{{searchText}}</span></p>
+            <div class="col-md-6 m-center">
+              <div class="search-box2">
+                <div class="search-box-title">
+                  <label>Введіть текст</label><br>
+                  <input [(ngModel)]="searchText" type="text" id="searchString" name="searchString" class="search-form"
+                    spellcheck="false" placeholder="Пошук">
+                  <div class="btn-search">
+                    <a [routerLink]="['/search']" [queryParams]="{text: this.searchText}" class="btn btn-simple">Пошук
+                      досьє</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
         </div>
         <div class="row">
           <div class="col-md-3 card-2">

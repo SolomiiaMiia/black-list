@@ -1,15 +1,15 @@
-<div class="card">
+<div class="card" *ngFor="let item of info">
   <a href="detail.html"><img class="card-img-top" src="assets/images/1.png" alt="Card image cap"></a>
   <div class="card-body">
-    <h5 class="card-title">ПІБ</h5>
+    <h5 class="card-title">{{item.fullName}}</h5>
     <ul class="card-rating">
-      <li>Посада</li>
-      <li>Місце роботи</li>
+      <li>{{item.position}}</li>
+      <li>{{item.placeOfWork}}</li>
     </ul>
-    <p class="card-text">Текст, що викриває особу, підозрювану у корупції </p>
+    <p class="card-text">{{item.text}}</p>
   </div>
   <div class="card-bottom">
-    <p><i class="ti-location-pin"></i>Дата</p>
-    <span>Не спростовано</span>
+    <p><i class="ti-location-pin"></i>{{item.date | date}}</p>
+    <span>{{item.status}}</span>
   </div>
 </div>
