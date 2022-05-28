@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { AddDossierPageDto } from '../models/addDossierPageDto';
 import { APIService } from '../shared/services/api.service'
 
@@ -17,7 +17,8 @@ export class AddDossierPageComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private apiService: APIService,
-    private route: ActivatedRoute  ) {
+    private route: ActivatedRoute,
+    private router: Router ) {
   }
 
 
@@ -71,6 +72,7 @@ export class AddDossierPageComponent implements OnInit {
       this.apiService.addDossier(dto).subscribe(res => {
         console.log(res);
       });
+      this.router.navigate(['/add-dossier/complete']);
     }
 
   }

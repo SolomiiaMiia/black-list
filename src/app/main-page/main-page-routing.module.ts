@@ -26,7 +26,11 @@ const routes: Routes = [
   {
     path: 'dossier',
     loadChildren: () => import('../dossier/dossier.module').then(m => m.DossierModule)
-  }
+  },
+  {
+    path: 'add-dossier/complete',
+    loadChildren: () => import('../complete-dossier/complete-dossier.module').then(m => m.CompleteDossierModule)
+  },
 
 
 ];
