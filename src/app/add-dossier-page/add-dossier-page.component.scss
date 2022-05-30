@@ -111,7 +111,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 
-.group-field::after {
+.required-field::after {
   content: '*';
   color: red;
 }

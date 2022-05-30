@@ -20,18 +20,9 @@ const routes: Routes = [
     loadChildren: () => import('../add-dossier-page/add-dossier-page.module').then(m => m.AddDossierPageModule)
   },
   {
-    path: 'search',
-    loadChildren: () => import('../search/search.module').then(m => m.SearchModule)
-  },
-  {
-    path: 'dossier',
-    loadChildren: () => import('../dossier/dossier.module').then(m => m.DossierModule)
-  },
-  {
     path: 'add-dossier/complete',
     loadChildren: () => import('../complete-dossier/complete-dossier.module').then(m => m.CompleteDossierModule)
   },
-
 
 ];
 

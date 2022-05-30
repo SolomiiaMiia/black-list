@@ -71,8 +71,9 @@ export class AddDossierPageComponent implements OnInit {
 
       this.apiService.addDossier(dto).subscribe(res => {
         console.log(res);
+        this.router.navigate(['/add-dossier/complete']);
       });
-      this.router.navigate(['/add-dossier/complete']);
+     
     }
 
   }

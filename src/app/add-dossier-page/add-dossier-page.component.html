@@ -16,21 +16,21 @@
 
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="group-field">Прізвище</label>
+                  <label class="required-field">Прізвище</label>
                   <input type="text" formControlName="lastName" class="form-control add-listing_form">
                   <small *ngIf="this.submitted && !this.dossierForm.get('lastName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="group-field">Ім'я</label>
+                  <label class="required-field">Ім'я</label>
                   <input type="text" formControlName="firstName" class="form-control add-listing_form">
                   <small *ngIf="this.submitted && !this.dossierForm.get('firstName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="group-field">По батькові</label>
+                  <label class="required-field">По батькові</label>
                   <input type="text" formControlName="thirdName" class="form-control add-listing_form">
                   <small *ngIf="this.submitted && !this.dossierForm.get('thirdName')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
@@ -62,14 +62,14 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="group-field">Область</label>
+                  <label class="required-field">Область</label>
                   <input type="text" formControlName="region" class="form-control add-listing_form">
                   <small *ngIf="this.submitted && !this.dossierForm.get('region')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="group-field">Район</label>
+                  <label class="required-field">Район</label>
                   <input type="text" formControlName="district" class="form-control add-listing_form">
                   <small *ngIf="this.submitted && !this.dossierForm.get('district')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
@@ -88,7 +88,7 @@
 
               <div class="col-md-12">
                 <div class="form-group">
-                  <label class="group-field">Текст, що викриває особу, підозрювану у корупції</label>
+                  <label class="required-field">Текст, що викриває особу, підозрювану у корупції</label>
                   <textarea [froalaEditor] formControlName="text" class="text form-control add-listing_form" rows="3"></textarea>
                   <small *ngIf="this.submitted && !this.dossierForm.get('text')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
@@ -96,7 +96,7 @@
 
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="group-field">Підтверджуючі додатки до тексу (файли, фото та ін.)</label>
+                  <label class="required-field">Підтверджуючі додатки до тексу (файли, фото та ін.)</label>
                   <input type="file" multiple formControlName="fileText" class="form-control add-listing_form">
                   <small *ngIf="this.submitted && !this.dossierForm.get('fileText')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
@@ -110,7 +110,7 @@
 
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label>Автор</label>
+                    <label class="required-field">Автор</label>
                     <input type="text" formControlName="author" class="form-control add-listing_form">
                     <small *ngIf="this.submitted && !this.dossierForm.get('author')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                   </div>
@@ -136,7 +136,7 @@
                   <div class="col-md-12 responsive-wrap">
                     <div class="md-checkbox" style="margin-top: 20px;">
                       <input type="checkbox" id="agreeForData" formControlName="agreeForData" [checked]="this.dossierForm.get('agreeForData')?.value">
-                      <label for="agreeForData" class="group-field">Згода на обробку персональних даних</label>
+                      <label for="agreeForData" class="required-field">Згода на обробку персональних даних</label>
                       <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
                       <p *ngIf="this.submitted && !this.dossierForm.get('agreeForData')?.valid" class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
                     </div>
@@ -144,7 +144,7 @@
                   <div class="col-md-12 responsive-wrap">
                     <div class="md-checkbox">
                       <input type="checkbox" id="agreeForContract" formControlName="agreeForContract" [checked]="this.dossierForm.get('agreeForContract')?.value">
-                      <label for="agreeForContract" class="group-field">Публічний договір щодо співпраці авторо досьє та сайту</label>
+                      <label for="agreeForContract" class="required-field">Публічний договір щодо співпраці авторо досьє та сайту</label>
                       <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
                       <p *ngIf="this.submitted && !this.dossierForm.get('agreeForContract')?.valid" class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
                     </div>

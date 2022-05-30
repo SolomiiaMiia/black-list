@@ -1,7 +1,14 @@
 <app-the-nav-bar></app-the-nav-bar>
+
+<div class="spinner" *ngIf="loaderService.isLoading$ | async">
+  <div class="d-flex align-items-center">
+    <strong>Завантаження...</strong>
+    <div class="spinner-border ml-auto text-dange" role="status" aria-hidden="true"></div>
+  </div>
+</div>
+
 <router-outlet></router-outlet>
 <app-the-footer></app-the-footer>
 
-  
-  
-  
+
+

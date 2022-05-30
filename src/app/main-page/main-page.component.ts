@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoaderService } from '../shared/services/loader.service';
 
 @Component({
   selector: 'app-main-page',
@@ -12,11 +11,9 @@ export class MainPageComponent implements OnInit {
 
   searchString: string = '';
 
-  constructor(private router: Router, public loaderService: LoaderService) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.loaderService.isLoading$;
-    this.loaderService.setLoading(true);
   }
 
 
