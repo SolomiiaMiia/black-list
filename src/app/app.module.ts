@@ -9,6 +9,8 @@ import { TheNavBarModule } from './layout/the-nav-bar/the-nav-bar.module';
 import { TheFooterModule } from './layout/the-footer/the-footer.module';
 import { EnvServiceProvider } from './shared/providers/env.service.provider';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -16,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     TheNavBarModule,
     TheFooterModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
 
   ],
   providers: [EnvServiceProvider],
