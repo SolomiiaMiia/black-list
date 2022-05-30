@@ -15,6 +15,14 @@ const routes: Routes = [
     path: 'dossier/:id',
     loadChildren: () => import('./dossier/dossier.module').then(m => m.DossierModule)
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+  },
+  {
+    path: 'admin/manage',
+    loadChildren: () => import('./admin/manage-dossier/manage-dossier.module').then(m => m.ManageDossierModule),
+  }
 
 ];
 

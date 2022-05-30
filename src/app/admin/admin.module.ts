@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from "@angular/router";
+import { RouterModule} from "@angular/router";
 
 import { AdminComponent } from './admin.component';
+import { ManageDossierModule } from './manage-dossier/manage-dossier.module';
 
 
 
@@ -10,10 +11,12 @@ import { AdminComponent } from './admin.component';
 @NgModule({
   declarations: [AdminComponent],
   imports: [
+    
     CommonModule,
-    RouterModule.forChild([{ path: '', component: AdminComponent}]),
-
- 
-  ]
+    RouterModule.forChild([{ path: '', component: AdminComponent}]),  
+    ManageDossierModule  
+  ],
+  
+  
 })
 export class AdminModule { }
