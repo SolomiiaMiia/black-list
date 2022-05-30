@@ -1,12 +1,12 @@
 <div class="card">
-  <a href="detail.html"><img class="card-img-top" [src]="dossier.img" alt="Card image cap"></a>
+  <a [routerLink]="['/dossier', dossier.id]"><img class="card-img-top" [src]="dossier.img" alt="Card image cap"></a>
   <div class="card-body">
     <h5 class="card-title">{{dossier.fullName}}</h5>
     <ul class="card-rating">
       <li>{{dossier.position}}</li>
       <li>{{dossier.placeOfWork}}</li>
     </ul>
-    <p class="card-text">{{dossier.text}}</p>
+    <p class="card-text">{{dossier.address}}</p>
   </div>
   <div class="card-bottom">
     <p><i class="ti-location-pin"></i>{{dossier.date | date}}</p>
