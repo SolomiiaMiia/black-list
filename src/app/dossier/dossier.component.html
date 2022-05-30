@@ -2,7 +2,7 @@
   <div class="container d-flex justify-content-center">
     <div class="row d-flex justify-content-center">
       <div class="">
-        <h3>Досьє номер №</h3>
+        <h3>Досьє номер № {{dossier.id}}</h3>
       </div>
     </div>
   </div>
@@ -14,18 +14,7 @@
       <div class="col-md-8 responsive-wrap">
         <div class="booking-checkbox_wrap">
           <div class="booking-checkbox">
-            <p>Tasty Hand-Pulled Noodles is a 1950s style diner located in Madison, Wisconsin. Opened in 1946 by Mickey
-              Weidman, and located just across the street from Camp Randall Stadium, it has become a popular game day
-              tradition amongst
-              many Badger fans. The diner is well known for its breakfast selections, especially the Scrambler, which is
-              a large mound of potatoes, eggs, cheese, gravy, and a patrons’ choice of other toppings.</p>
-            <p>Mickies has also been featured on “Todd’s Taste of the Town” during one of ESPN’s college football
-              broadcasts. We are one of the best Chinese restaurants in the New York, New York area. We have been
-              recognized for our outstanding
-              Chinese & Asian cuisine, excellent Chinese menu, and great restaurant specials. We are one of the best
-              Chinese restaurants in the New York, New York area. We have been recognized for our outstanding Chinese &
-              Asian cuisine,
-              excellent Chinese menu, and great restaurant specials.</p>
+            {{dossier.text}}
             <hr>
           </div>
           <div class="row">
@@ -69,11 +58,11 @@
             class="img-fluid" alt="#">
           <div class="address">
             <span class="icon-location-pin"></span>
-            <p>ПІБ</p>
+            <p> {{dossier.fullName}}</p>
           </div>
           <div class="address">
             <span class="icon-location-pin"></span>
-            <p>Адреса<br> New York, NY 10013<br> b/t Division St & St James Pl <br> Chinatown, Civic Center</p>
+            <p>Адреса<br>  {{dossier.address}}</p>
           </div>
           <div class="address">
             <span class="icon-screen-smartphone"></span>
@@ -85,7 +74,7 @@
           </div>
           <div class="address">
             <span class="icon-clock"></span>
-            <p>Дата </p>
+            <p>{{dossier.date | date}} </p>
           </div>
         </div>
       </div>

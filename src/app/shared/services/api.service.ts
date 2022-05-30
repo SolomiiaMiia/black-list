@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EnvService } from './env.service';
 import { AddDossierPageDto } from 'src/app/models/addDossierPageDto';
+import { DossierDto } from 'src/app/models/dossierDto';
 
 @Injectable({ providedIn: 'root' })
 export class APIService {
@@ -12,8 +13,8 @@ export class APIService {
   }
 
 
-  get(): Observable<string[]> {
-    return this.httpClient.get<string[]>(`${this.envService.apiUrl}/dossier`);
+  get(id: string): Observable<DossierDto> {
+    return this.httpClient.get<DossierDto>(`${this.envService.apiUrl}/dossier/${id}`);
   }
 
   addDossier(dto: AddDossierPageDto): Observable<any> {
