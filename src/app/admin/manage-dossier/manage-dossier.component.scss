@@ -1,3 +1,35 @@
-p{
-    color: white;
+section {
+  color: white;
+  background-color: black;
+}
+
+
+::ng-deep .customClass>a {
+  color: white !important;
+  margin-left: 10px;
+  border-radius:  0.25rem;;
+}
+
+
+::ng-deep .nav {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  align-content: center;
+  justify-content: center;
+}
+
+::ng-deep .nav-tabs {
+  border-bottom: none;
+}
+
+::ng-deep .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+    background-color: #ff6b6b !important;
+    border: none;
+}
+::ng-deep .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+  border-color: #ff6b6b;
+   
+ 
 }

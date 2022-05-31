@@ -12,6 +12,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
 
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 
 
@@ -29,7 +31,9 @@ import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
     TheFooterModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TooltipModule.forRoot(),
+    TabsModule.forRoot(),
 
   ],
   providers: [EnvServiceProvider,
