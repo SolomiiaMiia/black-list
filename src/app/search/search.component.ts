@@ -68,34 +68,29 @@ Chinatown, Civic Center`,
   ] 
 
   constructor(private route: ActivatedRoute,
-    private apiService: APIService  ) {
-
-
-    this.route.queryParams.pipe(
-      switchMap(params => {
-      if (!this.isAdmin) this.searchText = params['text'];
-
-        return this.apiService.search(this.searchText, this.dossierType);
-    }),
-  ).subscribe(results => {
-    this.searchResults = results;
-  },
-    err => {
-      
-    }
-  );
+    private apiService: APIService) {
+    
   }
 
 
   ngOnInit(): void {
-    
+    this.search();
   }
 
   ngOnDestroy(): void {
     
   }
 
-  search():void{
+  search(): void{
+    if (!this.isAdmin) this.searchText = this.route.snapshot.queryParams['text'];
+
+    this.apiService.search(this.searchText, this.dossierType).subscribe(results => {
+      this.searchResults = results;
+    },
+      err => {
+
+      }
+    );
 
   }
 
