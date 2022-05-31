@@ -1,9 +1,11 @@
 .featured-wrap {
   color: white;
+  background-color: black;
 
-  .m-center{
+
+  .m-center {
     margin: 0 auto;
-}
+  }
 }
 
 .search-box {
@@ -13,16 +15,19 @@
 
 .search-box_line {
   border-right: 1px solid #ccc;
+
   @media (max-width: 767px) {
-      border: none;
+    border: none;
   }
-  .btn-add{
-  top: 17%;
-  @media (max-width: 767px) {
-  top: 0px;
-  left: 0;
-  border: none;
-}
+
+  .btn-add {
+    top: 17%;
+
+    @media (max-width: 767px) {
+      top: 0px;
+      left: 0;
+      border: none;
+    }
   }
 }
 
@@ -30,15 +35,17 @@
 .search-box2 {
   text-align: left;
   padding: 15px 20px;
+
   @media (max-width: 768px) {
-      border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
   }
+
   label {
-      font-size: 19px;
-      font-weight: 600;
-      // color: #484848;
-      color: rgb(196, 196, 196);
-      margin: 0;
+    font-size: 19px;
+    font-weight: 600;
+    // color: #484848;
+    color: rgb(196, 196, 196);
+    margin: 0;
   }
 }
 
@@ -51,14 +58,17 @@
   border: none;
   width: 40%;
   background: none;
+
   &::placeholder {
-      color: #adadad;
+    color: #adadad;
   }
+
   @media (max-width: 992px) {
-      width: 100%;
+    width: 100%;
   }
+
   &:focus {
-      outline: none;
+    outline: none;
   }
 }
 
@@ -67,15 +77,17 @@
   border: none;
   width: 100%;
   display: inline-block;
+
   p {
-      color: #484848;
+    color: #484848;
   }
 }
 
 .search-box-title {
   margin: 10px;
+
   @media (max-width: 768px) {
-      display: block;
+    display: block;
   }
 }
 
@@ -87,24 +99,29 @@
   border-radius: 6px;
   text-align: center;
   transition: 0.3s;
+
   @media (max-width: 992px) {
-      position: inherit;
-      margin: 15px 0 0;
+    position: inherit;
+    margin: 15px 0 0;
   }
+
   &:hover {
-      background: #ea5555;
-      color: #fff;
+    background: #ea5555;
+    color: #fff;
   }
+
   .btn-simple {
+    color: #fff;
+    padding: 10px 40px;
+    font-size: 18px;
+
+    @media (max-width: 1200px) {
+      padding: 18px 31px;
+    }
+
+    &:hover,
+    &:focus {
       color: #fff;
-      padding: 10px 40px;
-      font-size: 18px;
-      @media (max-width: 1200px) {
-          padding: 18px 31px;
-      }
-      &:hover,
-      &:focus {
-          color: #fff;
-      }
+    }
   }
 }
