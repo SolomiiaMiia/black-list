@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, OnInit, Input, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AddDossierPageDto } from '../models/addDossierPageDto';
 import { APIService } from '../shared/services/api.service'
 
@@ -18,14 +19,28 @@ export class AddDossierPageComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private apiService: APIService,
     private route: ActivatedRoute,
-    private router: Router ) {
+    private router: Router,
+    @Inject(DOCUMENT) private document: Document) {
   }
-
 
   ngOnInit(): void {
     this.isAnonymous = this.route.snapshot.parent?.url.filter(v => v.path == 'anonymous').length == 1;
-    console.log(this.isAnonymous);
     this.createForm();
+  }
+
+  private addScripts(url: string) {
+    var scriptUrl = url;
+    let node = document.createElement('script');
+    node.src = scriptUrl;
+    node.type = 'text/javascript';
+    node.async = true;
+    node.charset = 'utf-8';
+    document.getElementsByTagName('head')[0].appendChild(node);
+  }
+
+  ngAfterViewInit() {
+    this.addScripts('https://api.visicom.ua/apps/visicom-autocomplete.min.js');
+    this.addScripts('/assets/visicom.autocomplete.js');
   }
 
   private createForm() {
@@ -36,9 +51,6 @@ export class AddDossierPageComponent implements OnInit {
       imageInput: this.fb.control(''),
       position: this.fb.control(''),
       placeOfWork: this.fb.control(''),
-      region: this.fb.control('', { validators: [Validators.required] }),
-      district: this.fb.control('', { validators: [Validators.required] }),
-      localCommunity: this.fb.control(''),
       fileText: this.fb.control('', { validators: [Validators.required] }), //can be multiple attachtments
       text: this.fb.control('', { validators: [Validators.required] }),
     });
@@ -56,7 +68,11 @@ export class AddDossierPageComponent implements OnInit {
   }
 
   canSubmit(): boolean {
-    return this.isAnonymous ? true: this.dossierForm.get('agreeForData')?.value == true && this.dossierForm.get('agreeForContract')?.value == true;
+    return this.isAnonymous ? true : this.dossierForm.get('agreeForData')?.value == true && this.dossierForm.get('agreeForContract')?.value == true;
+  }
+
+  checkAddress(): boolean {
+    return (this.document.getElementById('address') as HTMLInputElement)?.value.length > 0;
   }
 
   public submit() {
@@ -73,7 +89,7 @@ export class AddDossierPageComponent implements OnInit {
         console.log(res);
         this.router.navigate(['/add-dossier/complete']);
       });
-     
+
     }
 
   }

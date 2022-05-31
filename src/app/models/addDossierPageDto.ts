@@ -5,9 +5,7 @@ export class AddDossierPageDto {
   imageInput: any;
   position: string = '';
   placeOfWork: string = '';
-  region: string = '';
-  district: string = '';
-  localCommunity: string = '';
+  address: string = '';
   fileText: any;
   phone: string = '';
   email: string = '';
