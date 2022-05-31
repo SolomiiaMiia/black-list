@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ManageDossierComponent } from './manage-dossier.component';
+import { SearchModule } from '../../search/search.module';
+import { FormsModule } from '@angular/forms';
+
+
 
 
 @NgModule({
@@ -10,8 +14,9 @@ import { ManageDossierComponent } from './manage-dossier.component';
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: ManageDossierComponent}]),
-    TabsModule.forRoot(),  
+    TabsModule.forRoot(),
+    SearchModule,
+    FormsModule,
   ],
-
 })
 export class ManageDossierModule { }

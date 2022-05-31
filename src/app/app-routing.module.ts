@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ManageDossierComponent } from './admin/manage-dossier/manage-dossier.component';
 
 const routes: Routes = [
 
@@ -16,11 +17,8 @@ const routes: Routes = [
     loadChildren: () => import('./dossier/dossier.module').then(m => m.DossierModule)
   },
   {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-  },
-  {
     path: 'admin/manage',
+    component: ManageDossierComponent,
     loadChildren: () => import('./admin/manage-dossier/manage-dossier.module').then(m => m.ManageDossierModule),
   }
 

@@ -1,7 +1,40 @@
-<section>
-  <tabset customClass="tabset">
-    <tab heading="Нові досьє" customClass="customClass" id="tab1" >Нові досьє</tab>
-    <tab heading="Опубліковані" customClass="customClass"  >Опубліковані</tab>
-    <tab heading="Відхилені" customClass="customClass" >Відхилені</tab>
-  </tabset>
+<section class="featured-wrap">
+
+  <div class="container-fluid container-subpage">
+    <div class="row">
+      <div class="col-md-12 responsive-wrap">
+        <div class="row detail-filter-wrap">
+          <div class="col-md-12 featured-responsive">
+            <div class="col-md-6 m-center">
+              <div class="search-box2">
+                <div class="search-box-title">
+                  <label>Введіть текст</label><br>
+                  <input [(ngModel)]="searchString" type="text"  class="search-form"
+                         spellcheck="false" placeholder="Пошук">
+                  <div class="btn-search">
+                    <a href="#"  class="btn btn-simple">
+                      Пошук
+                      досьє
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <tabset customClass="tabset">
+        <tab heading="Нові досьє" customClass="customClass" #tabNew="tab">
+          <app-search [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.New" *ngIf="tabNew.active"></app-search>
+        </tab>
+        <tab heading="Опубліковані" customClass="customClass" #tabPublished="tab">
+          <app-search [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.Published" *ngIf="tabPublished.active"></app-search>
+        </tab>
+        <tab heading="Відхилені" customClass="customClass" #tabDeclined="tab">
+          <app-search [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.Declined" *ngIf="tabDeclined.active"></app-search>
+        </tab>
+      </tabset>
 </section>

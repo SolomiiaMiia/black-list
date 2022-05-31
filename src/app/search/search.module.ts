@@ -25,7 +25,7 @@ import { SmallDossierModule } from '../small-dossier/small-dossier.module';
   ],
   exports:
   [
-
+      SearchComponent
   ]
 })
 export class SearchModule { }

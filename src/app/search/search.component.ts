@@ -1,7 +1,8 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { DossierSmallDto } from '../models/dossierSmallDto';
+import { DossierType } from '../models/dossierTypes';
 import { APIService } from '../shared/services/api.service'
 
 @Component({
@@ -11,9 +12,10 @@ import { APIService } from '../shared/services/api.service'
 })
 export class SearchComponent implements OnInit {
 
-
-  public searchText: string = '';
-  public sub: Subscription;
+  @Input('isAdmin') isAdmin: boolean = false;
+  @Input('dossierType') dossierType: DossierType = DossierType.All;
+  @Input('searchText') searchText: string = '';
+  
   public searchResults : DossierSmallDto[] = [
     {
       id : 1,
@@ -67,18 +69,30 @@ Chinatown, Civic Center`,
 
   constructor(private route: ActivatedRoute,
     private apiService: APIService  ) {
-    this.sub = this.route.queryParams.subscribe(params => {
-      this.searchText = params['text'];
-    });
+
+
+    this.route.queryParams.pipe(
+      switchMap(params => {
+      if (!this.isAdmin) this.searchText = params['text'];
+
+        return this.apiService.search(this.searchText, this.dossierType);
+    }),
+  ).subscribe(results => {
+    this.searchResults = results;
+  },
+    err => {
+      
+    }
+  );
   }
 
 
   ngOnInit(): void {
-   
+    
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    
   }
 
   search():void{

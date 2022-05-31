@@ -2,13 +2,13 @@
   <div class="container-fluid container-subpage">
     <div class="row">
       <div class="col-md-12 responsive-wrap">
-        <div class="row detail-filter-wrap">
+        <div *ngIf="!this.isAdmin" class="row detail-filter-wrap">
           <div class="col-md-12 featured-responsive">
             <div class="col-md-6 m-center">
               <div class="search-box2">
                 <div class="search-box-title">
                   <label>Введіть текст</label><br>
-                  <input [(ngModel)]="searchText" type="text" id="searchString" name="searchString" class="search-form"
+                  <input [(ngModel)]="searchText" type="text" class="search-form"
                     spellcheck="false" placeholder="Пошук">
                   <div class="btn-search">
                     <a href="#" (click)="this.search()" class="btn btn-simple">Пошук

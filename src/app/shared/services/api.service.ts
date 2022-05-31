@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EnvService } from './env.service';
 import { AddDossierPageDto } from 'src/app/models/addDossierPageDto';
 import { DossierDto } from 'src/app/models/dossierDto';
+import { DossierType } from '../../models/dossierTypes';
+import { DossierSmallDto } from '../../models/dossierSmallDto';
 
 @Injectable({ providedIn: 'root' })
 export class APIService {
@@ -25,8 +27,10 @@ export class APIService {
     return this.httpClient.get<string[]>(`${this.envService.apiUrl}/dossier`);
   }
 
-  getDossiers(searchText: string): Observable<string[]> {
-    return this.httpClient.get<string[]>(`${this.envService.apiUrl}/dossier/${searchText}`);
+  search(searchText: string, dossierType: DossierType): Observable<DossierSmallDto[]> {
+    let params = new HttpParams().set('searchText', searchText)
+      .set('dossierType', dossierType);
+    return this.httpClient.get<DossierSmallDto[]>(`${this.envService.apiUrl}/dossier`, { params: params });
   }
 
 }
