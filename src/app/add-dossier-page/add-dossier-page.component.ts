@@ -51,6 +51,7 @@ export class AddDossierPageComponent implements OnInit {
       imageInput: this.fb.control(''),
       position: this.fb.control(''),
       placeOfWork: this.fb.control(''),
+      address: this.fb.control('', { validators: [Validators.required] }),
       fileText: this.fb.control('', { validators: [Validators.required] }), //can be multiple attachtments
       text: this.fb.control('', { validators: [Validators.required] }),
     });
@@ -72,12 +73,18 @@ export class AddDossierPageComponent implements OnInit {
   }
 
   checkAddress(): boolean {
-    return (this.document.getElementById('address') as HTMLInputElement)?.value.length > 0;
+    return this.getAddressInput()?.value.length > 0;
+  }
+
+  private getAddressInput(): HTMLInputElement {
+    return this.document.getElementById('address') as HTMLInputElement;
   }
 
   public submit() {
 
     this.submitted = true;
+
+    this.dossierForm.get('address')?.setValue(this.getAddressInput()?.value);
 
     if (this.dossierForm.valid) {
 

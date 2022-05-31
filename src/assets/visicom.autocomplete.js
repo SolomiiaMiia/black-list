@@ -29,9 +29,10 @@ ready(function () {
     lang: 'uk',                          // language for searching
     onSuggestSelected: (suggest) => { },//document.getElementById("address").value = suggest.html,
   });
-
-  document.getElementById("visicom-autocomplete").getElementsByTagName('input')[0].classList.add('form-control');
-  document.getElementById("visicom-autocomplete").getElementsByTagName('input')[0].setAttribute('id', 'address');
+  let input = document.getElementById("visicom-autocomplete").getElementsByTagName('input')[0];
+  input.classList.add('form-control');
+  input.setAttribute('id', 'address');
+  input.setAttribute('formControlName', 'address');
 });
 
 
