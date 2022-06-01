@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ManageDossierComponent } from './admin/manage-dossier/manage-dossier.component';
+import { AdminGuard } from './shared/services/admin-guard';
+
 
 const routes: Routes = [
 
@@ -18,6 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'admin/manage',
+    canActivate: [AdminGuard],
     component: ManageDossierComponent,
     loadChildren: () => import('./admin/manage-dossier/manage-dossier.module').then(m => m.ManageDossierModule),
   },
@@ -27,6 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'admin/dossier/:id/edit',
+    canActivate: [AdminGuard],
     loadChildren: () => import('./add-dossier-page/add-dossier-page.module').then(m => m.AddDossierPageModule)
   },
 
