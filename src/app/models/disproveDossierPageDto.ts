@@ -1,11 +1,8 @@
-export class AddDossierPageDto {
+export class DisproveDossierPageDto {
   lastName: string = '';
   firstName: string = '';
   thirdName: string = '';
-  imageInput: any;
-  position: string = '';
-  placeOfWork: string = '';
-  address: string = '';
+  ipn: string = '';
   fileText: any;
   phone: string = '';
   email: string = '';

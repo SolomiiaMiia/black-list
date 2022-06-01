@@ -9,7 +9,7 @@ import { EnumHelper } from '../models/enums';
 })
 export class SmallDossierComponent implements OnInit {
 
-
+  @Input('isAdmin') isAdmin: boolean = false;
   @Input('dossier') dossier: DossierSmallDto = new DossierSmallDto;
   public enumHelper: EnumHelper = new EnumHelper();
 

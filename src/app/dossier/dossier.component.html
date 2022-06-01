@@ -64,19 +64,19 @@
             <p>Адреса<br>  {{dossier.address}}</p>
           </div>
           <div class="address">
-            <span><i class="fa fa-solid fa-phone"></i></span>
-            <p> Тел:</p>
-          </div>
-          <div class="address">
-            <span><i class="fa fa-solid fa-envelope"></i></span>
-            <p>Пошта</p>
-          </div>
-          <div class="address">
             <span><i class="fa fa-solid fa-calendar"></i></span>
             <p>{{dossier.date | date}} </p>
           </div>
           <div class="address">
             <p>{{this.enumHelper.DossierStatus[dossier.status]}}</p>
+
+            <ng-container *ngIf="dossier.status == DossierStatuses.New">
+              <div class="btn-search">
+                <a [routerLink]="['/dossier/'+dossier.id+'/disprove']"  class="btn btn-simple">Спростувати</a>
+              </div>
+            </ng-container>
+
+
           </div>
           
         </div>

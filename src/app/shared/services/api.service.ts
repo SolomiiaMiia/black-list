@@ -6,6 +6,7 @@ import { AddDossierPageDto } from 'src/app/models/addDossierPageDto';
 import { DossierDto } from 'src/app/models/dossierDto';
 import { DossierType } from '../../models/enums';
 import { DossierSmallDto } from '../../models/dossierSmallDto';
+import { DisproveDossierPageDto } from '../../models/disproveDossierPageDto';
 
 @Injectable({ providedIn: 'root' })
 export class APIService {
@@ -21,6 +22,10 @@ export class APIService {
 
   addDossier(dto: AddDossierPageDto): Observable<any> {
     return this.httpClient.post(`${this.envService.apiUrl}/dossier`, dto);
+  }
+
+  disproveDossier(dto: DisproveDossierPageDto): Observable<any> {
+    return this.httpClient.post(`${this.envService.apiUrl}/dossier/disprove`, dto);
   }
 
   getLatestDossiers(): Observable<string[]> {

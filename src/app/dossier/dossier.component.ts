@@ -16,6 +16,7 @@ export class DossierComponent implements OnInit {
   public searchText: string = '';
   public dossier: DossierDto = new DossierDto();
   public enumHelper: EnumHelper = new EnumHelper();
+  DossierStatuses = DossierStatus;
 
   constructor(private route: ActivatedRoute,
     private apiService: APIService) {

@@ -22,7 +22,7 @@
         <div class="row">
           <ng-container *ngFor="let dossier of this.searchResults">
             <div class="col-md-3 card-2">
-              <app-small-dossier [dossier]="dossier"></app-small-dossier>
+              <app-small-dossier [isAdmin]="this.isAdmin" [dossier]="dossier"></app-small-dossier>
             </div>
           </ng-container>
         </div>
