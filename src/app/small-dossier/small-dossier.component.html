@@ -10,6 +10,6 @@
   </div>
   <div class="card-bottom">
     <p><i class="ti-location-pin"></i>{{dossier.date | date}}</p>
-    <span>{{dossier.status}}</span>
+    <span>{{this.enumHelper.DossierStatus[dossier.status]}}</span>
   </div>
 </div>

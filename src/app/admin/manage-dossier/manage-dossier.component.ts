@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TabDirective } from 'ngx-bootstrap/tabs';
-import { DossierType } from '../../models/dossierTypes';
+import { DossierType } from '../../models/enums';
 import { SearchComponent } from '../../search/search.component';
 
 

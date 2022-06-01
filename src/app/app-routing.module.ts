@@ -20,7 +20,11 @@ const routes: Routes = [
     path: 'admin/manage',
     component: ManageDossierComponent,
     loadChildren: () => import('./admin/manage-dossier/manage-dossier.module').then(m => m.ManageDossierModule),
-  }
+  },
+  {
+    path: 'dossier/:id/disprove',
+    loadChildren: () => import('./disprove-dossier-page/disprove-dossier-page.module').then(m => m.DisproveDossierPageModule)
+  },
 
 ];
 

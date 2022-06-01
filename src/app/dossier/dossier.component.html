@@ -53,9 +53,8 @@
       </div>
       <div class="col-md-4 responsive-wrap">
         <div class="contact-info">
-          <img
-            src="https://filestore.community.support.microsoft.com/api/images/f2e55cbf-8316-4d3a-9412-ecd8194b2a72?upload=true"
-            class="img-fluid" alt="#">
+          <img src="https://filestore.community.support.microsoft.com/api/images/f2e55cbf-8316-4d3a-9412-ecd8194b2a72?upload=true"
+               class="img-fluid" alt="#">
           <div class="address">
             <span class="icon-location-pin"></span>
             <p> {{dossier.fullName}}</p>
@@ -76,6 +75,11 @@
             <span class="icon-clock"></span>
             <p>{{dossier.date | date}} </p>
           </div>
+          <div class="address">
+            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <p>{{this.enumHelper.DossierStatus[dossier.status]}}</p>
+          </div>
+          
         </div>
       </div>
     </div>

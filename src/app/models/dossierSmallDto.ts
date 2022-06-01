@@ -1,3 +1,5 @@
+import { DossierStatus } from "./enums";
+
 export class DossierSmallDto {
   public id: number = 0;
   public img: string = '';
@@ -6,5 +8,5 @@ export class DossierSmallDto {
   public placeOfWork: string = '';
   public address: string = '';
   public date: Date = new Date();
-  public status: string = '';
+  public status!: DossierStatus;
 }

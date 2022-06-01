@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { EnvService } from './env.service';
 import { AddDossierPageDto } from 'src/app/models/addDossierPageDto';
 import { DossierDto } from 'src/app/models/dossierDto';
-import { DossierType } from '../../models/dossierTypes';
+import { DossierType } from '../../models/enums';
 import { DossierSmallDto } from '../../models/dossierSmallDto';
 
 @Injectable({ providedIn: 'root' })

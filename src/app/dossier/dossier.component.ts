@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { DossierDto } from '../models/dossierDto';
+import { DossierStatus, EnumHelper } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
 
 
@@ -14,7 +15,7 @@ export class DossierComponent implements OnInit {
 
   public searchText: string = '';
   public dossier: DossierDto = new DossierDto();
-
+  public enumHelper: EnumHelper = new EnumHelper();
 
   constructor(private route: ActivatedRoute,
     private apiService: APIService) {
@@ -39,7 +40,7 @@ b/ t Division St & St James Pl
 Chinatown, Civic Center`,
           text:'Текст досьє',
           date: new Date,
-          status: 'Не спростовано',
+          status: DossierStatus.New,
         } as DossierDto;
       }
     );

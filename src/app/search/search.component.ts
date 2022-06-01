@@ -1,8 +1,7 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription, switchMap } from 'rxjs';
 import { DossierSmallDto } from '../models/dossierSmallDto';
-import { DossierType } from '../models/dossierTypes';
+import { DossierStatus, DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
 
 @Component({
@@ -27,7 +26,7 @@ export class SearchComponent implements OnInit {
 b/ t Division St & St James Pl
 Chinatown, Civic Center`,
       date: new Date,
-      status: 'Не спростовано',
+      status: DossierStatus.New,
     },
     {
       id: 2,
@@ -39,7 +38,7 @@ Chinatown, Civic Center`,
 b/ t Division St & St James Pl
 Chinatown, Civic Center`,
       date: new Date,
-      status: 'Не спростовано',
+      status: DossierStatus.New,
     },
     {
       id: 3,
@@ -51,7 +50,7 @@ Chinatown, Civic Center`,
 b/ t Division St & St James Pl
 Chinatown, Civic Center`,
       date: new Date,
-      status: 'Не спростовано',
+      status: DossierStatus.Disproved,
     },
     {
       id: 4,
@@ -63,7 +62,7 @@ Chinatown, Civic Center`,
 b/ t Division St & St James Pl
 Chinatown, Civic Center`,
       date: new Date,
-      status: 'Не спростовано',
+      status: DossierStatus.New,
     }
   ] 
 
