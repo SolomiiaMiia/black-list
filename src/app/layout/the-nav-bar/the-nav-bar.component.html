@@ -23,8 +23,14 @@
                   <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true"
                      aria-expanded="false">Контакти</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li *ngIf="this.isLoggedIn" class="nav-item dropdown">
                   <a [routerLink]="['/admin/manage']" class="nav-link">Адмінка</a>
+                </li>
+                <li *ngIf="!this.isLoggedIn" class="nav-item dropdown">
+                  <a [routerLink]="['/admin/login']" class="nav-link">Увійти</a>
+                </li>
+                <li *ngIf="this.isLoggedIn" class="nav-item dropdown">
+                  <a [routerLink]="" (click)="this.logout()" class="nav-link" style="cursor:pointer">Вийти</a>
                 </li>
               </ul>
             </div>

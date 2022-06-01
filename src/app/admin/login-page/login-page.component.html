@@ -1,0 +1,43 @@
+<section class="main-block">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="listing-wrap">
+
+          <div class="listing-title">
+            <span class="ti-files"></span>
+            <h4>Увійти в систему</h4>
+          </div>
+
+
+          <form [formGroup]="this.loginForm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="required-field">Ім'я користувача</label>
+                  <input type="text" formControlName="username" class="form-control">
+                  <small *ngIf="this.submitted && !this.loginForm.get('username')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="required-field">Пароль</label>
+                  <input type="password" formControlName="password" class="form-control">
+                  <small *ngIf="this.submitted && !this.loginForm.get('password')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="btn-wrap btn-wrap2">
+                  <button type="submit" (click)="submit()" class="btn btn-simple">Увійти</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

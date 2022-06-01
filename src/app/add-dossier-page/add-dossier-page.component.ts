@@ -25,7 +25,7 @@ export class AddDossierPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAnonymous = this.route.snapshot.parent?.url.filter(v => v.path == 'anonymous').length == 1;
-    this.createForm();
+    this.createForm(); 
   }
 
   private addScripts(url: string) {

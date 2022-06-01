@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AdminService } from '../../shared/services/admin.service';
 
 @Component({
   selector: 'app-the-nav-bar',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TheNavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private adminService: AdminService,
+    private router: Router  ) {
+    this.isLoggedIn = adminService.hasAccess();
+  }
+
+  public isLoggedIn: boolean;
 
   ngOnInit(): void {
+    
+  }
+
+  logout() {
+    this.adminService.logout();
+    this.isLoggedIn = false;
+    this.router.navigate(['']);
   }
 
 }

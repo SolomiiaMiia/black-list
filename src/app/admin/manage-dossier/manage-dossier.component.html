@@ -26,15 +26,18 @@
     </div>
   </div>
 
-      <tabset customClass="tabset">
-        <tab id="tab1" heading="Нові досьє" customClass="customClass" (selectTab)="changeTab($event)">
-          <app-search #tabNew  [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.New" *ngIf="this.activeTab === 'tab1'"></app-search>
-        </tab>
-        <tab id="tab2" heading="Опубліковані" customClass="customClass" (selectTab)="changeTab($event)">
-          <app-search #tabPublished [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.Published" *ngIf="this.activeTab === 'tab2'"></app-search>
-        </tab>
-        <tab id="tab3" heading="Відхилені" customClass="customClass" (selectTab)="changeTab($event)">
-          <app-search #tabDeclined [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.Declined" *ngIf="this.activeTab === 'tab3'"></app-search>
-        </tab>
-      </tabset>
+  <tabset customClass="tabset">
+    <tab id="tab1" heading="Нові досьє" customClass="customClass" (selectTab)="changeTab($event)">
+      <app-search #tabNew [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.New" *ngIf="this.activeTab === 'tab1'"></app-search>
+    </tab>
+    <tab id="tab2" heading="Опубліковані" customClass="customClass" (selectTab)="changeTab($event)">
+      <app-search #tabPublished [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.Published" *ngIf="this.activeTab === 'tab2'"></app-search>
+    </tab>
+    <tab id="tab3" heading="Відхилені" customClass="customClass" (selectTab)="changeTab($event)">
+      <app-search #tabDeclined [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.Declined" *ngIf="this.activeTab === 'tab3'"></app-search>
+    </tab>
+    <tab id="tab4" heading="Налаштування" customClass="customClass" (selectTab)="changeTab($event)">
+      
+    </tab>
+  </tabset>
 </section>

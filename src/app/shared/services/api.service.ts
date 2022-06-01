@@ -15,6 +15,9 @@ export class APIService {
     protected envService: EnvService) {
   }
 
+  login(username: string, password: string): Observable<any> {
+    return this.httpClient.post(`${this.envService.apiUrl}/auth/login`, { username: username, password: password });
+  }
 
   get(id: string): Observable<DossierDto> {
     return this.httpClient.get<DossierDto>(`${this.envService.apiUrl}/dossier/${id}`);

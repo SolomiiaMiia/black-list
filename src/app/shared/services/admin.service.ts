@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  
-  constructor() { }
-
   hasAccess(): boolean {
-    return true;
+    const currentUser = JSON.parse(localStorage.getItem('user')!);
+    if (currentUser !== null && currentUser.role === 'admin') return true;
+    return false;
+  }
+
+  grantAccess(user: any): void {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  logout(): void {
+    localStorage.removeItem('user');
   }
 }
