@@ -77,7 +77,16 @@
           </div>
           <div class="address">
             <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+
             <p>{{this.enumHelper.DossierStatus[dossier.status]}}</p>
+
+            <ng-container *ngIf="dossier.status == DossierStatuses.New">
+              <div class="btn-search">
+                <a [routerLink]="['/dossier/'+dossier.id+'/disprove']"  class="btn btn-simple">Спростувати</a>
+              </div>
+            </ng-container>
+
+
           </div>
           
         </div>

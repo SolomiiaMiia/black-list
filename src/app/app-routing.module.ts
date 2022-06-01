@@ -25,6 +25,10 @@ const routes: Routes = [
     path: 'dossier/:id/disprove',
     loadChildren: () => import('./disprove-dossier-page/disprove-dossier-page.module').then(m => m.DisproveDossierPageModule)
   },
+  {
+    path: 'admin/dossier/:id/edit',
+    loadChildren: () => import('./add-dossier-page/add-dossier-page.module').then(m => m.AddDossierPageModule)
+  },
 
 ];
 
