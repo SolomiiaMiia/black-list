@@ -39,7 +39,7 @@ export class AddDossierPageComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.addScripts('https://api.visicom.ua/apps/visicom-autocomplete.min.js');
+    this.addScripts('/assets/visicom.autocomplete.min.js');
     this.addScripts('/assets/visicom.autocomplete.js');
   }
 
