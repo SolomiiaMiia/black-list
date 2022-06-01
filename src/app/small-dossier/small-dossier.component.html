@@ -9,9 +9,9 @@
     <p class="card-text">{{dossier.address}}</p>
   </div>
   <div class="card-bottom">
-    <p><i class="ti-location-pin"></i>{{dossier.date | date}}</p>
+    <p><i class="fa fa-light fa-calendar"></i>{{dossier.date | date}}</p>
     <span>{{this.enumHelper.DossierStatus[dossier.status]}}</span>
-    <div *ngIf="this.isAdmin" class="btn-search">
+    <div *ngIf="this.isAdmin" class="btn-edit">
       <a [routerLink]="['/admin/dossier/'+dossier.id+'/edit']" class="btn btn-simple">Редагувати</a>
     </div>
   </div>
