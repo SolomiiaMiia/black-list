@@ -223,6 +223,12 @@ i {
   line-height: 1.25;
   border-radius: .25rem;
   transition: all .15s ease-in-out;
+  
+  @media (max-width: 992px) {
+    position: inherit;
+    margin: 15px 0 0;
+  }
+
 }
 
 .btn-simple {
@@ -240,6 +246,10 @@ i {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+  &:hover {
+    background: #ea5555;
+    color: #fff;
+  }
 }
 
 .btn-wrap {
