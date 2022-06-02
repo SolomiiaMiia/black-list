@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AddDossierPageDto } from '../models/addDossierPageDto';
 import { APIService } from '../shared/services/api.service'
 
@@ -88,13 +88,21 @@ export class AddDossierPageComponent implements OnInit {
 
     if (this.dossierForm.valid) {
 
+      const navigationExtras: NavigationExtras = {
+        state: {
+          isNew: true
+        }
+      };
+
       let dto = this.dossierForm.value as AddDossierPageDto;
 
       console.log(dto);
 
       this.apiService.addDossier(dto).subscribe(res => {
-        console.log(res);
-        this.router.navigate(['/add-dossier/complete']);
+
+        this.router.navigate(['/add-dossier/complete'], navigationExtras);
+      }, err => {
+        this.router.navigate(['/add-dossier/complete'], navigationExtras);
       });
 
     }

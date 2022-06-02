@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminService } from '../shared/services/admin.service';
 
 @Component({
@@ -10,8 +11,17 @@ export class CompleteDossierComponent implements OnInit {
 
   public newDossierText: string='';
   public disproveDossierText: string = '';
-  public isNew: boolean = true;
-  constructor(private adminService: AdminService) {
+  public isNew: boolean = false;
+  constructor(private adminService: AdminService,
+    private router: Router  ) {
+
+    const navigation = this.router.getCurrentNavigation()!;
+    const state = navigation.extras.state as {
+      isNew: boolean
+    };
+
+    this.isNew = state.isNew;
+
     this.adminService.loadSettings((response) => {
       this.newDossierText = response.newDossierText;
       this.disproveDossierText = response.disproveDossierText;});
