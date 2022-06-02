@@ -28,7 +28,7 @@ export class APIService {
     return this.httpClient.get<AdminSettingsDto>(`${this.envService.apiUrl}/settings`);
   }
 
-  get(id: string): Observable<DossierDto> {
+  get(id: number): Observable<DossierDto> {
     return this.httpClient.get<DossierDto>(`${this.envService.apiUrl}/dossier/${id}`);
   }
 

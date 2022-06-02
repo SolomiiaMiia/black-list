@@ -8,7 +8,7 @@
 
           <div class="listing-title">
             <span class="ti-files"></span>
-            <h4>Створити {{this.isAnonymous? 'анонімно':'' }} досьє</h4>
+            <h4>Редагувати досьє</h4>
             <p>Дані про особу</p>
           </div>
 
@@ -85,7 +85,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label class="required-field">Текст, що викриває особу, підозрювану у корупції</label>
-                  <textarea [froalaEditor] formControlName="text" class="text form-control" rows="3"></textarea>
+                    <div [froalaView]="this.dossierForm.get('text')?.value" formControlName="text" class="text form-control" rows="3"></div>
                   <small *ngIf="this.submitted && !this.dossierForm.get('text')?.valid"
                     class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
@@ -109,15 +109,15 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="required-field">Автор</label>
-                    <input type="text" formControlName="author" class="form-control">
+                    <input [readonly]="true"  type="text" formControlName="author" class="form-control">
                     <small *ngIf="this.submitted && !this.dossierForm.get('author')?.valid"
-                      class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                           class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Контактний номер телефону</label>
-                    <input type="text" placeholder="+380xxxxxxxxx" formControlName="phone" class="form-control">
+                    <input [readonly]="true" type="text" placeholder="+380xxxxxxxxx" formControlName="phone" class="form-control">
                     <small *ngIf="this.submitted && !this.dossierForm.get('phone')?.valid"
                       class="form-text text-danger ml-2">Не валідний номер телефону</small>
                   </div>
@@ -125,7 +125,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>Адреса електронної пошти</label>
-                    <input placeholder="email@mail.com" type="text" formControlName="email" class="form-control">
+                    <input [readonly]="true" placeholder="email@mail.com" type="text" formControlName="email" class="form-control">
                     <small *ngIf="this.submitted && !this.dossierForm.get('email')?.valid"
                       class="form-text text-danger ml-2">Не валідна адреса електронної пошти</small>
                   </div>
@@ -133,37 +133,21 @@
                 <div class="col-md-6">
                 </div>
 
-                <div class="col">
-                  <div class="col-md-12 responsive-wrap">
-                    <div class="md-checkbox" style="margin-top: 20px;">
-                      <input type="checkbox" id="agreeForData" formControlName="agreeForData"
-                        [checked]="this.dossierForm.get('agreeForData')?.value">
-                      <label for="agreeForData" class="required-field">Згода на обробку персональних даних</label>
-                      <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
-                      <p *ngIf="this.submitted && !this.dossierForm.get('agreeForData')?.valid"
-                        class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
-                    </div>
-                  </div>
-                  <div class="col-md-12 responsive-wrap">
-                    <div class="md-checkbox">
-                      <input type="checkbox" id="agreeForContract" formControlName="agreeForContract"
-                        [checked]="this.dossierForm.get('agreeForContract')?.value">
-                      <label for="agreeForContract" class="required-field">Публічний договір щодо співпраці автора досьє
-                        та сайту</label>
-                      <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
-                      <p *ngIf="this.submitted && !this.dossierForm.get('agreeForContract')?.valid"
-                        class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
-                    </div>
-                  </div>
-                </div>
+
               </ng-container>
               <div class="row">
                 <div class="col-md-12">
-                  <div class="btn-wrap btn-wrap2">
-                    <button type="submit" (click)="submit()" class="btn btn-simple"
-                      [disabled]="!this.canSubmit()">Надіслати</button>
+                  <div class="btn-admin">
+                    <div>
+                      <button type="submit" class="btn btn-simple-admin btn-color-primary">Зберегти</button>
+                    </div>
+                    <div>
+                      <button type="submit" class="btn btn-simple-admin">Опублікувати</button>
+                    </div>
+                    <div >
+                      <button type="submit" class="btn btn-simple-admin btn-color-danger">Відхилити</button>
+                    </div>
                   </div>
-                
                 </div>
               </div>
             </div>

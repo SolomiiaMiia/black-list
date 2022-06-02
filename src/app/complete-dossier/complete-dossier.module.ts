@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 import { CompleteDossierComponent } from './complete-dossier.component';
+import { FroalaViewModule } from 'angular-froala-wysiwyg';
 
 
 
@@ -9,7 +10,8 @@ import { CompleteDossierComponent } from './complete-dossier.component';
   declarations: [ CompleteDossierComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild([{ path: '', component: CompleteDossierComponent}]),
+    RouterModule.forChild([{ path: '', component: CompleteDossierComponent }]),
+    FroalaViewModule.forRoot()
   ]
 })
 export class CompleteDossierModule { }

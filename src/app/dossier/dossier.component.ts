@@ -22,7 +22,7 @@ export class DossierComponent implements OnInit {
     private apiService: APIService) {
     this.route.paramMap.pipe(
       switchMap(params => {
-        const id = params.get('id') as any;
+        const id = Number(params.get('id'));
         this.dossier.id = id;
         return this.apiService.get(id);
       }),
@@ -33,7 +33,9 @@ export class DossierComponent implements OnInit {
         this.dossier = {
           id: 3,
           img: 'assets/images/1.png',
-          fullName: 'ПІБ 3',
+          lastName: 'Садовий',
+          firstName: 'Андрій',
+          thirdName: 'Іванович',
           position: 'Посада',
           placeOfWork: 'Місце роботи',
           address: `New York, NY 10013

@@ -1,8 +1,4 @@
-<section>
-  <ng-container *ngIf="this.isNew">
-    {{this.newDossierText}}
-  </ng-container>
-  <ng-container *ngIf="!this.isNew">
-    {{this.disproveDossierText}}
-  </ng-container>
-</section>
+
+<div [froalaView]="this.isNew?this.newDossierText:this.disproveDossierText" formControlName="text" class="text form-control" rows="3"></div>
+
+

@@ -14,7 +14,7 @@
       <div class="col-md-8 responsive-wrap">
         <div class="booking-checkbox_wrap">
           <div class="booking-checkbox">
-            {{dossier.text}}
+            <div [froalaView]="dossier.text" formControlName="text" class="text form-control" rows="3"></div>
             <hr>
           </div>
           <div class="row">
@@ -57,7 +57,7 @@
                class="img-fluid" alt="#">
           <div class="address">
             <span><i class="fa fa-light fa-user"></i></span>
-            <p> {{dossier.fullName}}</p>
+            <p> {{dossier.lastName}} {{dossier.firstName}} {{dossier.thirdName}}</p>
           </div>
           <div class="address">
            <span><i class="fa fa-location-dot"></i></span> 
