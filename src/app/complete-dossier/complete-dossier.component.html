@@ -1,1 +1,8 @@
-<p>complete-dossier works!</p>
+<section>
+  <ng-container *ngIf="this.isNew">
+    {{this.newDossierText}}
+  </ng-container>
+  <ng-container *ngIf="!this.isNew">
+    {{this.disproveDossierText}}
+  </ng-container>
+</section>

@@ -32,16 +32,8 @@ export class SettingsPageComponent implements OnInit {
       disproveDossierText: this.fb.control('', { validators: [Validators.required] })
     });
 
-    let settings = this.adminService.getSettings();
+    this.adminService.loadSettings((response) => { this.setSettings(response); });
 
-    if (settings !== null) {
-      this.setSettings(settings);
-    } else {
-
-      this.adminService.loadSettings().add(() => {
-        this.setSettings(this.adminService.getSettings());
-      });
-    }
 
   }
 

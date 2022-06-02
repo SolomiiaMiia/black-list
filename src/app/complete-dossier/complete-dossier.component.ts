@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../shared/services/admin.service';
 
 @Component({
   selector: 'app-complete-dossier',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompleteDossierComponent implements OnInit {
 
-  constructor() { }
+  public newDossierText: string='';
+  public disproveDossierText: string = '';
+  public isNew: boolean = true;
+  constructor(private adminService: AdminService) {
+    this.adminService.loadSettings((response) => {
+      this.newDossierText = response.newDossierText;
+      this.disproveDossierText = response.disproveDossierText;});
+  }
 
   ngOnInit(): void {
+   
   }
 
 }

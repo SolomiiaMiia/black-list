@@ -31,32 +31,27 @@ export class AdminService {
     localStorage.setItem('settings', JSON.stringify(settings));
   }
 
-  getSettings(): AdminSettingsDto {
+  loadSettings(callbackFunction: (args: AdminSettingsDto) => void) {
+    let settings = JSON.parse(localStorage.getItem('settings')!) as AdminSettingsDto;
+    if (settings !== null) { callbackFunction(settings) }
+    else {
+      this.apiService.getSettings().subscribe(res => {
 
-    return JSON.parse(localStorage.getItem('settings')!) as AdminSettingsDto;
-   
-  }
+        this.saveSettings(res);
+        callbackFunction(res);
 
-  loadSettings(): Subscription {
+      }, err => {
 
-    
-    let sub =  this.apiService.getSettings().subscribe(res => {
+        let sett = new AdminSettingsDto();
+        sett.videoLink = "video link";
+        sett.newDossierText = "some text";
+        sett.disproveDossierText = "some text2";
 
-      this.saveSettings(res);
+        this.saveSettings(sett);
+        callbackFunction(sett);
 
-    }, err => {
-
-      let sett = new AdminSettingsDto();
-      sett.videoLink = "video link";
-      sett.newDossierText = "some text";
-      sett.disproveDossierText = "some text2";
-
-      this.saveSettings(sett);
-
-    });
-
-    return sub;
-    
+      });
+    } 
   }
 
 }

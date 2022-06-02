@@ -9,7 +9,7 @@ import { LoaderService } from 'src/app/shared/services/loader.service';
 export class AppComponent {
   title = 'black-list';
 
-  constructor(public loaderService: LoaderService) {
+  constructor(public loaderService: LoaderService,) {
 
   }
   
