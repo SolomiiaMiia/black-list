@@ -5,6 +5,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ManageDossierComponent } from './manage-dossier.component';
 import { SearchModule } from '../../search/search.module';
 import { FormsModule } from '@angular/forms';
+import { SettingsPageModule } from '../settings-page/settings-page.module';
 
 
 
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     TabsModule.forRoot(),
     SearchModule,
     FormsModule,
+    SettingsPageModule
   ],
 })
 export class ManageDossierModule { }

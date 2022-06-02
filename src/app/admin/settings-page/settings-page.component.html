@@ -1,0 +1,52 @@
+<section class="main-block">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="listing-wrap">
+
+          <div class="listing-title">
+            <span class="ti-files"></span>
+            <h4>Налаштування системи</h4>
+          </div>
+
+
+          <form [formGroup]="this.settingsForm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="required-field">Посилання на відео (головна сторінка)</label>
+                  <input type="text" formControlName="videoLink" class="form-control">
+                  <small *ngIf="this.submitted && !this.settingsForm.get('videoLink')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="required-field">Повідомлення-подяка після подачі нового досьє</label>
+                  <textarea [froalaEditor] formControlName="newDossierText" class="text form-control" rows="3"></textarea>
+                  <small *ngIf="this.submitted && !this.settingsForm.get('newDossierText')?.valid"
+                         class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="required-field">Повідомлення-подяка після подачі спростування досьє</label>
+                  <textarea [froalaEditor] formControlName="disproveDossierText" class="text form-control" rows="3"></textarea>
+                  <small *ngIf="this.submitted && !this.settingsForm.get('disproveDossierText')?.valid"
+                         class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="btn-wrap btn-wrap2">
+                  <button type="submit" (click)="submit()" class="btn btn-simple">Зберегти</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

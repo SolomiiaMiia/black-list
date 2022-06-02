@@ -37,7 +37,7 @@
       <app-search #tabDeclined [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.Declined" *ngIf="this.activeTab === 'tab3'"></app-search>
     </tab>
     <tab id="tab4" heading="Налаштування" customClass="customClass" (selectTab)="changeTab($event)">
-      
+      <app-admin-settings *ngIf="this.activeTab === 'tab4'"></app-admin-settings>
     </tab>
   </tabset>
 </section>

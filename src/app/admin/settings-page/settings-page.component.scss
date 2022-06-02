@@ -1,0 +1,186 @@
+
+.main-block {
+  padding:30px 0 70px 0;
+ 
+    background-color: black;
+
+  @media (max-width: 992px) {
+      padding: 44px 0;
+  }
+}
+
+
+h4 {
+  font-size: 25px;
+  color: white;
+}
+
+@media (max-width: 992px) {
+  h4 {
+    font-size: 22px;
+  }
+}
+
+label {
+  color: #adadad;
+  margin-bottom: .5rem;
+  margin-top: .5rem;
+}
+
+input[type="file"] {
+  padding-left: 20px;
+}
+
+.listing-wrap {
+  // border: 1px solid #ff6b6b;
+  padding: 0 30px 30px;
+
+  form {
+    margin: 46px 0 0;
+  }
+
+  textarea {
+    height: 100px;
+  }
+}
+
+.listing-title {
+  text-align: center;
+  margin: 30px 0 0px;
+
+  span {
+    font-size: 32px;
+    color: #ff6b6b;
+  }
+
+  h4 {
+    margin: 10px 0;
+  }
+
+  p {
+    color: #adadad;
+  }
+}
+
+.form-control,
+.text {
+  width: 100%;
+  padding: 14px 12px;
+  background: #fbfbfb;
+
+  &:focus {
+    box-sizing: border-box;
+    border-color: #ff6b6b;
+  }
+}
+
+.contact-form .form-control {
+  background: #FFF;
+}
+
+select.form-control:not([size]):not([multiple]) {
+  height: calc(3.05rem + 2px);
+}
+
+.form-control:focus {
+  border-color: #ff6b6b;
+}
+
+.text:focus {
+  border-color: #ff6b6b;
+
+  &:focus {
+    border-color: #ff6b6b;
+  }
+}
+
+
+
+.required-field::after {
+  content: '*';
+  color: red;
+}
+
+i {
+  color: grey;
+
+  &:hover {
+    color: white;
+
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.listing-time {
+  margin: 10px 0 0;
+}
+
+.custom-file {
+  width: 100%;
+  border: 1px dashed #ececec;
+  height: 100px;
+}
+
+.custom-file-input {
+  width: 100%;
+  cursor: pointer;
+  height: 100px;
+}
+
+.add-gallery-text {
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 30px;
+  color: #a0a0a0;
+
+  i {
+    display: block;
+  }
+}
+
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .5rem .75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  border-radius: .25rem;
+  transition: all .15s ease-in-out;
+}
+
+.btn-simple {
+  font-size: 20px;
+  color: #ff6b6b;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.btn-wrap2 .btn-simple {
+  background: #ff6b6b;
+  padding: 10px 35px;
+  color: #fff;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.btn-wrap {
+  // text-align: center;
+  margin: 10px 0 0;
+}

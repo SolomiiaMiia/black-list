@@ -7,6 +7,7 @@ import { DossierDto } from 'src/app/models/dossierDto';
 import { DossierType } from '../../models/enums';
 import { DossierSmallDto } from '../../models/dossierSmallDto';
 import { DisproveDossierPageDto } from '../../models/disproveDossierPageDto';
+import { AdminSettingsDto } from '../../models/adminSettingsDto';
 
 @Injectable({ providedIn: 'root' })
 export class APIService {
@@ -17,6 +18,14 @@ export class APIService {
 
   login(username: string, password: string): Observable<any> {
     return this.httpClient.post(`${this.envService.apiUrl}/auth/login`, { username: username, password: password });
+  }
+
+  saveSettings(settings: AdminSettingsDto): Observable<any> {
+    return this.httpClient.post(`${this.envService.apiUrl}/settings`, settings);
+  }
+
+  getSettings(): Observable<AdminSettingsDto> {
+    return this.httpClient.get<AdminSettingsDto>(`${this.envService.apiUrl}/settings`);
   }
 
   get(id: string): Observable<DossierDto> {
