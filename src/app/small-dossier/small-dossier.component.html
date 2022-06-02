@@ -12,7 +12,7 @@
     <p><i class="fa fa-light fa-calendar"></i>{{dossier.date | date}}</p>
     <span>{{this.enumHelper.DossierStatus[dossier.status]}}</span>
     <div *ngIf="this.isAdmin" class="btn-edit">
-      <a [routerLink]="['/admin/dossier/'+dossier.id+'/edit']" class="btn btn-simple">Редагувати</a>
+      <a [routerLink]="['/admin/dossier/'+dossier.id+'/edit']" class="btn edit">Редагувати</a>
     </div>
   </div>
 </div>
