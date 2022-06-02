@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { DisproveDossierPageDto } from '../models/disproveDossierPageDto';
 import { APIService } from '../shared/services/api.service'
 
@@ -55,13 +55,20 @@ export class DisproveDossierPageComponent implements OnInit {
 
     if (this.dossierForm.valid) {
 
+      const navigationExtras: NavigationExtras = {
+        state: {
+          isNew: false
+        }
+      };
+
       let dto = this.dossierForm.value as DisproveDossierPageDto;
 
       console.log(dto);
 
       this.apiService.disproveDossier(dto).subscribe(res => {
-        console.log(res);
-        this.router.navigate(['/add-dossier/complete']);
+        this.router.navigate(['/add-dossier/complete'], navigationExtras);
+      }, err => {
+        this.router.navigate(['/add-dossier/complete'], navigationExtras);
       });
 
     }
