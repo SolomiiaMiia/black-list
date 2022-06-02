@@ -4,7 +4,7 @@ import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule} from '@angular/forms';
 
 import { EditDossierPageComponent } from './edit-dossier-page.component';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { FroalaViewModule } from 'angular-froala-wysiwyg';
 
 
 
