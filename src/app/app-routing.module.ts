@@ -35,7 +35,7 @@ const routes: Routes = [
   {
     path: 'admin/dossier/:id/edit',
     canActivate: [AdminGuard],
-    loadChildren: () => import('./add-dossier-page/add-dossier-page.module').then(m => m.AddDossierPageModule)
+    loadChildren: () => import('./edit-dossier-page/edit-dossier-page.module').then(m => m.EditDossierPageModule)
   },
 
 ];

@@ -6,7 +6,7 @@ export class AddDossierPageDto {
   position: string = '';
   placeOfWork: string = '';
   address: string = '';
-  fileText: any;
+  fileText: any = '';
   phone: string = '';
   email: string = '';
   text: string = '';
