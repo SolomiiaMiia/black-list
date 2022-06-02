@@ -38,6 +38,12 @@ const routes: Routes = [
     loadChildren: () => import('./add-dossier-page/add-dossier-page.module').then(m => m.AddDossierPageModule)
   },
 
+
+
+  {
+    path: 'file-prev',
+    loadChildren: () => import('./file-preview/file-preview.module').then(m => m.FilePreviewModule)
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,19 @@
+section {
+  background-color: black;
+  padding: 5px;
+  .px{
+      padding: 0 80px;
+      margin: 5px;
+  }
+
+  .file {
+    justify-content: space-around;
+    p {
+      margin: 0 auto;
+      padding: 0 5px;
+    }
+    a{
+        color: black;
+    }
+  }
+}
