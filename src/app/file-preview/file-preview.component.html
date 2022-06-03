@@ -1,10 +1,10 @@
 <section>
   <div class="row">
     <ng-container *ngFor="let file of this.files">
-      <div class="col-md-1 px">
+      <div class="col-md-2 px">
         <div class="file d-flex align-items-center ">
           <div><i class="fa fa-light fa-paperclip"></i></div>
-          <div><p> {{file.name | slice:0:10}}</p></div>     
+          <div title="{{file.name}}"><p> {{file.name | slice:0:8}}</p></div>     
           <div> <a target="_blank" href={{file.url}}><i class="fa-solid fa-file-arrow-down"></i></a></div>   
         </div>
       </div>

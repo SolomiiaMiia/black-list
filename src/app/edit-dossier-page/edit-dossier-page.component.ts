@@ -61,7 +61,7 @@ export class EditDossierPageComponent implements OnInit {
           author: 'Автор',
           phone: '+380982774950',
           email: 'letos009@gmail.com',
-          photo: { name: "1.png", url: "assets/images/1.png" },
+          photo: { name: "1sdhfsf sdfsdhfvsdghfvsgdfvs.png", url: "assets/images/1.png" },
           dossierFiles: [{ name: "sample.pdf", url: "assets/files/sample.pdf" }, { name: "sample.pdf", url: "assets/files/sample.pdf" },
           { name: "sample.pdf", url: "assets/files/sample.pdf" }]
         } as DossierDto;
