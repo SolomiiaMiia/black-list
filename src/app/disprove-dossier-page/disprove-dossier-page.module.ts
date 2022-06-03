@@ -4,7 +4,7 @@ import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule} from '@angular/forms';
 
 import { DisproveDossierPageComponent } from './disprove-dossier-page.component';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { FroalaEditorModule } from 'angular-froala-wysiwyg';
 
 
 
@@ -17,8 +17,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     CommonModule,
     RouterModule.forChild([{ path: '', component: DisproveDossierPageComponent}]),
     ReactiveFormsModule,
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
+    FroalaEditorModule.forRoot()
   
   ],
   exports:

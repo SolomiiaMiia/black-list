@@ -1,12 +1,11 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EditDossierPageDto } from '../models/editDossierPageDto';
 import { DossierDto } from '../models/dossierDto';
 import { DossierStatus, DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
-import { FileDto } from '../models/fileDto';
 import { AdminService } from '../shared/services/admin.service';
 
 @Component({
@@ -20,7 +19,7 @@ export class EditDossierPageComponent implements OnInit {
 
   public submitted: boolean = false;
   public isAnonymous: boolean = true;
-  private id: number = 0;
+  public id: number = 0;
   public dossier: DossierDto = new DossierDto();
   public isSuperAdmin: boolean;
 
@@ -131,7 +130,7 @@ export class EditDossierPageComponent implements OnInit {
     return this.document.getElementById('address') as HTMLInputElement;
   }
 
-  public submit(action: string) {
+  public submit(action: 'save' | 'publish' | 'deny') {
 
     this.submitted = true;
 
@@ -143,7 +142,7 @@ export class EditDossierPageComponent implements OnInit {
 
       console.log(dto);
 
-      this.apiService.editDossier(dto, action).subscribe(res => {
+      this.apiService.editDossier(this.id, dto, action).subscribe(res => {
 
         this.router.navigate(['/admin/manage']);
       }, err => {

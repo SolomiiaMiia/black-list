@@ -1,3 +1,4 @@
+import { DisproveDossierPageDto } from "./disproveDossierPageDto";
 import { DossierStatus, DossierType } from "./enums";
 import { FileDto } from "./fileDto";
 
@@ -6,9 +7,11 @@ export class DossierDto {
   constructor() {
     this.photo = null;
     this.dossierFiles = null;
+    this.disproveDossier = null;
   }
 
   public id: number = 0;
+
   public img: string = '';
   public lastName: string = '';
   public firstName: string = ''
@@ -24,7 +27,9 @@ export class DossierDto {
   public phone: string = ''
   public email: string = ''
   public type!: DossierType;
+  public photo: FileDto | null;
+  public dossierFiles: FileDto[] | null;
 
-  photo: FileDto | null;
-  dossierFiles: FileDto[] | null;
+  //only for disproving
+  public disproveDossier: DisproveDossierPageDto | null;
 }

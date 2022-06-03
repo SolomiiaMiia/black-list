@@ -38,8 +38,8 @@ const routes: Routes = [
     loadChildren: () => import('./edit-dossier-page/edit-dossier-page.module').then(m => m.EditDossierPageModule)
   },
   {
-    path: 'file-prev',
-    loadChildren: () => import('./file-preview/file-preview.module').then(m => m.FilePreviewModule)
+    path: 'admin/dossier/:id/disprove/edit',
+    loadChildren: () => import('./edit-disprove-dossier-page/edit-disprove-dossier-page.module').then(m => m.EditDisproveDossierPageModule)
   },
 ];
 

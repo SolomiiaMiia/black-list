@@ -9,10 +9,10 @@
               <div class="search-box2">
                 <div class="search-box-title">
                   <label>Введіть текст</label><br>
-                  <input [(ngModel)]="searchString" type="text"  class="search-form"
+                  <input [disabled]="this.activeTab === 'tab4'" [(ngModel)]="searchString" type="text"  class="search-form"
                          spellcheck="false" placeholder="Пошук">
                   <div class="btn-search">
-                    <a [routerLink]="" (click)="this.search()"  class="btn btn-simple">
+                    <a [routerLink]="" (click)="this.search()" [class.disabled]="this.activeTab === 'tab4'"   class="btn btn-simple">
                       Пошук
                       досьє
                     </a>

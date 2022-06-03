@@ -12,12 +12,14 @@ export class DisproveDossierPageComponent implements OnInit {
 
   @Input() public dossierForm: FormGroup = new FormGroup({});
 
+  public id: number;
   public submitted: boolean = false;
 
   constructor(private fb: FormBuilder,
     private apiService: APIService,
     private route: ActivatedRoute,
     private router: Router) {
+    this.id = Number(this.route.snapshot.parent?.url.filter(v => !isNaN(Number(v.path)))[0].path);
   }
 
   ngOnInit(): void {
@@ -27,10 +29,6 @@ export class DisproveDossierPageComponent implements OnInit {
 
   private createForm() {
     this.dossierForm = this.fb.group({
-      lastName: this.fb.control('', { validators: [Validators.required] }),
-      firstName: this.fb.control('', { validators: [Validators.required] }),
-      thirdName: this.fb.control('', { validators: [Validators.required] }),
-      ipn: this.fb.control(''),
       fileText: this.fb.control('', { validators: [Validators.required] }), //can be multiple attachtments
       text: this.fb.control('', { validators: [Validators.required] }),
       author: this.fb.control('', { validators: [Validators.required] }),
@@ -65,7 +63,7 @@ export class DisproveDossierPageComponent implements OnInit {
 
       console.log(dto);
 
-      this.apiService.disproveDossier(dto).subscribe(res => {
+      this.apiService.disproveDossier(this.id, dto).subscribe(res => {
         this.router.navigate(['/add-dossier/complete'], navigationExtras);
       }, err => {
         this.router.navigate(['/add-dossier/complete'], navigationExtras);
