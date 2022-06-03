@@ -1,0 +1,73 @@
+<section class="main-block">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="listing-wrap">
+
+          <div class="listing-title">
+            <span class="ti-files"></span>
+            <h4>Спростування досьє номер {{this.id}}</h4>
+          </div>
+
+            <div class="row">
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="required-field">Текст, що спростовує відомості, зазначені в досьє</label>
+                  <div [froalaView]="this.dossier.disproveDossier?.text!" class="text form-control" rows="3"></div>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="required-field">Підтверджуючі додатки до тексту (файли, фото та ін.)</label>
+                  <app-file-preview *ngIf="this.dossier.disproveDossier?.dossierFiles" [files]="this.dossier.disproveDossier?.dossierFiles"> </app-file-preview>
+                </div>
+              </div>
+
+              <div class="listing-title">
+                <span class="ti-files"></span>
+                <p>Контактні дані автора</p>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="required-field">Автор</label>
+                  <input [readonly]="true" type="text" [value]="this.dossier.disproveDossier?.author" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Контактний номер телефону</label>
+                  <input [readonly]="true" type="text" [value]="this.dossier.disproveDossier?.phone" placeholder="+380xxxxxxxxx" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Адреса електронної пошти</label>
+                  <input [readonly]="true" type="text" [value]="this.dossier.disproveDossier?.email" placeholder="email@mail.com" class="form-control">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="btn-admin">
+                    <div *ngIf="this.dossier.type === this.DossierTypes.DisproveNew">
+                      <button type="submit" (click)="this.submit('publish')" class="btn btn-simple-admin">Опублікувати</button>
+                    </div>
+                    <div *ngIf="this.dossier.type === this.DossierTypes.DisprovePublished">
+                      <button type="submit" (click)="this.submit('deny')" class="btn btn-simple-admin btn-color-danger">Відхилити</button>
+                    </div>
+                    <div *ngIf="this.isSuperAdmin">
+                      <button type="submit" (click)="this.delete()" class="btn btn-simple-admin btn-color-danger">Видалити</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

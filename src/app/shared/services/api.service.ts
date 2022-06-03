@@ -37,16 +37,24 @@ export class APIService {
     return this.httpClient.post(`${this.envService.apiUrl}/dossier`, dto);
   }
 
-  editDossier(dto: EditDossierPageDto, action: string): Observable<any> {
-    return this.httpClient.put(`${this.envService.apiUrl}/dossier?action=${action}`, dto);
+  editDossier(id: number, dto: EditDossierPageDto, action: 'save' | 'publish' | 'deny'): Observable<any> {
+    return this.httpClient.put(`${this.envService.apiUrl}/dossier/${id}/${action}`, dto);
+  }
+
+  publishDisproveDossier(id: number, action: 'publish' | 'deny'): Observable<any> {
+    return this.httpClient.put(`${this.envService.apiUrl}/dossier/${id}/disprove/${action}`, {});
   }
 
   deleteDossier(id: number): Observable<any> {
     return this.httpClient.delete(`${this.envService.apiUrl}/dossier/${id}`);
   }
 
-  disproveDossier(dto: DisproveDossierPageDto): Observable<any> {
-    return this.httpClient.post(`${this.envService.apiUrl}/dossier/disprove`, dto);
+  deleteDisproveDossier(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.envService.apiUrl}/dossier/${id}/disprove`);
+  }
+
+  disproveDossier(id: number, dto: DisproveDossierPageDto): Observable<any> {
+    return this.httpClient.post(`${this.envService.apiUrl}/dossier/${id}/disprove`, dto);
   }
 
   getLatestDossiers(): Observable<string[]> {

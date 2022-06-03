@@ -1,9 +1,5 @@
 export class DisproveDossierPageDto {
-  lastName: string = '';
-  firstName: string = '';
-  thirdName: string = '';
-  ipn: string = '';
-  fileText: any;
+  dossierFiles: any;
   phone: string = '';
   email: string = '';
   text: string = '';

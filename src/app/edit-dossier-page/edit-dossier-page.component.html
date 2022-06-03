@@ -8,7 +8,7 @@
 
           <div class="listing-title">
             <span class="ti-files"></span>
-            <h4>Редагувати досьє</h4>
+            <h4>Редагувати досьє номер {{this.id}}</h4>
             <p>Дані про особу</p>
           </div>
 
@@ -91,7 +91,7 @@
 
               <div class="col-md-12">
                 <div class="form-group">
-                  <label class="required-field">Підтверджуючі додатки до тексу (файли, фото та ін.)</label>
+                  <label class="required-field">Підтверджуючі додатки до тексту (файли, фото та ін.)</label>
                   <app-file-preview *ngIf="this.dossier.dossierFiles" [files]="this.dossier.dossierFiles"> </app-file-preview>
                 </div>
               </div>
