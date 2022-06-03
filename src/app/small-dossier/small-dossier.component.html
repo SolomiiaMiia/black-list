@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card h-100">
   <a [routerLink]="['/dossier', dossier.id]"><img class="card-img-top" [src]="dossier.img" alt="Card image cap"></a>
   <div class="card-body">
     <h5 class="card-title">{{dossier.fullName}}</h5>
@@ -8,13 +8,13 @@
     </ul>
     <p class="card-text">{{dossier.address}}</p>
   </div>
-  <div class="card-bottom">
+  <div class="card-bottom h-100">
     <p><i class="fa fa-light fa-calendar"></i>{{dossier.date | date}}</p>
     <span>{{this.enumHelper.DossierStatus[dossier.status]}}</span>
-    <div *ngIf="this.isAdmin" class="btn-edit">
+    <div *ngIf="this.isAdmin" class="btn-edit" [class.flex-btn-edit]="dossier.type === DossierTypes.DisproveNew || dossier.type === DossierTypes.DisprovePublished">
       <a [routerLink]="['/admin/dossier/'+dossier.id+'/edit']" class="btn edit">Редагувати</a>
       <a *ngIf="dossier.type === DossierTypes.DisproveNew || dossier.type === DossierTypes.DisprovePublished"
-         [routerLink]="['/admin/dossier/'+dossier.id+'/disprove/edit']" class="btn edit">Спростування</a>
+         [routerLink]="['/admin/dossier/'+dossier.id+'/disprove/edit']"   class="btn edit">Спростування</a>
     </div>
   </div>
 </div>
