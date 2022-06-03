@@ -11,9 +11,11 @@ import { EnvServiceProvider } from './shared/providers/env.service.provider';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
+import { NotifierModule } from 'angular-notifier';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 
 
 
@@ -23,7 +25,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 @NgModule({
   declarations: [
     AppComponent,
- 
+
   ],
   imports: [
     BrowserModule,
@@ -36,10 +38,22 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     BrowserAnimationsModule,
     TooltipModule.forRoot(),
     TabsModule.forRoot(),
-
+    NotifierModule.withConfig({
+      position: {
+        horizontal: {
+          position: 'right',
+        },
+        vertical: {
+          position: 'top',
+          distance: 80
+        }
+      },
+      behaviour: { autoHide: 3000, onClick: 'hide', showDismissButton: false }
+    })
   ],
   providers: [EnvServiceProvider,
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },],
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

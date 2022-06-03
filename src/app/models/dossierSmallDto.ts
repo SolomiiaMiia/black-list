@@ -10,5 +10,4 @@ export class DossierSmallDto {
   public date: Date = new Date();
   public status!: DossierStatus;
   public type!: DossierType;
-  public hasDisprove: boolean = false;
 }

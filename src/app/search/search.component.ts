@@ -28,7 +28,6 @@ Chinatown, Civic Center`,
       date: new Date,
       status: DossierStatus.New,
       type: DossierType.New,
-      hasDisprove: false
     },
     {
       id: 2,
@@ -42,7 +41,6 @@ Chinatown, Civic Center`,
       date: new Date,
       status: DossierStatus.New,
       type: DossierType.Published,
-      hasDisprove: true
     },
     {
       id: 3,
@@ -56,7 +54,6 @@ Chinatown, Civic Center`,
       date: new Date,
       status: DossierStatus.Disproved,
       type: DossierType.Declined,
-      hasDisprove: true
     },
     {
       id: 4,
@@ -70,7 +67,6 @@ Chinatown, Civic Center`,
       date: new Date,
       status: DossierStatus.New,
       type: DossierType.New,
-      hasDisprove: false
     }
   ] 
 
