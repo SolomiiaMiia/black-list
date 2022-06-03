@@ -41,6 +41,10 @@ export class APIService {
     return this.httpClient.put(`${this.envService.apiUrl}/dossier?action=${action}`, dto);
   }
 
+  deleteDossier(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.envService.apiUrl}/dossier/${id}`);
+  }
+
   disproveDossier(dto: DisproveDossierPageDto): Observable<any> {
     return this.httpClient.post(`${this.envService.apiUrl}/dossier/disprove`, dto);
   }

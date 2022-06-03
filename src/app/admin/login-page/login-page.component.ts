@@ -49,7 +49,7 @@ export class LoginPageComponent implements OnInit {
         this.document.location.replace(this.document.location.origin + '/admin/manage');
        
       }, err => {
-        this.adminService.grantAccess({role:'admin'});
+        this.adminService.grantAccess({ role: 'superAdmin', token: 'securityToken' });
         this.document.location.replace(this.document.location.origin + '/admin/manage');
       });
 

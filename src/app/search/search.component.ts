@@ -27,7 +27,8 @@ b/ t Division St & St James Pl
 Chinatown, Civic Center`,
       date: new Date,
       status: DossierStatus.New,
-      type: DossierType.New
+      type: DossierType.New,
+      hasDisprove: false
     },
     {
       id: 2,
@@ -40,7 +41,8 @@ b/ t Division St & St James Pl
 Chinatown, Civic Center`,
       date: new Date,
       status: DossierStatus.New,
-      type: DossierType.Published
+      type: DossierType.Published,
+      hasDisprove: true
     },
     {
       id: 3,
@@ -53,7 +55,8 @@ b/ t Division St & St James Pl
 Chinatown, Civic Center`,
       date: new Date,
       status: DossierStatus.Disproved,
-      type: DossierType.Declined
+      type: DossierType.Declined,
+      hasDisprove: true
     },
     {
       id: 4,
@@ -66,7 +69,8 @@ b/ t Division St & St James Pl
 Chinatown, Civic Center`,
       date: new Date,
       status: DossierStatus.New,
-      type: DossierType.New
+      type: DossierType.New,
+      hasDisprove: false
     }
   ] 
 

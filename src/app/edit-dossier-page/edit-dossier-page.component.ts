@@ -7,6 +7,7 @@ import { DossierDto } from '../models/dossierDto';
 import { DossierStatus, DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
 import { FileDto } from '../models/fileDto';
+import { AdminService } from '../shared/services/admin.service';
 
 @Component({
   templateUrl: './edit-dossier-page.component.html',
@@ -21,13 +22,15 @@ export class EditDossierPageComponent implements OnInit {
   public isAnonymous: boolean = true;
   private id: number = 0;
   public dossier: DossierDto = new DossierDto();
+  public isSuperAdmin: boolean;
 
   constructor(private fb: FormBuilder,
     private apiService: APIService,
     private route: ActivatedRoute,
     private router: Router,
-    @Inject(DOCUMENT) private document: Document) {
-   
+    @Inject(DOCUMENT) private document: Document,
+    adminService: AdminService) {
+    this.isSuperAdmin = adminService.isSuperAdmin();
   }
 
   ngOnInit(): void {
@@ -141,6 +144,21 @@ export class EditDossierPageComponent implements OnInit {
       console.log(dto);
 
       this.apiService.editDossier(dto, action).subscribe(res => {
+
+        this.router.navigate(['/admin/manage']);
+      }, err => {
+        this.router.navigate(['/admin/manage']);
+      });
+
+    }
+
+  }
+
+  public delete() {
+
+    if (confirm("Видалити досьє назавжди?")) {
+
+      this.apiService.deleteDossier(this.id).subscribe(res => {
 
         this.router.navigate(['/admin/manage']);
       }, err => {

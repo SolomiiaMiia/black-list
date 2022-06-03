@@ -143,6 +143,9 @@
                     <div *ngIf="this.dossier.type!= this.DossierTypes.Declined">
                       <button type="submit" (click)="this.submit('deny')" class="btn btn-simple-admin btn-color-danger">Відхилити</button>
                     </div>
+                    <div *ngIf="this.isSuperAdmin">
+                      <button type="submit" (click)="this.delete()" class="btn btn-simple-admin btn-color-danger">Видалити</button>
+                    </div>
                   </div>
                 </div>
               </div>
