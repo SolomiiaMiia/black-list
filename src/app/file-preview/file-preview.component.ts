@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FileDto } from '../models/fileDto';
 
 @Component({
   selector: 'app-file-preview',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./file-preview.component.scss']
 })
 export class FilePreviewComponent implements OnInit {
+
+  @Input() files: FileDto[] = [];
 
   constructor() { }
 

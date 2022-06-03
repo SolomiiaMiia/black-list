@@ -1,6 +1,13 @@
 import { DossierStatus, DossierType } from "./enums";
+import { FileDto } from "./fileDto";
 
 export class DossierDto {
+
+  constructor() {
+    this.photo = null;
+    this.dossierFiles = null;
+  }
+
   public id: number = 0;
   public img: string = '';
   public lastName: string = '';
@@ -17,4 +24,7 @@ export class DossierDto {
   public phone: string = ''
   public email: string = ''
   public type!: DossierType;
+
+  photo: FileDto | null;
+  dossierFiles: FileDto[] | null;
 }

@@ -1,18 +1,13 @@
 <section>
   <div class="row">
-    <div class="col-md-1 card px">
-      <div class="file d-flex align-items-center ">
-        <i class="fa fa-light fa-file-lines" style="color: gray;"></i>
-        <p> Filename.txt</p>
-        <a href=""><i class="fa-solid fa-file-arrow-down"></i></a>
-      </div>
-    </div>
-    <div class="col-md-1 card px">
+    <ng-container *ngFor="let file of this.files">
+      <div class="col-md-1 card px">
         <div class="file d-flex align-items-center ">
           <i class="fa fa-light fa-file-lines" style="color: gray;"></i>
-          <p> Filename.txt</p>
-          <a href=""><i class="fa-solid fa-file-arrow-down"></i></a>
+          <p> {{file.name}}</p>
+          <a target="_blank" href={{file.url}}><i class="fa-solid fa-file-arrow-down"></i></a>
         </div>
       </div>
+    </ng-container>
   </div>
 </section>

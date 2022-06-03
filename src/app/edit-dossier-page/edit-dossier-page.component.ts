@@ -6,6 +6,7 @@ import { EditDossierPageDto } from '../models/editDossierPageDto';
 import { DossierDto } from '../models/dossierDto';
 import { DossierStatus, DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
+import { FileDto } from '../models/fileDto';
 
 @Component({
   templateUrl: './edit-dossier-page.component.html',
@@ -56,7 +57,10 @@ export class EditDossierPageComponent implements OnInit {
           isAnonymous: false,
           author: 'Автор',
           phone: '+380982774950',
-          email: 'letos009@gmail.com'
+          email: 'letos009@gmail.com',
+          photo: { name: "1.png", url: "assets/images/1.png" },
+          dossierFiles: [{ name: "sample.pdf", url: "assets/files/sample.pdf" }, { name: "sample.pdf", url: "assets/files/sample.pdf" },
+          { name: "sample.pdf", url: "assets/files/sample.pdf" }]
         } as DossierDto;
       }
     ).add(() => { this.fillDossier(); });

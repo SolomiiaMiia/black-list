@@ -8,7 +8,6 @@ import { MainPageComponent } from './main-page.component';
 import { MainPageRoutingModule } from './main-page-routing.module';
 import { FileCardModule } from '../file-card/file-card.module';
 import { TheNavBarModule } from '../layout/the-nav-bar/the-nav-bar.module';
-import { FilePreviewModule } from '../file-preview/file-preview.module';
 
 @NgModule({
   declarations: [MainPageComponent],
@@ -19,7 +18,6 @@ import { FilePreviewModule } from '../file-preview/file-preview.module';
     FileCardModule,
     TheNavBarModule,
     FormsModule,
-    FilePreviewModule
   
   ],
 })

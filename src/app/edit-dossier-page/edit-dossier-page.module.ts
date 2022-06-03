@@ -5,6 +5,7 @@ import { ReactiveFormsModule} from '@angular/forms';
 
 import { EditDossierPageComponent } from './edit-dossier-page.component';
 import { FroalaViewModule } from 'angular-froala-wysiwyg';
+import { FilePreviewModule } from '../file-preview/file-preview.module';
 
 
 
@@ -17,7 +18,8 @@ import { FroalaViewModule } from 'angular-froala-wysiwyg';
     CommonModule,
     RouterModule.forChild([{ path: '', component: EditDossierPageComponent}]),
     ReactiveFormsModule,
-    FroalaViewModule.forRoot()
+    FroalaViewModule.forRoot(),
+    FilePreviewModule
   
   ],
   exports:
