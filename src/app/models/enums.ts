@@ -2,12 +2,14 @@ export enum DossierType {
   All = 0,
   New = 1,
   Published = 2,
-  Declined = 3
+  Declined = 3,
+  DisproveNew = 4,
+  DisprovePublished = 5,
 }
 
 export enum DossierStatus {
   New = 0,
-  Disproved = 1
+  Disproved = 1,
 }
 
 export class EnumHelper {

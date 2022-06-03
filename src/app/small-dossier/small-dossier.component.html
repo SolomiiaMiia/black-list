@@ -13,7 +13,8 @@
     <span>{{this.enumHelper.DossierStatus[dossier.status]}}</span>
     <div *ngIf="this.isAdmin" class="btn-edit">
       <a [routerLink]="['/admin/dossier/'+dossier.id+'/edit']" class="btn edit">Редагувати</a>
-      <a  [routerLink]="['/admin/dossier/'+dossier.id+'/disprove/edit']" class="btn edit">Редагувати спростування</a>
+      <a *ngIf="dossier.type === DossierTypes.DisproveNew || dossier.type === DossierTypes.DisprovePublished"
+         [routerLink]="['/admin/dossier/'+dossier.id+'/disprove/edit']" class="btn edit">Спростування</a>
     </div>
   </div>
 </div>
