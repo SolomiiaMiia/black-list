@@ -1,4 +1,4 @@
-import { DossierStatus } from "./enums";
+import { DossierStatus, DossierType } from "./enums";
 
 export class DossierDto {
   public id: number = 0;
@@ -16,4 +16,5 @@ export class DossierDto {
   public author: string = ''
   public phone: string = ''
   public email: string = ''
+  public type!: DossierType;
 }

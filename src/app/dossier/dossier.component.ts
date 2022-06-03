@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { DossierDto } from '../models/dossierDto';
-import { DossierStatus, EnumHelper } from '../models/enums';
+import { DossierStatus, DossierType, EnumHelper } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
 
 
@@ -43,7 +43,12 @@ b/ t Division St & St James Pl
 Chinatown, Civic Center`,
           text:'Текст досьє',
           date: new Date,
-          status: DossierStatus.New,
+          status: DossierStatus.Disproved,
+          type: DossierType.New,
+          isAnonymous: false,
+          author: 'Автор',
+          phone: '+380982774950',
+          email: 'letos009@gmail.com'
         } as DossierDto;
       }
     );

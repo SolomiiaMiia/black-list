@@ -19,7 +19,6 @@ export class ManageDossierComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('init');
   }
 
   public activeTab: string = 'tab1';

@@ -2,9 +2,9 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { AddDossierPageDto } from '../models/addDossierPageDto';
+import { EditDossierPageDto } from '../models/editDossierPageDto';
 import { DossierDto } from '../models/dossierDto';
-import { DossierStatus } from '../models/enums';
+import { DossierStatus, DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
 
 @Component({
@@ -14,17 +14,19 @@ import { APIService } from '../shared/services/api.service'
 export class EditDossierPageComponent implements OnInit {
 
   public dossierForm: FormGroup = new FormGroup({});
+  public DossierTypes = DossierType;
 
   public submitted: boolean = false;
   public isAnonymous: boolean = true;
   private id: number = 0;
-  private dossier: DossierDto = new DossierDto();
+  public dossier: DossierDto = new DossierDto();
 
   constructor(private fb: FormBuilder,
     private apiService: APIService,
     private route: ActivatedRoute,
     private router: Router,
     @Inject(DOCUMENT) private document: Document) {
+   
   }
 
   ngOnInit(): void {
@@ -50,6 +52,7 @@ export class EditDossierPageComponent implements OnInit {
           text: 'Текст досьє',
           date: new Date,
           status: DossierStatus.New,
+          type: DossierType.New,
           isAnonymous: false,
           author: 'Автор',
           phone: '+380982774950',
@@ -69,7 +72,6 @@ export class EditDossierPageComponent implements OnInit {
     this.dossierForm.get('position')?.setValue(this.dossier.position);
     this.dossierForm.get('placeOfWork')?.setValue(this.dossier.placeOfWork);
     this.dossierForm.get('address')?.setValue(this.dossier.address);
-    this.dossierForm.get('text')?.setValue(this.dossier.text);
 
 
     if (!this.isAnonymous) {
@@ -107,7 +109,6 @@ export class EditDossierPageComponent implements OnInit {
       position: this.fb.control(''),
       placeOfWork: this.fb.control(''),
       address: this.fb.control('', { validators: [Validators.required] }),
-      text: this.fb.control('', { validators: [Validators.required] }),
     });
   }
 
@@ -123,7 +124,7 @@ export class EditDossierPageComponent implements OnInit {
     return this.document.getElementById('address') as HTMLInputElement;
   }
 
-  public submit() {
+  public submit(action: string) {
 
     this.submitted = true;
 
@@ -131,21 +132,15 @@ export class EditDossierPageComponent implements OnInit {
 
     if (this.dossierForm.valid) {
 
-      const navigationExtras: NavigationExtras = {
-        state: {
-          isNew: true
-        }
-      };
-
-      let dto = this.dossierForm.value as AddDossierPageDto;
+      let dto = this.dossierForm.value as EditDossierPageDto;
 
       console.log(dto);
 
-      this.apiService.addDossier(dto).subscribe(res => {
+      this.apiService.editDossier(dto, action).subscribe(res => {
 
-        this.router.navigate(['/add-dossier/complete'], navigationExtras);
+        this.router.navigate(['/admin/manage']);
       }, err => {
-        this.router.navigate(['/add-dossier/complete'], navigationExtras);
+        this.router.navigate(['/admin/manage']);
       });
 
     }

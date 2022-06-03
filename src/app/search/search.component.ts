@@ -12,7 +12,7 @@ import { APIService } from '../shared/services/api.service'
 export class SearchComponent implements OnInit {
 
   @Input('isAdmin') isAdmin: boolean = false;
-  @Input('dossierType') dossierType: DossierType = DossierType.All;
+  @Input('dossierType') dossierType: DossierType = DossierType.Published;
   @Input('searchText') searchText: string = '';
   
   public searchResults : DossierSmallDto[] = [
@@ -27,6 +27,7 @@ b/ t Division St & St James Pl
 Chinatown, Civic Center`,
       date: new Date,
       status: DossierStatus.New,
+      type: DossierType.New
     },
     {
       id: 2,
@@ -39,6 +40,7 @@ b/ t Division St & St James Pl
 Chinatown, Civic Center`,
       date: new Date,
       status: DossierStatus.New,
+      type: DossierType.Published
     },
     {
       id: 3,
@@ -51,6 +53,7 @@ b/ t Division St & St James Pl
 Chinatown, Civic Center`,
       date: new Date,
       status: DossierStatus.Disproved,
+      type: DossierType.Declined
     },
     {
       id: 4,
@@ -63,6 +66,7 @@ b/ t Division St & St James Pl
 Chinatown, Civic Center`,
       date: new Date,
       status: DossierStatus.New,
+      type: DossierType.New
     }
   ] 
 

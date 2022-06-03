@@ -14,38 +14,14 @@
       <div class="col-md-8 responsive-wrap">
         <div class="booking-checkbox_wrap">
           <div class="booking-checkbox">
-            <div [froalaView]="dossier.text" formControlName="text" class="text form-control" rows="3"></div>
+            <div [froalaView]="dossier.text" class="text form-control" rows="3"></div>
             <hr>
           </div>
           <div class="row">
             <div class="col-md-4">
               <label class="custom-checkbox">
                 <span class="ti-check-box"></span>
-                <span class="custom-control-description">Bike Parking</span>
-              </label>
-              <label class="custom-checkbox">
-                <span class="ti-check-box"></span>
-                <span class="custom-control-description">Wireless Internet </span>
-              </label>
-            </div>
-            <div class="col-md-4">
-              <label class="custom-checkbox">
-                <span class="ti-check-box"></span>
-                <span class="custom-control-description">Smoking Allowed </span>
-              </label>
-              <label class="custom-checkbox">
-                <span class="ti-check-box"></span>
-                <span class="custom-control-description">Street Parking</span>
-              </label>
-            </div>
-            <div class="col-md-4">
-              <label class="custom-checkbox">
-                <span class="ti-check-box"></span>
-                <span class="custom-control-description">Special</span>
-              </label>
-              <label class="custom-checkbox">
-                <span class="ti-check-box"></span>
-                <span class="custom-control-description">Accepts Credit cards</span>
+                <span class="custom-control-description">Підтверджуючі додатки до тексу (файли, фото та ін.)</span>
               </label>
             </div>
           </div>
@@ -53,14 +29,14 @@
       </div>
       <div class="col-md-4 responsive-wrap">
         <div class="contact-info">
-          <img src="https://filestore.community.support.microsoft.com/api/images/f2e55cbf-8316-4d3a-9412-ecd8194b2a72?upload=true"
+          <img src="assets/images/1.png"
                class="img-fluid" alt="#">
           <div class="address">
             <span><i class="fa fa-light fa-user"></i></span>
             <p> {{dossier.lastName}} {{dossier.firstName}} {{dossier.thirdName}}</p>
           </div>
           <div class="address">
-           <span><i class="fa fa-location-dot"></i></span> 
+            <span><i class="fa fa-location-dot"></i></span>
             <p>Адреса<br>  {{dossier.address}}</p>
           </div>
           <div class="address">
@@ -72,15 +48,48 @@
 
             <ng-container *ngIf="dossier.status == DossierStatuses.New">
               <div class="btn-search">
-                <a [routerLink]="['/dossier/'+dossier.id+'/disprove']"  class="btn btn-simple btn-contact">Спростувати</a>
+                <a [routerLink]="['/dossier/'+dossier.id+'/disprove']" class="btn btn-simple btn-contact">Спростувати</a>
               </div>
             </ng-container>
-
-
           </div>
-          
         </div>
       </div>
+
+      <ng-container *ngIf="dossier.status == DossierStatuses.Disproved">
+        <section class="reserve-block">
+          <div class="container d-flex justify-content-center">
+            <div class="row d-flex justify-content-center">
+              <div class="">
+                <h4>Спростування досьє</h4>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="col-md-8 responsive-wrap">
+          <div class="booking-checkbox_wrap">
+            <div class="booking-checkbox">
+              <div [froalaView]="dossier.text" class="text form-control" rows="3"></div>
+              <hr>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label class="custom-checkbox">
+                  <span class="ti-check-box"></span>
+                  <span class="custom-control-description">Підтверджуючі додатки до тексу (файли, фото та ін.)</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 responsive-wrap">
+          <div class="contact-info">
+            <div class="address">
+              <span><i class="fa fa-solid fa-calendar"></i></span>
+              <p>{{dossier.date | date}} </p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>
 </section>
