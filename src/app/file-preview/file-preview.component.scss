@@ -1,19 +1,26 @@
 section {
   background-color: black;
   padding: 5px;
-  .px{
-      padding: 0 80px;
-      margin: 5px;
+
+  .px {
+    padding: 0 80px;
+    margin: 5px;
+    background-color: white;
+    border-radius: 0.25em;
   }
 
   .file {
-    justify-content: space-around;
+    justify-content: center;
+
     p {
       margin: 0 auto;
-      padding: 0 5px;
+      padding-left: 10px;
+      padding-right: 25px;
+
     }
-    a{
-        color: black;
+
+    a {
+      color: black;
     }
   }
 }
