@@ -3,11 +3,9 @@
         <div class="row justify-content-center align-items-center  min-height-block">
             <div class="col-md-12">
                 <div class="confirmation-wrap">
-                    <span class="ti-check"></span>
-                    <h2 [froalaView]="this.isNew?this.newDossierText:this.disproveDossierText" formControlName="text" class="text" rows="3"></h2>
-                    <!-- <h2>Thank you for your Listing</h2> -->
-                    <p>You'll receive a confirmation email at mail@yourgmail.com</p>
-                    <a href="#" class="btn btn-outline-danger btn-confirmation">На головну</a>
+                    <span class="ti-check"><i class="fa fa-light fa-circle-check"></i></span>
+                    <p [froalaView]="this.isNew?this.newDossierText:this.disproveDossierText" formControlName="text" class="text" rows="3"></p>
+                    <a [routerLink]="['']"  class="btn btn-confirmation">На головну</a>
                 </div>
             </div>
         </div>
