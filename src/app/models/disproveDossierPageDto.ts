@@ -4,4 +4,5 @@ export class DisproveDossierPageDto {
   email: string = '';
   text: string = '';
   author: string = '';
+  date: Date = new Date;
 }

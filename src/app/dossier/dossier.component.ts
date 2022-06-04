@@ -14,16 +14,16 @@ import { APIService } from '../shared/services/api.service'
 export class DossierComponent implements OnInit {
 
   public searchText: string = '';
-  public dossier: DossierDto = new DossierDto();
+  public dossier!: DossierDto;
   public enumHelper: EnumHelper = new EnumHelper();
   DossierStatuses = DossierStatus;
+  DossierTypes = DossierType;
 
   constructor(private route: ActivatedRoute,
     private apiService: APIService) {
     this.route.paramMap.pipe(
       switchMap(params => {
         const id = Number(params.get('id'));
-        this.dossier.id = id;
         return this.apiService.get(id);
       }),
     ).subscribe(res => {
@@ -44,7 +44,7 @@ Chinatown, Civic Center`,
           text:'Текст досьє',
           date: new Date,
           status: DossierStatus.Disproved,
-          type: DossierType.New,
+          type: DossierType.Published,
           isAnonymous: false,
           author: 'Автор',
           phone: '+380982774950',
@@ -52,6 +52,7 @@ Chinatown, Civic Center`,
           photo: { name: "1.png", url: "assets/images/1.png" },
           dossierFiles: [{ name: "sample.pdf", url: "assets/files/sample.pdf" }, { name: "sample.pdf", url: "assets/files/sample.pdf" }],
           disproveDossier: {
+            date: new Date,
             text: "Текст спростування", author: "Автор", email: 'letos009@gmail.com', phone: '+380982774950',
             dossierFiles: [{ name: "sample.pdf", url: "assets/files/sample.pdf" }, { name: "sample.pdf", url: "assets/files/sample.pdf" }]}
         } as DossierDto;

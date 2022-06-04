@@ -8,7 +8,7 @@
   </div>
 </section>
 
-<section class="booking-details_wrap">
+<section  class="booking-details_wrap">
   <div class="container">
     <div class="row">
       <div class="col-md-8 responsive-wrap">
@@ -45,7 +45,7 @@
           <div class="address">
             <p>{{this.enumHelper.DossierStatus[dossier.status]}}</p>
 
-            <ng-container *ngIf="dossier.status == DossierStatuses.New">
+            <ng-container *ngIf="dossier.type == DossierTypes.Published">
               <div class="btn-search">
                 <a [routerLink]="['/dossier/'+dossier.id+'/disprove']" class="btn btn-simple btn-contact">Спростувати</a>
               </div>
@@ -67,14 +67,14 @@
         <div class="col-md-8 responsive-wrap">
           <div class="booking-checkbox_wrap">
             <div class="booking-checkbox">
-              <div [froalaView]="dossier.text" class="text form-control" rows="3"></div>
+              <div [froalaView]="dossier.disproveDossier?.text!" class="text form-control" rows="3"></div>
               <hr>
             </div>
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-12">
                 <label class="custom-checkbox">
                   <span class="ti-check-box"></span>
-                  <span class="custom-control-description">Підтверджуючі додатки до тексту (файли, фото та ін.)</span>
+                  <app-file-preview *ngIf="this.dossier.disproveDossier?.dossierFiles" [files]="this.dossier.disproveDossier?.dossierFiles"> </app-file-preview>
                 </label>
               </div>
             </div>
@@ -84,7 +84,7 @@
           <div class="contact-info">
             <div class="address">
               <span><i class="fa fa-solid fa-calendar"></i></span>
-              <p>{{dossier.date | date}} </p>
+              <p>{{dossier.disproveDossier?.date | date}} </p>
             </div>
           </div>
         </div>
