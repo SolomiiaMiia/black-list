@@ -95,14 +95,10 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 
-
-
 .required-field::after {
   content: '*';
   color: red;
 }
-
-
 
 
 i {

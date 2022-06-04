@@ -164,15 +164,17 @@ i {
 }
 
 .btn-simple {
-  font-size: 20px;
-  color: #ff6b6b;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
+  background: #ff6b6b;
+  padding: 10px 35px;
+  color: #fff;
   transition: 0.3s;
+  &:hover {
+    color: white;
+    background: #ea5555;
+}
 }
 
 .btn-wrap2 .btn-simple {
-  background: #ff6b6b;
   padding: 10px 35px;
   color: #fff;
   -webkit-transition: 0.3s;
@@ -181,6 +183,5 @@ i {
 }
 
 .btn-wrap {
-  // text-align: center;
-  margin: 10px 0 0;
+  margin: 20px 0 0;
 }
