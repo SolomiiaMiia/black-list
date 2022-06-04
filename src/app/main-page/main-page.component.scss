@@ -140,12 +140,29 @@ footer.main-block {
 .hero-wrap {
   text-align: center;
   min-height: 500px;
-  background-color: black;
   height: 100vh;
-
   @media (max-width: 767px) {
     min-height: 600px;
   }
+
+  // height: 300px; 
+  width: 100%; 
+  background: linear-gradient(149deg, #550505 0%, #0f0e10 42%, #361e22 72%, #401c23 100%);
+  animation: hero-wrap  10s infinite linear; 
+  background-size: 400%; 
+}
+@keyframes hero-wrap {
+    0% {
+        background-position: 80% 0%;
+    }
+    50% {
+        background-position: 20% 100%;
+    }
+    100% {
+        background-position: 80% 0%;
+    }
+}
+
 
   h1 {
     color: #484848;
@@ -163,7 +180,7 @@ footer.main-block {
       line-height: 1.5;
     }
   }
-}
+
 
 .search-box {
   border: 1px solid #ccc;
