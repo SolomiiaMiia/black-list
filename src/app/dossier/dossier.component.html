@@ -11,12 +11,12 @@
 <section  class="booking-details_wrap">
   <div class="container">
     <div class="row">
-      <div class="col-md-8 responsive-wrap">
+      <div class="col-md-8 responsive-wrap ">
         <div class="booking-checkbox_wrap">
-          <div class="booking-checkbox">
-            <div [froalaView]="dossier.text" class="text form-control" rows="3"></div>
-            <hr>
+          <div class="booking-checkbox text-white p-2 ">
+            <div [froalaView]="dossier.text" class="text" rows="3"></div>
           </div>
+          <hr>
           <div class="row">
             <div class="col-md-12">
               <label class="custom-checkbox">
@@ -28,8 +28,8 @@
       </div>
       <div class="col-md-4 responsive-wrap">
         <div class="contact-info">
-          <img src="assets/images/1.png"
-               class="img-fluid" alt="#">
+          <img  src="assets/images/1.png"
+               class="img-fluid img" alt="#">
           <div class="address">
             <span><i class="fa fa-light fa-user"></i></span>
             <p> {{dossier.lastName}} {{dossier.firstName}} {{dossier.thirdName}}</p>
@@ -67,7 +67,7 @@
         <div class="col-md-8 responsive-wrap">
           <div class="booking-checkbox_wrap">
             <div class="booking-checkbox">
-              <div [froalaView]="dossier.disproveDossier?.text!" class="text form-control" rows="3"></div>
+              <div [froalaView]="dossier.disproveDossier?.text!" class="text" rows="3"></div>
               <hr>
             </div>
             <div class="row">
