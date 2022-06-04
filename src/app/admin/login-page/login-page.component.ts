@@ -44,13 +44,8 @@ export class LoginPageComponent implements OnInit {
       console.log(dto);
 
       this.apiService.login(dto.username, dto.password).subscribe(res => {
-
         this.adminService.grantAccess(res);
-        this.document.location.replace(this.document.location.origin + '/admin/manage');
-       
-      }, err => {
-        this.adminService.grantAccess({ role: 'superAdmin', token: 'securityToken' });
-        this.document.location.replace(this.document.location.origin + '/admin/manage');
+        this.document.location.replace(this.document.location.origin + '/admin/manage');  
       });
 
     }

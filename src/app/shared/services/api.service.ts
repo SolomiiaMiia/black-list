@@ -17,6 +17,7 @@ export class APIService {
     protected envService: EnvService) {
   }
 
+  //+
   login(username: string, password: string): Observable<any> {
     return this.httpClient.post(`${this.envService.apiUrl}/auth/login`, { username: username, password: password });
   }
@@ -45,6 +46,7 @@ export class APIService {
     return this.httpClient.put(`${this.envService.apiUrl}/dossier/${id}/disprove/${action}`, {});
   }
 
+  //+
   deleteDossier(id: number): Observable<any> {
     return this.httpClient.delete(`${this.envService.apiUrl}/dossier/${id}`);
   }

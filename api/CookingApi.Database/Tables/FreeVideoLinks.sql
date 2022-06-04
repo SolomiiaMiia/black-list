@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[FreeVideoLinks]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [VideoId] NVARCHAR(MAX) NOT NULL, 
+    [CreationDate] DATETIME NOT NULL
+)
