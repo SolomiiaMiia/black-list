@@ -4,30 +4,51 @@
 }
 
 
+span{
+  @media (max-width: 992px) {
+    display: contents;
+    margin: 0 0 10px;
+}
+}
+
+.card-bottom p{
+  @media (max-width: 992px) {
+    display: flex;
+    margin: 0 0 10px;
+}
+}
+
 .edit {
   display: block;
   padding: 10px;
   margin: 16px;
+  position: relative;
   border: 2px solid #ea5555;
   color: #ea5555;
   font-weight: 400;
-
   @media (max-width: 992px) {
     position: inherit;
-    margin: 1px 0 0;
+    margin: 15px 0 0;
   }
+
 
   &:hover  {
     color: white;
     background: #ea5555;
     border: 2px solid #ea5555;
   }
+  
 }
 
 
 .flex-btn-edit{
-  display: flex;
+  display: block;
   margin-bottom: 0rem;
   flex-direction: row ;
   box-sizing: border-box;
+  flex-wrap: wrap;
+  @media (max-width: 992px) {
+    position: inherit;
+    margin: 15px 0 0;
+}
 }
