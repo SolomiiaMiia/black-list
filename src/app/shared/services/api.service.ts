@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EnvService } from './env.service';
 import { AddDossierPageDto } from 'src/app/models/addDossierPageDto';
@@ -28,8 +28,9 @@ export class APIService {
   }
 
   //+
-  getSettings(): Observable<AdminSettingsDto> {
-    return this.httpClient.get<AdminSettingsDto>(`${this.envService.apiUrl}/settings`);
+  getSettings(bypassLoader: boolean = false): Observable<AdminSettingsDto> {
+    const headers = new HttpHeaders({ 'bypassloader': bypassLoader ? '1' : '0' });
+    return this.httpClient.get<AdminSettingsDto>(`${this.envService.apiUrl}/settings`, { headers: headers });
   }
 
   get(id: number): Observable<DossierDto> {

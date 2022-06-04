@@ -1,4 +1,3 @@
-using CookingApi.Domain.Entities;
 using CookingApi.Infrastructure.Models.DTO.Setting;
 using CookingApi.Infrastructure.Services.Abstractions;
 using CookingApi.Web.Filters;
@@ -8,7 +7,6 @@ namespace CookingApi.Web.Controllers
 {
   [Route("api/settings")]
   [ApiController]
-  [AuthFilter("admin", "superAdmin")]
   public class SettingsController : ControllerBase
   {
     private readonly ISettingsService _settingsService;
@@ -24,6 +22,7 @@ namespace CookingApi.Web.Controllers
     }
 
     [HttpPut]
+    [AuthFilter("admin", "superAdmin")]
     public async Task<IActionResult> Save([FromBody] SettingDto dto)
     {
       dto.Validate();
