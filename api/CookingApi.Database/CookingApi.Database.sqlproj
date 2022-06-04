@@ -63,6 +63,7 @@
   <ItemGroup>
     <Build Include="Tables\Courses.sql" />
     <Build Include="Tables\FreeVideoLinks.sql" />
+    <Build Include="Tables\Settings.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishProfiles\Local_CookingApi.Database.publish.xml" />

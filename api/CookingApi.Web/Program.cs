@@ -42,7 +42,7 @@ NHibernateHelper.Initialize(dbConnectionName, builder);
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<IAuthService, AuthService>();
-//builder.Services.AddTransient<AuthFilterAttribute>();
+builder.Services.AddScoped<ISettingsService, SettingsService>();
 
 builder.Services.AddScoped<ICourseService, CourseService>();
 

@@ -55,14 +55,7 @@ export class SettingsPageComponent implements OnInit {
       console.log(dto);
 
       this.apiService.saveSettings(dto).subscribe(res => {
-
         this.adminService.saveSettings(dto);
-
-
-      }, err => {
-
-        this.adminService.saveSettings(dto);
-
       });
 
     }

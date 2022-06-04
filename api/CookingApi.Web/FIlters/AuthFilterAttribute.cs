@@ -1,3 +1,5 @@
+using System.Net;
+using CookingApi.Infrastructure.Exceptions;
 using CookingApi.Infrastructure.Services.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -21,20 +23,28 @@ namespace CookingApi.Web.Filters
       {
         var token = context.HttpContext.Request.Headers["Security-Token"];
 
-        if (token == StringValues.Empty) context.Result = new UnauthorizedResult();
+        if (token == StringValues.Empty)
+        {
+          raiseError();
+        }
         else
         {
           var authService = context.HttpContext.RequestServices.GetService<IAuthService>();
           var user = authService.GetUserByToken(token);
-          if (user == null) context.Result = new UnauthorizedResult();
+          if (user == null) raiseError();
           else
           {
-            if (!_allowedRoles.Contains(user.Role)) context.Result = new UnauthorizedResult();
+            if (!_allowedRoles.Contains(user.Role)) raiseError();
           }
         }
       }
 
       base.OnActionExecuting(context);
+
+      static void raiseError()
+      {
+        throw new CookingException(HttpStatusCode.Unauthorized, "Недостатньо прав для здійснення операції");
+      }
     }
   }
 }

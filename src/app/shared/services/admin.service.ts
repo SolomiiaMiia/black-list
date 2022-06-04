@@ -48,20 +48,8 @@ export class AdminService {
     if (settings !== null) { callbackFunction(settings) }
     else {
       this.apiService.getSettings().subscribe(res => {
-
         this.saveSettings(res);
         callbackFunction(res);
-
-      }, err => {
-
-        let sett = new AdminSettingsDto();
-        sett.videoLink = "video link";
-        sett.newDossierText = "some text";
-        sett.disproveDossierText = "some text2";
-
-        this.saveSettings(sett);
-        callbackFunction(sett);
-
       });
     } 
   }

@@ -1,4 +1,4 @@
-﻿using CookingApi.Domain.Entities;
+using CookingApi.Domain.Entities;
 using CookingApi.Infrastructure.DAL.NhListeners;
 using NHibernate.Dialect;
 using NHibernate.Driver;
@@ -22,6 +22,7 @@ namespace CookingApi.Web.Helpers
             nhConfig.EventListeners.PreInsertEventListeners = new[] { new SetCreationDateEventListener() };
 
             var mapper = new ModelMapper();
+            mapper.AddMapping(typeof(SettingMap));
             mapper.AddMapping(typeof(CourseMap));
 
             var mappings = mapper.CompileMappingForAllExplicitlyAddedEntities();

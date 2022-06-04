@@ -22,10 +22,12 @@ export class APIService {
     return this.httpClient.post(`${this.envService.apiUrl}/auth/login`, { username: username, password: password });
   }
 
+  //+
   saveSettings(settings: AdminSettingsDto): Observable<any> {
-    return this.httpClient.post(`${this.envService.apiUrl}/settings`, settings);
+    return this.httpClient.put(`${this.envService.apiUrl}/settings`, settings);
   }
 
+  //+
   getSettings(): Observable<AdminSettingsDto> {
     return this.httpClient.get<AdminSettingsDto>(`${this.envService.apiUrl}/settings`);
   }
