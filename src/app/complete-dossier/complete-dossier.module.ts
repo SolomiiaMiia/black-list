@@ -12,6 +12,7 @@ import { FroalaViewModule } from 'angular-froala-wysiwyg';
     CommonModule,
     RouterModule.forChild([{ path: '', component: CompleteDossierComponent }]),
     FroalaViewModule.forRoot()
-  ]
+  ],
+  exports:[CompleteDossierComponent]
 })
 export class CompleteDossierModule { }

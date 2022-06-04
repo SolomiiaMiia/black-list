@@ -144,10 +144,8 @@ footer.main-block {
   @media (max-width: 767px) {
     min-height: 600px;
   }
-
-  // height: 300px; 
   width: 100%; 
-  background: linear-gradient(149deg, #550505 0%, #0f0e10 42%, #361e22 72%, #401c23 100%);
+  background: linear-gradient(149deg, #3b0303 0%, #000000 42%, #361e22 72%, #401c23 100%);
   animation: hero-wrap  10s infinite linear; 
   background-size: 400%; 
 }
@@ -299,6 +297,30 @@ footer.main-block {
     }
   }
 }
+
+.btn-simple-more {
+  display: inline-block;
+  padding: 10px 35px;
+  margin: 12px;
+  font-weight: 400;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.btn-color-danger {
+  color: #ccc;
+  border: 1px solid #ccc;
+  position: absolute;
+
+  &:hover {
+    color: white;
+    background: #ff6b6b;
+    border: 1px solid #ff6b6b;
+  }
+}
+
 
 .float-container {
   padding: 20px;
