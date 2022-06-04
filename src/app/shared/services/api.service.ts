@@ -62,9 +62,15 @@ export class APIService {
   }
 
   search(searchText: string, dossierType: DossierType): Observable<DossierSmallDto[]> {
+    //limit results for 20 max
     let params = new HttpParams().set('searchText', searchText)
       .set('dossierType', dossierType);
     return this.httpClient.get<DossierSmallDto[]>(`${this.envService.apiUrl}/dossier`, { params: params });
+  }
+
+  feed(take: number): Observable<DossierDto[]> {
+    let params = new HttpParams().set('take', take);
+    return this.httpClient.get<DossierDto[]>(`${this.envService.apiUrl}/dossier/feed`, { params: params });
   }
 
 }

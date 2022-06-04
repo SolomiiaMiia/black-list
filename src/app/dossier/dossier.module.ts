@@ -13,6 +13,7 @@ import { FilePreviewModule } from '../file-preview/file-preview.module';
     RouterModule.forChild([{ path: '', component: DossierComponent }]),
     FroalaViewModule.forRoot(),
     FilePreviewModule
-  ]
+  ],
+  exports: [DossierComponent]
 })
 export class DossierModule { }
