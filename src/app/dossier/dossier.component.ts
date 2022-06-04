@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { DossierDto } from '../models/dossierDto';
@@ -14,13 +14,18 @@ import { APIService } from '../shared/services/api.service'
 export class DossierComponent implements OnInit {
 
   public searchText: string = '';
-  public dossier!: DossierDto;
+  @Input('feedEnabled') feedEnabled: boolean = false;
+  @Input('dossier') dossier!: DossierDto;
   public enumHelper: EnumHelper = new EnumHelper();
   DossierStatuses = DossierStatus;
   DossierTypes = DossierType;
 
   constructor(private route: ActivatedRoute,
     private apiService: APIService) {
+    
+  }
+
+  loadDossierByUrl() {
     this.route.paramMap.pipe(
       switchMap(params => {
         const id = Number(params.get('id'));
@@ -110,15 +115,20 @@ Chinatown, Civic Center`,
           disproveDossier: {
             date: new Date,
             text: "Текст спростування", author: "Автор", email: 'letos009@gmail.com', phone: '+380982774950',
-            dossierFiles: [{ name: "sample.pdf", url: "assets/files/sample.pdf" }, { name: "sample.pdf", url: "assets/files/sample.pdf" }]}
+            dossierFiles: [{ name: "sample.pdf", url: "assets/files/sample.pdf" }, { name: "sample.pdf", url: "assets/files/sample.pdf" }]
+          }
         } as DossierDto;
       }
     );
-
   }
 
   ngOnInit(): void {
+    if (!this.feedEnabled) {
+      this.loadDossierByUrl();
+    }
   }
+
+
 
   ngOnDestroy(): void {
 

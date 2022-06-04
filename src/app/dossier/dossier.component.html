@@ -1,4 +1,4 @@
-<section class="reserve-block">
+<section *ngIf="this.dossier" class="reserve-block">
   <div class="container d-flex justify-content-center">
     <div class="row d-flex justify-content-center">
       <div class="">
@@ -8,7 +8,7 @@
   </div>
 </section>
 
-<section  class="booking-details_wrap">
+<section *ngIf="this.dossier" class="booking-details_wrap">
   <div class="container">
     <div class="row">
       <div class="col-md-8 responsive-wrap ">

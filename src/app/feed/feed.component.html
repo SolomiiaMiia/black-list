@@ -1,0 +1,14 @@
+
+<div class="search-results"
+     infiniteScroll
+     [infiniteScrollDistance]="1"
+     [infiniteScrollThrottle]="50"
+     [scrollWindow]="true"
+     [fromRoot]="true"
+     (scrolled)="onScroll()">
+  <ng-container *ngFor="let dossier of this.searchResults">
+    <div class="col-md-12">
+      <app-dossier [feedEnabled]="feedEnabled" [dossier]="dossier"></app-dossier>
+    </div>
+  </ng-container>
+</div>
