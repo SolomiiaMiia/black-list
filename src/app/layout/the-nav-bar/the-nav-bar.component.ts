@@ -17,7 +17,7 @@ export class TheNavBarComponent implements OnInit {
   public isLoggedIn: boolean;
 
   ngOnInit(): void {
-    
+    this.adminService.initSettings();
   }
 
   logout() {

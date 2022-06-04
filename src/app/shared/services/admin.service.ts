@@ -43,6 +43,12 @@ export class AdminService {
     localStorage.setItem('settings', JSON.stringify(settings));
   }
 
+  initSettings(): void {
+    this.apiService.getSettings(true).subscribe(res => {
+      this.saveSettings(res);
+    });
+  }
+
   loadSettings(callbackFunction: (args: AdminSettingsDto) => void) {
     let settings = JSON.parse(localStorage.getItem('settings')!) as AdminSettingsDto;
     if (settings !== null) { callbackFunction(settings) }
