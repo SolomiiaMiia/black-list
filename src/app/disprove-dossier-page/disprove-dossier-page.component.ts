@@ -63,7 +63,7 @@ export class DisproveDossierPageComponent implements OnInit {
 
       console.log(dto);
 
-      this.apiService.disproveDossier(this.id, dto).subscribe(res => {
+      this.apiService.addDisproveDossier(this.id, dto).subscribe(res => {
         this.router.navigate(['/add-dossier/complete'], navigationExtras);
       }, err => {
         this.router.navigate(['/add-dossier/complete'], navigationExtras);

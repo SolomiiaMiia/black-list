@@ -13,9 +13,9 @@ namespace CookingApi.Infrastructure.DAL.Base
       _nhSession = session;
     }
 
-    public async Task<Guid> Add(T entity) => (Guid)await _nhSession.SaveAsync(entity);
+    public async Task<int> Add(T entity) => (int)await _nhSession.SaveAsync(entity);
 
-    public Task<T> Get(Guid id) => _nhSession.GetAsync<T>(id);
+    public Task<T> Get(int id) => _nhSession.GetAsync<T>(id);
 
     public IQueryable<T> Query() => _nhSession.Query<T>();
 

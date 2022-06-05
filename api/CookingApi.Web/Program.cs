@@ -44,8 +44,6 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<IAuthService, AuthService>();
 builder.Services.AddScoped<ISettingsService, SettingsService>();
 
-builder.Services.AddScoped<ICourseService, CourseService>();
-
 builder.Services.Configure<UserOptions>(builder.Configuration.GetSection("Users"));
 
 var app = builder.Build();

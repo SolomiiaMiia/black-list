@@ -2,7 +2,9 @@ namespace CookingApi.Domain.DAL.Base
 {
   public interface IUnitOfWork
   {
-    ICourseRepository CourseRepository { get; }
+    IFilesRepository FilesRepository { get; }
+    IDossiersRepository DossiersRepository { get; }
+    IDossierDisproveRepository DossierDisproveRepository { get; }
     ISettingsRepository SettingsRepository { get; }
     Task CommitAsync();
   }

@@ -33,6 +33,18 @@ export class APIService {
     return this.httpClient.get<AdminSettingsDto>(`${this.envService.apiUrl}/settings`, { headers: headers });
   }
 
+  publishDisproveDossier(id: number, action: 'publish' | 'deny'): Observable<any> {
+    return this.httpClient.put(`${this.envService.apiUrl}/dossier/${id}/disprove/${action}`, {});
+  }
+
+  deleteDisproveDossier(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.envService.apiUrl}/dossier/${id}/disprove`);
+  }
+
+  addDisproveDossier(id: number, dto: DisproveDossierPageDto): Observable<any> {
+    return this.httpClient.post(`${this.envService.apiUrl}/dossier/${id}/disprove`, dto);
+  }
+
   get(id: number): Observable<DossierDto> {
     return this.httpClient.get<DossierDto>(`${this.envService.apiUrl}/dossier/${id}`);
   }
@@ -45,22 +57,14 @@ export class APIService {
     return this.httpClient.put(`${this.envService.apiUrl}/dossier/${id}/${action}`, dto);
   }
 
-  publishDisproveDossier(id: number, action: 'publish' | 'deny'): Observable<any> {
-    return this.httpClient.put(`${this.envService.apiUrl}/dossier/${id}/disprove/${action}`, {});
-  }
+
 
   //+
   deleteDossier(id: number): Observable<any> {
     return this.httpClient.delete(`${this.envService.apiUrl}/dossier/${id}`);
   }
 
-  deleteDisproveDossier(id: number): Observable<any> {
-    return this.httpClient.delete(`${this.envService.apiUrl}/dossier/${id}/disprove`);
-  }
 
-  disproveDossier(id: number, dto: DisproveDossierPageDto): Observable<any> {
-    return this.httpClient.post(`${this.envService.apiUrl}/dossier/${id}/disprove`, dto);
-  }
 
   getLatestDossiers(): Observable<string[]> {
     return this.httpClient.get<string[]>(`${this.envService.apiUrl}/dossier`);

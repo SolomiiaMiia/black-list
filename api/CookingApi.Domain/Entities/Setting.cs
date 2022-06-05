@@ -16,11 +16,10 @@ namespace CookingApi.Domain.Entities
     public SettingMap()
     {
       Table("Settings");
-      Id(x => x.Id, m => m.Generator(Generators.GuidComb));
+      Id(x => x.Id, map => map.Generator(Generators.Identity));
       Property(x => x.VideoLink);
       Property(x => x.NewDossierText);
       Property(x => x.DisproveDossierText);
-      Property(x => x.CreationDate);
     }
   }
 }

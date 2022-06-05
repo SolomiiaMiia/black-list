@@ -61,9 +61,10 @@
     <Folder Include="PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\Courses.sql" />
-    <Build Include="Tables\FreeVideoLinks.sql" />
     <Build Include="Tables\Settings.sql" />
+    <Build Include="Tables\Dossier.sql" />
+    <Build Include="Tables\DossierDisprove.sql" />
+    <Build Include="Tables\File.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishProfiles\Local_CookingApi.Database.publish.xml" />

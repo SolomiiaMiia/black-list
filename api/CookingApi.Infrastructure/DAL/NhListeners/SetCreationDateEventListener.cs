@@ -1,4 +1,4 @@
-﻿using CookingApi.Domain.Entities;
+using CookingApi.Domain.Entities;
 using NHibernate.Event;
 using NHibernate.Persister.Entity;
 
@@ -18,9 +18,9 @@ namespace CookingApi.Infrastructure.DAL.NhListeners
             if (entity is null)
                 return Task.FromResult(false);
 
-            entity.CreationDate = DateTime.UtcNow;
+            //entity.CreationDate = DateTime.UtcNow;
 
-            Set(@event.Persister, @event.State, nameof(CoreEntity.CreationDate), entity.CreationDate);
+            //Set(@event.Persister, @event.State, nameof(CoreEntity.CreationDate), entity.CreationDate);
 
             return Task.FromResult(false);
         }
