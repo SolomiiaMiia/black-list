@@ -1,0 +1,71 @@
+
+   <section class="subpage-bg">
+     <div class="container-fluid">
+       <div class="row justify-content-center">
+         <div class="col-md-10">
+           <div class="titile-block title-block_subpage">
+             <h2>Контакти</h2>
+           </div>
+         </div>
+       </div>
+     </div>
+     <div class="main-block">
+       <div class="container-fluid">
+         <div class="row justify-content-center mb-5">
+           <div class="col-md-8">
+             <div class="row">
+               <div class="col-md-6">
+                 <div class="address-box">
+                   <span class="ti-location-pin"></span>
+                   <h5>+380965642890</h5>
+                   <p>google@gmail.com<br>UA</p>
+                 </div>
+               </div>
+               <div class="col-md-6">
+                 <div class="address-box">
+                   <span class="ti-location-pin"></span>
+                   <h5>UA Офіс Хмельницький</h5>
+                   <p>Чорновола 23<br>3 поверх</p>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <h3 class="text-center pt-5 mb-5 text-white-50">Відправити повідомлення</h3>
+         <div class="row no-gutters justify-content-center">
+
+           <div class="col-md-10">
+             <div class="row">
+               <div class="col-md-6">
+                 <div class="contact-form pl-4 py-4 text-white-50">
+                   <form action="php/contact.php" id="phpcontactform" method="post">
+                     <div class="form-group">
+                       <label>Ім'я</label>
+                       <input type="text" name="name" class="form-control">
+                     </div>
+                     <div class="form-group">
+                       <label>Електронна адреса</label>
+                       <input type="email" name="email" class="form-control">
+                     </div>
+                     <div class="form-group">
+                       <label>Повідомлення</label>
+                       <textarea name="message" class="form-control" rows="3"></textarea>
+                     </div>
+                     <div class="form-group">
+                       <button type="submit" class="btn-submit" id="js-contact-btn">Надіслати</button>
+                     </div>
+                     <div id="js-contact-result" data-success-msg="Success, We will get back to you soon"
+                       data-error-msg="Oops! Щось пішло не так"></div>
+                   </form>
+                 </div>
+               </div>
+               <div class="col-md-6">
+                 <!-- Google map will appear here! Edit the Latitude, Longitude and Zoom Level below using data-attr-*  -->
+                 <div id="map" class="contact-map" data-lat="40.674" data-lon="-73.945" data-zoom="12"></div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </section>

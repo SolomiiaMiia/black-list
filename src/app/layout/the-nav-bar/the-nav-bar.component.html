@@ -20,7 +20,7 @@
                   <a class="nav-link" href="contact.html">Про проект</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true"
+                  <a [routerLink]="['/contact']"  class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true"
                      aria-expanded="false">Контакти</a>
                 </li>
                 <li *ngIf="this.isLoggedIn" class="nav-item dropdown">

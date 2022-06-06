@@ -47,6 +47,11 @@ const routes: Routes = [
     path: 'admin/dossier/:id/disprove/edit',
     loadChildren: () => import('./edit-disprove-dossier-page/edit-disprove-dossier-page.module').then(m => m.EditDisproveDossierPageModule)
   },
+  {
+    path: 'contact',
+    loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
+  },
+  
 ];
 
 @NgModule({

@@ -1,12 +1,11 @@
 <section class="featured-wrap">
-
   <div class="container-fluid container-subpage">
     <div class="row">
-      <div class="col-md-12 responsive-wrap">
+      <div class="col-md-12 responsive-wrap py-4">
         <div class="row detail-filter-wrap">
           <div class="col-md-12 featured-responsive">
             <div class="col-md-6 m-center">
-              <div class="search-box2">
+              <div class="search-box2 border-bottom">
                 <div class="search-box-title">
                   <label>Введіть текст</label><br>
                   <input [disabled]="this.activeTab === 'tab4'" [(ngModel)]="searchString" type="text"  class="search-form"
@@ -33,7 +32,7 @@
     <tab id="tab2" heading="Опубліковані" customClass="customClass" (selectTab)="changeTab($event)">
       <app-search #tabPublished [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.Published" *ngIf="this.activeTab === 'tab2'"></app-search>
     </tab>
-    <tab id="tab3" heading="Відхилені" customClass="customClass" (selectTab)="changeTab($event)">
+    <tab class="text-white-50" id="tab3" heading="Відхилені" customClass="customClass" (selectTab)="changeTab($event)">
       <app-search #tabDeclined [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.Declined" *ngIf="this.activeTab === 'tab3'"></app-search>
     </tab>
     <tab id="tab4" heading="Налаштування" customClass="customClass" (selectTab)="changeTab($event)">
