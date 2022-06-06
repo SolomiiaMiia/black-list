@@ -42,6 +42,7 @@ export class APIService {
     return this.httpClient.delete(`${this.envService.apiUrl}/dossier/${id}/disprove`);
   }
 
+  //+
   addDisproveDossier(id: number, dto: FormData): Observable<any> {
     return this.httpClient.post(`${this.envService.apiUrl}/dossier/${id}/disprove`, dto);
   }
@@ -69,7 +70,7 @@ export class APIService {
 
 
   getLatestDossiers(): Observable<string[]> {
-    return this.httpClient.get<string[]>(`${this.envService.apiUrl}/dossier`);
+    return this.httpClient.get<string[]>(`${this.envService.apiUrl}/dossier/latest`);
   }
 
   search(searchText: string, dossierType: DossierType): Observable<DossierSmallDto[]> {
