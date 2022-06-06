@@ -50,9 +50,6 @@ export class EditDisproveDossierPageComponent implements OnInit {
 
   public submit(action: 'publish' | 'deny') {
     this.apiService.publishDisproveDossier(this.id, action).subscribe(res => {
-
-        this.router.navigate(['/admin/manage']);
-      }, err => {
         this.router.navigate(['/admin/manage']);
       });
 
@@ -61,11 +58,7 @@ export class EditDisproveDossierPageComponent implements OnInit {
   public delete() {
 
     if (confirm("Видалити спростування досьє назавжди?")) {
-
       this.apiService.deleteDisproveDossier(this.id).subscribe(res => {
-
-        this.router.navigate(['/admin/manage']);
-      }, err => {
         this.router.navigate(['/admin/manage']);
       });
 

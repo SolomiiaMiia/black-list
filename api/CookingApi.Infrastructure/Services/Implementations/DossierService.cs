@@ -4,6 +4,7 @@ using CookingApi.Domain.Entities;
 using CookingApi.Infrastructure.Exceptions;
 using CookingApi.Infrastructure.Models.DTO.Dossier;
 using CookingApi.Infrastructure.Models.DTO.DossierDisprove;
+using CookingApi.Infrastructure.Models.DTO.ViewModels;
 using CookingApi.Infrastructure.Services.Abstractions;
 using Microsoft.AspNetCore.Http;
 using NHibernate;
@@ -157,7 +158,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
             await _unitOfWork.FilesRepository.Delete(file);
           }
 
-          if(dossier.Type == Dossier.DossierType.DisprovePublished || dossier.Type == Dossier.DossierType.DisproveNew)
+          if (dossier.Type == Dossier.DossierType.DisprovePublished || dossier.Type == Dossier.DossierType.DisproveNew)
           {
             dossier.Type = Dossier.DossierType.Published;
           }
@@ -216,5 +217,58 @@ namespace CookingApi.Infrastructure.Services.Implementations
       };
     }
 
+    public async Task PublishDossierDisprove(int id)
+    {
+      var dossier = await _unitOfWork.DossiersRepository.Query().Fetch(c => c.DossierDisprove)
+       .Where(c => c.Id == id).FirstOrDefaultAsync();
+      if (dossier is not null)
+      {
+        if (dossier.DossierDisprove is null || dossier.Status == Dossier.DossierStatus.Disproved
+         || dossier.Type == Dossier.DossierType.Declined) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо опублікувати спростування досьє");
+
+        dossier.Status = Dossier.DossierStatus.Disproved;
+        dossier.Type = Dossier.DossierType.DisprovePublished;
+        dossier.DossierDisprove.Date = DateTime.Now;
+
+        await _unitOfWork.DossiersRepository.Update(dossier);
+
+        await _unitOfWork.CommitAsync();
+
+      }
+      else
+      {
+        throw new CookingException(HttpStatusCode.NotFound, "Досьє не знайдено");
+      }
+    }
+
+    public async Task DenyDossierDisprove(int id)
+    {
+      var dossier = await _unitOfWork.DossiersRepository.Query().Fetch(c => c.DossierDisprove)
+        .Where(c => c.Id == id).FirstOrDefaultAsync();
+      if (dossier is not null)
+      {
+        if (dossier.DossierDisprove is null || dossier.Status == Dossier.DossierStatus.New
+         || dossier.Type == Dossier.DossierType.Declined) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо опублікувати спростування досьє");
+
+        dossier.Status = Dossier.DossierStatus.New;
+        dossier.Type = Dossier.DossierType.DisproveNew;
+
+        await _unitOfWork.DossiersRepository.Update(dossier);
+
+        await _unitOfWork.CommitAsync();
+
+      }
+      else
+      {
+        throw new CookingException(HttpStatusCode.NotFound, "Досьє не знайдено");
+      }
+    }
+
+    public async Task<List<LatestDossier>> GetLatestDossiers(int take = 5)
+    {
+      return await _unitOfWork.DossiersRepository.Query().Where(c => c.Type == Dossier.DossierType.Published || c.Type == Dossier.DossierType.DisprovePublished)
+        .OrderByDescending(c => c.Date).Take(take)
+        .Select(c => new LatestDossier() { Id = c.Id, FullName = c.LastName + " " + c.FirstName + " " + c.ThirdName, Date = c.Date }).ToListAsync();
+    }
   }
 }

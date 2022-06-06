@@ -1,3 +1,5 @@
+using System.Net;
+using CookingApi.Infrastructure.Exceptions;
 using CookingApi.Infrastructure.Models.DTO.Dossier;
 using CookingApi.Infrastructure.Models.DTO.DossierDisprove;
 using CookingApi.Infrastructure.Services.Abstractions;
@@ -36,6 +38,24 @@ namespace CookingApi.Web.Controllers
       return Ok();
     }
 
+    [AuthFilter("admin", "superAdmin")]
+    [HttpPut]
+    [Route("{id}/disprove/publish")]
+    public async Task<IActionResult> ManageDisprovePublish(int id)
+    {
+      await _dossierService.PublishDossierDisprove(id);
+      return Ok();
+    }
+
+    [AuthFilter("admin", "superAdmin")]
+    [HttpPut]
+    [Route("{id}/disprove/deny")]
+    public async Task<IActionResult> ManageDisproveDeny(int id)
+    {
+      await _dossierService.DenyDossierDisprove(id);
+      return Ok();
+    }
+
     [AuthFilter("superAdmin")]
     [HttpDelete]
     [Route("{id}")]
@@ -52,6 +72,14 @@ namespace CookingApi.Web.Controllers
     {
       await _dossierService.DeleteDossierDisprove(id);
       return Ok();
+    }
+
+    [HttpGet]
+    [Route("latest")]
+    public async Task<IActionResult> GetLatestDossiers()
+    {
+      var latestDossiers = await _dossierService.GetLatestDossiers();
+      return new OkObjectResult(latestDossiers);
     }
   }
 }

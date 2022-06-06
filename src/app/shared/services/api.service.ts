@@ -33,6 +33,7 @@ export class APIService {
     return this.httpClient.get<AdminSettingsDto>(`${this.envService.apiUrl}/settings`, { headers: headers });
   }
 
+  //+
   publishDisproveDossier(id: number, action: 'publish' | 'deny'): Observable<any> {
     return this.httpClient.put(`${this.envService.apiUrl}/dossier/${id}/disprove/${action}`, {});
   }
@@ -68,7 +69,7 @@ export class APIService {
   }
 
 
-
+  //+
   getLatestDossiers(): Observable<string[]> {
     return this.httpClient.get<string[]>(`${this.envService.apiUrl}/dossier/latest`);
   }
