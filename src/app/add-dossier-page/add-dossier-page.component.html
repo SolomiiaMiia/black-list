@@ -95,7 +95,7 @@
                 <div class="form-group">
                   <label class="required-field">Підтверджуючі додатки до тексту (файли, фото та ін.)</label>
                   <input (change)="onFileChange($event,'files')" type="file" multiple formControlName="attachtments" class="form-control">
-                  <small *ngIf="this.submitted && !this.dossierForm.get('fileText')?.valid"
+                  <small *ngIf="this.submitted && !this.dossierForm.get('attachtments')?.valid"
                     class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>

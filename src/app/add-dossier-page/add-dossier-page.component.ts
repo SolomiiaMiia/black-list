@@ -122,9 +122,9 @@ export class AddDossierPageComponent implements OnInit {
 
       this.apiService.addDossier(formData).subscribe(res => {
 
-       // this.router.navigate(['/add-dossier/complete'], navigationExtras);
+       this.router.navigate(['/add-dossier/complete'], navigationExtras);
       }, err => {
-        //this.router.navigate(['/add-dossier/complete'], navigationExtras);
+        this.router.navigate(['/add-dossier/complete'], navigationExtras);
       });
 
     }
