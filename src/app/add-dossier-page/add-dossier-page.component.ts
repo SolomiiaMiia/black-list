@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AddDossierPageDto } from '../models/addDossierPageDto';
 import { APIService } from '../shared/services/api.service'
+import { serialize } from 'object-to-formdata';
 
 @Component({
   templateUrl: './add-dossier-page.component.html',
@@ -47,11 +48,11 @@ export class AddDossierPageComponent implements OnInit {
       lastName: this.fb.control('', { validators: [Validators.required] }),
       firstName: this.fb.control('', { validators: [Validators.required] }),
       thirdName: this.fb.control('', { validators: [Validators.required] }),
-      imageInput: this.fb.control(''),
+      authorPhoto: this.fb.control(''),
       position: this.fb.control(''),
       placeOfWork: this.fb.control(''),
       address: this.fb.control('', { validators: [Validators.required] }),
-      fileText: this.fb.control('', { validators: [Validators.required] }), //can be multiple attachtments
+      attachtments: this.fb.control('', { validators: [Validators.required] }), //can be multiple attachtments
       text: this.fb.control('', { validators: [Validators.required] }),
     });
 
@@ -79,6 +80,19 @@ export class AddDossierPageComponent implements OnInit {
     return this.document.getElementById('address') as HTMLInputElement;
   }
 
+  private photo: any;
+  private attachtments: File[] = [];
+
+  onFileChange(event: any, source: 'photo' | 'files') {
+    if (source === 'photo') this.photo = event.target.files[0];
+    else {
+      this.attachtments = [];
+      for (var i = 0; i < event.target.files.length; i++) {
+        this.attachtments.push(event.target.files[i]);
+      }
+    }
+  }
+
   public submit() {
 
     this.submitted = true;
@@ -93,15 +107,24 @@ export class AddDossierPageComponent implements OnInit {
         }
       };
 
-      let dto = this.dossierForm.value as AddDossierPageDto;
+      let dto = <AddDossierPageDto>this.dossierForm.value;
+      dto.isAnonymous = this.isAnonymous;
 
-      console.log(dto);
+      const formData = serialize(
+        dto
+      );
 
-      this.apiService.addDossier(dto).subscribe(res => {
+      formData.set('authorPhoto', this.photo);
+      Array.from(this.attachtments).map((file) => {
+        return formData.append('attachtments', file, file.name);
+      });
 
-        this.router.navigate(['/add-dossier/complete'], navigationExtras);
+
+      this.apiService.addDossier(formData).subscribe(res => {
+
+       // this.router.navigate(['/add-dossier/complete'], navigationExtras);
       }, err => {
-        this.router.navigate(['/add-dossier/complete'], navigationExtras);
+        //this.router.navigate(['/add-dossier/complete'], navigationExtras);
       });
 
     }

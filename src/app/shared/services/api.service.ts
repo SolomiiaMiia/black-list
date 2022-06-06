@@ -49,7 +49,8 @@ export class APIService {
     return this.httpClient.get<DossierDto>(`${this.envService.apiUrl}/dossier/${id}`);
   }
 
-  addDossier(dto: AddDossierPageDto): Observable<any> {
+  addDossier(dto: FormData): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
     return this.httpClient.post(`${this.envService.apiUrl}/dossier`, dto);
   }
 

@@ -25,7 +25,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers(options =>
 {
   options.Filters.Add(new AuthFilterAttribute());
-});
+}).AddNewtonsoftJson();
 
 
 builder.Services.Configure<JsonOptions>(options =>
@@ -43,6 +43,7 @@ NHibernateHelper.Initialize(dbConnectionName, builder);
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<IAuthService, AuthService>();
 builder.Services.AddScoped<ISettingsService, SettingsService>();
+builder.Services.AddScoped<IDossierService, DossierService>();
 
 builder.Services.Configure<UserOptions>(builder.Configuration.GetSection("Users"));
 

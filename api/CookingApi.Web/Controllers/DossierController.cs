@@ -1,3 +1,4 @@
+using CookingApi.Infrastructure.Models.DTO.Dossier;
 using CookingApi.Infrastructure.Services.Abstractions;
 using CookingApi.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
@@ -8,10 +9,19 @@ namespace CookingApi.Web.Controllers
   [ApiController]
   public class DossierController : ControllerBase
   {
-    private readonly IAuthService authService;
-    public DossierController(IAuthService _authService)
+    private readonly IDossierService _dossierService;
+    public DossierController(IDossierService dossierService)
     {
-      authService = _authService;
+      _dossierService = dossierService;
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Post([FromForm] DossierCreateDto dto, [FromServices] IWebHostEnvironment hostingEnvironment)
+    {
+      dto.Validate();
+
+      await _dossierService.Create(dto, hostingEnvironment.WebRootPath);
+      return Ok();
     }
 
     [AuthFilter("superAdmin")]

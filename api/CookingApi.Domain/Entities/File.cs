@@ -18,7 +18,7 @@ namespace CookingApi.Domain.Entities
   {
     public FileMap()
     {
-      Table("File");
+      Table("dbo.[File]");
       Id(x => x.Id, map => map.Generator(Generators.Identity));
       Property(x => x.Name);
       Property(x => x.Path);

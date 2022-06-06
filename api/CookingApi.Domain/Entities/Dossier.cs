@@ -19,15 +19,15 @@ namespace CookingApi.Domain.Entities
     public virtual string LastName { get; set; }
     public virtual string FirstName { get; set; }
     public virtual string ThirdName { get; set; }
-    public virtual string Position { get; set; }
-    public virtual string PlaceOfWork { get; set; }
+    public virtual string? Position { get; set; }
+    public virtual string? PlaceOfWork { get; set; }
     public virtual string Address { get; set; }
     public virtual DateTime Date { get; set; }
     public virtual string Text { get; set; }
     public virtual bool IsAnonymous { get; set; }
     public virtual string Author { get; set; }
-    public virtual string Phone { get; set; }
-    public virtual string Email { get; set; }
+    public virtual string? Phone { get; set; }
+    public virtual string? Email { get; set; }
 
     public virtual DossierStatus Status { get; set; }
     public virtual DossierType Type { get; set; }
