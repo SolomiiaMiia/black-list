@@ -41,7 +41,7 @@ export class APIService {
     return this.httpClient.delete(`${this.envService.apiUrl}/dossier/${id}/disprove`);
   }
 
-  addDisproveDossier(id: number, dto: DisproveDossierPageDto): Observable<any> {
+  addDisproveDossier(id: number, dto: FormData): Observable<any> {
     return this.httpClient.post(`${this.envService.apiUrl}/dossier/${id}/disprove`, dto);
   }
 
@@ -49,8 +49,8 @@ export class APIService {
     return this.httpClient.get<DossierDto>(`${this.envService.apiUrl}/dossier/${id}`);
   }
 
+  //+
   addDossier(dto: FormData): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'multipart/form-data' });
     return this.httpClient.post(`${this.envService.apiUrl}/dossier`, dto);
   }
 

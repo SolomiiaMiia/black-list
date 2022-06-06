@@ -44,7 +44,7 @@ export class EditDossierPageComponent implements OnInit {
     },
       err => {
         this.dossier = {
-          id: 3,
+          id: 7,
           img: 'assets/images/1.png',
           lastName: 'Садовий',
           firstName: 'Андрій',

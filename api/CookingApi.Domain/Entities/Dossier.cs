@@ -32,6 +32,7 @@ namespace CookingApi.Domain.Entities
     public virtual DossierStatus Status { get; set; }
     public virtual DossierType Type { get; set; }
 
+   // public virtual int? DisproveDossierId { get; set; }
     public virtual DossierDisprove? DossierDisprove { get; set; }
   }
 
@@ -53,9 +54,16 @@ namespace CookingApi.Domain.Entities
       Property(x => x.Author);
       Property(x => x.Phone);
       Property(x => x.Email);
+     // Property(x => x.DisproveDossierId);
       Property(x => x.Status, attr => attr.Type<EnumStringType<Dossier.DossierStatus>>());
       Property(x => x.Type, attr => attr.Type<EnumStringType<Dossier.DossierType>>());
-      OneToOne(x => x.DossierDisprove, d => d.ForeignKey("DisproveDossierId"));
+
+
+      ManyToOne(x => x.DossierDisprove, map =>
+      {
+        map.Column("DisproveDossierId");
+        map.NotNullable(false); 
+      });
     }
   }
 }

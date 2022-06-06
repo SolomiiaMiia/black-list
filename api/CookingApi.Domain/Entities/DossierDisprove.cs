@@ -8,8 +8,8 @@ namespace CookingApi.Domain.Entities
     public virtual DateTime Date { get; set; }
     public virtual string Text { get; set; }  
     public virtual string Author { get; set; }
-    public virtual string Phone { get; set; }
-    public virtual string Email { get; set; }
+    public virtual string? Phone { get; set; }
+    public virtual string? Email { get; set; }
   }
 
   public class DossierDisproveMap : ClassMapping<DossierDisprove>

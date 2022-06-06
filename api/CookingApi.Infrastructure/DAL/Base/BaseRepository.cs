@@ -15,9 +15,12 @@ namespace CookingApi.Infrastructure.DAL.Base
 
     public async Task<int> Add(T entity) => (int)await _nhSession.SaveAsync(entity);
 
+    public Task Delete(T entity)=> _nhSession.DeleteAsync(entity);
+
     public Task<T> Get(int id) => _nhSession.GetAsync<T>(id);
 
     public IQueryable<T> Query() => _nhSession.Query<T>();
+    public IQueryOver<T> QueryOver() => _nhSession.QueryOver<T>();
 
     public Task Update(T entity) => _nhSession.UpdateAsync(entity);
 

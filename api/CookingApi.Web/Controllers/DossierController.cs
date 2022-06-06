@@ -1,4 +1,5 @@
 using CookingApi.Infrastructure.Models.DTO.Dossier;
+using CookingApi.Infrastructure.Models.DTO.DossierDisprove;
 using CookingApi.Infrastructure.Services.Abstractions;
 using CookingApi.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
@@ -10,25 +11,37 @@ namespace CookingApi.Web.Controllers
   public class DossierController : ControllerBase
   {
     private readonly IDossierService _dossierService;
-    public DossierController(IDossierService dossierService)
+    public DossierController(IDossierService dossierService, IWebHostEnvironment hostingEnvironment)
     {
       _dossierService = dossierService;
+      _dossierService.SetWebRootPath(hostingEnvironment.WebRootPath);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromForm] DossierCreateDto dto, [FromServices] IWebHostEnvironment hostingEnvironment)
+    public async Task<IActionResult> Post([FromForm] DossierCreateDto dto)
     {
       dto.Validate();
 
-      await _dossierService.Create(dto, hostingEnvironment.WebRootPath);
+      await _dossierService.CreateDossier(dto);
+      return Ok();
+    }
+
+    [HttpPost]
+    [Route("{id}/disprove")]
+    public async Task<IActionResult> PostDisprove(int id, [FromForm] DossierDisproveCreateDto dto)
+    {
+      dto.Validate();
+
+      await _dossierService.CreateDossierDisprove(id, dto);
       return Ok();
     }
 
     [AuthFilter("superAdmin")]
     [HttpDelete]
     [Route("{id}")]
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
+      await _dossierService.Delete(id);
       return Ok();
     }
   }

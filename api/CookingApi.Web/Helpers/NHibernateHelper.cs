@@ -29,6 +29,7 @@ namespace CookingApi.Web.Helpers
 
       var mappings = mapper.CompileMappingForAllExplicitlyAddedEntities();
       nhConfig.AddMapping(mappings);
+      
 
       var sessionFactory = nhConfig.BuildSessionFactory();
 

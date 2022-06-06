@@ -16,6 +16,8 @@ export class AddDossierPageComponent implements OnInit {
 
   public submitted: boolean = false;
   public isAnonymous: boolean = false;
+  private photo: any;
+  private attachtments: File[] = [];
 
   constructor(private fb: FormBuilder,
     private apiService: APIService,
@@ -80,9 +82,6 @@ export class AddDossierPageComponent implements OnInit {
     return this.document.getElementById('address') as HTMLInputElement;
   }
 
-  private photo: any;
-  private attachtments: File[] = [];
-
   onFileChange(event: any, source: 'photo' | 'files') {
     if (source === 'photo') this.photo = event.target.files[0];
     else {
@@ -114,11 +113,14 @@ export class AddDossierPageComponent implements OnInit {
         dto
       );
 
+      formData.delete('attachtments');
       formData.set('authorPhoto', this.photo);
       Array.from(this.attachtments).map((file) => {
         return formData.append('attachtments', file, file.name);
       });
 
+      formData.delete('agreeForData');
+      formData.delete('agreeForContract');
 
       this.apiService.addDossier(formData).subscribe(res => {
 

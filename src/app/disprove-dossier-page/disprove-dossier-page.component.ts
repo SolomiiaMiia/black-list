@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { DisproveDossierPageDto } from '../models/disproveDossierPageDto';
+import { CreateDisproveDossierPageDto } from '../models/createDisproveDossierPageDto';
 import { APIService } from '../shared/services/api.service'
+import { serialize } from 'object-to-formdata';
 
 @Component({
   templateUrl: './disprove-dossier-page.component.html',
@@ -14,6 +15,7 @@ export class DisproveDossierPageComponent implements OnInit {
 
   public id: number;
   public submitted: boolean = false;
+  private attachtments: File[] = [];
 
   constructor(private fb: FormBuilder,
     private apiService: APIService,
@@ -29,7 +31,7 @@ export class DisproveDossierPageComponent implements OnInit {
 
   private createForm() {
     this.dossierForm = this.fb.group({
-      fileText: this.fb.control('', { validators: [Validators.required] }), //can be multiple attachtments
+      attachtments: this.fb.control('', { validators: [Validators.required] }), //can be multiple attachtments
       text: this.fb.control('', { validators: [Validators.required] }),
       author: this.fb.control('', { validators: [Validators.required] }),
       phone: this.fb.control('', { validators: Validators.pattern(new RegExp('^\\+?3?8?(0[5-9][0-9]\\d{7})$')) }),
@@ -38,8 +40,13 @@ export class DisproveDossierPageComponent implements OnInit {
     });
 
     this.dossierForm.get('agreeForData')?.setValue(false);
+  }
 
-
+  onFileChange(event: any) {
+      this.attachtments = [];
+      for (var i = 0; i < event.target.files.length; i++) {
+        this.attachtments.push(event.target.files[i]);
+      }
   }
 
   canSubmit(): boolean {
@@ -59,11 +66,20 @@ export class DisproveDossierPageComponent implements OnInit {
         }
       };
 
-      let dto = this.dossierForm.value as DisproveDossierPageDto;
+      let dto = <CreateDisproveDossierPageDto>this.dossierForm.value;
 
-      console.log(dto);
+      const formData = serialize(
+        dto
+      );
 
-      this.apiService.addDisproveDossier(this.id, dto).subscribe(res => {
+      formData.delete('attachtments');
+      Array.from(this.attachtments).map((file) => {
+        return formData.append('attachtments', file, file.name);
+      });
+
+      formData.delete('agreeForData');
+
+      this.apiService.addDisproveDossier(this.id, formData).subscribe(res => {
         this.router.navigate(['/add-dossier/complete'], navigationExtras);
       }, err => {
         this.router.navigate(['/add-dossier/complete'], navigationExtras);
