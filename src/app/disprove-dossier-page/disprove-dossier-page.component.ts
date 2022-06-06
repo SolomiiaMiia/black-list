@@ -68,6 +68,7 @@ export class DisproveDossierPageComponent implements OnInit {
 
       let dto = <CreateDisproveDossierPageDto>this.dossierForm.value;
 
+
       const formData = serialize(
         dto
       );
@@ -80,8 +81,6 @@ export class DisproveDossierPageComponent implements OnInit {
       formData.delete('agreeForData');
 
       this.apiService.addDisproveDossier(this.id, formData).subscribe(res => {
-        this.router.navigate(['/add-dossier/complete'], navigationExtras);
-      }, err => {
         this.router.navigate(['/add-dossier/complete'], navigationExtras);
       });
 
