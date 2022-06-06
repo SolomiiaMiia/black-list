@@ -41,7 +41,16 @@ namespace CookingApi.Web.Controllers
     [Route("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
-      await _dossierService.Delete(id);
+      await _dossierService.DeleteDossier(id);
+      return Ok();
+    }
+
+    [AuthFilter("superAdmin")]
+    [HttpDelete]
+    [Route("{id}/disprove")]
+    public async Task<IActionResult> DeleteDisprove(int id)
+    {
+      await _dossierService.DeleteDossierDisprove(id);
       return Ok();
     }
   }

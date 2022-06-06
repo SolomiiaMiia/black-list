@@ -101,7 +101,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
 
     }
 
-    public async Task Delete(int id)
+    public async Task DeleteDossier(int id)
     {
       var dossier = await _unitOfWork.DossiersRepository.Query().Fetch(c => c.DossierDisprove).Where(c => c.Id == id).FirstOrDefaultAsync();
       if (dossier is not null)
@@ -136,6 +136,53 @@ namespace CookingApi.Infrastructure.Services.Implementations
       else
       {
         throw new CookingException(HttpStatusCode.NotFound, "Досьє не знайдено");
+      }
+    }
+
+    public async Task DeleteDossierDisprove(int id)
+    {
+      var dossier = await _unitOfWork.DossiersRepository.Query().Fetch(c => c.DossierDisprove)
+        .Where(c => c.Id == id).FirstOrDefaultAsync();
+      if (dossier is not null)
+      {
+
+        var disproveDossier = dossier.DossierDisprove;
+
+
+        if (disproveDossier is not null)
+        {
+          var files = await _unitOfWork.FilesRepository.Query().Where(c => c.DossierDisproveId == disproveDossier.Id).ToListAsync();
+          foreach (var file in files)
+          {
+            await _unitOfWork.FilesRepository.Delete(file);
+          }
+
+          if(dossier.Type == Dossier.DossierType.DisprovePublished || dossier.Type == Dossier.DossierType.DisproveNew)
+          {
+            dossier.Type = Dossier.DossierType.Published;
+          }
+
+          dossier.Status = Dossier.DossierStatus.New;
+          dossier.DossierDisprove = null;
+          await _unitOfWork.DossiersRepository.Update(dossier);
+
+          await _unitOfWork.DossierDisproveRepository.Delete(disproveDossier);
+
+          var dossierDisprovePath = Path.Combine(_webRootPath, "Dossiers", id.ToString(), "Disprove");
+
+          if (Directory.Exists(dossierDisprovePath)) Directory.Delete(dossierDisprovePath, true);
+
+          await _unitOfWork.CommitAsync();
+        }
+        else
+        {
+          throw new CookingException(HttpStatusCode.NotFound, "Спростування досьє не знайдено");
+        }
+
+      }
+      else
+      {
+        throw new CookingException(HttpStatusCode.NotFound, "Спростування досьє не знайдено");
       }
     }
 
