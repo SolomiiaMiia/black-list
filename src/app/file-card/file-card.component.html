@@ -1,7 +1,6 @@
-     <div class="card text-dark bg-light" *ngFor="let item of files">
-        <div class="card-header">{{item.header}}</div>
-        <div class="card-body">
-          <h5 class="card-title">{{item.title}}</h5>
-          <p class="card-text">{{item.description}}</p>
+
+      <div class="d-flex flex-xl-column text-white-50  ">
+        <div class="align-items-stretch align-self-stretch mb-auto p-3 m-3 fw-lighter  border-bottom" *ngFor="let item of dossierShort">
+          <div class="">{{item.date  | date}} <a [routerLink]="['/dossier', item.id]" class="ms-5 text-decoration-none text-white-50">{{item.fullName}} </a></div>
         </div>
       </div>

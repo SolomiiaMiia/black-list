@@ -141,13 +141,13 @@ footer.main-block {
   text-align: center;
   min-height: 500px;
   height: 100vh;
+  background: black;
   @media (max-width: 767px) {
     min-height: 600px;
   }
-  width: 100%; 
-  background: linear-gradient(149deg, #3b0303 0%, #000000 42%, #361e22 72%, #401c23 100%);
-  animation: hero-wrap  10s infinite linear; 
-  background-size: 400%; 
+  
+
+
 }
 @keyframes hero-wrap {
     0% {
@@ -512,6 +512,10 @@ footer.main-block {
     }
   }
 }
+.title-dossier{
+  margin-left: 7em;
+}
+
 
 /* ==============================================================
    DETAIL PAGE
