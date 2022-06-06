@@ -224,6 +224,7 @@ i {
   line-height: 1.25;
   border-radius: .25rem;
   transition: all .15s ease-in-out;
+
 }
 
 .btn-simple {
@@ -232,6 +233,7 @@ i {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+
 }
 
 .btn-wrap2 .btn-simple {
@@ -241,6 +243,9 @@ i {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+  &:hover {
+    background: #ea5555;
+  }
 }
 
 .btn-wrap {
