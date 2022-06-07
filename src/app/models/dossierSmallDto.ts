@@ -1,8 +1,13 @@
 import { DossierStatus, DossierType } from "./enums";
+import { FileDto } from "./fileDto";
 
 export class DossierSmallDto {
+  constructor() {
+    this.photo = null;
+  }
+
   public id: number = 0;
-  public img: string = '';
+  public photo: FileDto | null;
   public fullName: string = ''
   public position: string = '';
   public placeOfWork: string = '';

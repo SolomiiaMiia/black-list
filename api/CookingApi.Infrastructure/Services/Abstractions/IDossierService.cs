@@ -1,6 +1,7 @@
 using CookingApi.Infrastructure.Models.DTO.Dossier;
 using CookingApi.Infrastructure.Models.DTO.DossierDisprove;
 using CookingApi.Infrastructure.Models.DTO.ViewModels;
+using static CookingApi.Domain.Entities.Dossier;
 
 namespace CookingApi.Infrastructure.Services.Abstractions
 {
@@ -18,5 +19,6 @@ namespace CookingApi.Infrastructure.Services.Abstractions
     Task EditDossier(int id, DossierEditDto dto, string action);
     Task<List<Dossier>> GetFeed(int skip);
     Task<(string path, string mime)> GetFilePath(int id, bool skipCheck = false);
+    Task<List<DossierSearch>> SearchDossier(string searchText, DossierType type, bool skipCheck = false);
   }
 }

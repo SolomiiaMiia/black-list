@@ -1,3 +1,4 @@
+using CookingApi.Domain.Entities;
 using CookingApi.Infrastructure.Models.DTO.Dossier;
 using CookingApi.Infrastructure.Models.DTO.DossierDisprove;
 using CookingApi.Infrastructure.Services.Abstractions;
@@ -113,6 +114,15 @@ namespace CookingApi.Web.Controllers
       var (filePath, mime) = await _dossierService.GetFilePath(id, authService.isAuthorized());
       var bytes = await System.IO.File.ReadAllBytesAsync(filePath);
       return File(bytes, mime, Path.GetFileName(filePath));
+    }
+
+    [HttpGet]
+    [Route("search")]
+    public async Task<IActionResult> Get([FromQuery] Dossier.DossierType type, [FromServices] IAuthService authService, [FromQuery] string? searchText)
+    {
+      var isAuthorized = authService.isAuthorized();
+      var searchResults = await _dossierService.SearchDossier(String.IsNullOrEmpty(searchText)? "": searchText , (Dossier.DossierType)type, isAuthorized);
+      return new OkObjectResult(searchResults);
     }
   }
 }

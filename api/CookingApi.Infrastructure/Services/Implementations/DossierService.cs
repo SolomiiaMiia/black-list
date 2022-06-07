@@ -393,8 +393,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
         if (!skipCheck)
         {
 
-          var dossier = file.DossierId.HasValue ? await _unitOfWork.DossiersRepository.Get(file.DossierId.Value): await _unitOfWork.DossiersRepository.Query().Fetch(c => c.DossierDisprove)
-              .Where(c => c.DossierDisprove!=null && c.DossierDisprove.Id == file.DossierDisproveId.Value).FirstOrDefaultAsync();
+          var dossier = file.DossierId.HasValue ? await _unitOfWork.DossiersRepository.Get(file.DossierId.Value) : await _unitOfWork.DossiersRepository.Query().Fetch(c => c.DossierDisprove)
+              .Where(c => c.DossierDisprove != null && c.DossierDisprove.Id == file.DossierDisproveId.Value).FirstOrDefaultAsync();
           if (dossier.Type == Dossier.DossierType.Declined) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Досьє не опубліковане");
 
         }
@@ -405,6 +405,70 @@ namespace CookingApi.Infrastructure.Services.Implementations
       {
         throw new CookingException(HttpStatusCode.NotFound, "Файл не знайдено");
       }
+    }
+
+    public async Task<List<DossierSearch>> SearchDossier(string searchText, Dossier.DossierType type, bool skipCheck = false)
+    {
+      var dossierQuery = _unitOfWork.DossiersRepository.Query();
+
+      switch (type, skipCheck)
+      {
+        case (Dossier.DossierType.New, true):
+          dossierQuery = dossierQuery.Where(c => c.Type == Dossier.DossierType.New || c.Type == Dossier.DossierType.DisproveNew);
+          break;
+        case (Dossier.DossierType.Published, true):
+        case (Dossier.DossierType.Published, false):
+          dossierQuery = dossierQuery.Where(c => c.Type == Dossier.DossierType.Published || c.Type == Dossier.DossierType.DisprovePublished);
+          break;
+        case (Dossier.DossierType.Declined, true):
+          dossierQuery = dossierQuery.Where(c => c.Type == Dossier.DossierType.Declined);
+          break;
+        default:
+          throw new CookingException(HttpStatusCode.Unauthorized, "Недостатньо прав для здійснення операції");
+      }
+
+      var appBaseUrl = MyHttpContext.AppBaseUrl;
+
+      var dossiers =  await dossierQuery.Where(c=> c.LastName.Contains(searchText) || c.FirstName.Contains(searchText)
+      || c.ThirdName.Contains(searchText) || c.Address.Contains(searchText)).OrderByDescending(c=>c.Date).Select(c => new DossierSearch()
+      {
+        Address = c.Address,
+        Date = c.Date,
+        Id = c.Id,
+        FullName = c.LastName + " " + c.FirstName + " " + c.ThirdName,
+        PlaceOfWork = c.PlaceOfWork,
+        Position = c.Position,
+        Status = c.Status,
+        Type = c.Type
+      }).ToListAsync();
+
+
+      var ids = dossiers.Select(c => c.Id).ToList();
+
+     var files = await _unitOfWork.FilesRepository.Query().Where(c=> c.DossierId!=null && ids.Contains(c.DossierId.Value) && c.Type == File.FileType.AuthorPhoto)
+        .Select(c => new 
+      {
+        Id = c.DossierId.Value,
+        Name = c.Name,
+        Url = $"{appBaseUrl}/api/dossier/files/{c.Id}"
+      }).ToListAsync();
+
+
+      dossiers.ForEach(c =>
+      {
+        var file = files.FirstOrDefault(d => d.Id == c.Id);
+        if(file != null)
+        {
+          c.Photo = new Models.DTO.ViewModels.File()
+          {
+            Name = file.Name,
+            Url = file.Url,
+          };
+        }
+
+      });
+
+      return dossiers;
     }
   }
 }

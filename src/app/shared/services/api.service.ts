@@ -77,11 +77,12 @@ export class APIService {
     return this.httpClient.get<LatestDossiersDto[]>(`${this.envService.apiUrl}/dossier/latest`);
   }
 
+   //+
   search(searchText: string, dossierType: DossierType): Observable<DossierSmallDto[]> {
     //limit results for 20 max
     let params = new HttpParams().set('searchText', searchText)
-      .set('dossierType', dossierType);
-    return this.httpClient.get<DossierSmallDto[]>(`${this.envService.apiUrl}/dossier`, { params: params });
+      .set('type', dossierType);
+    return this.httpClient.get<DossierSmallDto[]>(`${this.envService.apiUrl}/dossier/search`, { params: params });
   }
 
   //+
