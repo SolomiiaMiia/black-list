@@ -12,9 +12,14 @@
 }
 
 
-::ng-deep .card-body p, ul, li, h5{
+::ng-deep .card-body p, ul, li, h5, .date{
   color: #a2a1a1 !important;
 }
+
+.position{
+  color: white !important;
+}
+
 
 span{
   @media (max-width: 992px) {

@@ -8,13 +8,13 @@
   <div class="card-body bg-dark">
     <h5 class="card-title">{{dossier.fullName}}</h5>
     <ul class="card-rating">
-      <li>{{dossier.position}}</li>
+      <li class="position">{{dossier.position}}</li>
       <li>{{dossier.placeOfWork}}</li>
     </ul>
     <p class="card-text">{{dossier.address}}</p>
   </div>
   <div class="card-bottom bg-dark ">
-    <p><i class="fa fa-light fa-calendar"></i>{{dossier.date | date : "MM/dd/yy"}}</p>
+    <p><i class="fa fa-light fa-calendar date"></i>{{dossier.date | date : "MM/dd/yy"}}</p>
     <span>{{this.enumHelper.DossierStatus[dossier.status]}}</span>
     <div *ngIf="this.isAdmin" class="btn-edit" [class.flex-btn-edit]="dossier.type === DossierTypes.DisproveNew || dossier.type === DossierTypes.DisprovePublished">
       <a [routerLink]="['/admin/dossier/'+dossier.id+'/edit']" class="btn btn edit">Редагувати</a>
