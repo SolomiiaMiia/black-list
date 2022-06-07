@@ -114,7 +114,7 @@
             </div>
           </div>
           <div class="btn-search">
-            <a [routerLink]="['/search']" [queryParams]="{text: this.searchString}" class="btn btn-simple">Пошук
+            <a [routerLink]="" (click)="this.search()" class="btn btn-simple">Пошук
               досьє</a>
           </div>
         </form>

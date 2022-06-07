@@ -1,5 +1,5 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DossierSmallDto } from '../models/dossierSmallDto';
 import { DossierStatus, DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
@@ -18,8 +18,17 @@ export class SearchComponent implements OnInit {
   public searchResults : DossierSmallDto[] = [] 
 
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private apiService: APIService) {
-    
+    if (!this.isAdmin) {
+
+      const navigation = this.router.getCurrentNavigation();
+      const state = navigation?.extras.state as {
+        searchText: string
+      };
+
+      this.searchText = state?.searchText;
+    }
   }
 
 
@@ -32,8 +41,6 @@ export class SearchComponent implements OnInit {
   }
 
   search(): void{
-    //if (!this.isAdmin) this.searchText = this.route.snapshot.queryParams['text'];
-
     this.apiService.search(this.searchText, this.dossierType).subscribe(results => {
       this.searchResults = results;
     });
