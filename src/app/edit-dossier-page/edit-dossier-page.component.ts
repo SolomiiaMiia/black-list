@@ -2,9 +2,8 @@ import { DOCUMENT } from '@angular/common';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EditDossierPageDto } from '../models/editDossierPageDto';
 import { DossierDto } from '../models/dossierDto';
-import { DossierStatus, DossierType } from '../models/enums';
+import { DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
 import { AdminService } from '../shared/services/admin.service';
 
@@ -41,30 +40,7 @@ export class EditDossierPageComponent implements OnInit {
   private loadDossier() {
     this.apiService.get(this.id).subscribe(res => {
       this.dossier = res;
-    },
-      err => {
-        this.dossier = {
-          id: 7,
-          lastName: 'Садовий',
-          firstName: 'Андрій',
-          thirdName: 'Іванович',
-          position: 'Посада',
-          placeOfWork: 'Місце роботи',
-          address: `Львів місто Львівська область`,
-          text: 'Текст досьє',
-          date: new Date,
-          status: DossierStatus.New,
-          type: DossierType.New,
-          isAnonymous: false,
-          author: 'Автор',
-          phone: '+380982774950',
-          email: 'letos009@gmail.com',
-          photo: { name: "1sdhfsf sdfsdhfvsdghfvsgdfvs.png", url: "assets/images/1.png" },
-          dossierFiles: [{ name: "sample.pdf", url: "assets/files/sample.pdf" }, { name: "sample.pdf", url: "assets/files/sample.pdf" },
-          { name: "sample.pdf", url: "assets/files/sample.pdf" }]
-        } as DossierDto;
-      }
-    ).add(() => { this.fillDossier(); });
+    }).add(() => { this.fillDossier(); });
   }
 
   private fillDossier() {
@@ -129,7 +105,7 @@ export class EditDossierPageComponent implements OnInit {
     return this.document.getElementById('address') as HTMLInputElement;
   }
 
-  public submit(action: 'save' | 'publish' | 'deny') {
+  public submit(action: 'save' | 'publish' | 'decline') {
 
     this.submitted = true;
 
@@ -137,29 +113,21 @@ export class EditDossierPageComponent implements OnInit {
 
     if (this.dossierForm.valid) {
 
-      let dto = this.dossierForm.value as EditDossierPageDto;
-
-      console.log(dto);
+      let dto = this.dossierForm.value;
+      delete dto.author;
+      delete dto.email;
+      delete dto.phone;
 
       this.apiService.editDossier(this.id, dto, action).subscribe(res => {
-
-        this.router.navigate(['/admin/manage']);
-      }, err => {
         this.router.navigate(['/admin/manage']);
       });
-
     }
-
   }
 
   public delete() {
 
     if (confirm("Видалити досьє назавжди?")) {
-
       this.apiService.deleteDossier(this.id).subscribe(res => {
-
-        this.router.navigate(['/admin/manage']);
-      }, err => {
         this.router.navigate(['/admin/manage']);
       });
 

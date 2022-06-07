@@ -1,5 +1,4 @@
-using System.Net;
-using CookingApi.Infrastructure.Exceptions;
+using CookingApi.Domain.Entities;
 using CookingApi.Infrastructure.Models.DTO.Dossier;
 using CookingApi.Infrastructure.Models.DTO.DossierDisprove;
 using CookingApi.Infrastructure.Services.Abstractions;
@@ -88,6 +87,42 @@ namespace CookingApi.Web.Controllers
     {
       var dossier = await _dossierService.GetDossier(id, authService.isAuthorized());
       return new OkObjectResult(dossier);
+    }
+
+    [AuthFilter("admin", "superAdmin")]
+    [HttpPut]
+    [Route("{id}")]
+    public async Task<IActionResult> ManageDenyPublishDossier(int id, [FromQuery] string action, [FromBody] DossierEditDto dto)
+    {
+      dto.Validate();
+
+      await _dossierService.EditDossier(id, dto, action);
+      return Ok();
+    }
+
+    [HttpGet]
+    [Route("feed")]
+    public async Task<IActionResult> GetFeed([FromQuery] int skip)
+    {
+      var dossier = await _dossierService.GetFeed(skip);
+      return new OkObjectResult(dossier);
+    }
+
+    [HttpGet("files/{id}")]
+    public async Task<IActionResult> GetFile(int id, [FromServices] IAuthService authService)
+    {
+      var (filePath, mime) = await _dossierService.GetFilePath(id, authService.isAuthorized());
+      var bytes = await System.IO.File.ReadAllBytesAsync(filePath);
+      return File(bytes, mime, Path.GetFileName(filePath));
+    }
+
+    [HttpGet]
+    [Route("search")]
+    public async Task<IActionResult> Get([FromQuery] Dossier.DossierType type, [FromServices] IAuthService authService, [FromQuery] string? searchText)
+    {
+      var isAuthorized = authService.isAuthorized();
+      var searchResults = await _dossierService.SearchDossier(String.IsNullOrEmpty(searchText)? "": searchText , (Dossier.DossierType)type, isAuthorized);
+      return new OkObjectResult(searchResults);
     }
   }
 }

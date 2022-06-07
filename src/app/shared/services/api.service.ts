@@ -59,8 +59,9 @@ export class APIService {
     return this.httpClient.post(`${this.envService.apiUrl}/dossier`, dto);
   }
 
-  editDossier(id: number, dto: EditDossierPageDto, action: 'save' | 'publish' | 'deny'): Observable<any> {
-    return this.httpClient.put(`${this.envService.apiUrl}/dossier/${id}/${action}`, dto);
+  //+
+  editDossier(id: number, dto: EditDossierPageDto, action: 'save' | 'publish' | 'decline'): Observable<any> {
+    return this.httpClient.put(`${this.envService.apiUrl}/dossier/${id}?action=${action}`, dto);
   }
 
 
@@ -76,16 +77,23 @@ export class APIService {
     return this.httpClient.get<LatestDossiersDto[]>(`${this.envService.apiUrl}/dossier/latest`);
   }
 
+   //+
   search(searchText: string, dossierType: DossierType): Observable<DossierSmallDto[]> {
     //limit results for 20 max
     let params = new HttpParams().set('searchText', searchText)
-      .set('dossierType', dossierType);
-    return this.httpClient.get<DossierSmallDto[]>(`${this.envService.apiUrl}/dossier`, { params: params });
+      .set('type', dossierType);
+    return this.httpClient.get<DossierSmallDto[]>(`${this.envService.apiUrl}/dossier/search`, { params: params });
   }
 
-  feed(take: number): Observable<DossierDto[]> {
-    let params = new HttpParams().set('take', take);
+  //+
+  feed(skip: number): Observable<DossierDto[]> {
+    let params = new HttpParams().set('skip', skip);
     return this.httpClient.get<DossierDto[]>(`${this.envService.apiUrl}/dossier/feed`, { params: params });
+  }
+
+  //+
+  downloadFile(url: string): Observable<any> {
+    return this.httpClient.get(url, { responseType: 'blob' });
   }
 
 }

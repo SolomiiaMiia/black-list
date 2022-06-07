@@ -1,9 +1,9 @@
 <div class="card border-light">
   <ng-container *ngIf="dossier.type !== DossierTypes.New && dossier.type !== DossierTypes.Declined">
-    <a [routerLink]="['/dossier', dossier.id]"><img class="card-img-top" [src]="dossier.img" alt="Card image cap"></a>
+    <a [routerLink]="['/dossier', dossier.id]"><img class="card-img-top" [src]="dossier.photo? dossier.photo.url: 'assets/images/1.png'" alt="Card image cap"></a>
   </ng-container>
   <ng-container *ngIf="dossier.type === DossierTypes.New || dossier.type === DossierTypes.Declined">
-    <a style="pointer-events:none"><img class="card-img-top" [src]="dossier.img" alt="Card image cap"></a>
+    <a style="pointer-events:none"><img class="card-img-top" [src]="dossier.photo? dossier.photo.url: 'assets/images/1.png'" alt="Card image cap"></a>
   </ng-container>
   <div class="card-body bg-dark">
     <h5 class="card-title">{{dossier.fullName}}</h5>
