@@ -4,6 +4,7 @@ CREATE TABLE [dbo].[File]
     [Name] NVARCHAR(MAX) NOT NULL,  
     [Path] NVARCHAR(MAX) NOT NULL, 
     [Type] NVARCHAR(MAX) NOT NULL,
+    [MimeType] NVARCHAR(MAX) NOT NULL Default('application/octet-stream'),
     [DossierId] INT NULL,
     [DossierDisproveId] INT NULL,
     CONSTRAINT FK_FileDossier FOREIGN KEY ([DossierId]) REFERENCES [Dossier](Id),

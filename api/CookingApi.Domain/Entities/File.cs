@@ -12,6 +12,7 @@ namespace CookingApi.Domain.Entities
     public virtual FileType Type { get; set; }
     public virtual int? DossierId { get; set; }
     public virtual int? DossierDisproveId { get; set; }
+    public virtual string MimeType { get; set; }
   }
 
   public class FileMap : ClassMapping<File>
@@ -24,6 +25,7 @@ namespace CookingApi.Domain.Entities
       Property(x => x.Path);
       Property(x => x.Type, attr => attr.Type<EnumStringType<File.FileType>>());
       Property(x => x.DossierId);
+      Property(x => x.MimeType);
       Property(x => x.DossierDisproveId);
     }
   }

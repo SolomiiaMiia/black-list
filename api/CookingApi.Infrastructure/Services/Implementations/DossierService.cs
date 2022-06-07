@@ -13,6 +13,7 @@ using NHibernate.Linq;
 using Dossier = CookingApi.Domain.Entities.Dossier;
 using DossierDisprove = CookingApi.Domain.Entities.DossierDisprove;
 using File = CookingApi.Domain.Entities.File;
+using MimeTypes;
 
 namespace CookingApi.Infrastructure.Services.Implementations
 {
@@ -41,7 +42,9 @@ namespace CookingApi.Infrastructure.Services.Implementations
         Text = dto.Text,
         Status = Dossier.DossierStatus.New,
         Type = Dossier.DossierType.New,
-        Author = "BlackList"
+        Author = "BlackList",
+        Position = dto.Position,
+        PlaceOfWork = dto.PlaceOfWork
       };
 
       if (!dossier.IsAnonymous)
@@ -216,7 +219,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
         Path = filePath,
         Type = fileType,
         DossierId = dossierId,
-        DossierDisproveId = dossierDisproveId
+        DossierDisproveId = dossierDisproveId,
+        MimeType = MimeTypeMap.GetMimeType(fileName)
       };
     }
 
@@ -314,18 +318,18 @@ namespace CookingApi.Infrastructure.Services.Implementations
             .Select(c => new Models.DTO.ViewModels.File()
             {
               Name = c.Name,
-              Url = $"{appBaseUrl}/files/{c.Id}"
+              Url = $"{appBaseUrl}/api/dossier/files/{c.Id}"
             }).ToListAsync()
           } : null,
           Photo = dossierFiles.Where(c => c.Type == File.FileType.AuthorPhoto).Select(c => new Models.DTO.ViewModels.File()
           {
             Name = c.Name,
-            Url = $"{appBaseUrl}/files/{c.Id}"
+            Url = $"{appBaseUrl}/api/dossier/files/{c.Id}"
           }).FirstOrDefault(),
           DossierFiles = dossierFiles.Where(c => c.Type == File.FileType.Attachtment).Select(c => new Models.DTO.ViewModels.File()
           {
             Name = c.Name,
-            Url = $"{appBaseUrl}/files/{c.Id}"
+            Url = $"{appBaseUrl}/api/dossier/files/{c.Id}"
           }).ToList()
         };
 
@@ -335,6 +339,71 @@ namespace CookingApi.Infrastructure.Services.Implementations
       else
       {
         throw new CookingException(HttpStatusCode.NotFound, "Досьє не знайдено");
+      }
+    }
+
+    public async Task EditDossier(int id, DossierEditDto dto, string action)
+    {
+      var dossier = await _unitOfWork.DossiersRepository.Get(id);
+      if (dossier is not null)
+      {
+        dossier.FirstName = dto.FirstName;
+        dossier.LastName = dto.LastName;
+        dossier.ThirdName = dto.ThirdName;
+        dossier.Address = dto.Address;
+        dossier.Position = dto.Position;
+        dossier.PlaceOfWork = dto.PlaceOfWork;
+
+        switch (action)
+        {
+          case "save":
+            break;
+          case "publish":
+            dossier.Type = Dossier.DossierType.Published;
+            break;
+          case "decline":
+            dossier.Type = Dossier.DossierType.Declined;
+            break;
+          default:
+            throw new CookingException(HttpStatusCode.UnprocessableEntity, "Не валідні дані");
+        }
+
+        await _unitOfWork.DossiersRepository.Update(dossier);
+        await _unitOfWork.CommitAsync();
+      }
+      else
+      {
+        throw new CookingException(HttpStatusCode.NotFound, "Досьє не знайдено");
+      }
+    }
+
+    public async Task<List<Models.DTO.ViewModels.Dossier>> GetFeed(int skip)
+    {
+      var nextDossierId = await _unitOfWork.DossiersRepository.Query().Where(c => c.Type == Dossier.DossierType.Published || c.Type == Dossier.DossierType.DisprovePublished)
+        .OrderByDescending(c => c.Date).Select(c => c.Id).Skip(skip).Take(1).FirstOrDefaultAsync();
+      if (nextDossierId != 0) return new List<Models.DTO.ViewModels.Dossier>() { await this.GetDossier(nextDossierId, true) };
+      else return new List<Models.DTO.ViewModels.Dossier>();
+    }
+
+    public async Task<(string, string)> GetFilePath(int id, bool skipCheck = false)
+    {
+      var file = await _unitOfWork.FilesRepository.Query().Where(c => c.Id == id).FirstOrDefaultAsync();
+      if (file is not null)
+      {
+        if (!skipCheck)
+        {
+
+          var dossier = file.DossierId.HasValue ? await _unitOfWork.DossiersRepository.Get(file.DossierId.Value): await _unitOfWork.DossiersRepository.Query().Fetch(c => c.DossierDisprove)
+              .Where(c => c.DossierDisprove!=null && c.DossierDisprove.Id == file.DossierDisproveId.Value).FirstOrDefaultAsync();
+          if (dossier.Type == Dossier.DossierType.Declined) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Досьє не опубліковане");
+
+        }
+
+        return (file.Path, file.MimeType);
+      }
+      else
+      {
+        throw new CookingException(HttpStatusCode.NotFound, "Файл не знайдено");
       }
     }
   }
