@@ -1,7 +1,7 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { DossierSmallDto } from '../models/dossierSmallDto';
-import { DossierStatus, DossierType } from '../models/enums';
+import { DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
 
 @Component({
@@ -17,8 +17,7 @@ export class SearchComponent implements OnInit {
   
   public searchResults : DossierSmallDto[] = [] 
 
-  constructor(private route: ActivatedRoute,
-    private router: Router,
+  constructor(private router: Router,
     private apiService: APIService) {
     if (!this.isAdmin) {
 
