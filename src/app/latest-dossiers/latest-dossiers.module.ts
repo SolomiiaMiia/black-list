@@ -2,19 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 
-import { FileCardComponent } from './file-card.component';
+import { LatestDossiersComponent  } from './latest-dossiers';
 
 
 @NgModule({
   declarations: [
-    FileCardComponent
+    LatestDossiersComponent 
   ],
   imports: [
     CommonModule,
     RouterModule 
   ],
   exports:[
-    FileCardComponent
+    LatestDossiersComponent 
   ]
 })
-export class FileCardModule { }
+export class LatestDossiersModule { }

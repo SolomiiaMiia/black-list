@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 import { MainPageComponent } from './main-page.component';
 import { MainPageRoutingModule } from './main-page-routing.module';
-import { FileCardModule } from '../file-card/file-card.module';
+import { LatestDossiersModule } from '../latest-dossiers/latest-dossiers.module';
 import { TheNavBarModule } from '../layout/the-nav-bar/the-nav-bar.module';
 
 @NgModule({
@@ -15,7 +15,7 @@ import { TheNavBarModule } from '../layout/the-nav-bar/the-nav-bar.module';
     CommonModule,
     RouterModule,
     MainPageRoutingModule,
-    FileCardModule,
+    LatestDossiersModule,
     TheNavBarModule,
     FormsModule,
   

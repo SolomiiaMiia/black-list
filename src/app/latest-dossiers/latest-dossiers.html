@@ -1,0 +1,7 @@
+   <div class="d-flex flex-wrap m-4 flex-xl-column text-white-50">
+     <div class="align-items-stretch align-self-stretch mb-auto p-3 m-3 fw-lighter  border-bottom"
+       *ngFor="let item of latestDossiers$ |async">
+       <div>{{item.date  | date : "MM/dd/yy"}} <a [routerLink]="['/dossier', item.id]"
+           class="ms-5 flex-wrap text-decoration-none text-white-50">{{item.fullName}} </a></div>
+     </div>
+   </div>

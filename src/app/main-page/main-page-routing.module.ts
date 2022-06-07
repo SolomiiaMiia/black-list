@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('../file-card/file-card.module').then(m => m.FileCardModule),
+    loadChildren: () => import('../latest-dossiers/latest-dossiers.module').then(m => m.LatestDossiersModule),
   },
   {
     path: 'add-dossier',

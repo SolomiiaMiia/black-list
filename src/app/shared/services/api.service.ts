@@ -9,6 +9,7 @@ import { DossierSmallDto } from '../../models/dossierSmallDto';
 import { DisproveDossierPageDto } from '../../models/disproveDossierPageDto';
 import { AdminSettingsDto } from '../../models/adminSettingsDto';
 import { EditDossierPageDto } from '../../models/editDossierPageDto';
+import { LatestDossiersDto } from 'src/app/models/latestDossiersDto';
 
 @Injectable({ providedIn: 'root' })
 export class APIService {
@@ -71,8 +72,8 @@ export class APIService {
 
 
   //+
-  getLatestDossiers(): Observable<string[]> {
-    return this.httpClient.get<string[]>(`${this.envService.apiUrl}/dossier/latest`);
+  getLatestDossiers(): Observable<LatestDossiersDto[]> {
+    return this.httpClient.get<LatestDossiersDto[]>(`${this.envService.apiUrl}/dossier/latest`);
   }
 
   search(searchText: string, dossierType: DossierType): Observable<DossierSmallDto[]> {
