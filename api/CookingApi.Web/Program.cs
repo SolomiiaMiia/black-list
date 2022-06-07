@@ -1,6 +1,7 @@
 using System.Text.Json;
 using CookingApi.Domain.DAL.Base;
 using CookingApi.Infrastructure.DAL.Base;
+using CookingApi.Infrastructure.Extensions;
 using CookingApi.Infrastructure.Models.DTO.Auth;
 using CookingApi.Infrastructure.Services.Abstractions;
 using CookingApi.Infrastructure.Services.Implementations;
@@ -44,12 +45,14 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<IAuthService, AuthService>();
 builder.Services.AddScoped<ISettingsService, SettingsService>();
 builder.Services.AddScoped<IDossierService, DossierService>();
+HttpContextExtensions.AddHttpContextAccessor(builder.Services);
 
 builder.Services.Configure<UserOptions>(builder.Configuration.GetSection("Users"));
 
 var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseMiddleware<ErrorHandlerMiddleware>();
+app.UseHttpContext();
 app.UseAuthorization();
 app.UseCors();
 app.MapControllers();

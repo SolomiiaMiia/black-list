@@ -12,7 +12,6 @@ export class DossierDto {
 
   public id: number = 0;
 
-  public img: string = '';
   public lastName: string = '';
   public firstName: string = ''
   public thirdName: string = ''

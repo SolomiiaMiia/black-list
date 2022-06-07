@@ -1,7 +1,6 @@
 using System.Net;
 using CookingApi.Infrastructure.Exceptions;
 using CookingApi.Infrastructure.Services.Abstractions;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Primitives;
 

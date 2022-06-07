@@ -22,8 +22,7 @@ export class FeedComponent implements OnInit {
 
   public searchResults: DossierDto[] = [
     {
-      id: 3,     
-      img: 'assets/images/1.png',
+      id: 3,
       lastName: 'Садовий',
       firstName: 'Андрій',
       thirdName: 'Іванович',

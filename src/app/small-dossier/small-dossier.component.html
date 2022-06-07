@@ -1,5 +1,10 @@
 <div class="card h-100">
-  <a [routerLink]="['/dossier', dossier.id]"><img class="card-img-top" [src]="dossier.img" alt="Card image cap"></a>
+  <ng-container *ngIf="dossier.type !== DossierTypes.New && dossier.type !== DossierTypes.Declined">
+    <a [routerLink]="['/dossier', dossier.id]"><img class="card-img-top" [src]="dossier.img" alt="Card image cap"></a>
+  </ng-container>
+  <ng-container *ngIf="dossier.type === DossierTypes.New || dossier.type === DossierTypes.Declined">
+    <a style="pointer-events:none"><img class="card-img-top" [src]="dossier.img" alt="Card image cap"></a>
+  </ng-container>
   <div class="card-body">
     <h5 class="card-title">{{dossier.fullName}}</h5>
     <ul class="card-rating">

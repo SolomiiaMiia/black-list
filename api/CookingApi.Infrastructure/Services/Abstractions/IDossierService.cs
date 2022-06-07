@@ -14,5 +14,6 @@ namespace CookingApi.Infrastructure.Services.Abstractions
     Task PublishDossierDisprove(int id);
     Task DenyDossierDisprove(int id);
     Task<List<LatestDossier>> GetLatestDossiers(int take = 5);
+    Task<Dossier> GetDossier(int id, bool skipCheck = false);
   }
 }

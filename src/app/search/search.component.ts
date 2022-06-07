@@ -67,6 +67,19 @@ Chinatown, Civic Center`,
       date: new Date,
       status: DossierStatus.New,
       type: DossierType.New,
+    },
+    {
+      id: 5,
+      img: 'assets/images/1.png',
+      fullName: 'ПІБ 4',
+      position: 'Посада',
+      placeOfWork: 'Місце роботи',
+      address: `New York, NY 10013
+b/ t Division St & St James Pl
+Chinatown, Civic Center`,
+      date: new Date,
+      status: DossierStatus.New,
+      type: DossierType.Declined,
     }
   ] 
 

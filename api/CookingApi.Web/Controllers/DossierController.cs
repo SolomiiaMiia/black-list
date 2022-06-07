@@ -81,5 +81,13 @@ namespace CookingApi.Web.Controllers
       var latestDossiers = await _dossierService.GetLatestDossiers();
       return new OkObjectResult(latestDossiers);
     }
+
+    [HttpGet]
+    [Route("{id}")]
+    public async Task<IActionResult> Get(int id, [FromServices] IAuthService authService)
+    {
+      var dossier = await _dossierService.GetDossier(id, authService.isAuthorized());
+      return new OkObjectResult(dossier);
+    }
   }
 }
