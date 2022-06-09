@@ -2,6 +2,10 @@ footer {
   position: relative;
   z-index: 1;
   background-color: black;
+  @media (max-width: 992px) {
+    position: inherit;
+  }
+
 
   .location {
     @media (max-width: 992px) {
