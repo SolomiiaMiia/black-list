@@ -183,6 +183,14 @@ footer.main-block {
 .search-box {
   border: 1px solid #ccc;
   margin: 40px 0 0;
+  @media (max-width: 767px) {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
 }
 
 .search-box_line {
@@ -190,6 +198,7 @@ footer.main-block {
 
   @media (max-width: 767px) {
     border: none;
+    
   }
 
   .btn-add {
@@ -207,9 +216,10 @@ footer.main-block {
 .search-box2 {
   text-align: left;
   padding: 15px 20px;
+  
 
   @media (max-width: 768px) {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #ccc;
   }
 
   label {
@@ -325,11 +335,22 @@ footer.main-block {
 
 .float-container {
   padding: 20px;
+  @media (max-width: 1200px) {
+   display: flex;
+   @media (max-width: 768px) {
+   right: 7px;
+   border-bottom: 1px solid #ccc;
+  }
+}
 }
 
 .float-child {
   &:first-child {
     margin-right: 10px;
+    @media (max-width: 992px) {
+      position: inherit;
+      
+    }
   }
 
   width: 49%;
@@ -350,7 +371,7 @@ footer.main-block {
     font-size: 18px;
 
     @media (max-width: 1200px) {
-      padding: 18px 31px;
+      padding: 18px 6px;
     }
 
     &:hover,
@@ -477,8 +498,7 @@ footer.main-block {
 .btn-wrap {
   text-align: center;
   margin: 40px 0 0;
-
-  @media (max-width: 992px) {
+  @media (max-width: 992pxs) {
     margin: 41px 0 0;
   }
 }
