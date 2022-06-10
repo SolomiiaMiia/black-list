@@ -1,9 +1,19 @@
 .card-img-top {
-  max-width: 500px;
-  min-height: 250px;
+  max-width: 400px;
+  height: 250px;
   background-color: white;
+  overflow: hidden;
+  display: block;
+    margin: 0 auto;
+}
+.portfolio-wrap{
+  margin-top: 40px;
 }
 
+a:hover{
+opacity: 0.5;
+
+}
 
 ::ng-deep .card{
   border:none !important;
@@ -68,4 +78,25 @@ span{
     position: inherit;
     margin: 15px 0 0;
 }
+}
+
+
+.btn-contact{
+  border: 2px solid #408309;
+  color: #408309;
+}
+
+.btn-contact:hover {
+  color: white;
+  background: #6c944e;
+  border: 2px solid #6c944e;
+}
+
+
+.red{
+color: #ea5555;
+}
+
+.green{
+  color: #6c944e;;
 }

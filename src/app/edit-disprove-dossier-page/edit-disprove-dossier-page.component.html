@@ -53,7 +53,7 @@
                 <div class="col-md-12">
                   <div class="btn-admin">
                     <div *ngIf="this.dossier.type === this.DossierTypes.DisproveNew">
-                      <button type="submit" (click)="this.submit('publish')" class="btn btn-simple-admin">Опублікувати</button>
+                      <button type="submit" (click)="this.submit('publish')" class="btn btn-simple-admin one-btn">Опублікувати</button>
                     </div>
                     <div *ngIf="this.dossier.type === this.DossierTypes.DisprovePublished">
                       <button type="submit" (click)="this.submit('deny')" class="btn btn-simple-admin btn-color-danger">Відхилити</button>

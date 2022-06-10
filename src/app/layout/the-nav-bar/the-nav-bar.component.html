@@ -1,3 +1,5 @@
+
+<section class="top-nav">
 <div class="nav-menu sticky-top">
   <div class="bg transition">
     <div class="container-fluid fixed">
@@ -13,23 +15,23 @@
                 <li class="nav-item">
                   <a [routerLink]="['']" class="nav-link">Головна</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item">
                   <a [routerLink]="['/feed']" class="nav-link">Досьє</a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="contact.html">Про проект</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item ">
                   <a [routerLink]="['/contact']"  class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true"
                      aria-expanded="false">Контакти</a>
                 </li>
-                <li *ngIf="this.isLoggedIn" class="nav-item dropdown">
+                <li *ngIf="this.isLoggedIn" class="nav-item ">
                   <a [routerLink]="['/admin/manage']" class="nav-link">Адмінка</a>
                 </li>
-                <li *ngIf="!this.isLoggedIn" class="nav-item dropdown">
+                <li *ngIf="!this.isLoggedIn" class="nav-item ">
                   <a [routerLink]="['/admin/login']" class="nav-link">Увійти</a>
                 </li>
-                <li *ngIf="this.isLoggedIn" class="nav-item dropdown">
+                <li *ngIf="this.isLoggedIn" class="nav-item ">
                   <a [routerLink]="" (click)="this.logout()" class="nav-link" style="cursor:pointer">Вийти</a>
                 </li>
               </ul>
@@ -40,3 +42,4 @@
     </div>
   </div>
 </div>
+</section>

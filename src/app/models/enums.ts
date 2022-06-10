@@ -24,5 +24,6 @@ export class EnumHelper {
     res[DossierStatus.New] = 'Не спростовано';
     res[DossierStatus.Disproved] = 'Спростовано';
     this.DossierStatus = res;
+    
   }
 }

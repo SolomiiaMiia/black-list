@@ -9,6 +9,7 @@ import { MainPageRoutingModule } from './main-page-routing.module';
 import { LatestDossiersModule } from '../latest-dossiers/latest-dossiers.module';
 import { TheNavBarModule } from '../layout/the-nav-bar/the-nav-bar.module';
 
+
 @NgModule({
   declarations: [MainPageComponent],
   imports: [
@@ -18,7 +19,6 @@ import { TheNavBarModule } from '../layout/the-nav-bar/the-nav-bar.module';
     LatestDossiersModule,
     TheNavBarModule,
     FormsModule,
-  
   ],
 })
 export class MainPageModule { }

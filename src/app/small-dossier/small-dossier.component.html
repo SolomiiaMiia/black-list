@@ -1,6 +1,7 @@
-<div class="card border-light">
+<!-- <div class="card border-light">
   <ng-container *ngIf="dossier.type !== DossierTypes.New && dossier.type !== DossierTypes.Declined">
     <a [routerLink]="['/dossier', dossier.id]"><img class="card-img-top" [src]="dossier.photo? dossier.photo.url: 'assets/images/1.png'" alt="Card image cap"></a>
+
   </ng-container>
   <ng-container *ngIf="dossier.type === DossierTypes.New || dossier.type === DossierTypes.Declined">
     <a style="pointer-events:none"><img class="card-img-top" [src]="dossier.photo? dossier.photo.url: 'assets/images/1.png'" alt="Card image cap"></a>
@@ -15,11 +16,46 @@
   </div>
   <div class="card-bottom bg-dark ">
     <p><i class="fa fa-light fa-calendar date"></i>{{dossier.date | date : "MM/dd/yy"}}</p>
-    <span>{{this.enumHelper.DossierStatus[dossier.status]}}</span>
+    <span [ngClass]="[this.dossier.status ? 'green': 'red']">{{this.enumHelper.DossierStatus[dossier.status]}}</span>
     <div *ngIf="this.isAdmin" class="btn-edit" [class.flex-btn-edit]="dossier.type === DossierTypes.DisproveNew || dossier.type === DossierTypes.DisprovePublished">
       <a [routerLink]="['/admin/dossier/'+dossier.id+'/edit']" class="btn btn edit">Редагувати</a>
       <a *ngIf="dossier.type === DossierTypes.DisproveNew || dossier.type === DossierTypes.DisprovePublished"
-         [routerLink]="['/admin/dossier/'+dossier.id+'/disprove/edit']" class="btn edit">Спростування</a>
+         [routerLink]="['/admin/dossier/'+dossier.id+'/disprove/edit']" class="btn edit btn-contact">Спростування</a>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="portfolio-wrap">
+  <div class="portfolio-item">
+    <div class="portfolio-item-wrap">
+      <ng-container *ngIf="dossier.type !== DossierTypes.New && dossier.type !== DossierTypes.Declined">
+        <a [routerLink]="['/dossier', dossier.id]"><img class="card-img-top"
+            [src]="dossier.photo? dossier.photo.url: 'assets/images/1.png'" alt="Card image cap"></a>
+      </ng-container>
+      <ng-container *ngIf="dossier.type === DossierTypes.New || dossier.type === DossierTypes.Declined">
+        <a style="pointer-events:none"><img class="card-img-top"
+            [src]="dossier.photo? dossier.photo.url: 'assets/images/1.png'" alt="Card image cap"></a>
+      </ng-container>
+      <div class="portfolio-item-inner ">
+        <div class="portfolio-heading">
+          <h5 class="card-title text-center m-3">{{dossier.fullName}}</h5>
+          <div class="card-rating">
+            <span class="position">{{dossier.position}}</span>
+            <span>{{dossier.placeOfWork}}</span>
+          </div>
+          <p class="card-text">{{dossier.address}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-bottom bg-dark">
+      <p><i class="fa fa-light fa-calendar date"></i>{{dossier.date | date : "MM/dd/yy"}}</p>
+      <span [ngClass]="[this.dossier.status ? 'green': 'red']">{{this.enumHelper.DossierStatus[dossier.status]}}</span>
+      <div *ngIf="this.isAdmin" class="btn-edit" [class.flex-btn-edit]="dossier.type === DossierTypes.DisproveNew || dossier.type === DossierTypes.DisprovePublished">
+        <a [routerLink]="['/admin/dossier/'+dossier.id+'/edit']" class="btn btn edit">Редагувати</a>
+        <a *ngIf="dossier.type === DossierTypes.DisproveNew || dossier.type === DossierTypes.DisprovePublished"
+           [routerLink]="['/admin/dossier/'+dossier.id+'/disprove/edit']" class="btn edit btn-contact">Спростування</a>
+      </div>
     </div>
   </div>
 </div>
