@@ -1,5 +1,6 @@
 using System.Net;
 using CookingApi.Infrastructure.Exceptions;
+using Microsoft.AspNetCore.Http;
 
 namespace CookingApi.Infrastructure.Models.DTO.Dossier
 {
@@ -11,7 +12,9 @@ namespace CookingApi.Infrastructure.Models.DTO.Dossier
     public string? Position { get; set; }
     public string? PlaceOfWork { get; set; }
     public string Address { get; set; }
-  
+
+    public IFormFile? AuthorPhoto { get; set; }
+
     public void Validate()
     {
       if (string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(ThirdName) || string.IsNullOrWhiteSpace(Address))

@@ -5,7 +5,7 @@
         <div class="file d-flex align-items-center ">
           <div><i class="fa fa-light fa-paperclip"></i></div>
           <div title="{{file.name}}"><p> {{file.name | slice:0:8}}</p></div>
-          <div> <a style="cursor:pointer" [routerLink]="" (click)="this.download(file.url, file.name)"><i class="fa-solid fa-file-arrow-down"></i></a></div>
+          <div> <a title="Завантажити {{file.name}}" style="cursor:pointer" [routerLink]="" (click)="this.download(file.url, file.name)"><i class="fa-solid fa-file-arrow-down"></i></a></div>
         </div>
       </div>
     </ng-container>

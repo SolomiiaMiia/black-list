@@ -60,7 +60,7 @@ export class APIService {
   }
 
   //+
-  editDossier(id: number, dto: EditDossierPageDto, action: 'save' | 'publish' | 'decline'): Observable<any> {
+  editDossier(id: number, dto: FormData, action: 'save' | 'publish' | 'decline'): Observable<any> {
     return this.httpClient.put(`${this.envService.apiUrl}/dossier/${id}?action=${action}`, dto);
   }
 

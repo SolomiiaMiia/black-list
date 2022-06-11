@@ -19,9 +19,7 @@ export class SmallDossierComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-    
-    console.log(this.dossier);
+  ngOnInit(): void { 
     
   }
 

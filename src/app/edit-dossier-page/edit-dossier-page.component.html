@@ -50,6 +50,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Фото особи</label>
+                  <input type="file" (change)="onFileChange($event)" accept="image/*" formControlName="authorPhoto" class="form-control">
                   <app-file-preview *ngIf="this.dossier.photo" [files]="[this.dossier.photo]"> </app-file-preview>
                 </div>
               </div>
@@ -92,6 +93,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label class="required-field">Підтверджуючі додатки до тексту (файли, фото та ін.)</label>
+                  <input type="file" (change)="onFileChange($event)" accept="image/*" formControlName="authorPhoto" class="form-control">
                   <app-file-preview *ngIf="this.dossier.dossierFiles" [files]="this.dossier.dossierFiles"> </app-file-preview>
                 </div>
               </div>
@@ -135,10 +137,10 @@
                     <div>
                       <button type="submit" (click)="this.submit('save')" class="btn btn-simple-admin btn-color-primary margin">Зберегти</button>
                     </div>
-                    <div *ngIf="this.dossier.type!= this.DossierTypes.Published">
+                    <div *ngIf="this.dossier.type === this.DossierTypes.New || this.dossier.type === this.DossierTypes.Declined">
                       <button type="submit" (click)="this.submit('publish')" class="btn btn-simple-admin">Опублікувати</button>
                     </div>
-                    <div *ngIf="this.dossier.type!= this.DossierTypes.Declined">
+                    <div *ngIf="this.dossier.type === this.DossierTypes.New || this.dossier.type === this.DossierTypes.Published">
                       <button type="submit" (click)="this.submit('decline')" class="btn btn-simple-admin btn-color-danger">Відхилити</button>
                     </div>
                     <div *ngIf="this.isSuperAdmin">

@@ -50,7 +50,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Фото особи</label>
-                  <input type="file" (change)="onFileChange($event,'photo')" formControlName="authorPhoto" class="form-control">
+                  <input type="file" (change)="onFileChange($event,'photo')" accept="image/*" formControlName="authorPhoto" class="form-control">
                 </div>
               </div>
               <div class="col-md-6">

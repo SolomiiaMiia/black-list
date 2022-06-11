@@ -92,7 +92,7 @@ namespace CookingApi.Web.Controllers
     [AuthFilter("admin", "superAdmin")]
     [HttpPut]
     [Route("{id}")]
-    public async Task<IActionResult> ManageDenyPublishDossier(int id, [FromQuery] string action, [FromBody] DossierEditDto dto)
+    public async Task<IActionResult> ManageDenyPublishDossier(int id, [FromQuery] string action, [FromForm] DossierEditDto dto)
     {
       dto.Validate();
 

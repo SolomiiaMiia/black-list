@@ -6,6 +6,7 @@ import { DossierDto } from '../models/dossierDto';
 import { DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
 import { AdminService } from '../shared/services/admin.service';
+import { serialize } from 'object-to-formdata';
 
 @Component({
   templateUrl: './edit-dossier-page.component.html',
@@ -21,6 +22,7 @@ export class EditDossierPageComponent implements OnInit {
   public id: number = 0;
   public dossier: DossierDto = new DossierDto();
   public isSuperAdmin: boolean;
+  private photo: any;
 
   constructor(private fb: FormBuilder,
     private apiService: APIService,
@@ -41,6 +43,10 @@ export class EditDossierPageComponent implements OnInit {
     this.apiService.get(this.id).subscribe(res => {
       this.dossier = res;
     }).add(() => { this.fillDossier(); });
+  }
+
+  onFileChange(event: any) {
+    this.photo = event.target.files[0];
   }
 
   private fillDossier() {
@@ -87,6 +93,7 @@ export class EditDossierPageComponent implements OnInit {
       lastName: this.fb.control('', { validators: [Validators.required] }),
       firstName: this.fb.control('', { validators: [Validators.required] }),
       thirdName: this.fb.control('', { validators: [Validators.required] }),
+      authorPhoto: this.fb.control(''),
       position: this.fb.control(''),
       placeOfWork: this.fb.control(''),
       address: this.fb.control('', { validators: [Validators.required] }),
@@ -118,7 +125,13 @@ export class EditDossierPageComponent implements OnInit {
       delete dto.email;
       delete dto.phone;
 
-      this.apiService.editDossier(this.id, dto, action).subscribe(res => {
+      const formData = serialize(
+        dto
+      );
+
+      formData.set('authorPhoto', this.photo);
+
+      this.apiService.editDossier(this.id, formData, action).subscribe(res => {
         this.router.navigate(['/admin/manage']);
       });
     }

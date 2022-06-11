@@ -1,6 +1,5 @@
 using System.Net;
 using CookingApi.Domain.DAL.Base;
-using CookingApi.Domain.Entities;
 using CookingApi.Infrastructure.Exceptions;
 using CookingApi.Infrastructure.Extensions;
 using CookingApi.Infrastructure.Models.DTO.Dossier;
@@ -8,12 +7,12 @@ using CookingApi.Infrastructure.Models.DTO.DossierDisprove;
 using CookingApi.Infrastructure.Models.DTO.ViewModels;
 using CookingApi.Infrastructure.Services.Abstractions;
 using Microsoft.AspNetCore.Http;
+using MimeTypes;
 using NHibernate;
 using NHibernate.Linq;
 using Dossier = CookingApi.Domain.Entities.Dossier;
 using DossierDisprove = CookingApi.Domain.Entities.DossierDisprove;
 using File = CookingApi.Domain.Entities.File;
-using MimeTypes;
 
 namespace CookingApi.Infrastructure.Services.Implementations
 {
@@ -347,6 +346,9 @@ namespace CookingApi.Infrastructure.Services.Implementations
       var dossier = await _unitOfWork.DossiersRepository.Get(id);
       if (dossier is not null)
       {
+
+        if (!(dossier.Status == Dossier.DossierStatus.New || dossier.Type == Dossier.DossierType.Published)) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо редагувати досьє");
+
         dossier.FirstName = dto.FirstName;
         dossier.LastName = dto.LastName;
         dossier.ThirdName = dto.ThirdName;
@@ -369,6 +371,24 @@ namespace CookingApi.Infrastructure.Services.Implementations
         }
 
         await _unitOfWork.DossiersRepository.Update(dossier);
+
+        if (dto.AuthorPhoto is not null)
+        {
+          string pathToSave = Path.Combine(_webRootPath, "Dossiers");
+
+          var oldPhoto = await _unitOfWork.FilesRepository.Query().Where(c => c.DossierId == id && c.Type == File.FileType.AuthorPhoto).FirstOrDefaultAsync();
+
+          if(oldPhoto is not null)
+          {
+            if(System.IO.File.Exists(oldPhoto.Path)) System.IO.File.Delete(oldPhoto.Path);
+            await _unitOfWork.FilesRepository.Delete(oldPhoto);
+          }
+
+          var file = await SaveFileAsync(pathToSave, dto.AuthorPhoto, File.FileType.AuthorPhoto, id, null);
+          await _unitOfWork.FilesRepository.Add(file);
+
+        }
+
         await _unitOfWork.CommitAsync();
       }
       else
@@ -429,35 +449,35 @@ namespace CookingApi.Infrastructure.Services.Implementations
 
       var appBaseUrl = MyHttpContext.AppBaseUrl;
 
-      var dossiers =  await dossierQuery.Where(c=> c.LastName.Contains(searchText) || c.FirstName.Contains(searchText)
-      || c.ThirdName.Contains(searchText) || c.Address.Contains(searchText)).OrderByDescending(c=>c.Date).Select(c => new DossierSearch()
-      {
-        Address = c.Address,
-        Date = c.Date,
-        Id = c.Id,
-        FullName = c.LastName + " " + c.FirstName + " " + c.ThirdName,
-        PlaceOfWork = c.PlaceOfWork,
-        Position = c.Position,
-        Status = c.Status,
-        Type = c.Type
-      }).ToListAsync();
+      var dossiers = await dossierQuery.Where(c => c.LastName.Contains(searchText) || c.FirstName.Contains(searchText)
+     || c.ThirdName.Contains(searchText) || c.Address.Contains(searchText)).OrderByDescending(c => c.Date).Select(c => new DossierSearch()
+     {
+       Address = c.Address,
+       Date = c.Date,
+       Id = c.Id,
+       FullName = c.LastName + " " + c.FirstName + " " + c.ThirdName,
+       PlaceOfWork = c.PlaceOfWork,
+       Position = c.Position,
+       Status = c.Status,
+       Type = c.Type
+     }).ToListAsync();
 
 
       var ids = dossiers.Select(c => c.Id).ToList();
 
-     var files = await _unitOfWork.FilesRepository.Query().Where(c=> c.DossierId!=null && ids.Contains(c.DossierId.Value) && c.Type == File.FileType.AuthorPhoto)
-        .Select(c => new 
-      {
-        Id = c.DossierId.Value,
-        Name = c.Name,
-        Url = $"{appBaseUrl}/api/dossier/files/{c.Id}"
-      }).ToListAsync();
+      var files = await _unitOfWork.FilesRepository.Query().Where(c => c.DossierId != null && ids.Contains(c.DossierId.Value) && c.Type == File.FileType.AuthorPhoto)
+         .Select(c => new
+         {
+           Id = c.DossierId.Value,
+           Name = c.Name,
+           Url = $"{appBaseUrl}/api/dossier/files/{c.Id}"
+         }).ToListAsync();
 
 
       dossiers.ForEach(c =>
       {
         var file = files.FirstOrDefault(d => d.Id == c.Id);
-        if(file != null)
+        if (file != null)
         {
           c.Photo = new Models.DTO.ViewModels.File()
           {
