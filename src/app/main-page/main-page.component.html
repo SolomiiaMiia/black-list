@@ -112,7 +112,7 @@
             </div>
           </div>
           <div class="btn-search">
-            <a [routerLink]="" (click)="this.search()" class="btn btn-simple">Пошук
+            <a [routerLink]="['/search']" [queryParams]="{searchString: this.searchString}" class="btn btn-simple">Пошук
               досьє</a>
           </div>
         </form>
@@ -139,7 +139,7 @@
       </div>
       <div class="col-lg-5">
         <app-file-card></app-file-card>
-          <a [routerLink]="[]"  (click)="this.search()" class=" btn btn-simple-more btn-color-danger fw-lighter ms-4">Більше →</a>
+          <a [routerLink]="['/search']" [queryParams]="{searchString: ''}" class=" btn btn-simple-more btn-color-danger fw-lighter ms-4">Більше →</a>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AdminService } from '../shared/services/admin.service';
 
 @Component({
@@ -30,15 +30,4 @@ export class MainPageComponent implements OnInit {
     this.router.navigate(['/add-dossier']);
 
   }
-
-  search(): void {
-    const navigationExtras: NavigationExtras = {
-      state: {
-        searchText: this.searchString
-      }
-    };
-    this.router.navigate(['/search'], navigationExtras);
-  }
-
-
 }

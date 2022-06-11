@@ -1,8 +1,9 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DossierSmallDto } from '../models/dossierSmallDto';
 import { DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-search',
@@ -17,17 +18,10 @@ export class SearchComponent implements OnInit {
   
   public searchResults : DossierSmallDto[] = [] 
 
-  constructor(private router: Router,
-    private apiService: APIService) {
-    if (!this.isAdmin) {
-
-      const navigation = this.router.getCurrentNavigation();
-      const state = navigation?.extras.state as {
-        searchText: string
-      };
-
-      this.searchText = state?.searchText;
-    }
+  constructor(private apiService: APIService,
+    private location: Location,
+    private route: ActivatedRoute  ) {
+    this.searchText = this.route.snapshot.queryParams['searchString'] ?? '';
   }
 
 
@@ -40,6 +34,10 @@ export class SearchComponent implements OnInit {
   }
 
   search(): void{
+    if (!this.isAdmin) {
+      this.location.replaceState(`/search?searchString=${this.searchText}`);
+    }
+
     this.apiService.search(this.searchText, this.dossierType).subscribe(results => {
       this.searchResults = results;
     });
