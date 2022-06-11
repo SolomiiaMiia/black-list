@@ -42,3 +42,6 @@ testem.log
 Thumbs.db
 .vs/*
 slnx.sqlite
+/api/CookingApi.Web/wwwroot/Dossiers
+*.dbmdl
+*.jfm
