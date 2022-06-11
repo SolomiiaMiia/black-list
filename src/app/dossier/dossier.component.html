@@ -1,7 +1,7 @@
 <section *ngIf="this.dossier" class="reserve-block">
   <div class="container d-flex justify-content-center">
     <div class="row d-flex justify-content-center">
-      <div class="">
+      <div class="hero-title">
         <h3>Досьє номер {{dossier.id}}</h3>
       </div>
     </div>
@@ -40,7 +40,7 @@
           </div>
           <div class="address">
             <span><i class="fa fa-solid fa-calendar"></i></span>
-            <p>{{dossier.date | date}} </p>
+            <p>{{dossier.date | date  : "MM/dd/yy"}} </p>
           </div>
           <div class="address">
             <p>{{this.enumHelper.DossierStatus[dossier.status]}}</p>
@@ -81,8 +81,8 @@
           </div>
         </div>
         <div class="col-md-4 responsive-wrap">
-          <div class="contact-info">
-            <div class="address">
+          <div class="badge text-wrap date">
+            <div class="address p-2">
               <span><i class="fa fa-solid fa-calendar"></i></span>
               <p>{{dossier.disproveDossier?.date | date : "MM/dd/yy"}} </p>
             </div>
