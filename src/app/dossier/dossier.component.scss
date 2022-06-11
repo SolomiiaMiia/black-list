@@ -6,9 +6,14 @@
 //   font-style: normal;
 // }
 
-.hero-title{
-  
-          color: #fff;
+.hero-title {
+  font-weight: 700;
+  font-size: 38px;
+  color: #484848;
+
+  @media (max-width: 576px) {
+    font-size: 28px;
+  }
 }
 
 .reserve-block {
@@ -323,14 +328,14 @@ hr {
   margin: 0 0 15px;
   border-radius: 0.60em;
 
-  
-.img{
-  width: 400px;
-  max-width: 700%;
-  height: auto;
-  float: right;
-  
-}
+
+  .img {
+    width: 400px;
+    max-width: 700%;
+    height: auto;
+    float: right;
+
+  }
 }
 
 .contact-info label {
@@ -352,30 +357,34 @@ hr {
 
   .address {
     @media (max-width: 992px) {
-        text-align: center;
-        margin: 0 0 30px;
+      text-align: center;
+      margin: 0 0 30px;
     }
+
     i {
-        color: #adadad;
-        font-size: 22px;
-        border: 1px solid #adadad;
-        padding: 7px 12px;
-        vertical-align: top;
-        margin: 2px 12px 0 0;
-        @media (max-width: 1300px) {
-            margin: 2px 0 0 0;
-        }
+      color: #adadad;
+      font-size: 22px;
+      border: 1px solid #adadad;
+      padding: 7px 12px;
+      vertical-align: top;
+      margin: 2px 12px 0 0;
+
+      @media (max-width: 1300px) {
+        margin: 2px 0 0 0;
+      }
     }
+
     p {
-        display: inline-block;
-        font-size: 13px;
-        color: #adadad;
-        @media (max-width: 992px) {
-            display: block;
-            margin: 10px 0 0;
-        }
+      display: inline-block;
+      font-size: 13px;
+      color: #adadad;
+
+      @media (max-width: 992px) {
+        display: block;
+        margin: 10px 0 0;
+      }
     }
-}
+  }
 }
 
 
@@ -516,7 +525,7 @@ li {
 }
 
 
-.date{
+.date {
   border: 2px solid #ea5555;
   width: 10rem;
 }
