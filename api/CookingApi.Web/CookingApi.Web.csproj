@@ -15,7 +15,38 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Dossiers\" />
+    <None Include="wwwroot\Dossiers\12\Направлення на обстеження_Uwell Кицун 02.06.docx" />
+    <None Include="wwwroot\Dossiers\14\Направлення на обстеження_Uwell Кицун 02.06.docx" />
+    <None Include="wwwroot\Dossiers\17\Disprove\_core.scss" />
+    <None Include="wwwroot\Dossiers\17\_bordered-pulled.scss" />
+    <None Include="wwwroot\Dossiers\17\фото.scss" />
+    <None Include="wwwroot\Dossiers\18\Disprove\_core.scss" />
+    <None Include="wwwroot\Dossiers\18\_path.scss" />
+    <None Include="wwwroot\Dossiers\18\фото.scss" />
+    <None Include="wwwroot\Dossiers\19\_path.scss" />
+    <None Include="wwwroot\Dossiers\20\_animated.scss" />
+    <None Include="wwwroot\Dossiers\21\_bordered-pulled.scss" />
+    <None Include="wwwroot\Dossiers\22\_animated.scss" />
+    <None Include="wwwroot\Dossiers\23\_animated.scss" />
+    <None Include="wwwroot\Dossiers\24\_animated.scss" />
+    <None Include="wwwroot\Dossiers\25\Переменные среды.xlsx" />
+    <None Include="wwwroot\Dossiers\27\_core.scss" />
+    <None Include="wwwroot\Dossiers\28\_core.scss" />
+    <None Include="wwwroot\Dossiers\29\Disprove\_core.scss" />
+    <None Include="wwwroot\Dossiers\29\_core.scss" />
+    <None Include="wwwroot\Dossiers\30\_core.scss" />
+    <None Include="wwwroot\Dossiers\31\Disprove\_core.scss" />
+    <None Include="wwwroot\Dossiers\31\_core.scss" />
+    <None Include="wwwroot\Dossiers\32\_core.scss" />
+    <None Include="wwwroot\Dossiers\33\_core.scss" />
+    <None Include="wwwroot\Dossiers\34\Disprove\_core.scss" />
+    <None Include="wwwroot\Dossiers\34\_core.scss" />
+    <None Include="wwwroot\Dossiers\9\Statement_for_accession%282021%29.docx" />
+    <None Include="wwwroot\Dossiers\9\Направлення на обстеження_Uwell Кицун 02.06.docx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Dossiers\6\" />
   </ItemGroup>
 
 </Project>
