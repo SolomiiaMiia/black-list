@@ -5,9 +5,9 @@
   overflow: hidden;
   display: block;
   margin: auto;
-  object-fit: cover; 
+  object-fit: cover;
   image-rendering: crisp-edges;
-  
+
 }
 
 .portfolio-wrap {
@@ -20,7 +20,7 @@
 
 }
 
-a:hover {
+.img-hover:hover {
   opacity: 0.5;
 
 }
@@ -56,22 +56,23 @@ span {
   min-height: 40px;
 }
 
-.card-bottom-hgt{
+.card-bottom-hgt {
   min-height: 194.6px;
 }
 
-.edit-btn-position{
+.edit-btn-position {
   top: 40px;
 }
 
 .card-bottom {
-p {
-  @media (max-width: 992px) {
-    display: flex;
-    margin: 0 0 10px;
+  p {
+    @media (max-width: 992px) {
+      display: flex;
+      margin: 0 0 10px;
+    }
   }
 }
-}
+
 .edit {
   display: block;
   padding: 10px;
@@ -128,12 +129,13 @@ p {
 
 .green {
   color: #6c944e;
-  
+
 }
 
-.text{
- color: #a1a1a1;
+.text {
+  color: #a1a1a1;
 }
 
-.card-text-top {
-  top:40px }
+.btn-edit-top {
+  top: 40px
+}
