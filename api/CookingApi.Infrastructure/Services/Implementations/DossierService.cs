@@ -154,7 +154,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
         var disproveDossier = dossier.DossierDisprove;
         if (disproveDossier is not null)
         {
-          if (dossier.Status != Dossier.DossierStatus.Disproved || dossier.Status != Dossier.DossierStatus.HasDisprove) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо видалити спростування досьє");
+          if (dossier.Status != Dossier.DossierStatus.Disproved && dossier.Status != Dossier.DossierStatus.HasDisprove) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо видалити спростування досьє");
 
           var files = await _unitOfWork.FilesRepository.Query().Where(c => c.DossierDisproveId == disproveDossier.Id).ToListAsync();
           foreach (var file in files)
