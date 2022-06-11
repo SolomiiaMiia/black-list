@@ -52,10 +52,10 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="btn-admin">
-                    <div *ngIf="this.dossier.type === this.DossierTypes.DisproveNew">
+                    <div *ngIf="(this.dossier.type === this.DossierTypes.DisproveNew || this.dossier.type === this.DossierTypes.Published) && this.dossier.status!= DossierStatuses.Disproved">
                       <button type="submit" (click)="this.submit('publish')" class="btn btn-simple-admin one-btn">Опублікувати</button>
                     </div>
-                    <div *ngIf="this.dossier.type === this.DossierTypes.DisprovePublished">
+                    <div *ngIf="this.dossier.type === this.DossierTypes.DisprovePublished || this.dossier.status == DossierStatuses.Disproved">
                       <button type="submit" (click)="this.submit('deny')" class="btn btn-simple-admin btn-color-danger">Відхилити</button>
                     </div>
                     <div *ngIf="this.isSuperAdmin">

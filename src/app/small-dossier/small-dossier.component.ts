@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DossierSmallDto } from '../models/dossierSmallDto';
-import { DossierType, EnumHelper } from '../models/enums';
+import { DossierStatus, DossierType, EnumHelper } from '../models/enums';
+import { AdminService } from '../shared/services/admin.service';
 
 @Component({
   selector: 'app-small-dossier',
@@ -12,15 +13,16 @@ export class SmallDossierComponent implements OnInit {
   @Input('isAdmin') isAdmin: boolean = false;
   @Input('dossier') dossier: DossierSmallDto = new DossierSmallDto;
   public enumHelper: EnumHelper = new EnumHelper();
+  DossierStatuses = DossierStatus;
   DossierTypes = DossierType;
 
-  constructor() {
+  constructor(public adminService: AdminService) {
 
   }
 
 
   ngOnInit(): void { 
-    
+
   }
 
   ngOnDestroy(): void {

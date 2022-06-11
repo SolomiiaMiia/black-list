@@ -109,9 +109,9 @@ namespace CookingApi.Web.Controllers
     }
 
     [HttpGet("files/{id}")]
-    public async Task<IActionResult> GetFile(int id, [FromServices] IAuthService authService)
+    public async Task<IActionResult> GetFile(int id, [FromServices] IAuthService authService, [FromQuery] string? accessToken)
     {
-      var (filePath, mime) = await _dossierService.GetFilePath(id, authService.isAuthorized());
+      var (filePath, mime) = await _dossierService.GetFilePath(id, authService.isAuthorized(accessToken));
       var bytes = await System.IO.File.ReadAllBytesAsync(filePath);
       return File(bytes, mime, Path.GetFileName(filePath));
     }
@@ -121,7 +121,7 @@ namespace CookingApi.Web.Controllers
     public async Task<IActionResult> Get([FromQuery] Dossier.DossierType type, [FromServices] IAuthService authService, [FromQuery] string? searchText)
     {
       var isAuthorized = authService.isAuthorized();
-      var searchResults = await _dossierService.SearchDossier(String.IsNullOrEmpty(searchText)? "": searchText , (Dossier.DossierType)type, isAuthorized);
+      var searchResults = await _dossierService.SearchDossier(String.IsNullOrEmpty(searchText)? "": searchText , type, isAuthorized);
       return new OkObjectResult(searchResults);
     }
   }

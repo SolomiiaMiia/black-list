@@ -10,6 +10,7 @@ export enum DossierType {
 export enum DossierStatus {
   New = 0,
   Disproved = 1,
+  HasDisprove = 2
 }
 
 export class EnumHelper {
@@ -23,6 +24,7 @@ export class EnumHelper {
     let res = {};
     res[DossierStatus.New] = 'Не спростовано';
     res[DossierStatus.Disproved] = 'Спростовано';
+    res[DossierStatus.HasDisprove] = 'Спростування подано';
     this.DossierStatus = res;
     
   }

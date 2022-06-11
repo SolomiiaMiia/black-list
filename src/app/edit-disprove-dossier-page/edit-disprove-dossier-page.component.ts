@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DossierDto } from '../models/dossierDto';
-import { DossierType } from '../models/enums';
+import { DossierStatus, DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
 import { AdminService } from '../shared/services/admin.service';
 
@@ -12,6 +12,7 @@ import { AdminService } from '../shared/services/admin.service';
 export class EditDisproveDossierPageComponent implements OnInit {
 
   public DossierTypes = DossierType;
+  public DossierStatuses = DossierStatus;
 
   public submitted: boolean = false;
   public id: number = 0;

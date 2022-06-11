@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using System.Net;
 using CookingApi.Domain.DAL.Base;
 using CookingApi.Infrastructure.Exceptions;
@@ -77,8 +78,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
 
       if (dossier is null) throw new CookingException(HttpStatusCode.NotFound, "Досьє не знайдено");
 
-      if (dossier.DossierDisprove is not null || dossier.Status == Dossier.DossierStatus.Disproved
-        || dossier.Type == Dossier.DossierType.Declined) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо подати спростування досьє");
+      if (dossier.DossierDisprove is not null) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо подати спростування досьє");
 
       var dossierDisprove = new DossierDisprove()
       {
@@ -92,6 +92,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
       var dossierDisproveId = await _unitOfWork.DossierDisproveRepository.Add(dossierDisprove);
 
       dossier.Type = Dossier.DossierType.DisproveNew;
+      dossier.Status = Dossier.DossierStatus.HasDisprove;
       dossier.DossierDisprove = dossierDisprove;
 
       await _unitOfWork.DossiersRepository.Update(dossier);
@@ -104,7 +105,6 @@ namespace CookingApi.Infrastructure.Services.Implementations
       }
 
       await _unitOfWork.CommitAsync();
-
     }
 
     public async Task DeleteDossier(int id)
@@ -151,12 +151,11 @@ namespace CookingApi.Infrastructure.Services.Implementations
         .Where(c => c.Id == id).FirstOrDefaultAsync();
       if (dossier is not null)
       {
-
         var disproveDossier = dossier.DossierDisprove;
-
-
         if (disproveDossier is not null)
         {
+          if (dossier.Status != Dossier.DossierStatus.Disproved || dossier.Status != Dossier.DossierStatus.HasDisprove) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо видалити спростування досьє");
+
           var files = await _unitOfWork.FilesRepository.Query().Where(c => c.DossierDisproveId == disproveDossier.Id).ToListAsync();
           foreach (var file in files)
           {
@@ -184,7 +183,6 @@ namespace CookingApi.Infrastructure.Services.Implementations
         {
           throw new CookingException(HttpStatusCode.NotFound, "Спростування досьє не знайдено");
         }
-
       }
       else
       {
@@ -230,7 +228,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
       if (dossier is not null)
       {
         if (dossier.DossierDisprove is null || dossier.Status == Dossier.DossierStatus.Disproved
-         || dossier.Type == Dossier.DossierType.Declined) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо опублікувати спростування досьє");
+         || dossier.Type == Dossier.DossierType.Declined || dossier.Type == Dossier.DossierType.DisprovePublished) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо опублікувати спростування досьє");
 
         dossier.Status = Dossier.DossierStatus.Disproved;
         dossier.Type = Dossier.DossierType.DisprovePublished;
@@ -239,7 +237,6 @@ namespace CookingApi.Infrastructure.Services.Implementations
         await _unitOfWork.DossiersRepository.Update(dossier);
 
         await _unitOfWork.CommitAsync();
-
       }
       else
       {
@@ -253,16 +250,14 @@ namespace CookingApi.Infrastructure.Services.Implementations
         .Where(c => c.Id == id).FirstOrDefaultAsync();
       if (dossier is not null)
       {
-        if (dossier.DossierDisprove is null || dossier.Status == Dossier.DossierStatus.New
-         || dossier.Type == Dossier.DossierType.Declined) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо опублікувати спростування досьє");
+        if (dossier.DossierDisprove is null || dossier.Status == Dossier.DossierStatus.New ) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо відхилити спростування досьє");
 
-        dossier.Status = Dossier.DossierStatus.New;
+        dossier.Status = Dossier.DossierStatus.HasDisprove;
         dossier.Type = Dossier.DossierType.DisproveNew;
 
         await _unitOfWork.DossiersRepository.Update(dossier);
 
         await _unitOfWork.CommitAsync();
-
       }
       else
       {
@@ -270,9 +265,12 @@ namespace CookingApi.Infrastructure.Services.Implementations
       }
     }
 
+    private Expression<Func<Dossier, bool>> searchPredicate = c => c.Type == Dossier.DossierType.Published || c.Type == Dossier.DossierType.DisprovePublished
+      || (c.Status == Dossier.DossierStatus.HasDisprove && c.Type != Dossier.DossierType.Declined);
+
     public async Task<List<LatestDossier>> GetLatestDossiers(int take = 5)
     {
-      return await _unitOfWork.DossiersRepository.Query().Where(c => c.Type == Dossier.DossierType.Published || c.Type == Dossier.DossierType.DisprovePublished)
+      return await _unitOfWork.DossiersRepository.Query().Where(searchPredicate)
         .OrderByDescending(c => c.Date).Take(take)
         .Select(c => new LatestDossier() { Id = c.Id, FullName = c.LastName + " " + c.FirstName + " " + c.ThirdName, Date = c.Date }).ToListAsync();
     }
@@ -333,7 +331,6 @@ namespace CookingApi.Infrastructure.Services.Implementations
         };
 
         return dossierViewModel;
-
       }
       else
       {
@@ -346,9 +343,6 @@ namespace CookingApi.Infrastructure.Services.Implementations
       var dossier = await _unitOfWork.DossiersRepository.Get(id);
       if (dossier is not null)
       {
-
-        if (!(dossier.Status == Dossier.DossierStatus.New || dossier.Type == Dossier.DossierType.Published)) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо редагувати досьє");
-
         dossier.FirstName = dto.FirstName;
         dossier.LastName = dto.LastName;
         dossier.ThirdName = dto.ThirdName;
@@ -378,17 +372,15 @@ namespace CookingApi.Infrastructure.Services.Implementations
 
           var oldPhoto = await _unitOfWork.FilesRepository.Query().Where(c => c.DossierId == id && c.Type == File.FileType.AuthorPhoto).FirstOrDefaultAsync();
 
-          if(oldPhoto is not null)
+          if (oldPhoto is not null)
           {
-            if(System.IO.File.Exists(oldPhoto.Path)) System.IO.File.Delete(oldPhoto.Path);
+            if (System.IO.File.Exists(oldPhoto.Path)) System.IO.File.Delete(oldPhoto.Path);
             await _unitOfWork.FilesRepository.Delete(oldPhoto);
           }
 
           var file = await SaveFileAsync(pathToSave, dto.AuthorPhoto, File.FileType.AuthorPhoto, id, null);
           await _unitOfWork.FilesRepository.Add(file);
-
         }
-
         await _unitOfWork.CommitAsync();
       }
       else
@@ -399,7 +391,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
 
     public async Task<List<Models.DTO.ViewModels.Dossier>> GetFeed(int skip)
     {
-      var nextDossierId = await _unitOfWork.DossiersRepository.Query().Where(c => c.Type == Dossier.DossierType.Published || c.Type == Dossier.DossierType.DisprovePublished)
+      var nextDossierId = await _unitOfWork.DossiersRepository.Query().Where(searchPredicate)
         .OrderByDescending(c => c.Date).Select(c => c.Id).Skip(skip).Take(1).FirstOrDefaultAsync();
       if (nextDossierId != 0) return new List<Models.DTO.ViewModels.Dossier>() { await this.GetDossier(nextDossierId, true) };
       else return new List<Models.DTO.ViewModels.Dossier>();
@@ -412,10 +404,9 @@ namespace CookingApi.Infrastructure.Services.Implementations
       {
         if (!skipCheck)
         {
-
           var dossier = file.DossierId.HasValue ? await _unitOfWork.DossiersRepository.Get(file.DossierId.Value) : await _unitOfWork.DossiersRepository.Query().Fetch(c => c.DossierDisprove)
               .Where(c => c.DossierDisprove != null && c.DossierDisprove.Id == file.DossierDisproveId.Value).FirstOrDefaultAsync();
-          if (dossier.Type == Dossier.DossierType.Declined) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Досьє не опубліковане");
+          if (dossier.Type == Dossier.DossierType.Declined || dossier.Type == Dossier.DossierType.New) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Досьє не опубліковане");
 
         }
 
@@ -461,7 +452,6 @@ namespace CookingApi.Infrastructure.Services.Implementations
        Status = c.Status,
        Type = c.Type
      }).ToListAsync();
-
 
       var ids = dossiers.Select(c => c.Id).ToList();
 

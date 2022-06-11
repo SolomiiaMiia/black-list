@@ -6,7 +6,7 @@ namespace CookingApi.Domain.Entities
 {
   public class Dossier : CoreEntity
   {
-    public enum DossierStatus { New, Disproved }
+    public enum DossierStatus { New, Disproved, HasDisprove }
     public enum DossierType
     {
       All = 0,

@@ -140,7 +140,7 @@
                     <div *ngIf="this.dossier.type === this.DossierTypes.New || this.dossier.type === this.DossierTypes.Declined">
                       <button type="submit" (click)="this.submit('publish')" class="btn btn-simple-admin">Опублікувати</button>
                     </div>
-                    <div *ngIf="this.dossier.type === this.DossierTypes.New || this.dossier.type === this.DossierTypes.Published">
+                    <div *ngIf="this.dossier.type !== this.DossierTypes.Declined">
                       <button type="submit" (click)="this.submit('decline')" class="btn btn-simple-admin btn-color-danger">Відхилити</button>
                     </div>
                     <div *ngIf="this.isSuperAdmin">

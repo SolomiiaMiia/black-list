@@ -4,7 +4,6 @@ using CookingApi.Infrastructure.Extensions;
 using CookingApi.Infrastructure.Models.DTO.Auth;
 using CookingApi.Infrastructure.Services.Abstractions;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Primitives;
 
 namespace CookingApi.Infrastructure.Services.Implementations
 {
@@ -28,10 +27,10 @@ namespace CookingApi.Infrastructure.Services.Implementations
       else return new { role = user.Role, token = user.Token };
     }
 
-    public bool isAuthorized()
+    public bool isAuthorized(string? accessToken = null)
     {
-      var token = MyHttpContext.Current.Request.Headers["Security-Token"];
-      if (token == StringValues.Empty) return false;
+      var token = string.IsNullOrEmpty(accessToken)? MyHttpContext.Current.Request.Headers["Security-Token"].ToString(): accessToken;
+      if (string.IsNullOrEmpty(token)) return false;
       else
       {
         return this.GetUserByToken(token) != null;
