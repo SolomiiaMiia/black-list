@@ -281,7 +281,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
        .Where(c => c.Id == id).FirstOrDefaultAsync();
       if (dossier is not null)
       {
-        if (!skipCheck && (dossier.Status == Dossier.DossierStatus.New || dossier.Type == Dossier.DossierType.Declined)) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Досьє не опубліковане");
+        if (!skipCheck && (!searchPredicate.Compile().Invoke(dossier))) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Досьє не опубліковане");
 
         var dossierFiles = await _unitOfWork.FilesRepository.Query().Where(c => c.DossierId == id).ToListAsync();
 
