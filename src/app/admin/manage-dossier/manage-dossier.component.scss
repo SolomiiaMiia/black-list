@@ -3,6 +3,9 @@ section {
   background-color: black;
 }
 
+::ng-deep .tab-content{
+min-height: 300px;
+}
 
 ::ng-deep .customClass>a {
   color: white !important;
@@ -39,10 +42,6 @@ section {
   pointer-events: none;
   cursor: not-allowed;
 }
-
-
-
-
 
 .nav-tabs .nav-link {
   

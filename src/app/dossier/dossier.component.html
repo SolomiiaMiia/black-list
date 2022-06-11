@@ -2,7 +2,7 @@
   <div class="container d-flex justify-content-center">
     <div class="row d-flex justify-content-center">
       <div class="hero-title">
-        <h2> <i class="fa fa-light fa-folder-closed mx-2"></i> Досьє номер {{dossier.id}}</h2>
+        <h2><i class="fa fa-light fa-clipboard mx-2"></i> Досьє номер {{dossier.id}}</h2>
       </div>
     </div>
   </div>
@@ -43,9 +43,10 @@
             <p>{{dossier.date | date  : "MM/dd/yy"}} </p>
           </div>
           <div class="address">
+            <span><i class="fa fa-light fa-rotate"></i></span>
             <p>{{this.enumHelper.DossierStatus[dossier.status]}}</p>
 
-            <ng-container *ngIf="dossier.type == DossierTypes.Published">
+            <ng-container *ngIf="dossier.type == DossierTypes.Published" >
               <div class="btn-search">
                 <a [routerLink]="['/dossier/'+dossier.id+'/disprove']" class="btn btn-simple btn-contact">Спростувати</a>
               </div>
@@ -59,14 +60,14 @@
           <div class="container d-flex justify-content-center">
             <div class="row d-flex justify-content-center">
               <div class="hero-title">
-                <h4>Спростування досьє</h4>
+                <h2><i class="fa fa-light fa-clipboard-check mx-2"></i> Спростування досьє</h2>
               </div>
             </div>
           </div>
         </section>
         <div class="col-md-8 responsive-wrap">
           <div class="booking-checkbox_wrap">
-            <div class="booking-checkbox">
+            <div class="booking-checkbox text-light p-2">
               <div [froalaView]="dossier.disproveDossier?.text!" class="text" rows="3"></div>
               <hr>
             </div>
