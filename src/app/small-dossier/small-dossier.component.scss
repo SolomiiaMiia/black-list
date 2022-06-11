@@ -1,48 +1,66 @@
 .card-img-top {
   max-width: 400px;
-  height: 250px;
+  height: 350px;
   background-color: white;
   overflow: hidden;
   display: block;
-    margin: 0 auto;
+  margin: auto;
+  object-fit: cover; 
+  image-rendering: crisp-edges;
+  
 }
-.portfolio-wrap{
+
+.portfolio-wrap {
   margin-top: 40px;
 }
 
-a:hover{
-opacity: 0.5;
+
+.title {
+  min-height: 75px;
 
 }
 
-::ng-deep .card{
-  border:none !important;
+a:hover {
+  opacity: 0.5;
+
+}
+
+::ng-deep .card {
+  border: none !important;
   box-shadow: 0px 1px 2px 0px #ececec !important;
   color: #adaca9 !important;
 }
 
 
-::ng-deep .card-body p, ul, li, h5, .date{
+::ng-deep .card-body p,
+ul,
+li,
+h5,
+.date {
   color: #a2a1a1 !important;
 }
 
-.position{
+.position {
   color: white !important;
 }
 
 
-span{
+span {
   @media (max-width: 992px) {
     display: contents;
     margin: 0 0 10px;
-}
+  }
 }
 
-.card-bottom p{
+.card-rating-null {
+  min-height: 40px;
+}
+
+.card-bottom p {
   @media (max-width: 992px) {
     display: flex;
     margin: 0 0 10px;
-}
+  }
 }
 
 .edit {
@@ -53,35 +71,37 @@ span{
   border: 2px solid #ea5555;
   color: #ea5555;
   font-weight: 400;
+
   @media (max-width: 992px) {
     position: inherit;
     margin: 15px 0 0;
   }
 
 
-  &:hover  {
+  &:hover {
     color: white;
     background: #ea5555;
     border: 2px solid #ea5555;
   }
-  
+
 }
 
 
-.flex-btn-edit{
+.flex-btn-edit {
   display: block;
   margin-bottom: 0rem;
-  flex-direction: row ;
+  flex-direction: row;
   box-sizing: border-box;
   flex-wrap: wrap;
+
   @media (max-width: 992px) {
     position: inherit;
     margin: 15px 0 0;
-}
+  }
 }
 
 
-.btn-contact{
+.btn-contact {
   border: 2px solid #408309;
   color: #408309;
 }
@@ -93,10 +113,11 @@ span{
 }
 
 
-.red{
-color: #ea5555;
+.red {
+  color: #ea5555;
 }
 
-.green{
-  color: #6c944e;;
+.green {
+  color: #6c944e;
+  ;
 }

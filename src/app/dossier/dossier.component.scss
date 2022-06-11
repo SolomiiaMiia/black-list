@@ -7,13 +7,6 @@
 // }
 
 
-.img{
-  width: 200px;
-  max-width: 70%;
-  height: auto;
-  float: right;
-  
-}
 
 .reserve-block {
   padding: 70px 0 20px 0;
@@ -326,9 +319,15 @@ hr {
   padding: 0 0 6px;
   margin: 0 0 15px;
   border-radius: 0.60em;
-  img{
-    
-  }
+
+  
+.img{
+  width: 400px;
+  max-width: 700%;
+  height: auto;
+  float: right;
+  
+}
 }
 
 .contact-info label {
