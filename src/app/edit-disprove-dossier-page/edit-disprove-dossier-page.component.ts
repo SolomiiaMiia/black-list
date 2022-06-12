@@ -4,6 +4,7 @@ import { DossierDto } from '../models/dossierDto';
 import { DossierStatus, DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
 import { AdminService } from '../shared/services/admin.service';
+import { NotifyService } from '../shared/services/notify.service';
 
 @Component({
   templateUrl: './edit-disprove-dossier-page.component.html',
@@ -22,7 +23,8 @@ export class EditDisproveDossierPageComponent implements OnInit {
   constructor(private apiService: APIService,
     private route: ActivatedRoute,
     private router: Router,
-    adminService: AdminService) {
+    adminService: AdminService,
+    private  infoMess: NotifyService) {
     this.isSuperAdmin = adminService.isSuperAdmin();
   }
 
@@ -52,15 +54,28 @@ export class EditDisproveDossierPageComponent implements OnInit {
   public submit(action: 'publish' | 'deny') {
     this.apiService.publishDisproveDossier(this.id, action).subscribe(res => {
         this.router.navigate(['/admin/manage']);
+        switch (action) {
+          case 'publish':
+            if ( confirm('Опублікувати спростування?')){
+              this.infoMess.info('Спростування опубліковано')
+            }
+            break;
+            case 'deny':
+              if (confirm('Відхилити спростування?')){
+              this.infoMess.info('Спростування відхилено')
+          }
+              break;
+        }
       });
 
   }
 
   public delete() {
 
-    if (confirm("Видалити спростування досьє назавжди?")) {
+    if (confirm('Видалити спростування досьє назавжди?')) {
       this.apiService.deleteDisproveDossier(this.id).subscribe(res => {
         this.router.navigate(['/admin/manage']);
+        this.infoMess.info('Спростування видалено')
       });
 
     }

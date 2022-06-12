@@ -7,6 +7,8 @@ import { DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
 import { AdminService } from '../shared/services/admin.service';
 import { serialize } from 'object-to-formdata';
+import { NotifyService } from '../shared/services/notify.service';
+
 
 @Component({
   templateUrl: './edit-dossier-page.component.html',
@@ -29,7 +31,9 @@ export class EditDossierPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     @Inject(DOCUMENT) private document: Document,
-    adminService: AdminService) {
+    adminService: AdminService,
+    private infoMess: NotifyService,
+  ) {
     this.isSuperAdmin = adminService.isSuperAdmin();
   }
 
@@ -131,6 +135,30 @@ export class EditDossierPageComponent implements OnInit {
 
       formData.set('authorPhoto', this.photo);
 
+    //  if(action ==='save'){
+    //   this.infoMess.info('Досьє успішно збережено');
+    //  }
+    //  if(action === 'publish'){
+    //   this.infoMess.info('Досьє опубліковано');
+    //  }
+
+
+     switch (action) {
+      case 'save':
+       if(confirm('Зберегти досьє?')) 
+        this.infoMess.info('Досьє успішно збережено')
+        break;
+      case 'publish':
+      if(confirm('Опублікувати досьє?'))  
+         this.infoMess.info('Досьє опубліковано')
+        break;
+        case 'decline':
+        if(confirm('Відхилити досьє?'))  
+          this.infoMess.info('Досьє відхилено')
+          break;
+    }
+
+
       this.apiService.editDossier(this.id, formData, action).subscribe(res => {
         this.router.navigate(['/admin/manage']);
       });
@@ -139,9 +167,10 @@ export class EditDossierPageComponent implements OnInit {
 
   public delete() {
 
-    if (confirm("Видалити досьє назавжди?")) {
+    if (confirm('Видалити досьє назавжди?')) {
       this.apiService.deleteDossier(this.id).subscribe(res => {
         this.router.navigate(['/admin/manage']);
+        this.infoMess.info('Досьє видалено')
       });
 
     }

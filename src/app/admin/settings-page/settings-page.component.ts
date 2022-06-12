@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotifyService } from 'src/app/shared/services/notify.service';
 import { AdminSettingsDto } from '../../models/adminSettingsDto';
 import { AdminService } from '../../shared/services/admin.service';
 import { APIService } from '../../shared/services/api.service';
@@ -17,7 +18,8 @@ export class SettingsPageComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private apiService: APIService,
-    private adminService: AdminService) {
+    private adminService: AdminService,
+    private  infoMess: NotifyService) {
   }
 
   ngOnInit(): void {
@@ -56,6 +58,9 @@ export class SettingsPageComponent implements OnInit {
 
       this.apiService.saveSettings(dto).subscribe(res => {
         this.adminService.saveSettings(dto);
+        if( confirm('Зберегти зміни?')){
+          this.infoMess.info('Збережено')
+        }
       });
 
     }
