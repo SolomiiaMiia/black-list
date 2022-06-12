@@ -135,33 +135,27 @@ export class EditDossierPageComponent implements OnInit {
 
       formData.set('authorPhoto', this.photo);
 
-    //  if(action ==='save'){
-    //   this.infoMess.info('Досьє успішно збережено');
-    //  }
-    //  if(action === 'publish'){
-    //   this.infoMess.info('Досьє опубліковано');
-    //  }
-
-
-     switch (action) {
-      case 'save':
-       if(confirm('Зберегти досьє?')) 
-        this.infoMess.info('Досьє успішно збережено')
-        break;
-      case 'publish':
-      if(confirm('Опублікувати досьє?'))  
-         this.infoMess.info('Досьє опубліковано')
-        break;
-        case 'decline':
-        if(confirm('Відхилити досьє?'))  
-          this.infoMess.info('Досьє відхилено')
-          break;
-    }
-
-
       this.apiService.editDossier(this.id, formData, action).subscribe(res => {
         this.router.navigate(['/admin/manage']);
       });
+
+      switch (action) {
+        case 'save':
+          if (confirm('Зберегти досьє?')) {
+            this.infoMess.info('Досьє успішно збережено')
+          }
+          break;
+        case 'publish':
+          if (confirm('Опублікувати досьє?')) {
+            this.infoMess.info('Досьє опубліковано')
+          }
+          break;
+        case 'decline':
+          if (confirm('Відхилити досьє?')) {
+            this.infoMess.info('Досьє відхилено')
+          }
+      }
+
     }
   }
 
