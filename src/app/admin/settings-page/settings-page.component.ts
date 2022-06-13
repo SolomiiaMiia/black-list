@@ -54,17 +54,13 @@ export class SettingsPageComponent implements OnInit {
 
       let dto = this.settingsForm.value as AdminSettingsDto;
 
-      console.log(dto);
-
-      this.apiService.saveSettings(dto).subscribe(res => {
-        this.adminService.saveSettings(dto);
-        if( confirm('Зберегти зміни?')){
+      if (confirm('Зберегти зміни?')) {
+        this.apiService.saveSettings(dto).subscribe(res => {
+          this.adminService.saveSettings(dto);
           this.infoMess.info('Збережено')
-        }
-      });
-
+        });
+      }
     }
-
   }
 
 }
