@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { FileDto } from '../models/fileDto';
 import { AdminService } from '../shared/services/admin.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class MainPageComponent implements OnInit {
 
   searchString: string = '';
   videoLink: SafeResourceUrl | undefined;
+  pictures!: FileDto[] | null;
 
   constructor(private router: Router,
     private adminService: AdminService,
@@ -22,6 +24,7 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.adminService.loadSettings((response) => {
       this.videoLink = this.domSanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + response.videoLink);
+      this.pictures = response.pictures;
     });
   }
 

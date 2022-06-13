@@ -13,8 +13,8 @@
     <div class="row">
       <div class="col-md-8 responsive-wrap ">
         <div class="booking-checkbox_wrap">
-          <div class="booking-checkbox text-light p-2" >
-            <div [froalaView]="dossier.text" class="text border-bottom p-2" rows="3" ></div>
+          <div class="booking-checkbox text-light p-2">
+            <div [froalaView]="dossier.text" class="text border-bottom p-2" rows="3"></div>
           </div>
           <hr>
           <div class="row">
@@ -30,25 +30,28 @@
         <div class="contact-info">
           <img [src]="dossier.photo? dossier.photo.url: 'assets/images/1.png'"
                class="card-img-top" alt="#">
-               <div class="border-bottom pb-3">
-          <div class="address">
+          <div class="border-bottom pb-3">
+            <div class="address">
               <span><i class="fa fa-light fa-user"></i></span>
               <p> {{dossier.lastName}} {{dossier.firstName}} {{dossier.thirdName}}</p>
-          </div>
-          <div class="address">
-            <span><i class="fa fa-location-dot"></i></span>
-            <p>{{dossier.address}}</p>
-          </div>
-          <div class="address">
-            <span><i class="fa fa-solid fa-calendar"></i></span>
-            <p>{{dossier.date | date  : "MM/dd/yy"}} </p>
-          </div>
-          <div class="address">
-            <span class="circle"></span>
-            <!-- <span><i class="fa fa-light fa-rotate"></i></span> -->
-            <p>{{this.enumHelper.DossierStatus[dossier.status]}}</p>
-          </div>
-            <ng-container *ngIf="dossier.status == DossierStatuses.New" >
+            </div>
+            <div class="address">
+              <span><i class="fa fa-location-dot"></i></span>
+              <p>{{dossier.address}}</p>
+            </div>
+            <div class="address">
+              <span><i class="fa fa-solid fa-calendar"></i></span>
+              <p>{{dossier.date | date  : "MM/dd/yy"}} </p>
+            </div>
+            <div class="address">
+              <span><i class="fa fa-light fa-user-circle"></i></span>
+              <p>{{dossier.author}} </p>
+            </div>
+            <div class="address">
+              <span><i class="fa fa-light" [class]="dossier.status === DossierStatuses.New? 'fa-thumbs-down': dossier.status === DossierStatuses.HasDisprove?'fa-spinner': 'fa-thumbs-up'"></i></span>
+              <p>{{this.enumHelper.DossierStatus[dossier.status]}}</p>
+            </div>
+            <ng-container *ngIf="dossier.status == DossierStatuses.New">
               <div class="btn-search">
                 <a [routerLink]="['/dossier/'+dossier.id+'/disprove']" class="btn btn-simple btn-contact">Спростувати</a>
               </div>

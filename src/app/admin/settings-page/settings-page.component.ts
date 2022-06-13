@@ -80,6 +80,7 @@ export class SettingsPageComponent implements OnInit {
       if (confirm('Зберегти зміни?')) {
         this.apiService.saveSettings(formData).subscribe(response => {
           this.adminService.saveSettings(response);
+          this.pictures = [];
           this.pictures = response.pictures;
           this.infoMess.info('Збережено')
         });

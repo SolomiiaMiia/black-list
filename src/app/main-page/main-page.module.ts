@@ -8,6 +8,7 @@ import { MainPageComponent } from './main-page.component';
 import { MainPageRoutingModule } from './main-page-routing.module';
 import { LatestDossiersModule } from '../latest-dossiers/latest-dossiers.module';
 import { TheNavBarModule } from '../layout/the-nav-bar/the-nav-bar.module';
+import { MyCarouselModule } from './carousel/carousel.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { TheNavBarModule } from '../layout/the-nav-bar/the-nav-bar.module';
     LatestDossiersModule,
     TheNavBarModule,
     FormsModule,
+    MyCarouselModule
   ],
 })
 export class MainPageModule { }
