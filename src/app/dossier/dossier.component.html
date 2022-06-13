@@ -2,7 +2,7 @@
   <div class="container d-flex justify-content-center">
     <div class="row d-flex justify-content-center">
       <div class="hero-title">
-        <h2><i class="fa fa-light fa-clipboard mx-2"></i> Досьє номер {{dossier.id}}</h2>
+        <h2 class="text-secondary"><i class="fa fa-light fa-clipboard mx-2"></i> Досьє номер {{dossier.id}}</h2>
       </div>
     </div>
   </div>
@@ -28,8 +28,9 @@
       </div>
       <div class="col-md-4 responsive-wrap">
         <div class="contact-info">
-          <img src="assets/images/1.png"
-               class="img-fluid img" alt="#">
+          <img [src]="dossier.photo? dossier.photo.url: 'assets/images/1.png'"
+               class="card-img-top" alt="#">
+               <div class="border-bottom pb-3">
           <div class="address">
               <span><i class="fa fa-light fa-user"></i></span>
               <p> {{dossier.lastName}} {{dossier.firstName}} {{dossier.thirdName}}</p>
@@ -43,9 +44,10 @@
             <p>{{dossier.date | date  : "MM/dd/yy"}} </p>
           </div>
           <div class="address">
-            <span><i class="fa fa-light fa-rotate"></i></span>
+            <span class="circle"></span>
+            <!-- <span><i class="fa fa-light fa-rotate"></i></span> -->
             <p>{{this.enumHelper.DossierStatus[dossier.status]}}</p>
-
+          </div>
             <ng-container *ngIf="dossier.type == DossierTypes.Published" >
               <div class="btn-search">
                 <a [routerLink]="['/dossier/'+dossier.id+'/disprove']" class="btn btn-simple btn-contact">Спростувати</a>
@@ -54,13 +56,14 @@
           </div>
         </div>
       </div>
+      <div [ngClass]="[dossier.status == DossierStatuses.Disproved ? 'none' : 'line']"></div>
 
       <ng-container *ngIf="dossier.status == DossierStatuses.Disproved">
         <section class="reserve-block">
           <div class="container d-flex justify-content-center">
             <div class="row d-flex justify-content-center">
               <div class="hero-title">
-                <h2><i class="fa fa-light fa-clipboard-check mx-2"></i> Спростування досьє</h2>
+                <h2 class="text-secondary fw-bold"><i class="fa fa-light fa-clipboard-check mx-2"></i> Спростування досьє</h2>
               </div>
             </div>
           </div>
@@ -81,14 +84,15 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 responsive-wrap">
+        <div class="col-md-4 responsive-wrap position">
           <div class="badge text-wrap date">
-            <div class="address p-2">
+            <div class="address-2">
               <span><i class="fa fa-solid fa-calendar"></i></span>
               <p>{{dossier.disproveDossier?.date | date : "MM/dd/yy"}} </p>
             </div>
           </div>
         </div>
+        <div [ngClass]="[dossier.status == DossierStatuses.Disproved ? 'line' : 'none']"></div>
       </ng-container>
     </div>
   </div>
