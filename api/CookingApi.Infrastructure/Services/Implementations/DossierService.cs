@@ -29,7 +29,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
 
     public void SetWebRootPath(string webRootPath) => _webRootPath = webRootPath;
 
-    public async Task CreateDossier(DossierCreateDto dto)
+    public async Task<int> CreateDossier(DossierCreateDto dto)
     {
       var dossier = new Dossier()
       {
@@ -70,9 +70,11 @@ namespace CookingApi.Infrastructure.Services.Implementations
       }
 
       await _unitOfWork.CommitAsync();
+
+      return id;
     }
 
-    public async Task CreateDossierDisprove(int id, DossierDisproveCreateDto dto)
+    public async Task<int> CreateDossierDisprove(int id, DossierDisproveCreateDto dto)
     {
       var dossier = await _unitOfWork.DossiersRepository.Query().Where(c => c.Id == id).Fetch(c => c.DossierDisprove).FirstOrDefaultAsync();
 
@@ -105,6 +107,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
       }
 
       await _unitOfWork.CommitAsync();
+
+      return dossierDisproveId;
     }
 
     public async Task DeleteDossier(int id)

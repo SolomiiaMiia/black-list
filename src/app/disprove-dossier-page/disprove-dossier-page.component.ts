@@ -59,13 +59,6 @@ export class DisproveDossierPageComponent implements OnInit {
 
 
     if (this.dossierForm.valid) {
-
-      const navigationExtras: NavigationExtras = {
-        state: {
-          isNew: false
-        }
-      };
-
       let dto = <CreateDisproveDossierPageDto>this.dossierForm.value;
 
 
@@ -80,7 +73,15 @@ export class DisproveDossierPageComponent implements OnInit {
 
       formData.delete('agreeForData');
 
-      this.apiService.addDisproveDossier(this.id, formData).subscribe(res => {
+      this.apiService.addDisproveDossier(this.id, formData).subscribe(id => {
+
+        const navigationExtras: NavigationExtras = {
+          state: {
+            isNew: false,
+            id: id
+          }
+        };
+
         this.router.navigate(['/add-dossier/complete'], navigationExtras);
       });
 

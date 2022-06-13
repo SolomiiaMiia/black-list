@@ -11,16 +11,19 @@ export class CompleteDossierComponent implements OnInit {
 
   public newDossierText: string='';
   public disproveDossierText: string = '';
-  public isNew: boolean = false;
+  public isNew: boolean;
+  public id: number;
   constructor(private adminService: AdminService,
     private router: Router  ) {
 
     const navigation = this.router.getCurrentNavigation()!;
     const state = navigation.extras.state as {
-      isNew: boolean
+      isNew: boolean,
+      id: number
     };
 
     this.isNew = state.isNew;
+    this.id = state.id;
 
     this.adminService.loadSettings((response) => {
       this.newDossierText = response.newDossierText;

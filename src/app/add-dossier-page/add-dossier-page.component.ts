@@ -99,13 +99,6 @@ export class AddDossierPageComponent implements OnInit {
     this.dossierForm.get('address')?.setValue(this.getAddressInput()?.value);
 
     if (this.dossierForm.valid) {
-
-      const navigationExtras: NavigationExtras = {
-        state: {
-          isNew: true
-        }
-      };
-
       let dto = <AddDossierPageDto>this.dossierForm.value;
       dto.isAnonymous = this.isAnonymous;
 
@@ -122,7 +115,15 @@ export class AddDossierPageComponent implements OnInit {
       formData.delete('agreeForData');
       formData.delete('agreeForContract');
 
-      this.apiService.addDossier(formData).subscribe(res => {
+      this.apiService.addDossier(formData).subscribe(id => {
+
+        const navigationExtras: NavigationExtras = {
+          state: {
+            isNew: true,
+            id: id
+          }
+        };
+
         this.router.navigate(['/add-dossier/complete'], navigationExtras);
       });
 
