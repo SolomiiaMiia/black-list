@@ -10,14 +10,14 @@ export class NotifyService {
   }
 
   public info(message: string): void {
-    this.show(message, 'info');
+    this.show(message, 'default');
   }
 
   public error(message: string): void {
     this.show(message, 'error');
   }
 
-  private show(message: string, style: 'success' | 'info' | 'error' | 'warning'): void {
+  private show(message: string, style: 'success' | 'info' | 'error' | 'warning' | 'default'): void {
     this.notificationService.show({
       message: message,
       type: style
