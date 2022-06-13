@@ -47,7 +47,7 @@
             <span class="circle"></span>
             <!-- <span><i class="fa fa-light fa-rotate"></i></span> -->
             <p>{{this.enumHelper.DossierStatus[dossier.status]}}</p>
-
+          </div>
             <ng-container *ngIf="dossier.status == DossierStatuses.New" >
               <div class="btn-search">
                 <a [routerLink]="['/dossier/'+dossier.id+'/disprove']" class="btn btn-simple btn-contact">Спростувати</a>
