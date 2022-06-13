@@ -4,7 +4,8 @@ import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule} from '@angular/forms';
 
 import { SettingsPageComponent } from './settings-page.component';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { FroalaEditorModule } from 'angular-froala-wysiwyg';
+import { FilePreviewModule } from '../../file-preview/file-preview.module';
 
 
 
@@ -18,7 +19,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     RouterModule.forChild([{ path: '', component: SettingsPageComponent}]),
     ReactiveFormsModule,
     FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
+    FilePreviewModule
   ],
   exports:
   [

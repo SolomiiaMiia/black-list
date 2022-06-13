@@ -47,6 +47,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Dossiers\6\" />
+    <Folder Include="wwwroot\Settings\" />
   </ItemGroup>
 
 </Project>

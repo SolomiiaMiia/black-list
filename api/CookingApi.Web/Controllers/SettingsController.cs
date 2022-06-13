@@ -1,4 +1,5 @@
 using CookingApi.Infrastructure.Models.DTO.Setting;
+using CookingApi.Infrastructure.Models.DTO.ViewModels;
 using CookingApi.Infrastructure.Services.Abstractions;
 using CookingApi.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
@@ -16,20 +17,18 @@ namespace CookingApi.Web.Controllers
     }
 
     [HttpGet]
-    public async Task<SettingDto> Get()
+    public async Task<Settings> Get()
     {
       return await _settingsService.GetSetting();
     }
 
     [HttpPut]
     [AuthFilter("admin", "superAdmin")]
-    public async Task<IActionResult> Save([FromBody] SettingDto dto)
+    public async Task<Settings> Save([FromForm] SettingCreateDto dto, [FromServices] IWebHostEnvironment hostingEnvironment)
     {
       dto.Validate();
 
-      await _settingsService.UpdateSetting(dto);
-
-      return Ok();
+      return await _settingsService.UpdateSetting(dto, hostingEnvironment.WebRootPath);
     }
 
   }
