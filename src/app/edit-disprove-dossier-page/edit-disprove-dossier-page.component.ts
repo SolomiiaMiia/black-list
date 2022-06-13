@@ -24,7 +24,7 @@ export class EditDisproveDossierPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     adminService: AdminService,
-    private  infoMess: NotifyService) {
+    private notifyService: NotifyService) {
     this.isSuperAdmin = adminService.isSuperAdmin();
   }
 
@@ -36,50 +36,38 @@ export class EditDisproveDossierPageComponent implements OnInit {
   private loadDossier() {
     this.apiService.get(this.id).subscribe(res => {
       this.dossier = res;
-    },
-      err => {
-        this.dossier = {
-          id: 3,
-          type: DossierType.DisprovePublished,
-          disproveDossier: {
-            text: "Текст спростування", author: "Автор", email: 'letos009@gmail.com', phone: '+380982774950',
-            dossierFiles: [{ name: "sample.pdf", url: "assets/files/sample.pdf" }, { name: "sample.pdf", url: "assets/files/sample.pdf" }]
-          }
-        } as DossierDto;
-      }
-    );
+    });
   }
 
 
   public submit(action: 'publish' | 'deny') {
-    this.apiService.publishDisproveDossier(this.id, action).subscribe(res => {
-        this.router.navigate(['/admin/manage']);
-        switch (action) {
-          case 'publish':
-            if ( confirm('Опублікувати спростування?')){
-              this.infoMess.info('Спростування опубліковано')
-            }
-            break;
-            case 'deny':
-              if (confirm('Відхилити спростування?')){
-              this.infoMess.info('Спростування відхилено')
-          }
-              break;
-        }
-      });
+    let confirmText = '';
+    let successText = '';
+    switch (action) {
+      case 'publish':
+        confirmText = `Опублікувати спростування досьє ${this.id}?`;
+        successText = `Спростування досьє ${this.id} опубліковано`;
+        break;
+      case 'deny':
+        confirmText = `Відхилити спростування досьє ${this.id}?`;
+        successText = `Спростування досьє ${this.id} відхилено`;
+        break;
+    }
 
+    if (confirm(confirmText)) {
+      this.apiService.publishDisproveDossier(this.id, action).subscribe(res => {
+        this.router.navigate(['/admin/manage']);
+        this.notifyService.info(successText);
+      });
+    }
   }
 
   public delete() {
-
-    if (confirm('Видалити спростування досьє назавжди?')) {
+    if (confirm(`Видалити спростування досьє ${this.id} назавжди?`)) {
       this.apiService.deleteDisproveDossier(this.id).subscribe(res => {
         this.router.navigate(['/admin/manage']);
-        this.infoMess.info('Спростування видалено')
+        this.notifyService.info(`Спростування досьє ${this.id} видалено`)
       });
-
     }
-
   }
-
 }

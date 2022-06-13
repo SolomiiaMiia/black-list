@@ -45,8 +45,8 @@ export class APIService {
   }
 
   //+
-  addDisproveDossier(id: number, dto: FormData): Observable<any> {
-    return this.httpClient.post(`${this.envService.apiUrl}/dossier/${id}/disprove`, dto);
+  addDisproveDossier(id: number, dto: FormData): Observable<number> {
+    return this.httpClient.post<number>(`${this.envService.apiUrl}/dossier/${id}/disprove`, dto);
   }
 
   //+
@@ -55,8 +55,8 @@ export class APIService {
   }
 
   //+
-  addDossier(dto: FormData): Observable<any> {
-    return this.httpClient.post(`${this.envService.apiUrl}/dossier`, dto);
+  addDossier(dto: FormData): Observable<number> {
+    return this.httpClient.post<number>(`${this.envService.apiUrl}/dossier`, dto);
   }
 
   //+

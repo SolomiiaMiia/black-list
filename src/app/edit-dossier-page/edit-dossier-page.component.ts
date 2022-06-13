@@ -32,8 +32,7 @@ export class EditDossierPageComponent implements OnInit {
     private router: Router,
     @Inject(DOCUMENT) private document: Document,
     adminService: AdminService,
-    private infoMess: NotifyService,
-  ) {
+    private notifyService: NotifyService) {
     this.isSuperAdmin = adminService.isSuperAdmin();
   }
 
@@ -135,40 +134,37 @@ export class EditDossierPageComponent implements OnInit {
 
       formData.set('authorPhoto', this.photo);
 
-      this.apiService.editDossier(this.id, formData, action).subscribe(res => {
-        this.router.navigate(['/admin/manage']);
-      });
-
+      let confirmText = '';
+      let successText = '';
       switch (action) {
         case 'save':
-          if (confirm('Зберегти досьє?')) {
-            this.infoMess.info('Досьє успішно збережено')
-          }
+          confirmText = `Зберегти досьє ${this.id}?`;
+          successText = `Досьє ${this.id} успішно збережено`;
           break;
         case 'publish':
-          if (confirm('Опублікувати досьє?')) {
-            this.infoMess.info('Досьє опубліковано')
-          }
+          confirmText = `Опублікувати досьє ${this.id}?`;
+          successText = `Досьє ${this.id} опубліковано`;
           break;
         case 'decline':
-          if (confirm('Відхилити досьє?')) {
-            this.infoMess.info('Досьє відхилено')
-          }
+          confirmText = `Відхилити досьє ${this.id}?`;
+          successText = `Досьє ${this.id} відхилено`;
       }
 
+      if (confirm(confirmText)) {
+        this.apiService.editDossier(this.id, formData, action).subscribe(res => {
+          this.router.navigate(['/admin/manage']);
+          this.notifyService.info(successText);
+        });
+      }
     }
   }
 
   public delete() {
-
-    if (confirm('Видалити досьє назавжди?')) {
+    if (confirm(`Видалити досьє ${this.id} назавжди?`)) {
       this.apiService.deleteDossier(this.id).subscribe(res => {
         this.router.navigate(['/admin/manage']);
-        this.infoMess.info('Досьє видалено')
+        this.notifyService.info(`Досьє ${this.id} видалено`);
       });
-
     }
-
   }
-
 }

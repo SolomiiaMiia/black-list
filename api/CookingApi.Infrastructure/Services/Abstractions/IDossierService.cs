@@ -7,10 +7,10 @@ namespace CookingApi.Infrastructure.Services.Abstractions
 {
   public interface IDossierService
   {
-    Task CreateDossier(DossierCreateDto dto);
+    Task<int> CreateDossier(DossierCreateDto dto);
     Task DeleteDossier(int id);
     void SetWebRootPath(string webRootPath);
-    Task CreateDossierDisprove(int id, DossierDisproveCreateDto dto);
+    Task<int> CreateDossierDisprove(int id, DossierDisproveCreateDto dto);
     Task DeleteDossierDisprove(int id);
     Task PublishDossierDisprove(int id);
     Task DenyDossierDisprove(int id);

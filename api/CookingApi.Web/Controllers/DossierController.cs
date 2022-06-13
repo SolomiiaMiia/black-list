@@ -23,8 +23,8 @@ namespace CookingApi.Web.Controllers
     {
       dto.Validate();
 
-      await _dossierService.CreateDossier(dto);
-      return Ok();
+      var id = await _dossierService.CreateDossier(dto);
+      return new OkObjectResult(id);
     }
 
     [HttpPost]
@@ -33,8 +33,8 @@ namespace CookingApi.Web.Controllers
     {
       dto.Validate();
 
-      await _dossierService.CreateDossierDisprove(id, dto);
-      return Ok();
+      var disproveId = await _dossierService.CreateDossierDisprove(id, dto);
+      return new OkObjectResult(disproveId);
     }
 
     [AuthFilter("admin", "superAdmin")]
