@@ -24,8 +24,8 @@ export class APIService {
   }
 
   //+
-  saveSettings(settings: AdminSettingsDto): Observable<any> {
-    return this.httpClient.put(`${this.envService.apiUrl}/settings`, settings);
+  saveSettings(settings: FormData): Observable<AdminSettingsDto> {
+    return this.httpClient.put<AdminSettingsDto>(`${this.envService.apiUrl}/settings`, settings);
   }
 
   //+

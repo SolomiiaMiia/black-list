@@ -406,6 +406,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
       var file = await _unitOfWork.FilesRepository.Query().Where(c => c.Id == id).FirstOrDefaultAsync();
       if (file is not null)
       {
+        if(!file.DossierId.HasValue && !file.DossierDisproveId.HasValue) return (file.Path, file.MimeType);// only for settings pictures
+
         if (!skipCheck)
         {
           var dossier = file.DossierId.HasValue ? await _unitOfWork.DossiersRepository.Get(file.DossierId.Value) : await _unitOfWork.DossiersRepository.Query().Fetch(c => c.DossierDisprove)
