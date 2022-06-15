@@ -140,7 +140,7 @@ footer.main-block {
 .hero-wrap {
   text-align: center;
   min-height: 500px;
-  height: 67vh;
+  height: 40vh;
   background: black;
   @media (max-width: 767px) {
     min-height: 600px;
@@ -2125,3 +2125,4 @@ select.form-control:not([size]):not([multiple]) {
   flex: 1 1 auto !important;
 }
 }
+

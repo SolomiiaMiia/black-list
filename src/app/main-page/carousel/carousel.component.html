@@ -1,8 +1,11 @@
-<carousel [noWrap]="false" [showIndicators]="true">
+<section>
+<carousel [noWrap]="false" [showIndicators]="true" class="position">
   <slide *ngFor="let image of images">
-    <img [src]="image.url" alt="image slide" style="display: block; width: 100%;">
+    <!-- <img [src]="image.url" alt="image slide" style="display: block; width: 50%;"> -->
+    <img src="assets/images/R.jpg" alt="image slide" style="max-height: 250px; max-width: 50%;">
     <div class="carousel-caption">
       <p>{{image.name}}</p>
     </div>
   </slide>
 </carousel>
+</section>
