@@ -56,17 +56,32 @@
       </div>
     </div>
   </section>
-  <section class="content">
-    <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-lg-6 article-first">
-        <iframe width="560" height="315" [src]="this.videoLink" title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-      </div>
-    </div>
-    </div>
-  </section> 
+<section class="main-block gray">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+              <div class="grid">
+                  <figure class="effect-chico">
+                     
+                    <iframe width="560" height="315" [src]="this.videoLink" title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                 
+                  </figure>
+              </div>
+          </div>
 
-<!--//END NEWS & ARTICLE -->
-<app-carousel [images]="this.pictures" class="app-carousel"></app-carousel>
+          <div class="col-md-6">
+              <div class="row detailed-item-mr">
+                  <div class="col-md-12">
+                      <div class="grid">
+                          <figure class="effect-chico">
+                            <app-carousel [images]="this.pictures" class="app-carousel"></app-carousel>
+                          </figure>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
