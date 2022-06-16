@@ -3,10 +3,12 @@ import { HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest } from '@a
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { NotifyService } from 'src/app/shared/services/notify.service';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private notifyService: NotifyService) {
+  constructor(private notifyService: NotifyService,
+    private router: Router) {
   }
 
   public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
@@ -15,13 +17,31 @@ export class ErrorInterceptor implements HttpInterceptor {
         catchError(error => {
 
           if (error instanceof HttpErrorResponse) {
+
+            const errorMessage = ErrorInterceptor.getErrorMessage(error);
             
-            this.notifyService.error(ErrorInterceptor.getErrorMessage(error));
+
+            if (error.status == 404) {
+              const navigationExtras: NavigationExtras = {
+                state: {
+                  message: errorMessage,
+                }
+              };
+
+              this.router.navigate(['404'], navigationExtras);
+            }
+            else {
+
+              if (error.status == 401 || error.status == 422) this.router.navigate(['admin/login']);
+
+              this.notifyService.error(errorMessage);
+
+            }
+
           }
 
           return throwError(error);
-        }),
-      );
+        }));
   }
 
   private static getErrorMessage(error: HttpErrorResponse): string {

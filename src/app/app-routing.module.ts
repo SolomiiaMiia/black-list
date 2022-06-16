@@ -51,7 +51,10 @@ const routes: Routes = [
     path: 'contact',
     loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
   },
-  
+  {
+    path: '404',
+    loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule)
+  },
 ];
 
 @NgModule({
