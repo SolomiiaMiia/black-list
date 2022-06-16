@@ -37,7 +37,7 @@ export class SettingsPageComponent implements OnInit {
       videoLink: this.fb.control('',),
       newDossierText: this.fb.control('', { validators: [Validators.required] }),
       disproveDossierText: this.fb.control('', { validators: [Validators.required] }),
-      attachtments: this.fb.control('', { validators: [Validators.required] }), //can be multiple attachtments
+      attachtments: this.fb.control('', {  }), //can be multiple attachtments
     });
 
     this.adminService.loadSettings((response) => { this.setSettings(response); });
