@@ -1,22 +1,21 @@
 <section class="main-block">
-    <div class="container-fluid">
-        <div class="row justify-content-center align-items-center  min-height-block">
-            <div class="col-md-12">
-                <div class="confirmation-wrap">
-                    <span class="ti-check"><i class="fa fa-light fa-circle-check"></i></span>
-                    <p>
-                      Сторінка не знайдена
-                      На жаль, такої сторінки більше немає або ви ввели неправильну адресу.
-                    </p>
-                  <p>
-                    {{this.message}}
-                  </p>
-                    <a [routerLink]="['']"  class="btn btn-confirmation">На головну</a>
-                </div>
-            </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center align-items-center  min-height-block">
+      <div class="col-md-12">
+        <div class="confirmation-wrap error-page">
+          <h2>404</h2>
+          <p>
+            Сторінка не знайдена<br/>
+            На жаль, такої сторінки більше немає або ви ввели неправильну адресу.
+          </p>
+          <h5>
+            {{this.message}}
+          </h5>
+          <a [routerLink]="['']" class="btn btn-confirmation">На головну</a>
         </div>
+      </div>
     </div>
+  </div>
 </section>
-
 
 
