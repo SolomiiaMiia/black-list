@@ -72,13 +72,6 @@ h4 {
   }
 }
 
-h5 {
-  font-size: 22px;
-  font-weight: 700;
-  color: #484848;
-}
-
-
 
 .main-block {
   padding: 50px 0 100px 0;
@@ -92,13 +85,6 @@ footer.main-block {
   padding: 100px 0 60px;
 }
 
-.gray {
-  background: #fbfbfb;
-}
-
-.gray-dark {
-  background: #f5f5f5;
-}
 
 .container-fluid {
   max-width: 1500px;
@@ -140,7 +126,7 @@ footer.main-block {
 .hero-wrap {
   text-align: center;
   min-height: 500px;
-  height: 40vh;
+  height: 85vh;
   background: black;
   @media (max-width: 767px) {
     min-height: 600px;
@@ -532,9 +518,6 @@ footer.main-block {
       background: #ea5555;
     }
   }
-}
-.title-dossier{
-  margin-left: 7em;
 }
 
 
@@ -2126,3 +2109,10 @@ select.form-control:not([size]):not([multiple]) {
 }
 }
 
+
+.content{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  background-color: black;
+}

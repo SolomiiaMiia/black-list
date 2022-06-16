@@ -1,21 +1,6 @@
-<section>
-<carousel [noWrap]="false" [showIndicators]="true" class="position">
-  <slide *ngFor="let image of images">
-<<<<<<< HEAD
-    <!-- <img [src]="image.url" alt="image slide" style="display: block; width: 50%;"> -->
-    <img src="assets/images/R.jpg" alt="image slide" style="display: block; width: 50%;">
-=======
-     <img [src]="image.url" alt="image slide" style="display: block; width: 50%;"> 
-    <!--<img src="assets/images/R.jpg" alt="image slide" style="max-height: 250px; max-width: 50%;">-->
->>>>>>> 51ddc1ae12cf4e6b89a9767ebffe57035e4867c0
-    <div class="carousel-caption">
-      <p>{{image.name}}</p>
-    </div>
+<carousel 
+[noWrap]="false" [showIndicators]="true" style="display: flex; justify-content: center; background-color: black;">
+  <slide *ngFor="let image of images; let index=index">
+    <img [src]="image.url" alt="image slide">
   </slide>
 </carousel>
-</section>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 51ddc1ae12cf4e6b89a9767ebffe57035e4867c0
