@@ -1,4 +1,9 @@
-section{
-    background-color: #000;
+img{
+    max-width: 600px;
+    // width: 450px;
     height: 400px;
+    overflow: hidden;
+    display: block;
+    margin: auto;
+    object-fit: cover;
 }

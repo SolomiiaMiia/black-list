@@ -40,29 +40,33 @@
     </div>
   </div>
 </section>
-    <app-carousel [images]="this.pictures" class="app-carousel"></app-carousel>
+   
 <!--//END MAIN TITLE -->
 <!--============================= NEWS & ARTICLE =============================-->
 <section class="main-block gray">
-  <div class="container-fluid">
-    <div class="row justify-content-end">
-      <div class="col-md-10" >
+    <div class="row justify-content-ce">
+      <div class="col-md-10 container" >
         <div class="titile-block">
           <h2 class="title-dossier">Останні досьє</h2>
         </div>
+        <div class="col-lg-7 m-auto">
+          <app-latest-dossier></app-latest-dossier>
+            <a [routerLink]="['/search']" [queryParams]="{searchString: ''}" class=" btn btn-simple-more btn-color-danger fw-lighter ms-4">Більше →</a>
+        </div>
       </div>
     </div>
+  </section>
+  <section class="content">
+    <div class="container">
     <div class="row">
       <div class="col-md-6 col-lg-6 article-first">
         <iframe width="560" height="315" [src]="this.videoLink" title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
       </div>
-      <div class="col-lg-5">
-        <app-file-card></app-file-card>
-          <a [routerLink]="['/search']" [queryParams]="{searchString: ''}" class=" btn btn-simple-more btn-color-danger fw-lighter ms-4">Більше →</a>
-      </div>
     </div>
-  </div>
-</section>
+    </div>
+  </section> 
+
 <!--//END NEWS & ARTICLE -->
+<app-carousel [images]="this.pictures" class="app-carousel"></app-carousel>
