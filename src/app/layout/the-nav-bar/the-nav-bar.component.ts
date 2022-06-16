@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { AdminService } from '../../shared/services/admin.service';
 
 @Component({
@@ -12,6 +13,9 @@ export class TheNavBarComponent implements OnInit {
   constructor(private adminService: AdminService,
     private router: Router  ) {
     this.isLoggedIn = adminService.hasAccess();
+    router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(_ => {
+      this.isCollapsed = true;
+    });
   }
 
   public isLoggedIn: boolean;
