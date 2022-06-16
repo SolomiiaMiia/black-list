@@ -7,6 +7,14 @@
     border-bottom: 1px solid #f3f0f0;
 }
 
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
 .nav-item {
     a {
         // color: #4e4e4e;
