@@ -11,10 +11,24 @@ using CookingApi.Web.Middlewares;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.AspNetCore.HttpOverrides;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
+{
+  ContentRootPath = Directory.GetCurrentDirectory(),
+  WebRootPath = "wwwroot"
+});
 
-builder.WebHost.UseContentRoot(Directory.GetCurrentDirectory());
-builder.WebHost.UseWebRoot("wwwroot");
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
+using var loggerFactory = LoggerFactory.Create(loggingBuilder => loggingBuilder
+    .SetMinimumLevel(LogLevel.Trace)
+    .AddConsole());
+
+ILogger logger = loggerFactory.CreateLogger<Program>();
+logger.LogTrace("ConnectionStrings:name ="+ builder.Configuration.GetSection("ConnectionStrings:name").Value);
+logger.LogTrace("ConnectionStrings:local =" + builder.Configuration.GetSection("ConnectionStrings:local").Value);
+logger.LogTrace("Kestrel:Urls =" + builder.Configuration.GetSection("Kestrel:Urls").Value);
+
 builder.WebHost.UseUrls(builder.Configuration.GetSection("Kestrel:Urls").Value);
 
 builder.Services.AddCors(options =>

@@ -4,6 +4,6 @@
   window.__env.production = false;
 
     // API url
-  window.__env.apiUrl = 'https://1d10-176-120-106-87.eu.ngrok.io/api';
+  window.__env.apiUrl = 'http://207.180.243.167:801/api';
  
 }(this));

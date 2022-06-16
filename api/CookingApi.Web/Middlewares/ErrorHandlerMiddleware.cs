@@ -29,7 +29,7 @@ namespace CookingApi.Web.Middlewares
       }
       catch (Exception exception)
       {
-        var errorId = await HandleError(context, HttpStatusCode.InternalServerError, "internal_server_error");
+        var errorId = await HandleError(context, HttpStatusCode.InternalServerError, exception.Message);
 
         // TODO: Log error with ID
       }
