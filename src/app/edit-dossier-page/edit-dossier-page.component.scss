@@ -19,6 +19,8 @@ h4 {
   }
 }
 
+
+
 label {
   color: #adadad;
   margin-bottom: .5rem;
@@ -222,12 +224,12 @@ i {
   line-height: 1.25;
   border-radius: .25rem;
   transition: all .15s ease-in-out;
-  
+  min-width: 146px;
+
   @media (max-width: 992px) {
     position: inherit;
     margin: 15px 0 0;
   }
-
 }
 
 .btn-simple {
@@ -252,6 +254,16 @@ i {
     background: #6c944e;
     border: 2px solid #6c944e;
 }
+@media (max-width: 920px ) {
+  margin: 0 0 14px 0;
+}
+}
+
+.pub{
+  @media (max-width: 720px) {
+    padding: 10px 20px;
+  }
+
 }
 
 .btn-color-primary{
@@ -272,6 +284,10 @@ i {
     background: #ff6b6b;
     border: 2px solid #ff6b6b;
 }
+
+@media (max-width: 720px) {
+    margin: 0 0 14px 0;
+}
 }
 
 .btn-admin{
@@ -279,7 +295,9 @@ display: flex;
 flex-wrap: wrap;
 flex-direction: row;
 padding: 15px 0;
-
+@media (max-width: 720px) {
+  flex-direction: column;
+}
 }
 
 
@@ -294,6 +312,9 @@ padding: 15px 0;
     color: white;
     background: #6c944e;
     border: 2px solid #6c944e;
+}
+@media (max-width: 720px) {
+  margin: 0 0 14px 0;
 }
 }
 
