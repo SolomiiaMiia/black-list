@@ -311,6 +311,12 @@ padding: 15px 0;
   margin: 10px 0 0;
 }
 
+.margin{
+  margin-left:  0;
+  @media (max-width: 720px) {
+    margin-left: 12px;
+  }
+}
 
 
 ::ng-deep #visicom-autocomplete {
