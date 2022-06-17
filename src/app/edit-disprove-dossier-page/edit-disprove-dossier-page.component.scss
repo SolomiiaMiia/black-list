@@ -149,6 +149,9 @@ i {
   line-height: 1.25;
   border-radius: .25rem;
   transition: all .15s ease-in-out;
+  @media (max-width: 720px) {
+    margin: 0 0 14px 0;
+  }
 }
 
 .btn-simple {
@@ -196,6 +199,9 @@ i {
     background: #6c944e;
     border: 2px solid #6c944e;
   }
+  @media (max-width: 720px) {
+    margin: 0 0 14px 0;
+  }
 }
 
 .btn-color-primary {
@@ -218,6 +224,7 @@ i {
     background: #ff6b6b;
     border: 2px solid #ff6b6b;
   }
+  
 }
 
 .btn-admin {
@@ -225,9 +232,16 @@ i {
   flex-wrap: wrap;
   flex-direction: row;
   padding: 15px 0;
+  @media (max-width: 720px) {
+    margin: 0 0 14px 0;
+  }
 }
 
 
 .one-btn{
   margin: 12px 12px 12px 0px;
+  @media (max-width: 720px) {
+    margin: 0 0 14px 0;
+    padding: 10px 20px;
+  }
 }

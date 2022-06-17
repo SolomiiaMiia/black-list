@@ -19,6 +19,8 @@ h4 {
   }
 }
 
+
+
 label {
   color: #adadad;
   margin-bottom: .5rem;
@@ -252,6 +254,16 @@ i {
     background: #6c944e;
     border: 2px solid #6c944e;
 }
+@media (max-width: 720px) {
+  margin: 0 0 14px 0;
+}
+}
+
+.pub{
+  @media (max-width: 720px) {
+    padding: 10px 20px;
+  }
+
 }
 
 .btn-color-primary{
@@ -271,6 +283,10 @@ i {
     color: white;
     background: #ff6b6b;
     border: 2px solid #ff6b6b;
+}
+
+@media (max-width: 720px) {
+    margin: 0 0 14px 0;
 }
 }
 
@@ -294,6 +310,9 @@ padding: 15px 0;
     color: white;
     background: #6c944e;
     border: 2px solid #6c944e;
+}
+@media (max-width: 720px) {
+  margin: 0 0 14px 0;
 }
 }
 
