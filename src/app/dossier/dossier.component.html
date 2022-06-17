@@ -33,9 +33,13 @@
               <span><i class="fa fa-light fa-user"></i></span>
               <p> {{dossier.lastName}} {{dossier.firstName}} {{dossier.thirdName}}</p>
             </div>
-            <div class="address">
-              <span><i class="fa fa-location-dot"></i></span>
-              <p>{{dossier.address}}</p>
+            <div *ngIf="dossier.position" class="address">
+              <span><i class="fa fa-briefcase"></i></span>
+              <p>{{dossier.position}}</p>
+            </div>
+            <div *ngIf="dossier.placeOfWork" class="address">
+              <span><i class="fa fa-building"></i></span>
+              <p>{{dossier.placeOfWork}}</p>
             </div>
             <div class="address">
               <span><i class="fa fa-solid fa-calendar"></i></span>
