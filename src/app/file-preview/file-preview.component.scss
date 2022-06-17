@@ -1,25 +1,37 @@
 section {
   padding: 5px;
+  padding-right: 15px;
 
-  .px {
-    padding: 0 80px;
-    margin: 5px;
-    background-color: white;
-    border-radius: 0.25em;
+  .row {
+    //padding-right: 10px;
   }
 
   .file {
-    justify-content: center;
+    margin: 5px;
+    background-color: transparent;
+    border: 1px solid #737882;
+    border-radius: 0.25em;
+    padding: 10px;
+    text-align: center;
+  }
 
-    p {
-      margin: 0 auto;
-      padding-left: 10px;
-      padding-right: 25px;
+  .file-name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #737882;
+  }
 
-    }
+  .file-icon {
+    color: white;
+  }
 
-    a {
-      color: black;
+  .file-download {
+    padding: 0;
+    color: #adadad;
+
+    &:hover {
+      color: white;
     }
   }
 }
