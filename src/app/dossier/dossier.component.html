@@ -87,9 +87,13 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 responsive-wrap position">
-          <div class="badge text-wrap date">
-            <div class="address-2">
+        <div class="col-md-4 responsive-wrap ">
+          <div class="text-wrap border-bottom pb-3">
+            <div class="address">
+              <span><i class="fa fa-light fa-user"></i></span>
+              <p>{{dossier.disproveDossier?.author}}</p>
+            </div>
+            <div class="address">
               <span><i class="fa fa-solid fa-calendar"></i></span>
               <p>{{dossier.disproveDossier?.date | date : "MM/dd/yy"}} </p>
             </div>
