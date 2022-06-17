@@ -234,6 +234,7 @@ i {
   padding: 15px 0;
   @media (max-width: 720px) {
     margin: 0 0 14px 0;
+    flex-direction: column;
   }
 }
 
