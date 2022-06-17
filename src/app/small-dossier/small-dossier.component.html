@@ -22,12 +22,26 @@
       </div>
     </div>
     <div class="card-bottom bg-dark" [ngClass]="[this.isAdmin ? 'card-bottom-hgt' : 'card-bottom']">
-      <p class="text-light"><i class="fa fa-light fa-calendar date"></i>{{dossier.date | date : "MM/dd/yy"}}</p>
-      <span [ngClass]="[this.dossier.status ? 'green': 'red']">{{this.enumHelper.DossierStatus[dossier.status]}}</span>
-      <div *ngIf="this.isAdmin" class="btn-edit" [class.flex-btn-edit]="dossier.status === DossierStatuses.Disproved || dossier.status === DossierStatuses.HasDisprove">
-        <a [routerLink]="['/admin/dossier/'+dossier.id+'/edit']" [ngClass]="[ dossier.status === DossierStatuses.Disproved || dossier.status === DossierStatuses.HasDisprove ?'btn btn edit' : 'btn-edit-top']" class="btn btn edit">Редагувати</a>
-        <a *ngIf="dossier.status === DossierStatuses.Disproved || dossier.status === DossierStatuses.HasDisprove"
-           [routerLink]="['/admin/dossier/'+dossier.id+'/disprove/edit']" class="btn edit btn-contact">Спростування</a>
+      <div class="row">
+        <div class="col-12 col-lg-4 col-md-12 col-sm-12 date">
+          <i class="fa fa-solid fa-calendar px-2 date"></i>
+            <span>{{dossier.date | date : "MM/dd/yy"}}</span>
+        </div>
+        <div class="col-12 col-lg-8 col-md-12 col-sm-12 status">
+          <span [ngClass]="[this.dossier.status ? 'green': 'red']">{{this.enumHelper.DossierStatus[dossier.status]}}</span>
+        </div>
+
+        <br/>
+
+        <div *ngIf="this.isAdmin" class="btn-edit col-12 col-sm-6 col-md-12">
+          <a [routerLink]="['/admin/dossier/'+dossier.id+'/edit']" [ngClass]="[ dossier.status === DossierStatuses.Disproved || dossier.status === DossierStatuses.HasDisprove ?'btn btn edit' : 'btn-edit-top']" class="btn btn edit">Редагувати</a>
+        </div>
+
+        <div class="btn-edit col-12 col-sm-6 col-md-12" >
+          <a *ngIf="this.isAdmin && (dossier.status === DossierStatuses.Disproved || dossier.status === DossierStatuses.HasDisprove)"
+             [routerLink]="['/admin/dossier/'+dossier.id+'/disprove/edit']" class="btn edit btn-contact">Спростування</a>
+        </div>
+
       </div>
     </div>
   </div>

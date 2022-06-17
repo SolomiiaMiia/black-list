@@ -7,22 +7,47 @@
   margin: auto;
   object-fit: cover;
   image-rendering: crisp-edges;
-
 }
 
 .portfolio-wrap {
   margin-top: 40px;
+
+  .status {
+    margin-bottom: 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: right;
+
+    @media (max-width: 992px) {
+      text-align: left;
+    }
+  }
+
+
+  .card-bottom {
+    padding-right: 10px;
+    padding-left: 10px;
+
+    span {
+      float: none;
+    }
+  }
+
+
+  .date {
+    display: inline;
+    color: #737882;
+  }
 }
 
 
 .title {
   min-height: 75px;
-
 }
 
 .img-hover:hover {
   opacity: 0.5;
-
 }
 
 ::ng-deep .card {
@@ -57,7 +82,7 @@ span {
 }
 
 .card-bottom-hgt {
-  min-height: 194.6px;
+  min-height: 190px;
 }
 
 .edit-btn-position {
@@ -75,9 +100,9 @@ span {
 
 .edit {
   display: block;
-  padding: 10px;
-  margin: 16px;
-  position: relative;
+  /* padding: 10px;*/
+  margin: 8px 20px;
+ /* position: relative;*/
   border: 2px solid #ea5555;
   color: #ea5555;
   font-weight: 400;
@@ -93,7 +118,6 @@ span {
     background: #ea5555;
     border: 2px solid #ea5555;
   }
-
 }
 
 
@@ -129,7 +153,6 @@ span {
 
 .green {
   color: #6c944e;
-
 }
 
 .text {

@@ -224,12 +224,12 @@ i {
   line-height: 1.25;
   border-radius: .25rem;
   transition: all .15s ease-in-out;
-  
+  min-width: 146px;
+
   @media (max-width: 992px) {
     position: inherit;
     margin: 15px 0 0;
   }
-
 }
 
 .btn-simple {

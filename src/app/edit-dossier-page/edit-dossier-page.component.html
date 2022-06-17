@@ -21,7 +21,7 @@
                   <label class="required-field">Прізвище</label>
                   <input type="text" formControlName="lastName" class="form-control">
                   <small *ngIf="this.submitted && !this.dossierForm.get('lastName')?.valid"
-                    class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                         class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col-md-6">
@@ -29,7 +29,7 @@
                   <label class="required-field">Ім'я</label>
                   <input type="text" formControlName="firstName" class="form-control">
                   <small *ngIf="this.submitted && !this.dossierForm.get('firstName')?.valid"
-                    class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                         class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col-md-6">
@@ -37,7 +37,7 @@
                   <label class="required-field">По батькові</label>
                   <input type="text" formControlName="thirdName" class="form-control">
                   <small *ngIf="this.submitted && !this.dossierForm.get('thirdName')?.valid"
-                    class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                         class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
 
@@ -51,7 +51,6 @@
                 <div class="form-group">
                   <label>Фото особи</label>
                   <input type="file" (change)="onFileChange($event)" accept="image/*" formControlName="authorPhoto" class="form-control">
-                  <app-file-preview *ngIf="this.dossier.photo" [files]="[this.dossier.photo]"> </app-file-preview>
                 </div>
               </div>
               <div class="col-md-6">
@@ -59,6 +58,9 @@
                   <label>Посада</label>
                   <input type="text" formControlName="position" class="form-control">
                 </div>
+              </div>
+              <div class="col-md-12">
+                <app-file-preview *ngIf="this.dossier.photo" [files]="[this.dossier.photo]"> </app-file-preview>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
@@ -86,71 +88,72 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label class="required-field">Текст, що викриває особу, підозрювану у корупції</label>
-                    <div [froalaView]="this.dossier.text" class="text form-control" rows="3"></div>
+                  <div [froalaView]="this.dossier.text" class="text form-control" rows="3"></div>
                 </div>
               </div>
 
               <div class="col-md-12">
                 <div class="form-group">
                   <label class="required-field">Підтверджуючі додатки до тексту (файли, фото та ін.)</label>
-                  <input type="file" (change)="onFileChange($event)" accept="image/*" formControlName="authorPhoto" class="form-control">
-                  <app-file-preview *ngIf="this.dossier.dossierFiles" [files]="this.dossier.dossierFiles"> </app-file-preview>
                 </div>
               </div>
+              <div class="col-md-12">
+                <app-file-preview *ngIf="this.dossier.dossierFiles" [files]="this.dossier.dossierFiles"> </app-file-preview>
+              </div>
 
-              <ng-container *ngIf="!this.isAnonymous">
-                <div class="listing-title">
-                  <span class="ti-files"></span>
-                  <p>Контактні дані автора</p>
-                </div>
+                <ng-container *ngIf="!this.isAnonymous">
+                  <div class="listing-title">
+                    <span class="ti-files"></span>
+                    <p>Контактні дані автора</p>
+                  </div>
 
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="required-field">Автор</label>
-                    <input [readonly]="true"  type="text" formControlName="author" class="form-control">
-                    <small *ngIf="this.submitted && !this.dossierForm.get('author')?.valid"
-                           class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>Контактний номер телефону</label>
-                    <input [readonly]="true" type="text" placeholder="+380xxxxxxxxx" formControlName="phone" class="form-control">
-                    <small *ngIf="this.submitted && !this.dossierForm.get('phone')?.valid"
-                      class="form-text text-danger ml-2">Не валідний номер телефону</small>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>Адреса електронної пошти</label>
-                    <input [readonly]="true" placeholder="email@mail.com" type="text" formControlName="email" class="form-control">
-                    <small *ngIf="this.submitted && !this.dossierForm.get('email')?.valid"
-                      class="form-text text-danger ml-2">Не валідна адреса електронної пошти</small>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                </div>
-              </ng-container>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="btn-admin">
-                    <div>
-                      <button type="submit" (click)="this.submit('save')" class="btn btn-simple-admin btn-color-primary margin">Зберегти</button>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="required-field">Автор</label>
+                      <input [readonly]="true" type="text" formControlName="author" class="form-control">
+                      <small *ngIf="this.submitted && !this.dossierForm.get('author')?.valid"
+                             class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                     </div>
-                    <div *ngIf="this.dossier.type === this.DossierTypes.New || this.dossier.type === this.DossierTypes.Declined">
-                      <button type="submit" (click)="this.submit('publish')" class="btn btn-simple-admin pub">Опублікувати</button>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Контактний номер телефону</label>
+                      <input [readonly]="true" type="text" placeholder="+380xxxxxxxxx" formControlName="phone" class="form-control">
+                      <small *ngIf="this.submitted && !this.dossierForm.get('phone')?.valid"
+                             class="form-text text-danger ml-2">Не валідний номер телефону</small>
                     </div>
-                    <div *ngIf="this.dossier.type !== this.DossierTypes.Declined">
-                      <button type="submit" (click)="this.submit('decline')" class="btn btn-simple-admin btn-color-danger">Відхилити</button>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Адреса електронної пошти</label>
+                      <input [readonly]="true" placeholder="email@mail.com" type="text" formControlName="email" class="form-control">
+                      <small *ngIf="this.submitted && !this.dossierForm.get('email')?.valid"
+                             class="form-text text-danger ml-2">Не валідна адреса електронної пошти</small>
                     </div>
-                    <div *ngIf="this.isSuperAdmin">
-                      <button type="submit" (click)="this.delete()" class="btn btn-simple-admin btn-color-danger">Видалити</button>
+                  </div>
+                  <div class="col-md-6">
+                  </div>
+                </ng-container>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="btn-admin">
+                      <div>
+                        <button type="submit" (click)="this.submit('save')" class="btn btn-simple-admin btn-color-primary margin">Зберегти</button>
+                      </div>
+                      <div *ngIf="this.dossier.type === this.DossierTypes.New || this.dossier.type === this.DossierTypes.Declined">
+                        <button type="submit" (click)="this.submit('publish')" class="btn btn-simple-admin pub">Опублікувати</button>
+                      </div>
+                      <div *ngIf="this.dossier.type !== this.DossierTypes.Declined">
+                        <button type="submit" (click)="this.submit('decline')" class="btn btn-simple-admin btn-color-danger">Відхилити</button>
+                      </div>
+                      <div *ngIf="this.isSuperAdmin">
+                        <button type="submit" (click)="this.delete()" class="btn btn-simple-admin btn-color-danger">Видалити</button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </form>
+</form>
         </div>
       </div>
     </div>
