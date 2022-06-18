@@ -463,3 +463,7 @@ flex-direction: row;
   background: transparent;
   border: none;
 }
+
+::ng-deep .fr-wrapper div a:first-child {
+  display: none !important
+}

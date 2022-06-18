@@ -448,3 +448,6 @@ padding: 15px 0;
   border: none;
 }
 
+::ng-deep .fr-wrapper div a:first-child {
+  display: none !important
+}
