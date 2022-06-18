@@ -209,28 +209,9 @@ i {
 }
 
 
-// .btn {
-//   display: inline-block;
-//   text-align: center;
-//   white-space: nowrap;
-//   vertical-align: middle;
-//   -webkit-user-select: none;
-//   -moz-user-select: none;
-//   -ms-user-select: none;
-//   user-select: none;
-//   border: 1px solid transparent;
-//   padding: .5rem .75rem;
-//   font-size: 1rem;
-//   line-height: 1.25;
-//   border-radius: .25rem;
-//   transition: all .15s ease-in-out;
-//   min-width: 146px;
-
-//   @media (max-width: 992px) {
-//     position: inherit;
-//     margin: 15px 0 0;
-//   }
-// }
+.btn {
+  min-width: 200px;
+}
 
 .btn-simple {
   display: block;
@@ -313,7 +294,7 @@ padding: 15px 0;
 
 .margin{
   margin-left:  0;
-  @media (max-width: 720px) {
+  @media (max-width: 920px) {
     margin-left: 12px;
   }
 }

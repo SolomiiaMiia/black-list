@@ -135,6 +135,7 @@ i {
 
 
 .btn {
+  min-width: 200px;
   display: inline-block;
   text-align: center;
   white-space: nowrap;
@@ -237,6 +238,10 @@ i {
     flex-direction: column;
   }
 }
+
+
+.margin{
+  margin-left:  0;}
 
 
 .one-btn{

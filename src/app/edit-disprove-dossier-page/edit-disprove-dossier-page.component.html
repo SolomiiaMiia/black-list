@@ -56,7 +56,7 @@
                       <button type="submit" (click)="this.submit('publish')" class="btn btn-simple-admin one-btn">Опублікувати</button>
                     </div>
                     <div *ngIf="this.dossier.type === this.DossierTypes.DisprovePublished || this.dossier.status == DossierStatuses.Disproved">
-                      <button type="submit" (click)="this.submit('deny')" class="btn btn-simple-admin btn-color-danger">Відхилити</button>
+                      <button type="submit" (click)="this.submit('deny')" class="btn btn-simple-admin btn-color-danger margin">Відхилити</button>
                     </div>
                     <div *ngIf="this.isSuperAdmin">
                       <button type="submit" (click)="this.delete()" class="btn btn-simple-admin btn-color-danger">Видалити</button>
