@@ -251,3 +251,7 @@ i {
     padding: 10px 20px;
   }
 }
+
+::ng-deep .fr-wrapper div a:first-child {
+  display: none !important
+}
