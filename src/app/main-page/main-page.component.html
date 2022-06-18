@@ -40,48 +40,42 @@
     </div>
   </div>
 </section>
-   
+
 <!--//END MAIN TITLE -->
 <!--============================= NEWS & ARTICLE =============================-->
 <section class="main-block gray">
-    <div class="row justify-content-ce">
-      <div class="col-md-10 container" >
-        <div class="titile-block">
-          <h2 class="title-dossier">Останні досьє</h2>
+  <div class="row justify-content-ce mb-5">
+    <div class="col-md-10 container">
+      <div class="titile-block">
+        <h2 class="title-dossier">Останні досьє</h2>
+      </div>
+      <div class="col-lg-7 m-auto">
+        <app-latest-dossier></app-latest-dossier>
+        <a [routerLink]="['/search']" [queryParams]="{searchString: ''}"
+          class=" btn btn-simple-more btn-color-danger fw-lighter ms-4 mb-2">Більше →</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="main-block gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="grid d-flex justify-content-center">
+          <figure class="effect-chico">
+            <iframe width="auto" height="400" [src]="this.videoLink" title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </figure>
         </div>
-        <div class="col-lg-7 m-auto">
-          <app-latest-dossier></app-latest-dossier>
-            <a [routerLink]="['/search']" [queryParams]="{searchString: ''}" class=" btn btn-simple-more btn-color-danger fw-lighter ms-4">Більше →</a>
+      </div>
+      <div class="col-lg-6">
+        <div class="grid d-flex justify-content-center">
+          <figure class="effect-chico">
+            <app-carousel [images]="this.pictures" class="app-carousel"></app-carousel>
+          </figure>
         </div>
       </div>
     </div>
-  </section>
-<section class="main-block gray">
-  <div class="container">
-      <div class="row">
-          <div class="col-md-6">
-              <div class="grid">
-                  <figure class="effect-chico">
-                     
-                    <iframe width="560" height="315" [src]="this.videoLink" title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                 
-                  </figure>
-              </div>
-          </div>
-
-          <div class="col-md-6">
-              <div class="row detailed-item-mr">
-                  <div class="col-md-12">
-                      <div class="grid">
-                          <figure class="effect-chico">
-                            <app-carousel [images]="this.pictures" class="app-carousel"></app-carousel>
-                          </figure>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
   </div>
 </section>
