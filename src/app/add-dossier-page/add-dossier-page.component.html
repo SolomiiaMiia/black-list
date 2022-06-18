@@ -148,7 +148,7 @@
                     <div class="md-checkbox">
                       <input type="checkbox" id="agreeForContract" formControlName="agreeForContract"
                         [checked]="this.dossierForm.get('agreeForContract')?.value">
-                      <label for="agreeForContract" class="required-field">Публічний договір щодо співпраці автора досьє
+                      <label for="agreeForContract" class="required-field dis-line">Публічний договір щодо співпраці автора досьє
                         та сайту</label>
                       <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
                       <p *ngIf="this.submitted && !this.dossierForm.get('agreeForContract')?.valid"
