@@ -3,7 +3,7 @@
        *ngFor="let item of latestDossiers$ |async">
        <div class="flex fs-5">
          <div><i class="fa fa-light fa-calendar date px-2"></i><span class="date">{{item.date  | date : "MM/dd/yy"}}</span></div>
-         <div class="px-4"> <a [routerLink]="['/dossier', item.id]"
+         <div class="px-2"> <a [routerLink]="['/dossier', item.id]"
           class="flex-wrap text-decoration-none text-white-50 name">{{item.fullName}}</a>
          </div>
         </div>
