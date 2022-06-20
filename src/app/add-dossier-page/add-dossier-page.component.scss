@@ -1,6 +1,5 @@
 .main-block {
   padding: 30px 0 70px 0;
-
   background-color: black;
 
   @media (max-width: 992px) {
@@ -12,12 +11,10 @@
 h4 {
   font-size: 25px;
   color: white;
-}
+  @media (max-width: 992px) {
+      font-size: 22px;
 
-@media (max-width: 992px) {
-  h4 {
-    font-size: 22px;
-  }
+}
 }
 
 label {
@@ -31,7 +28,6 @@ input[type="file"] {
 }
 
 .listing-wrap {
-  // border: 1px solid #ff6b6b;
   padding: 0 30px 30px;
 
   form {
@@ -72,8 +68,7 @@ input[type="file"] {
     border-color: #ff6b6b;
   }
 }
-
-.contact-form .form-control {
+ .form-control {
   background: #FFF;
 }
 
@@ -178,52 +173,8 @@ i {
   box-sizing: border-box;
 }
 
-.listing-time {
-  margin: 10px 0 0;
-}
-
-.custom-file {
-  width: 100%;
-  border: 1px dashed #ececec;
-  height: 100px;
-}
-
-.custom-file-input {
-  width: 100%;
-  cursor: pointer;
-  height: 100px;
-}
-
-.add-gallery-text {
-  pointer-events: none;
-  position: absolute;
-  text-align: center;
-  width: 100%;
-  top: 30px;
-  color: #a0a0a0;
-
-  i {
-    display: block;
-  }
-}
-
 
 .btn {
-  display: inline-block;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border: 1px solid transparent;
-  padding: .5rem .75rem;
-  font-size: 1rem;
-  line-height: 1.25;
-  border-radius: .25rem;
-  transition: all .15s ease-in-out;
-  
   @media (max-width: 992px) {
     position: inherit;
     margin: 15px 0 0;
@@ -279,7 +230,6 @@ i {
 display: flex;
 flex-wrap: wrap;
 flex-direction: row;
-
 }
 
 
@@ -298,22 +248,8 @@ flex-direction: row;
 }
 
 .btn-wrap {
-  // text-align: center;
   margin: 20px 0 0;
 }
-
-// #visicom-autocomplete a{ 
-
-//     width: 100%;
-//     padding: 14px 12px;
-//     background: #fbfbfb;
-//     border-radius: 0.25rem;
-
-//     &:focus {
-//       box-sizing: border-box;
-//       border-color: #ff6b6b;
-//     }
-// }
 
 
 ::ng-deep #visicom-autocomplete {
@@ -464,22 +400,19 @@ flex-direction: row;
   border: none;
 }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> a07fbe516412ffd1242ca5f07e2e994486fb0c42
+
 .dis-line{
   display: initial;
 }
 
-<<<<<<< HEAD
-::ng-deep .fr-wrapper div a:first-child {
-  display: none !important
-}
-
-=======
 
 ::ng-deep .fr-wrapper div a:first-child {
   display: none !important
 }
->>>>>>> a07fbe516412ffd1242ca5f07e2e994486fb0c42
+
+
+::ng-deep .fr-wrapper div a:first-child {
+  display: none !important
+}
+
