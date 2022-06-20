@@ -26,9 +26,28 @@ Author:
    ============================================================== */
    body {
     font-family: 'Roboto', sans-serif;
-    // background-color: black;
+    background-color: black;
    
    }
+
+
+   .btn {
+    min-width: 200px;
+    @media (max-width: 720px) {
+      
+    }
+  }
+  .btn-simple {
+    font-size: 20px;
+    color: #ff6b6b;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    display: block;
+    padding: 16px;
+    background: #ff6b6b;
+    font-weight: 400;
+  }
   
   h1 {
     font-size: 60px; }

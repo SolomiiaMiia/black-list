@@ -1,13 +1,10 @@
 
 .main-block {
   padding:30px 0 70px 0;
- 
-    background-color: black;
-
+  background-color: black;
   @media (max-width: 992px) {
       padding: 44px 0;
   }
-}
 
 
 h4 {
@@ -32,7 +29,6 @@ input[type="file"] {
 }
 
 .listing-wrap {
-  // border: 1px solid #ff6b6b;
   padding: 0 30px 30px;
 
   form {
@@ -74,7 +70,7 @@ input[type="file"] {
   }
 }
 
-.contact-form .form-control {
+.form-control {
   background: #FFF;
 }
 
@@ -116,53 +112,6 @@ i {
   box-sizing: border-box;
 }
 
-.listing-time {
-  margin: 10px 0 0;
-}
-
-.custom-file {
-  width: 100%;
-  border: 1px dashed #ececec;
-  height: 100px;
-}
-
-.custom-file-input {
-  width: 100%;
-  cursor: pointer;
-  height: 100px;
-}
-
-
-
-.btn {
-  min-width: 200px;
-  display: inline-block;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  border: 1px solid transparent;
-  padding: .5rem .75rem;
-  font-size: 1rem;
-  line-height: 1.25;
-  border-radius: .25rem;
-  transition: all .15s ease-in-out;
-  @media (max-width: 720px) {
-    margin: 0 0 14px 0;
-  }
-}
-
-.btn-simple {
-  font-size: 20px;
-  color: #ff6b6b;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s;
-}
-
 .btn-wrap2 .btn-simple {
   background: #ff6b6b;
   padding: 10px 35px;
@@ -173,18 +122,9 @@ i {
 }
 
 .btn-wrap {
-  // text-align: center;
   margin: 10px 0 0;
 }
 
-.btn-simple {
-  display: block;
-  padding: 16px;
-  margin: 12px 16px;
-  background: #ff6b6b;
-  color: white;
-  font-weight: 400;
-}
 
 
 .btn-simple-admin {
@@ -254,4 +194,5 @@ i {
 
 ::ng-deep .fr-wrapper div a:first-child {
   display: none !important
+}
 }
