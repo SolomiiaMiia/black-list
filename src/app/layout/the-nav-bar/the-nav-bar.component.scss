@@ -1,6 +1,3 @@
-/* ==============================================================
-   NAV MENU
-   ============================================================== */
 
 .nav-menu {
     background-color: black;
@@ -75,17 +72,14 @@
 .navbar-toggler{
     background: #ff6b6b;
   }
-// Drodown
+
 .dropdown-item {
     border-bottom: 1px solid #f5f0f0;
     line-height: 1.8;
     padding: 0.45rem 1.5rem;
 }
 
-// .dropdown-item.active,
-// .dropdown-item:active {
-//    background: #ff6b6b; 
-// }
+
 .dropdown-menu {
     border-radius: 0;
     padding: 0;
@@ -104,8 +98,7 @@
     }
     .dropdown:hover>.dropdown-menu {
         visibility: visible;
-        opacity: 1;
-        // border: none;
+
     }
     .dropdown-submenu:hover .dropdown-menu1 {
         visibility: visible;

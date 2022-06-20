@@ -4,31 +4,22 @@
 
 // @import '/src/styles/swiper.min.scss';
 
-
-/* You can add global styles to this file, and also import other style files */
-
-/*------------------------------------------------------------------
-Theme Name: Listing - Responsive Bootstrap Landing Page
-Version: 1.0
-Author: 
--------------------------------------------------------------------*/
-
-
-/*------------------------------------------------------------------
-[TABLE OF CONTENTS]
     
-    1. GLOBAL STYLES
-
-
-
 /* ==============================================================
    GLOBAL STYLES
    ============================================================== */
+;
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;400;700&display=swap');
+
    body {
-    font-family: 'Roboto', sans-serif;
+    // font-family: 'Roboto', sans-serif;
     background-color: black;
    
    }
+*{
+  font-family: 'Work Sans', sans-serif;
+}
+ 
 
 
    .btn {

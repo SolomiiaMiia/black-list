@@ -5,6 +5,9 @@
 @import '/src/styles/swiper.min.scss';
 
 
+
+
+
 /* ==============================================================
    GLOBAL STYLES
    ============================================================== */
@@ -101,6 +104,11 @@ h4 {
     min-height: 600px;
   }
 
+}
+
+.hero-title{
+
+  letter-spacing:3px;
 }
 
 @keyframes hero-wrap {
@@ -510,9 +518,6 @@ h3 {
     }
   }
 
-
-
-
   .form-control {
     padding: 14px 12px;
     background: #fbfbfb;
@@ -572,35 +577,6 @@ h3 {
     }
   }
 
-
-  /* ==============================================================
-   PAYMENT METHORD
-   ============================================================== */
-
-  .payment-wrap {
-    border: 1px solid #ececec;
-    padding: 0 24px 20px;
-    margin: 0 0 20px;
-  }
-
-  .payment-title {
-    border-bottom: 1px solid #ccc;
-    padding: 18px 0;
-    margin: 0 0 26px;
-
-    span {
-      display: inline-block;
-      color: #ff6b6b;
-      font-size: 22px;
-      margin: 0 8px 0 0;
-    }
-
-    h4 {
-      display: inline-block;
-      margin: 0;
-    }
-  }
-
   .card-header {
     &:hover {
       text-decoration: none;
@@ -620,72 +596,6 @@ h3 {
     }
   }
 
-  .booking-summary_block {
-    border: 1px solid #ececec;
-
-    h6 {
-      font-weight: 700;
-    }
-
-    span {
-      font-size: 14px;
-    }
-  }
-
-  .booking-summary-box {
-    padding: 24px;
-  }
-
-  .booking-summary_contact {
-    margin: 22px 0 22px;
-
-    p {
-      font-size: 15px;
-      margin: 0;
-      line-height: 1.8;
-    }
-  }
-
-  .booking-summary_deatail {
-    h5 {
-      font-weight: 600;
-    }
-  }
-
-  .min-height-block {
-    min-height: 500px;
-  }
-
-  .booking-cost {
-    margin: 20px 0 0;
-
-    span {
-      font-weight: 600;
-    }
-
-    p {
-      font-size: 15px;
-      margin: 10px 0 0;
-      line-height: 1.8;
-
-      span {
-        float: right;
-      }
-    }
-  }
-
-  .payment-method-collapse .card-header {
-    cursor: pointer;
-  }
-
-  .total-red {
-    color: #ff6b6b;
-  }
-
-  .flex-fill {
-    -ms-flex: 1 1 auto !important;
-    flex: 1 1 auto !important;
-  }
 }
 
 

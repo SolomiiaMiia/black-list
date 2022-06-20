@@ -5,8 +5,7 @@
 //   font-weight: normal;
 //   font-style: normal;
 // }
-
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Work+Sans:wght@100&display=swap');
 
 .reserve-block {
   padding: 70px 0 20px 0;
@@ -85,6 +84,7 @@ hr {
       display: inline-block;
       font-size: 13px;
       color: #adadad;
+      font-family: 'Montserrat';
 
       @media (max-width: 992px) {
         display: block;
