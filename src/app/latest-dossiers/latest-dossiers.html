@@ -1,8 +1,8 @@
    <div class="d-flex flex-wrap m-4 flex-xl-column text-white-50">
-     <div class="align-items-stretch align-self-stretch mb-auto p-3 m-3 fw-lighter border-bottom wdh"
+     <div class="align-items-stretch align-self-stretch mb-auto p-3 m-3 border-bottom wdh "
        *ngFor="let item of latestDossiers$ |async">
        <div class="flex fs-5">
-         <div><i class="fa fa-light fa-calendar date px-2"></i><span class="date">{{item.date  | date : "MM/dd/yy"}}</span></div>
+         <div><i class="fa fa-light fa-calendar date px-2"></i><span class="date fw-lighter">{{item.date  | date : "MM/dd/yy"}}</span></div>
          <div class="px-2"> <a [routerLink]="['/dossier', item.id]"
           class="flex-wrap text-decoration-none text-white-50 name">{{item.fullName}}</a>
          </div>
