@@ -2,13 +2,16 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { FileDto } from '../models/fileDto';
+import { routingAnimation } from '../shared/animations/routing-animation';
 import { AdminService } from '../shared/services/admin.service';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [routingAnimation],
+  host: { '[@routingAnimation]': '' }
 })
 export class MainPageComponent implements OnInit {
 

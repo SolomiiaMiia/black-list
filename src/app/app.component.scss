@@ -1,3 +1,10 @@
+.cont{
+  background-color: black;
+  min-height: 80vh;
+}
+
+:host {display: block;}
+
 .spinner {
   display: flex;
   align-items: center;

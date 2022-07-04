@@ -4,10 +4,13 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { CreateDisproveDossierPageDto } from '../models/createDisproveDossierPageDto';
 import { APIService } from '../shared/services/api.service'
 import { serialize } from 'object-to-formdata';
+import { routingAnimation } from '../shared/animations/routing-animation';
 
 @Component({
   templateUrl: './disprove-dossier-page.component.html',
-  styleUrls: ['./disprove-dossier-page.component.scss']
+  styleUrls: ['./disprove-dossier-page.component.scss'],
+  animations: [routingAnimation],
+  host: { '[@routingAnimation]': '' }
 })
 export class DisproveDossierPageComponent implements OnInit {
 

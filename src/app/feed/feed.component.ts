@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DossierDto } from '../models/dossierDto';
-import { DossierStatus, DossierType } from '../models/enums';
+import { routingAnimation } from '../shared/animations/routing-animation';
 import { APIService } from '../shared/services/api.service'
 
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.scss']
+  styleUrls: ['./feed.component.scss'],
+  animations: [routingAnimation],
+  host: { '[@routingAnimation]': '' }
 })
 export class FeedComponent implements OnInit {
 
@@ -16,8 +18,6 @@ export class FeedComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private apiService: APIService) {
-   
-
   }
 
   public searchResults: DossierDto[] = [];
@@ -33,17 +33,8 @@ export class FeedComponent implements OnInit {
     });
   }
 
-  search(): void {
-    
-
-  }
-
   ngOnInit(): void {
     this.onScroll();
-  }
-
-  ngOnDestroy(): void {
-
   }
 
 }

@@ -1,15 +1,18 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { DossierDto } from '../models/dossierDto';
 import { DossierStatus, DossierType, EnumHelper } from '../models/enums';
+import { routingAnimation } from '../shared/animations/routing-animation';
 import { APIService } from '../shared/services/api.service'
 
 
 @Component({
   selector: 'app-dossier',
   templateUrl: './dossier.component.html',
-  styleUrls: ['./dossier.component.scss']
+  styleUrls: ['./dossier.component.scss'],
+  animations: [routingAnimation],
+  host: { '[@routingAnimation]': '' }
 })
 export class DossierComponent implements OnInit {
 
@@ -42,10 +45,5 @@ export class DossierComponent implements OnInit {
     }
   }
 
-
-
-  ngOnDestroy(): void {
-
-  }
 
 }

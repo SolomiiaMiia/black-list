@@ -11,11 +11,9 @@
 ;
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;400;700&display=swap');
 
-body {
+ body {
   background-color: black;
   overflow-x: hidden;
-
-
 }
 
 * {
@@ -26,7 +24,6 @@ body {
 
 .btn {
   min-width: 200px;
-
   @media (max-width: 720px) {}
 }
 

@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { routingAnimation } from 'src/app/shared/animations/routing-animation';
 import { AdminService } from '../../shared/services/admin.service';
 
 @Component({
   selector: 'app-the-nav-bar',
   templateUrl: './the-nav-bar.component.html',
-  styleUrls: ['./the-nav-bar.component.scss']
+  styleUrls: ['./the-nav-bar.component.scss'],
+  animations: [routingAnimation],
+  host: { '[@routingAnimation]': '' }
 })
 export class TheNavBarComponent implements OnInit {
 

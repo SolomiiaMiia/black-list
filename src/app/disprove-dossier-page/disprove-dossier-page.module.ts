@@ -7,8 +7,6 @@ import { DisproveDossierPageComponent } from './disprove-dossier-page.component'
 import { FroalaEditorModule } from 'angular-froala-wysiwyg';
 
 
-
-
 @NgModule({
   declarations: [
     DisproveDossierPageComponent
@@ -18,11 +16,6 @@ import { FroalaEditorModule } from 'angular-froala-wysiwyg';
     RouterModule.forChild([{ path: '', component: DisproveDossierPageComponent}]),
     ReactiveFormsModule,
     FroalaEditorModule.forRoot()
-  
   ],
-  exports:
-  [
-
-  ]
 })
 export class DisproveDossierPageModule { }

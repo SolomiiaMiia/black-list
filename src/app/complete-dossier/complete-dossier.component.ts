@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { routingAnimation } from '../shared/animations/routing-animation';
 import { AdminService } from '../shared/services/admin.service';
 
 @Component({
   selector: 'app-complete-dossier',
   templateUrl: './complete-dossier.component.html',
-  styleUrls: ['./complete-dossier.component.scss']
+  styleUrls: ['./complete-dossier.component.scss'],
+  animations: [routingAnimation],
+  host: { '[@routingAnimation]': '' }
 })
-export class CompleteDossierComponent implements OnInit {
+export class CompleteDossierComponent{
 
   public newDossierText: string='';
   public disproveDossierText: string = '';
@@ -28,10 +31,6 @@ export class CompleteDossierComponent implements OnInit {
     this.adminService.loadSettings((response) => {
       this.newDossierText = response.newDossierText;
       this.disproveDossierText = response.disproveDossierText;});
-  }
-
-  ngOnInit(): void {
-   
   }
 
 }
