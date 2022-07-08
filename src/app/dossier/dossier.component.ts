@@ -14,6 +14,10 @@ import { APIService } from '../shared/services/api.service'
   animations: [routingAnimation],
   host: { '[@routingAnimation]': '' }
 })
+
+
+
+
 export class DossierComponent implements OnInit {
 
   public searchText: string = '';
@@ -25,7 +29,7 @@ export class DossierComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private apiService: APIService) {
-    
+
   }
 
   loadDossierByUrl() {
@@ -42,6 +46,17 @@ export class DossierComponent implements OnInit {
   ngOnInit(): void {
     if (!this.feedEnabled) {
       this.loadDossierByUrl();
+    }
+  }
+
+  shared() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Copied link',
+        url: `google.com`
+      }).then(() => {
+        console.log('thanks');
+      }).catch(console.error);
     }
   }
 
