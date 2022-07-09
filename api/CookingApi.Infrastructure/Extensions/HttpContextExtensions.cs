@@ -13,12 +13,10 @@ namespace CookingApi.Infrastructure.Extensions
     public static string AppBaseUrl
     {
       get =>
-#if DEBUG
       $"{Current.Request.Scheme}://{Current.Request.Host}{Current.Request.PathBase}";
-#endif
-#if RELEASE
-      $"{Current.Request.Scheme}://{Current.Request.Host}:801";
-#endif
+//#if RELEASE
+//      $"{Current.Request.Scheme}://{Current.Request.Host}:801";
+//#endif
     }
 
     internal static void Configure(IHttpContextAccessor contextAccessor)

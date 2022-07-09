@@ -77,7 +77,7 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
-app.UseHttpsRedirection();
+app.UseHsts();
 
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
