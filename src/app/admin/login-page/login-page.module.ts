@@ -6,8 +6,6 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { LoginPageComponent } from './login-page.component';
 
 
-
-
 @NgModule({
   declarations: [
     LoginPageComponent
@@ -16,11 +14,7 @@ import { LoginPageComponent } from './login-page.component';
     CommonModule,
     RouterModule.forChild([{ path: '', component: LoginPageComponent}]),
     ReactiveFormsModule,
-  
-  ],
-  exports:
-  [
+    ],
 
-  ]
 })
 export class LoginPageModule { }

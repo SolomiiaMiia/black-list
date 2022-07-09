@@ -5,10 +5,13 @@ import { DossierStatus, DossierType } from '../models/enums';
 import { APIService } from '../shared/services/api.service'
 import { AdminService } from '../shared/services/admin.service';
 import { NotifyService } from '../shared/services/notify.service';
+import { routingAnimation } from '../shared/animations/routing-animation';
 
 @Component({
   templateUrl: './edit-disprove-dossier-page.component.html',
-  styleUrls: ['./edit-disprove-dossier-page.component.scss']
+  styleUrls: ['./edit-disprove-dossier-page.component.scss'],
+  animations: [routingAnimation],
+  host: { '[@routingAnimation]': '' }
 })
 export class EditDisproveDossierPageComponent implements OnInit {
 

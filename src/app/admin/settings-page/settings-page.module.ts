@@ -9,7 +9,6 @@ import { FilePreviewModule } from '../../file-preview/file-preview.module';
 
 
 
-
 @NgModule({
   declarations: [
     SettingsPageComponent

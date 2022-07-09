@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { serialize } from 'object-to-formdata';
+import { routingAnimation } from 'src/app/shared/animations/routing-animation';
 import { NotifyService } from 'src/app/shared/services/notify.service';
 import { AdminSettingsDto } from '../../models/adminSettingsDto';
 import { FileDto } from '../../models/fileDto';
@@ -10,7 +11,9 @@ import { APIService } from '../../shared/services/api.service';
 @Component({
   selector: 'app-admin-settings',
   templateUrl: './settings-page.component.html',
-  styleUrls: ['./settings-page.component.scss']
+  styleUrls: ['./settings-page.component.scss'],
+  animations: [routingAnimation],
+  host: { '[@routingAnimation]': '' }
 })
 export class SettingsPageComponent implements OnInit {
 

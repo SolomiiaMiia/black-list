@@ -3,10 +3,13 @@ import { DOCUMENT } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '../../shared/services/admin.service';
 import { APIService } from '../../shared/services/api.service';
+import { routingAnimation } from 'src/app/shared/animations/routing-animation';
 
 @Component({
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
+  animations: [routingAnimation],
+  host: { '[@routingAnimation]': '' }
 })
 export class LoginPageComponent implements OnInit {
 

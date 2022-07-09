@@ -8,11 +8,15 @@ import { APIService } from '../shared/services/api.service'
 import { AdminService } from '../shared/services/admin.service';
 import { serialize } from 'object-to-formdata';
 import { NotifyService } from '../shared/services/notify.service';
+import { routingAnimation } from '../shared/animations/routing-animation';
+
 
 
 @Component({
   templateUrl: './edit-dossier-page.component.html',
-  styleUrls: ['./edit-dossier-page.component.scss']
+  styleUrls: ['./edit-dossier-page.component.scss'],
+  animations: [routingAnimation],
+  host: { '[@routingAnimation]': '' }
 })
 export class EditDossierPageComponent implements OnInit {
 

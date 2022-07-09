@@ -5,10 +5,13 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AddDossierPageDto } from '../models/addDossierPageDto';
 import { APIService } from '../shared/services/api.service'
 import { serialize } from 'object-to-formdata';
+import { routingAnimation } from '../shared/animations/routing-animation';
 
 @Component({
   templateUrl: './add-dossier-page.component.html',
-  styleUrls: ['./add-dossier-page.component.scss']
+  styleUrls: ['./add-dossier-page.component.scss'],
+  animations: [routingAnimation],
+  host: { '[@routingAnimation]': '' }
 })
 export class AddDossierPageComponent implements OnInit {
 
