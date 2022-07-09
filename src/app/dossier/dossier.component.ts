@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,  Inject  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { DossierDto } from '../models/dossierDto';
 import { DossierStatus, DossierType, EnumHelper } from '../models/enums';
 import { routingAnimation } from '../shared/animations/routing-animation';
-import { APIService } from '../shared/services/api.service'
+import { APIService } from '../shared/services/api.service';
+import { DOCUMENT } from '@angular/common';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class DossierComponent implements OnInit {
   DossierTypes = DossierType;
 
   constructor(private route: ActivatedRoute,
-    private apiService: APIService) {
+    private apiService: APIService,
+    @Inject(DOCUMENT) private document: Document) {
 
   }
 
@@ -46,18 +48,23 @@ export class DossierComponent implements OnInit {
   ngOnInit(): void {
     if (!this.feedEnabled) {
       this.loadDossierByUrl();
+      console.log(this.route.snapshot);
+      console.log(this.document.location.origin);
+      
+      
     }
   }
 
   shared() {
     if (navigator.share) {
       navigator.share({
-        title: 'Copied link',
-        url: `google.com`
+        title: this.document.location.origin + '/dossier/'+this.dossier.id ,
+        url:  '/dossier/'+this.dossier.id
       }).then(() => {
         console.log('thanks');
       }).catch(console.error);
     }
+   
   }
 
 
