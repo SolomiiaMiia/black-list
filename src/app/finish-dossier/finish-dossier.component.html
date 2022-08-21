@@ -1,0 +1,33 @@
+<section class="main-block">
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center  min-height-block">
+            <div class="col-md-12">
+              <div class="confirmation-wrap">
+
+                <div id="sign-widget-parent" style="width:700px;height:500px">
+                </div>
+
+                <div id="sign-data-block" style="display:block">
+                  Дані для підпису:
+                  <br>
+                  <textarea id="textAreaData" style="width:510px; height:50px;"></textarea>
+
+                  <input id="file-input" onchange="signProcessor.onFileChange(this)" type="file" multiple  class="form-control">
+
+                  <br>
+                  Підпис\Підписані дані:
+                  <br>
+                  <textarea id="textAreaSign" style="width:510px; height:400px;"></textarea>
+                  <br>
+                  <button id="buttonSignData" onclick="signProcessor.onSign();">Підписати</button>
+                </div>
+
+              </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
