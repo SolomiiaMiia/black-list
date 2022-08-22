@@ -1,4 +1,4 @@
-import { Component, Input, OnInit,  Inject  } from '@angular/core';
+import { Component, Input, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { DossierDto } from '../models/dossierDto';
@@ -48,24 +48,19 @@ export class DossierComponent implements OnInit {
   ngOnInit(): void {
     if (!this.feedEnabled) {
       this.loadDossierByUrl();
-      console.log(this.route.snapshot);
-      console.log(this.document.location.origin);
-      
-      
     }
   }
 
   shared() {
     if (navigator.share) {
       navigator.share({
-        title: this.document.location.origin + '/dossier/'+this.dossier.id ,
-        url:  '/dossier/'+this.dossier.id
+        title: this.document.location.origin + '/dossier/' + this.dossier.id,
+        url: '/dossier/' + this.dossier.id
       }).then(() => {
         console.log('thanks');
       }).catch(console.error);
     }
-   
-  }
 
+  }
 
 }
