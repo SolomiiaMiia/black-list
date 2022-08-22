@@ -1,18 +1,21 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AddDossierPageDto } from '../models/addDossierPageDto';
 import { APIService } from '../shared/services/api.service'
 import { serialize } from 'object-to-formdata';
 import { routingAnimation } from '../shared/animations/routing-animation';
+import { SignedData, SignedDataPart } from '../models/signedDataDto';
+
 
 @Component({
   templateUrl: './add-dossier-page.component.html',
   styleUrls: ['./add-dossier-page.component.scss'],
   animations: [routingAnimation],
-  host: { '[@routingAnimation]': '' }
+  //host: { '[@routingAnimation]': '' }
 })
+
 export class AddDossierPageComponent implements OnInit {
 
   @Input() public dossierForm: FormGroup = new FormGroup({});
@@ -21,6 +24,7 @@ export class AddDossierPageComponent implements OnInit {
   public isAnonymous: boolean = false;
   private photo: any;
   private attachtments: File[] = [];
+  public requireSign: boolean = false;
 
   constructor(private fb: FormBuilder,
     private apiService: APIService,
@@ -46,6 +50,8 @@ export class AddDossierPageComponent implements OnInit {
 
   ngAfterViewInit() {
     this.addScripts('/assets/visicom.autocomplete.js');
+    this.addScripts('/assets/eusign.js');
+    this.addScripts('/assets/sign.processor.js');
   }
 
   private createForm() {
@@ -96,42 +102,72 @@ export class AddDossierPageComponent implements OnInit {
   }
 
   public submit() {
-
     this.submitted = true;
 
     this.dossierForm.get('address')?.setValue(this.getAddressInput()?.value);
 
     if (this.dossierForm.valid) {
-      let dto = <AddDossierPageDto>this.dossierForm.value;
-      dto.isAnonymous = this.isAnonymous;
 
-      const formData = serialize(
-        dto
-      );
-
-      formData.delete('attachtments');
-      formData.set('authorPhoto', this.photo);
-      Array.from(this.attachtments).map((file) => {
-        return formData.append('attachtments', file, file.name);
-      });
-
-      formData.delete('agreeForData');
-      formData.delete('agreeForContract');
-
-      this.apiService.addDossier(formData).subscribe(id => {
-
-        const navigationExtras: NavigationExtras = {
-          state: {
-            isNew: true,
-            id: id
-          }
-        };
-
-        this.router.navigate(['/add-dossier/complete'], navigationExtras);
-      });
-
+      this.requireSign = true;
     }
 
+  }
+
+  private postData(signedData: SignedData[]) {
+    let dto = <AddDossierPageDto>this.dossierForm.value;
+    dto.isAnonymous = this.isAnonymous;
+
+    const formData = serialize(
+      dto
+    );
+
+    formData.delete('attachtments');
+    formData.set('authorPhoto', this.photo);
+    Array.from(this.attachtments).map((file) => {
+      return formData.append('attachtments', file, file.name);
+    });
+
+    Array.from(signedData).map((data) => {
+      return formData.append('attachtments', data.data, data.name);
+    });
+
+    formData.delete('agreeForData');
+    formData.delete('agreeForContract');
+
+    this.apiService.addDossier(formData).subscribe(id => {
+
+      const navigationExtras: NavigationExtras = {
+        state: {
+          isNew: true,
+          id: id
+        }
+      };
+
+      this.router.navigate(['/add-dossier/complete'], navigationExtras);
+    });
+  }
+
+  @HostListener('window:sign.readed', ['$event'])
+  onPaymentSuccess(event: CustomEvent): void {
+    let signedData: SignedData[] = [];
+
+    let details = <Array<SignedDataPart>>event.detail;
+
+    Array.from(details).map((item) => {
+
+      const data: SignedData = {
+        data: new Blob([item.val], {
+          type: 'application/pkcs7-signature'
+        }),
+        name: item.name + '.p7s',
+      };
+
+      signedData.push(data);
+    });
+
+    console.log(signedData);
+
+    this.postData(signedData);
   }
 
 }

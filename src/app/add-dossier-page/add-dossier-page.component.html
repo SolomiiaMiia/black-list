@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://api.visicom.ua/apps/visicom-autocomplete.min.css">
 
 <section class="main-block">
-  <div class="container-fluid">
+  <div class="container-fluid" [style.display]="!this.requireSign ? 'block' : 'none'" >
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="listing-wrap">
@@ -19,7 +19,7 @@
                   <label class="required-field">Прізвище</label>
                   <input type="text" formControlName="lastName" class="form-control">
                   <small *ngIf="this.submitted && !this.dossierForm.get('lastName')?.valid"
-                    class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                         class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col-md-6">
@@ -27,7 +27,7 @@
                   <label class="required-field">Ім'я</label>
                   <input type="text" formControlName="firstName" class="form-control">
                   <small *ngIf="this.submitted && !this.dossierForm.get('firstName')?.valid"
-                    class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                         class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="col-md-6">
@@ -35,7 +35,7 @@
                   <label class="required-field">По батькові</label>
                   <input type="text" formControlName="thirdName" class="form-control">
                   <small *ngIf="this.submitted && !this.dossierForm.get('thirdName')?.valid"
-                    class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                         class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
               <div class="listing-title">
@@ -46,7 +46,7 @@
                 <div class="form-group">
                   <label>Фото особи</label>
                   <input type="file" (change)="onFileChange($event,'photo')" accept="image/*"
-                    formControlName="authorPhoto" class="form-control">
+                         formControlName="authorPhoto" class="form-control">
                 </div>
               </div>
               <div class="col-md-6">
@@ -81,19 +81,19 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label class="required-field">Текст, що викриває особу, підозрювану у корупції</label>
-                  <textarea [froalaEditor] formControlName="text" class="text form-control" rows="3"></textarea>
+                  <textarea id="dossier-text" [froalaEditor] formControlName="text" class="text form-control" rows="3"></textarea>
                   <small *ngIf="this.submitted && !this.dossierForm.get('text')?.valid"
-                    class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                         class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="form-group">
                   <label class="required-field">Підтверджуючі додатки до тексту (файли, фото та ін.)</label>
-                  <input (change)="onFileChange($event,'files')" type="file" multiple formControlName="attachtments"
-                    class="form-control">
+                  <input id="dossier-files" (change)="onFileChange($event,'files')" type="file" multiple formControlName="attachtments"
+                         class="form-control">
                   <small *ngIf="this.submitted && !this.dossierForm.get('attachtments')?.valid"
-                    class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                         class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
 
@@ -108,7 +108,7 @@
                     <label class="required-field">Автор</label>
                     <input type="text" formControlName="author" class="form-control">
                     <small *ngIf="this.submitted && !this.dossierForm.get('author')?.valid"
-                      class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                           class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -116,7 +116,7 @@
                     <label>Контактний номер телефону</label>
                     <input type="text" placeholder="+380xxxxxxxxx" formControlName="phone" class="form-control">
                     <small *ngIf="this.submitted && !this.dossierForm.get('phone')?.valid"
-                      class="form-text text-danger ml-2">Не валідний номер телефону</small>
+                           class="form-text text-danger ml-2">Не валідний номер телефону</small>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -124,7 +124,7 @@
                     <label>Адреса електронної пошти</label>
                     <input placeholder="email@mail.com" type="text" formControlName="email" class="form-control">
                     <small *ngIf="this.submitted && !this.dossierForm.get('email')?.valid"
-                      class="form-text text-danger ml-2">Не валідна адреса електронної пошти</small>
+                           class="form-text text-danger ml-2">Не валідна адреса електронної пошти</small>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -134,23 +134,25 @@
                   <div class="col-md-12 responsive-wrap">
                     <div class="md-checkbox" style="margin-top: 20px;">
                       <input type="checkbox" id="agreeForData" formControlName="agreeForData"
-                        [checked]="this.dossierForm.get('agreeForData')?.value">
+                             [checked]="this.dossierForm.get('agreeForData')?.value">
                       <label for="agreeForData" class="required-field">Згода на обробку персональних даних</label>
                       <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
                       <p *ngIf="this.submitted && !this.dossierForm.get('agreeForData')?.valid"
-                        class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
+                         class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
                     </div>
                   </div>
                   <div class="col-md-12 responsive-wrap">
                     <div class="md-checkbox">
                       <input type="checkbox" id="agreeForContract" formControlName="agreeForContract"
-                        [checked]="this.dossierForm.get('agreeForContract')?.value">
-                      <label for="agreeForContract" class="required-field dis-line">Публічний договір щодо співпраці
+                             [checked]="this.dossierForm.get('agreeForContract')?.value">
+                      <label for="agreeForContract" class="required-field dis-line">
+                        Публічний договір щодо співпраці
                         автора досьє
-                        та сайту</label>
+                        та сайту
+                      </label>
                       <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
                       <p *ngIf="this.submitted && !this.dossierForm.get('agreeForContract')?.valid"
-                        class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
+                         class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
                     </div>
                   </div>
                 </div>
@@ -159,12 +161,31 @@
                 <div class="col-md-12">
                   <div class="btn-wrap btn-wrap2">
                     <button type="submit" (click)="submit()" class="btn btn-simple"
-                      [disabled]="!this.canSubmit()">Надіслати</button>
+                            [disabled]="!this.canSubmit()">
+                      Надіслати
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" [style.display]="this.requireSign ? 'block' : 'none'">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="listing-wrap">
+          <div id="sign-widget-parent" style="width:700px;height:500px">
+          </div>
+
+          <div class="btn-wrap btn-wrap2">
+            <button type="submit" (click)="submit()" class="btn btn-simple">
+              Надіслати
+            </button>
+          </div>
+
         </div>
       </div>
     </div>

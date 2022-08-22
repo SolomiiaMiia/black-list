@@ -16,17 +16,6 @@ var signProcessor = {
 
   euSign: null,
 
-  onFileChange: async function (input) {
-
-    Array.from(input.files).forEach(item => {
-      if (item.size > 1024 * 1024 * 10) {
-        console.error('Максимальний розмір файлу, що підримується - 10 MB');
-      }
-    });
-
-    //console.log(await signProcessor.getAsByteArray(input.files[0]));
-  },
-
   getAsByteArray: async function (file) {
     return new Uint8Array(await signProcessor.readFile(file))
   },
@@ -57,16 +46,12 @@ var signProcessor = {
       EndUser.FormType.ReadPKey
     );
 
-    /*
-  Очікування зчитування ос. ключа користувачем
-  */
     window.onload = function () {
-      console.log('start on load');
+      console.log('PostInit');
       signProcessor.euSign.ReadPrivateKey()
         .then(function () {
           console.log('read');
-          //document.getElementById('sign-widget-parent').style.display = 'none';
-          document.getElementById('sign-data-block').style.display = 'block';
+          signProcessor.onSign();
         })
         .catch(function (e) {
           console.error('Виникла помилка при зчитуванні ос. ключа. ' +
@@ -78,15 +63,16 @@ var signProcessor = {
 
 
   onSign: async function () {
-  
-    var data1 = await signProcessor.getAsByteArray(document.getElementById('file-input').files[0]);
-    var data2 = await signProcessor.getAsByteArray(document.getElementById('file-input').files[1]);
 
-    var data = [{ name: document.getElementById('file-input').files[0].name, val: data1 },
-    { name: document.getElementById('file-input').files[1].name, val: data2 }];
+    var data = [];
 
-      //document.getElementById('textAreaData').value;
-    var previousSign = null;
+    for (const item of document.getElementById('dossier-files').files) {
+      var fileData = await signProcessor.getAsByteArray(item);
+      data.push({ name: item.name, val: fileData });
+    }
+
+    data.push({ name: 'Текст досьє.txt', val: document.getElementById('dossier-text').value });
+
     var external = false;
     var asBase64String = true;
     var signAlgo = EndUser.SignAlgo.DSTU4145WithGOST34311;
@@ -95,7 +81,18 @@ var signProcessor = {
     signProcessor.euSign.SignData(data, external,
       asBase64String, signAlgo, null, signType)
       .then(function (sign) {
-        document.getElementById('textAreaSign').value = sign;
+
+        var event = new CustomEvent("sign.readed",
+          {
+            detail: sign,
+            bubbles: true,
+            cancelable: true
+          }
+        );
+
+        console.log('sign.readed', event);
+
+        window.dispatchEvent(event);
       })
       .catch(function (e) {
         console.error('Виникла помилка при підписі даних. ' +
