@@ -19,6 +19,7 @@ export class AddDossierPageComponent implements OnInit {
 
   public submitted: boolean = false;
   public isAnonymous: boolean = false;
+  public hasFileSizeerror:boolean = false;
   private photo: any;
   private attachtments: File[] = [];
 
@@ -90,7 +91,13 @@ export class AddDossierPageComponent implements OnInit {
     else {
       this.attachtments = [];
       for (var i = 0; i < event.target.files.length; i++) {
-        this.attachtments.push(event.target.files[i]);
+        if(event.target.files[i].size > 1024 * 1024 * 10){
+          this.hasFileSizeerror = true;
+        }
+        else{
+          this.attachtments.push(event.target.files[i]);
+          this.hasFileSizeerror = false;
+        }
       }
     }
   }
@@ -101,7 +108,7 @@ export class AddDossierPageComponent implements OnInit {
 
     this.dossierForm.get('address')?.setValue(this.getAddressInput()?.value);
 
-    if (this.dossierForm.valid) {
+    if (this.dossierForm.valid && !this.hasFileSizeerror) {
       let dto = <AddDossierPageDto>this.dossierForm.value;
       dto.isAnonymous = this.isAnonymous;
 

@@ -94,6 +94,8 @@
                     class="form-control">
                   <small *ngIf="this.submitted && !this.dossierForm.get('attachtments')?.valid"
                     class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                    <small *ngIf="this.hasFileSizeerror"
+                    class="form-text text-danger ml-2">Максимальний розмір файлу, що підримується - 10 MB</small>
                 </div>
               </div>
 

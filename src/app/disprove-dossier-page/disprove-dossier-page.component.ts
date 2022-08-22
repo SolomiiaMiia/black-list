@@ -18,6 +18,7 @@ export class DisproveDossierPageComponent implements OnInit {
 
   public id: number;
   public submitted: boolean = false;
+  public hasFileSizeerror:boolean = false;
   private attachtments: File[] = [];
 
   constructor(private fb: FormBuilder,
@@ -48,7 +49,13 @@ export class DisproveDossierPageComponent implements OnInit {
   onFileChange(event: any) {
       this.attachtments = [];
       for (var i = 0; i < event.target.files.length; i++) {
-        this.attachtments.push(event.target.files[i]);
+        if(event.target.files[i].size > 1024 * 1024 * 10){
+          this.hasFileSizeerror = true;
+        }
+        else{
+          this.attachtments.push(event.target.files[i]);
+          this.hasFileSizeerror = false;
+        }
       }
   }
 
@@ -61,7 +68,7 @@ export class DisproveDossierPageComponent implements OnInit {
     this.submitted = true;
 
 
-    if (this.dossierForm.valid) {
+    if (this.dossierForm.valid && !this.hasFileSizeerror) {
       let dto = <CreateDisproveDossierPageDto>this.dossierForm.value;
 
 
