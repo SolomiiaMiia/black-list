@@ -4,8 +4,8 @@
       <div class="col-md-4 col-12 file">
         <div class="row">
           <div class="col-md-2 col-2">
-          <i *ngIf="file.name.substr(-3) !== 'p7s'"  class="file-icon fa fa-xl fa-light fa-paperclip"></i>
-          <i *ngIf="file.name.substr(-3) == 'p7s'"class="file-icon fa fa-xl a-thin fa-file-zipper"></i>
+          <i [ngClass]="{'fa-file-signature': file.name.substr(-4) === '.p7s', 'fa-paperclip': file.name.substr(-4) !== '.p7s'}"
+             class="file-icon fa fa-xl a-thin "> </i>
           </div>
           <div title="{{file.name}}" class="col-md-8 col-8 file-name ">
             {{file.name}} 
