@@ -93,7 +93,8 @@ export class APIService {
 
   //+
   downloadFile(url: string): Observable<any> {
-    return this.httpClient.get(url, { responseType: 'blob' });
+    return this.httpClient.get(url, { responseType: 'blob' } 
+    );
   }
 
 }

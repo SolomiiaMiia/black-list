@@ -37,12 +37,14 @@ export class DossierComponent implements OnInit {
     ).subscribe(res => {
       this.dossier = res;
     });
+    
   }
 
   ngOnInit(): void {
     if (!this.feedEnabled) {
       this.loadDossierByUrl();
     }
+    
   }
 
 

@@ -4,10 +4,11 @@
       <div class="col-md-4 col-12 file">
         <div class="row">
           <div class="col-md-2 col-2">
-          <i class="file-icon fa fa-xl fa-light fa-paperclip"></i>
+          <i *ngIf="file.name.substr(-3) !== 'p7s'"  class="file-icon fa fa-xl fa-light fa-paperclip"></i>
+          <i *ngIf="file.name.substr(-3) == 'p7s'"class="file-icon  fa-xl fa-solid fa-file-zipper"></i>
           </div>
-          <div title="{{file.name}}" class="col-md-8 col-8 file-name">
-            {{file.name}}
+          <div title="{{file.name}}" class="col-md-8 col-8 file-name ">
+            {{file.name}} 
           </div>
           <div class="col-md-2 col-2 file-download">
             <a title="Завантажити {{file.name}}" style="cursor:pointer" [routerLink]="" (click)="this.download(file.url, file.name)"><i class="fa-xl fa-solid fa-file-arrow-down"></i></a>

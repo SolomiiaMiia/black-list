@@ -62,7 +62,6 @@
         </div>
       </div>
       <div [ngClass]="[dossier.status == DossierStatuses.Disproved ? 'none' : 'line']"></div>
-
       <ng-container *ngIf="dossier.status == DossierStatuses.Disproved">
         <section class="reserve-block">
           <div class="container d-flex justify-content-center">
