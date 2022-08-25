@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, Input, Inject, HostListener } from '@angular/core';
+import { Component, OnInit, Input, Inject, HostListener} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AddDossierPageDto } from '../models/addDossierPageDto';
@@ -17,6 +17,7 @@ import { SignedData, SignedDataPart } from '../models/signedDataDto';
 })
 
 export class AddDossierPageComponent implements OnInit {
+
 
   @Input() public dossierForm: FormGroup = new FormGroup({});
 
@@ -45,6 +46,7 @@ export class AddDossierPageComponent implements OnInit {
     }
   }
 
+
   private addScripts(url: string, callback?: Function) {
     var scriptUrl = url;
     let node = document.createElement('script');
@@ -62,6 +64,7 @@ export class AddDossierPageComponent implements OnInit {
 
   ngAfterViewInit() {
     this.addScripts('/assets/visicom.autocomplete.js');
+
   }
 
   private createForm() {
