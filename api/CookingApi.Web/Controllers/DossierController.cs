@@ -102,9 +102,9 @@ namespace CookingApi.Web.Controllers
 
     [HttpGet]
     [Route("feed")]
-    public async Task<IActionResult> GetFeed([FromQuery] int skip)
+    public async Task<IActionResult> GetFeed([FromQuery] int skip, [FromServices] IAuthService authService)
     {
-      var dossier = await _dossierService.GetFeed(skip);
+      var dossier = await _dossierService.GetFeed(skip, authService.isAuthorized());
       return new OkObjectResult(dossier);
     }
 

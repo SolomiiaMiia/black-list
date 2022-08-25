@@ -37,22 +37,31 @@ export class AddDossierPageComponent implements OnInit {
   ngOnInit(): void {
     this.isAnonymous = this.route.snapshot.parent?.url.filter(v => v.path == 'anonymous').length == 1;
     this.createForm();
+
+    if (window["signProcessor"] == undefined) {
+      this.addScripts('/assets/sign.processor.js', () => { window["signProcessor"].Init(); });
+    } else {
+      window["signProcessor"].Init();
+    }
   }
 
-  private addScripts(url: string) {
+  private addScripts(url: string, callback?: Function) {
     var scriptUrl = url;
     let node = document.createElement('script');
     node.src = scriptUrl;
     node.type = 'text/javascript';
-    node.async = true;
+    node.async = false;
+    node.defer = true;
     node.charset = 'utf-8';
-    document.getElementsByTagName('head')[0].appendChild(node);
+    node.onload = () => {
+      console.log(url+': script loaded');
+      if (callback) callback();
+    };
+    document.getElementsByTagName('body')[0].appendChild(node);
   }
 
   ngAfterViewInit() {
     this.addScripts('/assets/visicom.autocomplete.js');
-    this.addScripts('/assets/eusign.js');
-    this.addScripts('/assets/sign.processor.js');
   }
 
   private createForm() {
@@ -116,6 +125,8 @@ export class AddDossierPageComponent implements OnInit {
     if (this.dossierForm.valid && !this.hasFileSizeError) {
 
       this.requireSign = true;
+
+      window.scroll(0, 0);
     }
 
   }
@@ -135,7 +146,7 @@ export class AddDossierPageComponent implements OnInit {
     });
 
     Array.from(signedData).map((data) => {
-      return formData.append('attachtments', data.data, data.name);
+      return formData.append('signAttachtments', data.data, data.name);
     });
 
     formData.delete('agreeForData');
@@ -154,8 +165,8 @@ export class AddDossierPageComponent implements OnInit {
     });
   }
 
-  @HostListener('window:sign.readed', ['$event'])
-  onPaymentSuccess(event: CustomEvent): void {
+  @HostListener('window:sign.finished', ['$event'])
+  onSignFinished(event: CustomEvent): void {
     let signedData: SignedData[] = [];
 
     let details = <Array<SignedDataPart>>event.detail;
@@ -175,6 +186,11 @@ export class AddDossierPageComponent implements OnInit {
     console.log(signedData);
 
     this.postData(signedData);
+  }
+
+  @HostListener('window:sign.readed', ['$event'])
+  onSignReaded(event: CustomEvent): void {
+    window["signProcessor"].onSign();
   }
 
 }

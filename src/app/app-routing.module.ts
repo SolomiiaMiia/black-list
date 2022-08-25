@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ManageDossierComponent } from './admin/manage-dossier/manage-dossier.component';
 import { FeedComponent } from './feed/feed.component';
-import { FinishDossierComponent } from './finish-dossier/finish-dossier.component';
 import { AdminGuard } from './shared/services/admin-guard';
 
 
@@ -19,11 +18,6 @@ const routes: Routes = [
   {
     path: 'search',
     loadChildren: () => import('./search/search.module').then(m => m.SearchModule)
-  },
-  {
-    path: 'finish',
-    component: FinishDossierComponent,
-    loadChildren: () => import('./finish-dossier/finish-dossier.module').then(m => m.FinishDossierModule)
   },
   {
     path: 'feed',

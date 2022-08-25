@@ -6,7 +6,7 @@ namespace CookingApi.Domain.Entities
 {
   public class File : CoreEntity
   {
-    public enum FileType { AuthorPhoto, Attachtment }
+    public enum FileType { AuthorPhoto, Attachtment, SignAttachtment }
     public virtual string Name { get; set; }
     public virtual string Path { get; set; }
     public virtual FileType Type { get; set; }

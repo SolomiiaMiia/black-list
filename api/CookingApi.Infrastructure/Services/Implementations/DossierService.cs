@@ -69,6 +69,12 @@ namespace CookingApi.Infrastructure.Services.Implementations
         await _unitOfWork.FilesRepository.Add(file);
       }
 
+      foreach (var formFile in dto.SignAttachtments)
+      {
+        var file = await SaveFileAsync(pathToSave, formFile, File.FileType.SignAttachtment, id, null);
+        await _unitOfWork.FilesRepository.Add(file);
+      }
+
       await _unitOfWork.CommitAsync();
 
       return id;
@@ -103,6 +109,12 @@ namespace CookingApi.Infrastructure.Services.Implementations
       foreach (var formFile in dto.Attachtments)
       {
         var file = await SaveFileAsync(pathToSave, formFile, File.FileType.Attachtment, id, dossierDisproveId);
+        await _unitOfWork.FilesRepository.Add(file);
+      }
+
+      foreach (var formFile in dto.SignAttachtments)
+      {
+        var file = await SaveFileAsync(pathToSave, formFile, File.FileType.SignAttachtment, id, dossierDisproveId);
         await _unitOfWork.FilesRepository.Add(file);
       }
 
@@ -207,6 +219,13 @@ namespace CookingApi.Infrastructure.Services.Implementations
         dossierId = null;
       }
 
+      if(fileType == File.FileType.SignAttachtment)
+      {
+        var signedFilesPath = Path.Combine(dossierPath, "Signed");
+        if (!Directory.Exists(signedFilesPath)) Directory.CreateDirectory(signedFilesPath);
+        dossierPath = signedFilesPath;
+      }
+
       string fileName = fileType == File.FileType.AuthorPhoto ? "фото" + Path.GetExtension(file.FileName) : file.FileName;
       string filePath = Path.Combine(dossierPath, fileName);
       using (Stream fileStream = new FileStream(filePath, FileMode.Create))
@@ -287,6 +306,9 @@ namespace CookingApi.Infrastructure.Services.Implementations
       {
         if (!skipCheck && (!searchPredicate.Compile().Invoke(dossier))) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Досьє не опубліковане");
 
+        var allowedFileTypes = new List<File.FileType>() { File.FileType.Attachtment };
+        if (skipCheck) allowedFileTypes.Add(File.FileType.SignAttachtment);
+
         var dossierFiles = await _unitOfWork.FilesRepository.Query().Where(c => c.DossierId == id).ToListAsync();
 
         var appBaseUrl = MyHttpContext.AppBaseUrl;
@@ -327,7 +349,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
             Name = c.Name,
             Url = $"{appBaseUrl}/api/dossier/files/{c.Id}"
           }).FirstOrDefault(),
-          DossierFiles = dossierFiles.Where(c => c.Type == File.FileType.Attachtment).Select(c => new Models.DTO.ViewModels.File()
+          DossierFiles = dossierFiles.Where(c => allowedFileTypes.Contains(c.Type)).Select(c => new Models.DTO.ViewModels.File()
           {
             Name = c.Name,
             Url = $"{appBaseUrl}/api/dossier/files/{c.Id}"
@@ -393,11 +415,11 @@ namespace CookingApi.Infrastructure.Services.Implementations
       }
     }
 
-    public async Task<List<Models.DTO.ViewModels.Dossier>> GetFeed(int skip)
+    public async Task<List<Models.DTO.ViewModels.Dossier>> GetFeed(int skip, bool skipCheck = false)
     {
       var nextDossierId = await _unitOfWork.DossiersRepository.Query().Where(searchPredicate)
         .OrderByDescending(c => c.Date).Select(c => c.Id).Skip(skip).Take(1).FirstOrDefaultAsync();
-      if (nextDossierId != 0) return new List<Models.DTO.ViewModels.Dossier>() { await this.GetDossier(nextDossierId, true) };
+      if (nextDossierId != 0) return new List<Models.DTO.ViewModels.Dossier>() { await this.GetDossier(nextDossierId, skipCheck) };
       else return new List<Models.DTO.ViewModels.Dossier>();
     }
 
@@ -406,7 +428,9 @@ namespace CookingApi.Infrastructure.Services.Implementations
       var file = await _unitOfWork.FilesRepository.Query().Where(c => c.Id == id).FirstOrDefaultAsync();
       if (file is not null)
       {
-        if(!file.DossierId.HasValue && !file.DossierDisproveId.HasValue) return (file.Path, file.MimeType);// only for settings pictures
+        if(!skipCheck && file.Type == File.FileType.SignAttachtment) throw new CookingException(HttpStatusCode.NotFound, "Файл не знайдено");
+
+        if (!file.DossierId.HasValue && !file.DossierDisproveId.HasValue) return (file.Path, file.MimeType);// only for settings pictures
 
         if (!skipCheck)
         {

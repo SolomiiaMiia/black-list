@@ -1,5 +1,7 @@
+<script src="/assets/sign.processor.js" async></script>
+
 <section class="main-block">
-  <div class="container-fluid">
+  <div class="container-fluid" [style.display]="!this.requireSign ? 'block' : 'none'">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="listing-wrap">
@@ -7,6 +9,7 @@
           <div class="listing-title">
             <span class="ti-files"></span>
             <h4>Спростування досьє номер {{this.id}}</h4>
+            <h5>Подача спростування дозволяється лише особі, на котру подано досьє</h5>
           </div>
 
           <form [formGroup]="this.dossierForm">
@@ -15,7 +18,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label class="required-field">Текст, що спростовує відомості, зазначені в досьє</label>
-                  <textarea [froalaEditor] formControlName="text" class="text form-control" rows="3"></textarea>
+                  <textarea id="dossier-text" [froalaEditor] formControlName="text" class="text form-control" rows="3"></textarea>
                   <small *ngIf="this.submitted && !this.dossierForm.get('text')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
               </div>
@@ -23,53 +26,53 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label class="required-field">Підтверджуючі додатки до тексту (файли, фото та ін.)</label>
-                  <input (change)="onFileChange($event)" type="file" multiple formControlName="attachtments" class="form-control">
+                  <input id="dossier-files" (change)="onFileChange($event)" type="file" multiple formControlName="attachtments" class="form-control">
                   <small *ngIf="this.submitted && !this.dossierForm.get('attachtments')?.valid"
                          class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
-                         <small *ngIf="this.hasFileSizeError"
+                  <small *ngIf="this.hasFileSizeError"
                          class="form-text text-danger ml-2">Максимальний розмір файлу, що підримується - 10 MB</small>
                 </div>
               </div>
 
-                <div class="listing-title">
-                  <span class="ti-files"></span>
-                  <p>Контактні дані автора</p>
-                </div>
+              <div class="listing-title">
+                <span class="ti-files"></span>
+                <p>Контактні дані автора</p>
+              </div>
 
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="required-field">Автор</label>
-                    <input type="text" formControlName="author" class="form-control">
-                    <small *ngIf="this.submitted && !this.dossierForm.get('author')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
-                  </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="required-field">Автор</label>
+                  <input type="text" formControlName="author" class="form-control">
+                  <small *ngIf="this.submitted && !this.dossierForm.get('author')?.valid" class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>Контактний номер телефону</label>
-                    <input type="text" placeholder="+380xxxxxxxxx" formControlName="phone" class="form-control">
-                    <small *ngIf="this.submitted && !this.dossierForm.get('phone')?.valid" class="form-text text-danger ml-2">Не валідний номер телефону</small>
-                  </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Контактний номер телефону</label>
+                  <input type="text" placeholder="+380xxxxxxxxx" formControlName="phone" class="form-control">
+                  <small *ngIf="this.submitted && !this.dossierForm.get('phone')?.valid" class="form-text text-danger ml-2">Не валідний номер телефону</small>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>Адреса електронної пошти</label>
-                    <input placeholder="email@mail.com" type="text" formControlName="email" class="form-control">
-                    <small *ngIf="this.submitted && !this.dossierForm.get('email')?.valid" class="form-text text-danger ml-2">Не валідна адреса електронної пошти</small>
-                  </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Адреса електронної пошти</label>
+                  <input placeholder="email@mail.com" type="text" formControlName="email" class="form-control">
+                  <small *ngIf="this.submitted && !this.dossierForm.get('email')?.valid" class="form-text text-danger ml-2">Не валідна адреса електронної пошти</small>
                 </div>
-                <div class="col-md-6">
-                </div>
+              </div>
+              <div class="col-md-6">
+              </div>
 
-                <div class="col">
-                  <div class="col-md-12 responsive-wrap">
-                    <div class="md-checkbox" style="margin-top: 20px;">
-                      <input type="checkbox" id="agreeForData" formControlName="agreeForData" [checked]="this.dossierForm.get('agreeForData')?.value">
-                      <label for="agreeForData" class="required-field">Згода на обробку персональних даних</label>
-                      <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
-                      <p *ngIf="this.submitted && !this.dossierForm.get('agreeForData')?.valid" class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
-                    </div>
+              <div class="col">
+                <div class="col-md-12 responsive-wrap">
+                  <div class="md-checkbox" style="margin-top: 20px;">
+                    <input type="checkbox" id="agreeForData" formControlName="agreeForData" [checked]="this.dossierForm.get('agreeForData')?.value">
+                    <label for="agreeForData" class="required-field">Згода на обробку персональних даних</label>
+                    <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
+                    <p *ngIf="this.submitted && !this.dossierForm.get('agreeForData')?.valid" class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
                   </div>
                 </div>
+              </div>
 
               <div class="row">
                 <div class="col-md-12">
@@ -80,6 +83,16 @@
               </div>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" [style.display]="this.requireSign ? 'block' : 'none'">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="listing-wrap">
+          <div id="sign-widget-parent" style="width:700px;height:500px">
+          </div>
         </div>
       </div>
     </div>

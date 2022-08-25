@@ -12,6 +12,7 @@ namespace CookingApi.Infrastructure.Models.DTO.DossierDisprove
     public string? Email { get; set; }
 
     public List<IFormFile> Attachtments { get; set; }
+    public List<IFormFile> SignAttachtments { get; set; }
 
     public void Validate()
     {

@@ -17,7 +17,7 @@ var signProcessor = {
   euSign: null,
 
   getAsByteArray: async function (file) {
-    return new Uint8Array(await signProcessor.readFile(file))
+    return new Uint8Array(await signProcessor.readFile(file));
   },
 
   readFile: function (file) {
@@ -34,7 +34,41 @@ var signProcessor = {
     })
   },
 
+  isInitialized: false,
+
+  ReadPK: function () {
+      signProcessor.isInitialized = true;
+      console.log('PostInit');
+      signProcessor.euSign.ReadPrivateKey()
+        .then(function (data) {
+
+          var event = new CustomEvent("sign.readed",
+            {
+              detail: data[0].infoEx,
+              bubbles: true,
+              cancelable: true
+            }
+          );
+
+          window.dispatchEvent(event);
+        })
+        .catch(function (e) {
+          console.error('Виникла помилка при зчитуванні ос. ключа. ' +
+            'Опис помилки: ' + (e.message || e));
+        });
+  },
+
   Init: function () {
+
+    console.log('Init has been called');
+
+    if (signProcessor.isInitialized || signProcessor.euSign != null) {
+      signProcessor.isInitialized = false;
+      try {
+        signProcessor.euSign.destroy();
+      } catch { };
+      signProcessor.euSign = null;
+    }
     /*
      Створення об'єкту типу EndUser для взаємодії з iframe,
      який завантажує сторінку SignWidget
@@ -46,18 +80,7 @@ var signProcessor = {
       EndUser.FormType.ReadPKey
     );
 
-    window.onload = function () {
-      console.log('PostInit');
-      signProcessor.euSign.ReadPrivateKey()
-        .then(function () {
-          console.log('read');
-          signProcessor.onSign();
-        })
-        .catch(function (e) {
-          console.error('Виникла помилка при зчитуванні ос. ключа. ' +
-            'Опис помилки: ' + (e.message || e));
-        });
-    };
+    
   },
 
 
@@ -82,7 +105,7 @@ var signProcessor = {
       asBase64String, signAlgo, null, signType)
       .then(function (sign) {
 
-        var event = new CustomEvent("sign.readed",
+        var event = new CustomEvent("sign.finished",
           {
             detail: sign,
             bubbles: true,
@@ -100,25 +123,6 @@ var signProcessor = {
       });
   }
 };
-
-function ready(callbackFunc) {
-  if (document.readyState !== 'loading') {
-    // Document is already ready, call the callback directly
-    callbackFunc();
-  } else if (document.addEventListener) {
-    // All modern browsers to register DOMContentLoaded
-    document.addEventListener('DOMContentLoaded', callbackFunc);
-  } else {
-    // Old IE browsers
-    document.attachEvent('onreadystatechange', function () {
-      if (document.readyState === 'complete') {
-        callbackFunc();
-      }
-    });
-  }
-}
-
-ready(signProcessor.Init);
 
 
 

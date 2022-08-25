@@ -5,6 +5,10 @@ import { AppModule } from './app/app.module';
 
 if (window['__env'] && window['__env']['production']) {
   enableProdMode();
+  // check if window exists, if you render backend window will not be available 
+  if (window) {
+    window.console.log = function () { };
+  }
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)

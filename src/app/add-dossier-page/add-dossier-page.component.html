@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="https://api.visicom.ua/apps/visicom-autocomplete.min.css">
+<script src="/assets/sign.processor.js" async></script>
 
 <section class="main-block">
-  <div class="container-fluid" [style.display]="!this.requireSign ? 'block' : 'none'" >
+  <div class="container-fluid" [style.display]="!this.requireSign ? 'block' : 'none'">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="listing-wrap">
@@ -93,9 +94,9 @@
                   <input id="dossier-files" (change)="onFileChange($event,'files')" type="file" multiple formControlName="attachtments"
                          class="form-control">
                   <small *ngIf="this.submitted && !this.dossierForm.get('attachtments')?.valid"
-                    class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
-                    <small *ngIf="this.hasFileSizeError"
-                    class="form-text text-danger ml-2">Максимальний розмір файлу, що підримується - 10 MB</small>
+                         class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                  <small *ngIf="this.hasFileSizeError"
+                         class="form-text text-danger ml-2">Максимальний розмір файлу, що підримується - 10 MB</small>
                 </div>
               </div>
 
@@ -181,13 +182,6 @@
         <div class="listing-wrap">
           <div id="sign-widget-parent" style="width:700px;height:500px">
           </div>
-
-          <div class="btn-wrap btn-wrap2">
-            <button type="submit" (click)="submit()" class="btn btn-simple">
-              Надіслати
-            </button>
-          </div>
-
         </div>
       </div>
     </div>

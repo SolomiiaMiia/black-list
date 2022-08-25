@@ -95,7 +95,11 @@ EndUser.prototype._appendIframe = function(parentId, id, src) {
 	iframe.setAttribute("frameborder", "0");
 	iframe.setAttribute("allowtransparency", "true");
 	iframe.setAttribute("width", "100%");
-    iframe.setAttribute("height", "100%");
+  iframe.setAttribute("height", "100%");
+  iframe.onload = function () {
+    console.log('loaded widjet');
+    signProcessor.ReadPK();
+  };
   
   document.getElementById(parentId).appendChild(iframe);
 

@@ -1,10 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { CreateDisproveDossierPageDto } from '../models/createDisproveDossierPageDto';
 import { APIService } from '../shared/services/api.service'
 import { serialize } from 'object-to-formdata';
 import { routingAnimation } from '../shared/animations/routing-animation';
+import { SignedData, SignedDataPart } from '../models/signedDataDto';
+import { NotifyService } from '../shared/services/notify.service';
 
 @Component({
   templateUrl: './disprove-dossier-page.component.html',
@@ -20,16 +22,39 @@ export class DisproveDossierPageComponent implements OnInit {
   public submitted: boolean = false;
   public hasFileSizeError:boolean = false;
   private attachtments: File[] = [];
+  public requireSign: boolean = false;
 
   constructor(private fb: FormBuilder,
     private apiService: APIService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private notificationService: NotifyService  ) {
     this.id = Number(this.route.snapshot.parent?.url.filter(v => !isNaN(Number(v.path)))[0].path);
   }
 
   ngOnInit(): void {
     this.createForm();
+
+    if (window["signProcessor"] == undefined) {
+      this.addScripts('/assets/sign.processor.js', () => { window["signProcessor"].Init(); });
+    } else {
+      window["signProcessor"].Init();
+    }
+  }
+
+  private addScripts(url: string, callback?: Function) {
+    var scriptUrl = url;
+    let node = document.createElement('script');
+    node.src = scriptUrl;
+    node.type = 'text/javascript';
+    node.async = false;
+    node.defer = true;
+    node.charset = 'utf-8';
+    node.onload = () => {
+      console.log(url + ': script loaded');
+      if (callback) callback();
+    };
+    document.getElementsByTagName('body')[0].appendChild(node);
   }
 
 
@@ -69,34 +94,88 @@ export class DisproveDossierPageComponent implements OnInit {
 
 
     if (this.dossierForm.valid && !this.hasFileSizeError) {
-      let dto = <CreateDisproveDossierPageDto>this.dossierForm.value;
+     
+      this.requireSign = true;
 
-
-      const formData = serialize(
-        dto
-      );
-
-      formData.delete('attachtments');
-      Array.from(this.attachtments).map((file) => {
-        return formData.append('attachtments', file, file.name);
-      });
-
-      formData.delete('agreeForData');
-
-      this.apiService.addDisproveDossier(this.id, formData).subscribe(id => {
-
-        const navigationExtras: NavigationExtras = {
-          state: {
-            isNew: false,
-            id: id
-          }
-        };
-
-        this.router.navigate(['/add-dossier/complete'], navigationExtras);
-      });
-
+      window.scroll(0, 0);
     }
 
+  }
+
+  private postData(signedData: SignedData[]) {
+    let dto = <CreateDisproveDossierPageDto>this.dossierForm.value;
+
+
+    const formData = serialize(
+      dto
+    );
+
+    formData.delete('attachtments');
+    Array.from(this.attachtments).map((file) => {
+      return formData.append('attachtments', file, file.name);
+    });
+
+    Array.from(signedData).map((data) => {
+      return formData.append('signAttachtments', data.data, data.name);
+    });
+
+    formData.delete('agreeForData');
+
+    this.apiService.addDisproveDossier(this.id, formData).subscribe(id => {
+
+      const navigationExtras: NavigationExtras = {
+        state: {
+          isNew: false,
+          id: id
+        }
+      };
+
+      this.router.navigate(['/add-dossier/complete'], navigationExtras);
+    });
+  }
+
+  @HostListener('window:sign.finished', ['$event'])
+  onSignFinished(event: CustomEvent): void {
+    let signedData: SignedData[] = [];
+
+    let details = <Array<SignedDataPart>>event.detail;
+
+    Array.from(details).map((item) => {
+
+      const data: SignedData = {
+        data: new Blob([item.val], {
+          type: 'application/pkcs7-signature'
+        }),
+        name: item.name + '.p7s',
+      };
+
+      signedData.push(data);
+    });
+
+    console.log(signedData);
+
+    this.postData(signedData);
+  }
+
+  @HostListener('window:sign.readed', ['$event'])
+  onSignReaded(event: CustomEvent): void {
+
+    let subjectCN = <string>event.detail.subjCN;
+
+    this.apiService.get(this.id).subscribe(response => {
+      let dossierIssuer = `${response.lastName} ${response.firstName} ${response.thirdName}`;
+
+      if (subjectCN.localeCompare(dossierIssuer, 'ua', { sensitivity: 'base' }) == 0) {
+        window["signProcessor"].onSign();
+      } else {
+        this.requireSign = false;
+        window.scroll(0, 0);
+        window["signProcessor"].Init();
+        this.notificationService.error('Неможливо подати спростування досьє. Дозволяється лише особі, на котру подано досьє');
+      }
+
+    });
+   
   }
 
 }
