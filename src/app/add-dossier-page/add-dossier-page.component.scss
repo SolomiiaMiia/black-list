@@ -416,3 +416,18 @@ flex-direction: row;
   display: none !important
 }
 
+//  Дія 
+
+#mainBlock .Block {
+  min-height: 63%;
+}
+
+#leftBlock .Block {
+  background-color: #4a4b4b !important;
+  color: #f5f5f5;
+}
+
+.MenuItem{
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}
