@@ -14,9 +14,8 @@ using Microsoft.AspNetCore.HttpOverrides;
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
 {
   ContentRootPath = Directory.GetCurrentDirectory(),
-  WebRootPath = "wwwroot"
+  WebRootPath = "wwwroot",
 });
-
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
@@ -29,6 +28,11 @@ logger.LogTrace("ConnectionStrings:name ="+ builder.Configuration.GetSection("Co
 logger.LogTrace("ConnectionStrings:local =" + builder.Configuration.GetSection("ConnectionStrings:local").Value);
 logger.LogTrace("Kestrel:Urls =" + builder.Configuration.GetSection("Kestrel:Urls").Value);
 
+
+builder.WebHost.UseKestrel(options =>
+{
+  options.Limits.MaxRequestBodySize = long.MaxValue;
+});
 builder.WebHost.UseUrls(builder.Configuration.GetSection("Kestrel:Urls").Value);
 
 builder.Services.AddCors(options =>

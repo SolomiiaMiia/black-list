@@ -27,6 +27,11 @@ namespace CookingApi.Infrastructure.Models.DTO.Dossier
       if (string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(ThirdName) || string.IsNullOrWhiteSpace(Address)
         || string.IsNullOrWhiteSpace(Text) || (IsAnonymous ? false : string.IsNullOrWhiteSpace(Author)))
         throw new CookingException(HttpStatusCode.UnprocessableEntity, "Не валідні дані");
+
+      if (this.Attachtments != null && this.Attachtments.Any(c => c.Length > 1024 * 1024 * 10))
+      {
+        throw new CookingException(HttpStatusCode.RequestEntityTooLarge, "Максимальний розмір одного файлу - 10МB");
+      }
     }
   }
 }
