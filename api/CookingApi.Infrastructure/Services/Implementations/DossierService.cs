@@ -69,10 +69,13 @@ namespace CookingApi.Infrastructure.Services.Implementations
         await _unitOfWork.FilesRepository.Add(file);
       }
 
-      foreach (var formFile in dto.SignAttachtments)
+      if (!dto.IsAnonymous && dto.SignAttachtments is not null)
       {
-        var file = await SaveFileAsync(pathToSave, formFile, File.FileType.SignAttachtment, id, null);
-        await _unitOfWork.FilesRepository.Add(file);
+        foreach (var formFile in dto.SignAttachtments)
+        {
+          var file = await SaveFileAsync(pathToSave, formFile, File.FileType.SignAttachtment, id, null);
+          await _unitOfWork.FilesRepository.Add(file);
+        }
       }
 
       await _unitOfWork.CommitAsync();
@@ -219,7 +222,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
         dossierId = null;
       }
 
-      if(fileType == File.FileType.SignAttachtment)
+      if (fileType == File.FileType.SignAttachtment)
       {
         var signedFilesPath = Path.Combine(dossierPath, "Signed");
         if (!Directory.Exists(signedFilesPath)) Directory.CreateDirectory(signedFilesPath);
@@ -273,7 +276,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
         .Where(c => c.Id == id).FirstOrDefaultAsync();
       if (dossier is not null)
       {
-        if (dossier.DossierDisprove is null || dossier.Status == Dossier.DossierStatus.New ) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо відхилити спростування досьє");
+        if (dossier.DossierDisprove is null || dossier.Status == Dossier.DossierStatus.New) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Неможливо відхилити спростування досьє");
 
         dossier.Status = Dossier.DossierStatus.HasDisprove;
         dossier.Type = Dossier.DossierType.DisproveNew;
@@ -428,7 +431,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
       var file = await _unitOfWork.FilesRepository.Query().Where(c => c.Id == id).FirstOrDefaultAsync();
       if (file is not null)
       {
-        if(!skipCheck && file.Type == File.FileType.SignAttachtment) throw new CookingException(HttpStatusCode.NotFound, "Файл не знайдено");
+        if (!skipCheck && file.Type == File.FileType.SignAttachtment) throw new CookingException(HttpStatusCode.NotFound, "Файл не знайдено");
 
         if (!file.DossierId.HasValue && !file.DossierDisproveId.HasValue) return (file.Path, file.MimeType);// only for settings pictures
 

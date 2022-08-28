@@ -20,7 +20,7 @@ namespace CookingApi.Infrastructure.Models.DTO.Dossier
 
     public IFormFile? AuthorPhoto { get; set; }
     public List<IFormFile> Attachtments { get; set; }
-    public List<IFormFile> SignAttachtments { get; set; }
+    public List<IFormFile>? SignAttachtments { get; set; }
 
     public void Validate()
     {
