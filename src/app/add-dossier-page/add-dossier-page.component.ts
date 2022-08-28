@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, Input, Inject, HostListener} from '@angular/core';
+import { Component, OnInit, Input, Inject, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AddDossierPageDto } from '../models/addDossierPageDto';
@@ -23,7 +23,7 @@ export class AddDossierPageComponent implements OnInit {
 
   public submitted: boolean = false;
   public isAnonymous: boolean = false;
-  public hasFileSizeError:boolean = false;
+  public hasFileSizeError: boolean = false;
   private photo: any;
   private attachtments: File[] = [];
   public requireSign: boolean = false;
@@ -39,10 +39,12 @@ export class AddDossierPageComponent implements OnInit {
     this.isAnonymous = this.route.snapshot.parent?.url.filter(v => v.path == 'anonymous').length == 1;
     this.createForm();
 
-    if (window["signProcessor"] == undefined) {
-      this.addScripts('/assets/sign.processor.js', () => { window["signProcessor"].Init(); });
-    } else {
-      window["signProcessor"].Init();
+    if (!this.isAnonymous) {
+      if (window["signProcessor"] == undefined) {
+        this.addScripts('/assets/sign.processor.js', () => { window["signProcessor"].Init(); });
+      } else {
+        window["signProcessor"].Init();
+      }
     }
   }
 
@@ -56,7 +58,7 @@ export class AddDossierPageComponent implements OnInit {
     node.defer = true;
     node.charset = 'utf-8';
     node.onload = () => {
-      console.log(url+': script loaded');
+      console.log(url + ': script loaded');
       if (callback) callback();
     };
     document.getElementsByTagName('body')[0].appendChild(node);
@@ -109,10 +111,10 @@ export class AddDossierPageComponent implements OnInit {
     else {
       this.attachtments = [];
       for (var i = 0; i < event.target.files.length; i++) {
-        if(event.target.files[i].size > 1024 * 1024 * 10){
+        if (event.target.files[i].size > 1024 * 1024 * 10) {
           this.hasFileSizeError = true;
         }
-        else{
+        else {
           this.attachtments.push(event.target.files[i]);
           this.hasFileSizeError = false;
         }
@@ -127,14 +129,21 @@ export class AddDossierPageComponent implements OnInit {
 
     if (this.dossierForm.valid && !this.hasFileSizeError) {
 
-      this.requireSign = true;
+      if (this.isAnonymous) {
 
-      window.scroll(0, 0);
+        this.postData();
+
+      } else {
+
+        this.requireSign = true;
+
+        window.scroll(0, 0);
+      }
     }
 
   }
 
-  private postData(signedData: SignedData[]) {
+  private postData(signedData?: SignedData[]) {
     let dto = <AddDossierPageDto>this.dossierForm.value;
     dto.isAnonymous = this.isAnonymous;
 
@@ -148,10 +157,11 @@ export class AddDossierPageComponent implements OnInit {
       return formData.append('attachtments', file, file.name);
     });
 
-    Array.from(signedData).map((data) => {
-      return formData.append('signAttachtments', data.data, data.name);
-    });
-
+    if (signedData != undefined) {
+      Array.from(signedData).map((data) => {
+        return formData.append('signAttachtments', data.data, data.name);
+      });
+    }
     formData.delete('agreeForData');
     formData.delete('agreeForContract');
 

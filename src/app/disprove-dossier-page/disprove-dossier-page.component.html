@@ -1,6 +1,6 @@
 <script src="/assets/sign.processor.js" async></script>
 
-<section class="main-block">
+<section class="main-block" [style.background-color]="this.requireSign ? 'white' : 'black'">
   <div class="container-fluid" [style.display]="!this.requireSign ? 'block' : 'none'">
     <div class="row justify-content-center">
       <div class="col-md-8">
