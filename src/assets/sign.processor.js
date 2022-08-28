@@ -94,7 +94,9 @@ var signProcessor = {
       data.push({ name: item.name, val: fileData });
     }
 
-    data.push({ name: 'Текст досьє.txt', val: document.getElementById('dossier-text').value });
+    let name = `Текст досьє ${document.querySelectorAll('[formControlName="lastName"]')[0].value} ${document.querySelectorAll('[formControlName="firstName"]')[0].value} ${document.querySelectorAll('[formControlName="thirdName"]')[0].value}.txt`;
+
+    data.push({ name: name, val: document.getElementsByClassName('fr-element')[0].innerText });
 
     var external = false;
     var asBase64String = true;
