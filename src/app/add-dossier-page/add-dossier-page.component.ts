@@ -110,9 +110,11 @@ export class AddDossierPageComponent implements OnInit {
     if (source === 'photo') this.photo = event.target.files[0];
     else {
       this.attachtments = [];
+      this.hasFileSizeError = false;
       for (var i = 0; i < event.target.files.length; i++) {
         if (event.target.files[i].size > 1024 * 1024 * 10) {
           this.hasFileSizeError = true;
+          break;
         }
         else {
           this.attachtments.push(event.target.files[i]);
