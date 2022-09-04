@@ -118,6 +118,12 @@ select.form-control:not([size]):not([multiple]) {
   color: red;
 }
 
+.info{
+  color: #adadad;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
 .md-checkbox label:before,
 .md-checkbox label:after {
   content: "";
