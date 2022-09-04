@@ -60,7 +60,7 @@ export class DisproveDossierPageComponent implements OnInit {
 
   private createForm() {
     this.dossierForm = this.fb.group({
-      attachtments: this.fb.control('', { validators: [Validators.required] }), //can be multiple attachtments
+      attachtments: this.fb.control(''), //can be multiple attachtments
       text: this.fb.control('', { validators: [Validators.required] }),
       author: this.fb.control('', { validators: [Validators.required] }),
       phone: this.fb.control('', { validators: Validators.pattern(new RegExp('^\\+?3?8?(0[5-9][0-9]\\d{7})$')) }),

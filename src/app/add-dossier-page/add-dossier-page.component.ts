@@ -78,7 +78,7 @@ export class AddDossierPageComponent implements OnInit {
       position: this.fb.control(''),
       placeOfWork: this.fb.control(''),
       address: this.fb.control('', { validators: [Validators.required] }),
-      attachtments: this.fb.control('', { validators: [Validators.required] }), //can be multiple attachtments
+      attachtments: this.fb.control(''), //can be multiple attachtments
       text: this.fb.control('', { validators: [Validators.required] }),
     });
 
