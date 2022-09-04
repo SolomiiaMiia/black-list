@@ -63,10 +63,13 @@ namespace CookingApi.Infrastructure.Services.Implementations
         await _unitOfWork.FilesRepository.Add(file);
       }
 
-      foreach (var formFile in dto.Attachtments)
+      if (dto.Attachtments is not null)
       {
-        var file = await SaveFileAsync(pathToSave, formFile, File.FileType.Attachtment, id, null);
-        await _unitOfWork.FilesRepository.Add(file);
+        foreach (var formFile in dto.Attachtments)
+        {
+          var file = await SaveFileAsync(pathToSave, formFile, File.FileType.Attachtment, id, null);
+          await _unitOfWork.FilesRepository.Add(file);
+        }
       }
 
       if (!dto.IsAnonymous && dto.SignAttachtments is not null)
@@ -109,10 +112,13 @@ namespace CookingApi.Infrastructure.Services.Implementations
       await _unitOfWork.DossiersRepository.Update(dossier);
 
       string pathToSave = Path.Combine(_webRootPath, "Dossiers");
-      foreach (var formFile in dto.Attachtments)
+      if (dto.Attachtments is not null)
       {
-        var file = await SaveFileAsync(pathToSave, formFile, File.FileType.Attachtment, id, dossierDisproveId);
-        await _unitOfWork.FilesRepository.Add(file);
+        foreach (var formFile in dto.Attachtments)
+        {
+          var file = await SaveFileAsync(pathToSave, formFile, File.FileType.Attachtment, id, dossierDisproveId);
+          await _unitOfWork.FilesRepository.Add(file);
+        }
       }
 
       foreach (var formFile in dto.SignAttachtments)

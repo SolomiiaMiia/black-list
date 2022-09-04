@@ -25,7 +25,7 @@
 
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="required-field">Підтверджуючі додатки до тексту (файли, фото та ін.)</label>
+                  <label>Підтверджуючі додатки до тексту (файли, фото та ін.)</label>
                   <input id="dossier-files" (change)="onFileChange($event)" type="file" multiple formControlName="attachtments" class="form-control">
                   <small *ngIf="this.hasFileSizeError"
                          class="form-text text-danger ml-2">Максимальний розмір файлу, що підримується - 10 MB</small>
