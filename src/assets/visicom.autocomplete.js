@@ -27,6 +27,7 @@ ready(function () {
     excludeCategories: [],	  	     // exclude features with this categories
     maxCharsInSuggest: 55,                   // max chars to display in suggest
     lang: 'uk',                          // language for searching
+    country:'UA',
     onSuggestSelected: (suggest) => { },//document.getElementById("address").value = suggest.html,
   });
   let input = document.getElementById("visicom-autocomplete").getElementsByTagName('input')[0];
