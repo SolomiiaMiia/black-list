@@ -20,7 +20,10 @@
   }
 
 
-
+  .info::before {
+    content: '*';
+    color: red;
+  }
   label {
     color: #adadad;
     margin-bottom: .5rem;
