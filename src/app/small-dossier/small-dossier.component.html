@@ -3,12 +3,12 @@
     <div class="portfolio-item-wrap">
       <ng-container *ngIf="dossier.type !== DossierTypes.New && dossier.type !== DossierTypes.Declined">
         <a [routerLink]="['/dossier', dossier.id]"><img class="card-img-top img-hover"
-            [src]="dossier.photo? dossier.photo.url: 'assets/images/question.png'" alt="Card image cap"></a>
+            [src]="dossier.photo? dossier.photo.url: 'assets/images/question1.png'" alt="Card image cap"></a>
       </ng-container>
       <ng-container *ngIf="dossier.type === DossierTypes.New || dossier.type === DossierTypes.Declined">
         <a style="pointer-events:none">
           <img class="card-img-top"
-            [src]="dossier.photo? this.isAdmin? dossier.photo.url+'?accessToken='+this.adminService.getToken():dossier.photo.url : 'assets/images/question.png'" alt="Card image cap" layout-fill>
+            [src]="dossier.photo? this.isAdmin? dossier.photo.url+'?accessToken='+this.adminService.getToken():dossier.photo.url : 'assets/images/question3.png'" alt="Card image cap" layout-fill>
           </a>
       </ng-container>
       <div class="portfolio-item-inner ">
