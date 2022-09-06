@@ -222,3 +222,7 @@ li {
   align-content: flex-start;
   justify-content: center;
 }
+
+::ng-deep p[data-f-id="pbf"] {
+  display: none;
+}
