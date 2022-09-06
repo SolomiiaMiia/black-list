@@ -85,7 +85,7 @@ var signProcessor = {
 
 
 
-  onSign: async function () {
+  onSign: async function (dossierName) {
 
     var data = [];
 
@@ -94,9 +94,7 @@ var signProcessor = {
       data.push({ name: item.name, val: fileData });
     }
 
-    let name = `Текст досьє ${document.querySelectorAll('[formControlName="lastName"]')[0].value} ${document.querySelectorAll('[formControlName="firstName"]')[0].value} ${document.querySelectorAll('[formControlName="thirdName"]')[0].value}.txt`;
-
-    data.push({ name: name, val: document.getElementsByClassName('fr-element')[0].innerText });
+    data.push({ name: dossierName, val: document.getElementsByClassName('fr-element')[0].innerText });
 
     var external = false;
     var asBase64String = true;

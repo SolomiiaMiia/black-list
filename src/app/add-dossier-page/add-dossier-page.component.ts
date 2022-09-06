@@ -205,7 +205,9 @@ export class AddDossierPageComponent implements OnInit {
 
   @HostListener('window:sign.readed', ['$event'])
   onSignReaded(event: CustomEvent): void {
-    window["signProcessor"].onSign();
+    let dto = <AddDossierPageDto>this.dossierForm.value;
+    let dossierName = `${dto.lastName} ${dto.firstName} ${dto.thirdName}.txt`;
+    window["signProcessor"].onSign(dossierName);
   }
 
 }

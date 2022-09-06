@@ -346,7 +346,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
             Text = dossier.DossierDisprove.Text,
             Email = dossier.DossierDisprove.Email,
             Phone = dossier.DossierDisprove.Phone,
-            DossierFiles = await _unitOfWork.FilesRepository.Query().Where(c => c.DossierDisproveId == dossier.DossierDisprove.Id)
+            DossierFiles = await _unitOfWork.FilesRepository.Query().Where(c => allowedFileTypes.Contains(c.Type) && c.DossierDisproveId == dossier.DossierDisprove.Id)
             .Select(c => new Models.DTO.ViewModels.File()
             {
               Name = c.Name,
@@ -468,7 +468,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
           break;
         case (Dossier.DossierType.Published, true):
         case (Dossier.DossierType.Published, false):
-          dossierQuery = dossierQuery.Where(c => c.Type == Dossier.DossierType.Published || c.Type == Dossier.DossierType.DisprovePublished);
+          dossierQuery = dossierQuery.Where(c => c.Type == Dossier.DossierType.Published || c.Type == Dossier.DossierType.DisprovePublished || c.Type == Dossier.DossierType.DisproveNew);
           break;
         case (Dossier.DossierType.Declined, true):
           dossierQuery = dossierQuery.Where(c => c.Type == Dossier.DossierType.Declined);

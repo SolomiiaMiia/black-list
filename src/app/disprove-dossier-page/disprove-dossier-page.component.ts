@@ -168,7 +168,7 @@ export class DisproveDossierPageComponent implements OnInit {
       let dossierIssuer = `${response.lastName} ${response.firstName} ${response.thirdName}`;
 
       if (subjectCN.localeCompare(dossierIssuer, 'ua', { sensitivity: 'base' }) == 0) {
-        window["signProcessor"].onSign();
+        window["signProcessor"].onSign(dossierIssuer+'.txt');
       } else {
         this.requireSign = false;
         window.scroll(0, 0);
