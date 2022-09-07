@@ -432,3 +432,7 @@ padding: 15px 0;
 ::ng-deep .fr-wrapper div a:first-child {
   display: none !important
 }
+
+::ng-deep p[data-f-id="pbf"] {
+  display: none;
+}
