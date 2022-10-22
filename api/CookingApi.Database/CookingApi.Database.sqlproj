@@ -65,9 +65,9 @@
     <Build Include="Tables\Dossier.sql" />
     <Build Include="Tables\DossierDisprove.sql" />
     <Build Include="Tables\File.sql" />
+    <Build Include="Tables\RelatedDossier.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PublishProfiles\Local_CookingApi.Database.publish.xml" />
     <None Include="PublishProfiles\BlackList.Database.publish.xml" />
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,8 @@ namespace CookingApi.Infrastructure.Models.DTO.Dossier
 
     public IFormFile? AuthorPhoto { get; set; }
 
+    public string? Tags { get; set; }
+
     public void Validate()
     {
       if (string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(ThirdName) || string.IsNullOrWhiteSpace(Address))

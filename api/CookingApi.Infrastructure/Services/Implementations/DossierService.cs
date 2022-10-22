@@ -44,7 +44,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
         Type = Dossier.DossierType.New,
         Author = "BlackList",
         Position = dto.Position,
-        PlaceOfWork = dto.PlaceOfWork
+        PlaceOfWork = dto.PlaceOfWork,
+        Tags = dto.Tags
       };
 
       if (!dossier.IsAnonymous)
@@ -339,6 +340,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
           Status = dossier.Status,
           Type = dossier.Type,
           Text = dossier.Text,
+          Tags = string.IsNullOrEmpty(dossier.Tags) ? null : dossier.Tags.Split('#', StringSplitOptions.RemoveEmptyEntries).Select(c => "#" + c).ToArray(),
           DisproveDossier = dossier.DossierDisprove != null ? new Models.DTO.ViewModels.DossierDisprove()
           {
             Author = dossier.DossierDisprove.Author,
@@ -373,7 +375,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
       }
     }
 
-    public async Task EditDossier(int id, DossierEditDto dto, string action)
+    public async Task EditDossier(int id, DossierEditDto dto, string action, bool isSuperAdmin)
     {
       var dossier = await _unitOfWork.DossiersRepository.Get(id);
       if (dossier is not null)
@@ -384,6 +386,11 @@ namespace CookingApi.Infrastructure.Services.Implementations
         dossier.Address = dto.Address;
         dossier.Position = dto.Position;
         dossier.PlaceOfWork = dto.PlaceOfWork;
+
+        if (isSuperAdmin)
+        {
+          dossier.Tags = dto.Tags;
+        }
 
         switch (action)
         {

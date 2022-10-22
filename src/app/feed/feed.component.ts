@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { DossierDto } from '../models/dossierDto';
 import { routingAnimation } from '../shared/animations/routing-animation';
-import { APIService } from '../shared/services/api.service'
+import { APIService } from '../shared/services/api.service';
 
 
 @Component({
@@ -16,8 +15,7 @@ export class FeedComponent implements OnInit {
 
   public feedEnabled: boolean = true;
 
-  constructor(private route: ActivatedRoute,
-    private apiService: APIService) {
+  constructor(private apiService: APIService) {
   }
 
   public searchResults: DossierDto[] = [];

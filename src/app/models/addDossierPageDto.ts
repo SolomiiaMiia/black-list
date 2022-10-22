@@ -12,4 +12,5 @@ export class AddDossierPageDto {
   isAnonymous: boolean = false;
   authorPhoto: any;
   attachtments: any;
+  tags: string | null = '';
 }

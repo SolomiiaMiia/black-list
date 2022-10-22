@@ -1,12 +1,12 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, Input, Inject, HostListener } from '@angular/core';
+import { Component, HostListener, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { AddDossierPageDto } from '../models/addDossierPageDto';
-import { APIService } from '../shared/services/api.service'
 import { serialize } from 'object-to-formdata';
-import { routingAnimation } from '../shared/animations/routing-animation';
+import { AddDossierPageDto } from '../models/addDossierPageDto';
 import { SignedData, SignedDataPart } from '../models/signedDataDto';
+import { routingAnimation } from '../shared/animations/routing-animation';
+import { APIService } from '../shared/services/api.service';
 
 
 @Component({
@@ -80,6 +80,7 @@ export class AddDossierPageComponent implements OnInit {
       address: this.fb.control('', { validators: [Validators.required] }),
       attachtments: this.fb.control(''), //can be multiple attachtments
       text: this.fb.control('', { validators: [Validators.required] }),
+      tags: [[], []],
     });
 
     if (!this.isAnonymous) {
@@ -125,8 +126,12 @@ export class AddDossierPageComponent implements OnInit {
   }
 
   public submit() {
-    this.submitted = true;
+    debugger
+    let dto = <AddDossierPageDto>this.dossierForm.value;
+    var tags = (<Array<string>><unknown>dto.tags)?.join('');
+    dto.tags = tags == '' ? null : tags;
 
+    this.submitted = true;
     this.dossierForm.get('address')?.setValue(this.getAddressInput()?.value);
 
     if (this.dossierForm.valid && !this.hasFileSizeError) {
@@ -148,6 +153,10 @@ export class AddDossierPageComponent implements OnInit {
   private postData(signedData?: SignedData[]) {
     let dto = <AddDossierPageDto>this.dossierForm.value;
     dto.isAnonymous = this.isAnonymous;
+    var tags = (<Array<string>>this.dossierForm.get('tags')?.value).join('');
+    if (tags != '') {
+      dto.tags = tags;
+    }
 
     const formData = serialize(
       dto
@@ -209,5 +218,4 @@ export class AddDossierPageComponent implements OnInit {
     let dossierName = `${dto.lastName} ${dto.firstName} ${dto.thirdName}.txt`;
     window["signProcessor"].onSign(dossierName);
   }
-
 }

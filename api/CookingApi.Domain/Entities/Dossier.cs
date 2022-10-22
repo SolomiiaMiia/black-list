@@ -28,12 +28,11 @@ namespace CookingApi.Domain.Entities
     public virtual string Author { get; set; }
     public virtual string? Phone { get; set; }
     public virtual string? Email { get; set; }
-
     public virtual DossierStatus Status { get; set; }
     public virtual DossierType Type { get; set; }
-
-    // public virtual int? DisproveDossierId { get; set; }
     public virtual DossierDisprove? DossierDisprove { get; set; }
+
+    public virtual string? Tags { get; set; }
   }
 
   public class DossierMap : ClassMapping<Dossier>
@@ -56,7 +55,7 @@ namespace CookingApi.Domain.Entities
       Property(x => x.Email);
       Property(x => x.Status, attr => attr.Type<EnumStringType<Dossier.DossierStatus>>());
       Property(x => x.Type, attr => attr.Type<EnumStringType<Dossier.DossierType>>());
-
+      Property(x => x.Tags);
 
       ManyToOne(x => x.DossierDisprove, map =>
       {

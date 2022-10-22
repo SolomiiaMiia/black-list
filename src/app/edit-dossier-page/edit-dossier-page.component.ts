@@ -67,6 +67,8 @@ export class EditDossierPageComponent implements OnInit {
     this.dossierForm.get('placeOfWork')?.setValue(this.dossier.placeOfWork);
     this.dossierForm.get('address')?.setValue(this.dossier.address);
 
+    this.dossierForm.get('tags')?.setValue(this.dossier.tags);
+
 
     if (!this.isAnonymous) {
       this.dossierForm.addControl('phone', this.fb.control('', { validators: Validators.pattern(new RegExp('^\\+?3?8?(0[5-9][0-9]\\d{7})$')) }));
@@ -104,6 +106,7 @@ export class EditDossierPageComponent implements OnInit {
       position: this.fb.control(''),
       placeOfWork: this.fb.control(''),
       address: this.fb.control('', { validators: [Validators.required] }),
+      tags: [[], []],
     });
   }
 
@@ -131,6 +134,9 @@ export class EditDossierPageComponent implements OnInit {
       delete dto.author;
       delete dto.email;
       delete dto.phone;
+
+      var tags = (<Array<string>><unknown>dto.tags)?.join('');
+      dto.tags = tags == '' ? null : tags;
 
       const formData = serialize(
         dto

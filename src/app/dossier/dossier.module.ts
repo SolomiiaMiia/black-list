@@ -5,6 +5,13 @@ import { RouterModule } from "@angular/router";
 import { DossierComponent } from './dossier.component';
 import { FroalaViewModule } from 'angular-froala-wysiwyg';
 import { FilePreviewModule } from '../file-preview/file-preview.module';
+import { TagInputModule } from 'ngx-chips';
+import { Settings } from '../shared/settings/settings';
+import { FormsModule } from '@angular/forms';
+
+TagInputModule.withDefaults(Settings.TagsSettings());
+
+
 
 @NgModule({
   declarations: [DossierComponent],
@@ -12,7 +19,9 @@ import { FilePreviewModule } from '../file-preview/file-preview.module';
     CommonModule,
     RouterModule.forChild([{ path: '', component: DossierComponent }]),
     FroalaViewModule.forRoot(),
-    FilePreviewModule
+    FilePreviewModule,
+    TagInputModule,
+    FormsModule
   ],
   exports: [DossierComponent]
 })

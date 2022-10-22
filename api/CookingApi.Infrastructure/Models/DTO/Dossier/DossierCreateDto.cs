@@ -17,10 +17,10 @@ namespace CookingApi.Infrastructure.Models.DTO.Dossier
     public string? Author { get; set; }
     public string? Phone { get; set; }
     public string? Email { get; set; }
-
     public IFormFile? AuthorPhoto { get; set; }
     public List<IFormFile>? Attachtments { get; set; }
     public List<IFormFile> SignAttachtments { get; set; }
+    public string? Tags { get;set; }
 
     public void Validate()
     {

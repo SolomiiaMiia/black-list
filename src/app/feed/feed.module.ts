@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 import { DossierModule } from '../dossier/dossier.module';
 import { FeedComponent } from './feed.component';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll'
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [FeedComponent],
@@ -12,7 +12,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll'
     CommonModule,
     RouterModule.forChild([{ path: '', component: FeedComponent }]),
     DossierModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
   ]
 })
 export class FeedModule { }

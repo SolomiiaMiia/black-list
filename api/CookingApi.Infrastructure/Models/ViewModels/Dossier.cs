@@ -24,5 +24,6 @@ namespace CookingApi.Infrastructure.Models.DTO.ViewModels
     public List<File>? DossierFiles { get; set; }
 
     public DossierDisprove? DisproveDossier { get; set; }
+    public string[]? Tags {get;set;}
   }
 }

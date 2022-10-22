@@ -16,11 +16,10 @@ import { NotifierModule } from 'angular-notifier';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
+import { TagInputModule } from 'ngx-chips';
+import { Settings } from './shared/settings/settings';
 
-
-
-
-
+TagInputModule.withDefaults(Settings.TagsSettings());
 
 
 
@@ -40,6 +39,7 @@ import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
     BrowserAnimationsModule,
     TooltipModule.forRoot(),
     TabsModule.forRoot(),
+    TagInputModule,
     NotifierModule.withConfig({
       position: {
         horizontal: {
