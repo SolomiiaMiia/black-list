@@ -89,14 +89,17 @@ export class AddDossierPageComponent implements OnInit {
       this.dossierForm.addControl('author', this.fb.control('', { validators: [Validators.required] }));
       this.dossierForm.addControl('agreeForData', this.fb.control('', { validators: [Validators.required] }));
       this.dossierForm.addControl('agreeForContract', this.fb.control('', { validators: [Validators.required] }));
+      this.dossierForm.addControl('agreeForCriminalLiability', this.fb.control('', { validators: [Validators.required] }));
 
       this.dossierForm.get('agreeForData')?.setValue(false);
       this.dossierForm.get('agreeForContract')?.setValue(false);
+      this.dossierForm.get('agreeForCriminalLiability')?.setValue(false);
     }
   }
 
   canSubmit(): boolean {
-    return this.isAnonymous ? true : this.dossierForm.get('agreeForData')?.value == true && this.dossierForm.get('agreeForContract')?.value == true;
+    return this.isAnonymous ? true : this.dossierForm.get('agreeForData')?.value == true && this.dossierForm.get('agreeForContract')?.value == true
+      && this.dossierForm.get('agreeForCriminalLiability')?.value == true;
   }
 
   checkAddress(): boolean {
@@ -126,7 +129,6 @@ export class AddDossierPageComponent implements OnInit {
   }
 
   public submit() {
-    debugger
     let dto = <AddDossierPageDto>this.dossierForm.value;
     var tags = (<Array<string>><unknown>dto.tags)?.join('');
     dto.tags = tags == '' ? null : tags;
@@ -175,6 +177,8 @@ export class AddDossierPageComponent implements OnInit {
     }
     formData.delete('agreeForData');
     formData.delete('agreeForContract');
+    formData.delete('agreeForCriminalLiability');
+    
 
     this.apiService.addDossier(formData).subscribe(id => {
 

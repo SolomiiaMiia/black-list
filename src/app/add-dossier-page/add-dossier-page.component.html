@@ -165,6 +165,18 @@
                          class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
                     </div>
                   </div>
+                  <div class="col-md-12 responsive-wrap">
+                    <div class="md-checkbox">
+                      <input type="checkbox" id="agreeForCriminalLiability" formControlName="agreeForCriminalLiability"
+                             [checked]="this.dossierForm.get('agreeForCriminalLiability')?.value">
+                      <label for="agreeForCriminalLiability" class="required-field dis-line">
+                        Кримінальна відповідальність
+                      </label>
+                      <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
+                      <p *ngIf="this.submitted && !this.dossierForm.get('agreeForCriminalLiability')?.valid"
+                         class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
+                    </div>
+                  </div>
                 </div>
               </ng-container>
               <div class="row">
