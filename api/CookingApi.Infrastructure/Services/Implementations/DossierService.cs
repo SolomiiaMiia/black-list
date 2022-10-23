@@ -487,7 +487,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
       var appBaseUrl = MyHttpContext.AppBaseUrl;
 
       var dossiers = await dossierQuery.Where(c => c.LastName.Contains(searchText) || c.FirstName.Contains(searchText)
-     || c.ThirdName.Contains(searchText) || c.Address.Contains(searchText)).OrderByDescending(c => c.Date).Select(c => new DossierSearch()
+     || c.ThirdName.Contains(searchText) || c.Address.Contains(searchText) || (c.Tags != null && c.Tags.Contains(searchText))).OrderByDescending(c => c.Date).Select(c => new DossierSearch()
      {
        Address = c.Address,
        Date = c.Date,
@@ -496,7 +496,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
        PlaceOfWork = c.PlaceOfWork,
        Position = c.Position,
        Status = c.Status,
-       Type = c.Type
+       Type = c.Type,
+       tags = c.Tags,
      }).ToListAsync();
 
       var ids = dossiers.Select(c => c.Id).ToList();
@@ -512,6 +513,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
 
       dossiers.ForEach(c =>
       {
+        c.Tags = string.IsNullOrEmpty(c.tags) ? null : c.tags.Split('#', StringSplitOptions.RemoveEmptyEntries).Select(c => "#" + c).ToArray();
+
         var file = files.FirstOrDefault(d => d.Id == c.Id);
         if (file != null)
         {

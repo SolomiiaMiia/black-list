@@ -15,4 +15,5 @@ export class DossierSmallDto {
   public date: Date = new Date();
   public status!: DossierStatus;
   public type!: DossierType;
+  public tags: string[] | null = null;
 }

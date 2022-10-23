@@ -21,8 +21,8 @@
             <div class="col-md-12">
               <app-file-preview *ngIf="this.dossier.dossierFiles" [files]="this.dossier.dossierFiles"> </app-file-preview>
             </div>
-            <div  class="col-md-12">
-              <tag-input *ngIf="this.dossier.tags" [(ngModel)]="this.dossier.tags" theme="minimal" [removable]="false" [hideForm]="true">
+            <div class="col-md-12">
+              <tag-input *ngIf="this.dossier.tags" (onSelect)="onSelected($event)" [(ngModel)]="this.dossier.tags" theme="minimal" [removable]="false" [hideForm]="true">
               </tag-input>
             </div>
           </div>

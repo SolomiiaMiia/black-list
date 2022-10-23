@@ -24,7 +24,7 @@ export class ManageDossierComponent {
   constructor(private location: Location, private route: ActivatedRoute) {
     this.activeTab = this.route.snapshot.queryParams['activeTab'] ?? 'New';
     this.searchString = this.route.snapshot.queryParams['searchString'] ?? '';
-  
+
   }
 
 
@@ -34,6 +34,11 @@ export class ManageDossierComponent {
   changeTab($event: TabDirective) {
     this.activeTab = $event.id!;
     this.location.replaceState(`/admin/manage?activeTab=${this.activeTab}&searchString=${this.searchString}`);
+  }
+
+  internalSearch(searchText: string): void {
+    this.searchString = searchText;
+    this.search();
   }
 
 
@@ -48,7 +53,7 @@ export class ManageDossierComponent {
         break;
       case 'Declined':
         this.tabDeclined.search();
-        break; 
+        break;
     }
   }
 
