@@ -166,13 +166,15 @@ i {
 }
 
 .btn-simple {
-  background: #ff6b6b;
+  // background: #ff6b6b;
+  background:#e64e4e;
   padding: 10px 35px;
   color: #fff;
   transition: 0.3s;
   &:hover {
     color: white;
-    background: #ea5555;
+    // background: #ea5555;
+    background:  #c14b4b;
 }
 }
 
