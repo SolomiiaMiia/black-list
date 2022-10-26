@@ -48,7 +48,6 @@ export class AddDossierPageComponent implements OnInit {
     }
   }
 
-
   private addScripts(url: string, callback?: Function) {
     var scriptUrl = url;
     let node = document.createElement('script');
@@ -211,3 +210,4 @@ export class AddDossierPageComponent implements OnInit {
   }
 
 }
+
