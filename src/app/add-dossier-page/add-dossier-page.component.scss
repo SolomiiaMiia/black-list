@@ -206,7 +206,8 @@ i {
   display: block;
   padding: 16px;
   margin: 12px 16px 12px 0;
-  background: #ff6b6b;
+  // background: #ff6b6b;
+  background:#e64e4e;
   color: white;
   font-weight: 400;
 }
@@ -254,7 +255,8 @@ flex-direction: row;
 
 
 .btn-wrap2 .btn-simple {
-  background: #ff6b6b;
+  // background: #ff6b6b;
+  background:#e64e4e;
   padding: 10px 35px;
   color: #fff;
   -webkit-transition: 0.3s;
@@ -262,7 +264,8 @@ flex-direction: row;
   transition: 0.3s;
   &:hover {
     color: white;
-    background: #ea5555;
+    // background: #ea5555;
+    background:  #c14b4b;
  
 }
 }

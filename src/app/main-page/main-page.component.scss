@@ -243,7 +243,8 @@ h3 {
   position: absolute;
   top: 41%;
   right: 3%;
-  background: #ff6b6b;
+  // background: #ff6b6b;
+  background:#e64e4e;
   border-radius: 6px;
   text-align: center;
   transition: 0.3s;
@@ -259,7 +260,8 @@ h3 {
   }
 
   &:hover {
-    background: #ea5555;
+    // background: #ea5555;
+    background:  #c14b4b;
     color: #fff;
   }
 
@@ -299,7 +301,8 @@ h3 {
 
   &:hover {
     color: white;
-    background: #ff6b6b;
+    // background: #ff6b6b;
+    background:  #c14b4b;
     border: 1px solid #ff6b6b;
   }
 }
@@ -340,13 +343,15 @@ h3 {
 
   width: 49%;
   float: left;
-  background: #ff6b6b;
+  // background: #ff6b6b;
+  background:#e64e4e;
   border-radius: 6px;
   text-align: center;
   transition: 0.3s;
 
   &:hover {
-    background: #ea5555;
+    // background: #ea5555;
+    background:  #c14b4b;
     color: #fff;
   }
 
