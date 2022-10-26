@@ -31,8 +31,9 @@ namespace CookingApi.Domain.Entities
     public virtual DossierStatus Status { get; set; }
     public virtual DossierType Type { get; set; }
     public virtual DossierDisprove? DossierDisprove { get; set; }
-
     public virtual string? Tags { get; set; }
+
+    //public virtual IList<Dossier>? RelatedDossiers { get; set; }
   }
 
   public class DossierMap : ClassMapping<Dossier>
@@ -63,7 +64,31 @@ namespace CookingApi.Domain.Entities
         map.NotNullable(false);
       });
 
-      
+      //this.Bag(x => x.RelatedDossiers,
+      //          c =>
+      //          {
+      //            c.Key(k =>
+      //            {
+      //              k.Column("CosmozItemId");
+      //              k.ForeignKey("none");
+      //            });
+      //            c.Cascade(Cascade.All | Cascade.DeleteOrphans);
+      //            c.Inverse(true);
+      //            // Specify batch-size when NH lazy load requirements of billing items
+      //            // See https://nhibernate.info/previous-doc/v5.2/ref/performance.html#performance-fetching-batch
+      //            // This is useful when validating large amount of billing items using partitioning
+      //            c.BatchSize(50);
+      //          },
+      //          r => r.OneToMany());
+
+      //this.List(x => x.RelatedDossiers,
+      //         c =>
+      //         {
+      //           c.Key(k => k.Column("Id"));
+      //           c.Cascade(Cascade.None);
+      //           c.Inverse(true);
+      //         },
+      //         r => r.OneToMany());
 
     }
   }

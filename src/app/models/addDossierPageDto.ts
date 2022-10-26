@@ -14,3 +14,4 @@ export class AddDossierPageDto {
   attachtments: any;
   tags: string | null = '';
 }
+

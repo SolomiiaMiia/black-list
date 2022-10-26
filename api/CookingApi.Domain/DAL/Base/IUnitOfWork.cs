@@ -6,6 +6,7 @@ namespace CookingApi.Domain.DAL.Base
     IDossiersRepository DossiersRepository { get; }
     IDossierDisproveRepository DossierDisproveRepository { get; }
     ISettingsRepository SettingsRepository { get; }
+    IRelatedDossiersRepository RelatedDossiersRepository { get; }
     Task CommitAsync();
   }
 }

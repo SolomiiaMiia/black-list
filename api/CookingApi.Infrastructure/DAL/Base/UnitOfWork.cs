@@ -17,6 +17,7 @@ namespace CookingApi.Infrastructure.DAL.Base
     public IDossiersRepository DossiersRepository => new DossiersRepository(_nhSession);
     public IDossierDisproveRepository DossierDisproveRepository => new DossierDisproveRepository(_nhSession);
     public ISettingsRepository SettingsRepository => new SettingsRepository(_nhSession);
+    public IRelatedDossiersRepository RelatedDossiersRepository => new RelatedDossiersRepository(_nhSession);
 
     public async Task CommitAsync()
     {

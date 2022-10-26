@@ -26,6 +26,7 @@ namespace CookingApi.Web.Helpers
       mapper.AddMapping(typeof(FileMap));
       mapper.AddMapping(typeof(DossierMap));
       mapper.AddMapping(typeof(DossierDisproveMap));
+      mapper.AddMapping(typeof(RelatedDossierMap));
 
       var mappings = mapper.CompileMappingForAllExplicitlyAddedEntities();
       nhConfig.AddMapping(mappings);

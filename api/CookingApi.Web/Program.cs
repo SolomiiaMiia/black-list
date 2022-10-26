@@ -70,18 +70,18 @@ HttpContextExtensions.AddHttpContextAccessor(builder.Services);
 
 builder.Services.Configure<UserOptions>(builder.Configuration.GetSection("Users"));
 
-builder.Services.AddHsts(options =>
-            {
-              options.Preload = true;
-              options.IncludeSubDomains = true;
-              options.MaxAge = TimeSpan.FromDays(365);
-            });
+//builder.Services.AddHsts(options =>
+//            {
+//              options.Preload = true;
+//              options.IncludeSubDomains = true;
+//              options.MaxAge = TimeSpan.FromDays(365);
+//            });
 
 var app = builder.Build();
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
-app.UseHsts();
+//app.UseHsts();
 
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {

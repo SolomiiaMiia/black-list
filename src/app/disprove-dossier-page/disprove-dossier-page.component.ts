@@ -7,6 +7,7 @@ import { serialize } from 'object-to-formdata';
 import { routingAnimation } from '../shared/animations/routing-animation';
 import { SignedData, SignedDataPart } from '../models/signedDataDto';
 import { NotifyService } from '../shared/services/notify.service';
+import { HistoryService, IHistorySaver } from '../shared/services/history.service';
 
 @Component({
   templateUrl: './disprove-dossier-page.component.html',
@@ -14,7 +15,7 @@ import { NotifyService } from '../shared/services/notify.service';
   animations: [routingAnimation],
   host: { '[@routingAnimation]': '' }
 })
-export class DisproveDossierPageComponent implements OnInit {
+export class DisproveDossierPageComponent implements OnInit, IHistorySaver {
 
   @Input() public dossierForm: FormGroup = new FormGroup({});
 
@@ -28,8 +29,27 @@ export class DisproveDossierPageComponent implements OnInit {
     private apiService: APIService,
     private route: ActivatedRoute,
     private router: Router,
+    private historyService: HistoryService,
     private notificationService: NotifyService  ) {
     this.id = Number(this.route.snapshot.parent?.url.filter(v => !isNaN(Number(v.path)))[0].path);
+  }
+
+  getData(): any {
+    let dto = <CreateDisproveDossierPageDto>this.dossierForm.value;
+    delete dto.attachtments;
+    return dto;
+  }
+  applyData() {
+    var historyData = <CreateDisproveDossierPageDto>this.historyService.getHistory('add-disprove-dossier-history');
+    if (historyData !== null) {
+      this.dossierForm.patchValue(historyData);
+    }
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  @HostListener('window:beforeunload', ['$event'])
+  onPopState(event: any) {
+    this.historyService.saveHistory('add-disprove-dossier-history', this.getData());
   }
 
   ngOnInit(): void {
@@ -40,6 +60,11 @@ export class DisproveDossierPageComponent implements OnInit {
     } else {
       window["signProcessor"].Init();
     }
+
+  }
+
+  ngAfterViewInit() {
+    this.addScripts('/assets/blank.js', () => { this.applyData(); });
   }
 
   private addScripts(url: string, callback?: Function) {

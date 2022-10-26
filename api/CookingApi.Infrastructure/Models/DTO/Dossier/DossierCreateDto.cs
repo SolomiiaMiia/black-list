@@ -19,13 +19,15 @@ namespace CookingApi.Infrastructure.Models.DTO.Dossier
     public string? Email { get; set; }
     public IFormFile? AuthorPhoto { get; set; }
     public List<IFormFile>? Attachtments { get; set; }
-    public List<IFormFile> SignAttachtments { get; set; }
+    public List<IFormFile>? SignAttachtments { get; set; }
     public string? Tags { get;set; }
+    public List<int>? RelatedDossiers { get; set; }
 
     public void Validate()
     {
       if (string.IsNullOrWhiteSpace(LastName) || string.IsNullOrWhiteSpace(FirstName) || string.IsNullOrWhiteSpace(ThirdName) || string.IsNullOrWhiteSpace(Address)
-        || string.IsNullOrWhiteSpace(Text) || (IsAnonymous ? false : string.IsNullOrWhiteSpace(Author)))
+        || string.IsNullOrWhiteSpace(Text) || (IsAnonymous ? false : string.IsNullOrWhiteSpace(Author))
+        || (!this.IsAnonymous && this.SignAttachtments is null))
         throw new CookingException(HttpStatusCode.UnprocessableEntity, "Не валідні дані");
 
       if (this.Attachtments != null && this.Attachtments.Any(c => c.Length > 1024 * 1024 * 10))

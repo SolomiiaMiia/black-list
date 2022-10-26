@@ -5,7 +5,6 @@ namespace CookingApi.Domain.Entities
 {
   public class Setting : CoreEntity
   {
-
     public virtual string VideoLink { get; set; }
     public virtual string NewDossierText { get; set; }
     public virtual string DisproveDossierText { get; set; }

@@ -142,6 +142,9 @@ export class EditDossierPageComponent implements OnInit {
         dto
       );
 
+      formData.append('relatedDossiers', '12');
+      formData.append('relatedDossiers', '25');
+
       formData.set('authorPhoto', this.photo);
 
       let confirmText = '';

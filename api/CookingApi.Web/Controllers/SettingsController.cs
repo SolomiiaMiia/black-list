@@ -19,7 +19,7 @@ namespace CookingApi.Web.Controllers
     [HttpGet]
     public async Task<Settings> Get()
     {
-      var d = Infrastructure.Extensions.MyHttpContext.AppBaseUrl;
+      //var d = Infrastructure.Extensions.MyHttpContext.AppBaseUrl;
       return await _settingsService.GetSetting();
     }
 

@@ -7,6 +7,7 @@ import { AddDossierPageDto } from '../models/addDossierPageDto';
 import { SignedData, SignedDataPart } from '../models/signedDataDto';
 import { routingAnimation } from '../shared/animations/routing-animation';
 import { APIService } from '../shared/services/api.service';
+import { HistoryService, IHistorySaver } from '../shared/services/history.service';
 
 
 @Component({
@@ -16,11 +17,8 @@ import { APIService } from '../shared/services/api.service';
   //host: { '[@routingAnimation]': '' }
 })
 
-export class AddDossierPageComponent implements OnInit {
-
-
+export class AddDossierPageComponent implements OnInit, IHistorySaver {
   @Input() public dossierForm: FormGroup = new FormGroup({});
-
   public submitted: boolean = false;
   public isAnonymous: boolean = false;
   public hasFileSizeError: boolean = false;
@@ -32,13 +30,27 @@ export class AddDossierPageComponent implements OnInit {
     private apiService: APIService,
     private route: ActivatedRoute,
     private router: Router,
+    private historyService: HistoryService,
     @Inject(DOCUMENT) private document: Document) {
+  }
+
+  getData(): any {
+    let dto = <AddDossierPageDto>this.dossierForm.value;
+    dto.address = this.getAddressInput()?.value;
+    delete dto.attachtments;
+    delete dto.authorPhoto;
+    return dto;
+  }
+  applyData() {
+    var historyData = <AddDossierPageDto>this.historyService.getHistory('add-dossier-history');
+    if (historyData !== null) {     
+      this.dossierForm.patchValue(historyData);
+    }
   }
 
   ngOnInit(): void {
     this.isAnonymous = this.route.snapshot.parent?.url.filter(v => v.path == 'anonymous').length == 1;
     this.createForm();
-
     if (!this.isAnonymous) {
       if (window["signProcessor"] == undefined) {
         this.addScripts('/assets/sign.processor.js', () => { window["signProcessor"].Init(); });
@@ -48,6 +60,12 @@ export class AddDossierPageComponent implements OnInit {
     }
   }
 
+
+  @HostListener('window:popstate', ['$event'])
+  @HostListener('window:beforeunload', ['$event'])
+  onPopState(event: any) {
+    this.historyService.saveHistory('add-dossier-history', this.getData());
+  }
 
   private addScripts(url: string, callback?: Function) {
     var scriptUrl = url;
@@ -65,8 +83,7 @@ export class AddDossierPageComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.addScripts('/assets/visicom.autocomplete.js');
-
+    this.addScripts('/assets/visicom.autocomplete.js', () => { this.applyData(); });   
   }
 
   private createForm() {
@@ -81,6 +98,7 @@ export class AddDossierPageComponent implements OnInit {
       attachtments: this.fb.control(''), //can be multiple attachtments
       text: this.fb.control('', { validators: [Validators.required] }),
       tags: [[], []],
+      relatedDossiers: [[], []]
     });
 
     if (!this.isAnonymous) {
@@ -163,6 +181,8 @@ export class AddDossierPageComponent implements OnInit {
     const formData = serialize(
       dto
     );
+
+    formData.append('relatedDossiers', '12');
 
     formData.delete('attachtments');
     formData.set('authorPhoto', this.photo);

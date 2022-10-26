@@ -10,6 +10,7 @@ namespace CookingApi.Domain.DAL.Base
     IQueryable<T> Query();
     IQueryOver<T> QueryOver();
     Task<int> Add(T entity);
+    Task<object> AddCompositeEntity(T entity);
     Task Update(T entity);
     Task Delete(T entity);
   }

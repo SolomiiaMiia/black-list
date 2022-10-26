@@ -6,6 +6,7 @@ using CookingApi.Infrastructure.Extensions;
 using CookingApi.Infrastructure.Models.DTO.Dossier;
 using CookingApi.Infrastructure.Models.DTO.DossierDisprove;
 using CookingApi.Infrastructure.Models.DTO.ViewModels;
+using CookingApi.Infrastructure.Models.ViewModels;
 using CookingApi.Infrastructure.Services.Abstractions;
 using Microsoft.AspNetCore.Http;
 using MimeTypes;
@@ -14,6 +15,7 @@ using NHibernate.Linq;
 using Dossier = CookingApi.Domain.Entities.Dossier;
 using DossierDisprove = CookingApi.Domain.Entities.DossierDisprove;
 using File = CookingApi.Domain.Entities.File;
+using RelatedDossier = CookingApi.Domain.Entities.RelatedDossier;
 
 namespace CookingApi.Infrastructure.Services.Implementations
 {
@@ -79,6 +81,20 @@ namespace CookingApi.Infrastructure.Services.Implementations
         {
           var file = await SaveFileAsync(pathToSave, formFile, File.FileType.SignAttachtment, id, null);
           await _unitOfWork.FilesRepository.Add(file);
+        }
+      }
+
+      if (dto.RelatedDossiers is not null)
+      {
+        var corruptors = dto.RelatedDossiers.Distinct().Where(c => c != id);
+        foreach (var dossierId in corruptors)
+        {
+          var relatedDossier = new RelatedDossier()
+          {
+            DossierId = id,
+            RelatedDossierEntity = new Dossier() { Id = dossierId }
+          };
+          await _unitOfWork.RelatedDossiersRepository.AddCompositeEntity(relatedDossier);
         }
       }
 
@@ -160,6 +176,12 @@ namespace CookingApi.Infrastructure.Services.Implementations
         var dossierPath = Path.Combine(_webRootPath, "Dossiers", id.ToString());
 
         if (Directory.Exists(dossierPath)) Directory.Delete(dossierPath, true);
+
+        var relatedDossiers = await _unitOfWork.RelatedDossiersRepository.Query().Where(c => c.DossierId == id).ToListAsync();
+        foreach (var relatedDossier in relatedDossiers)
+        {
+          await _unitOfWork.RelatedDossiersRepository.Delete(relatedDossier);
+        }
 
         await _unitOfWork.DossiersRepository.Delete(dossier);
 
@@ -341,6 +363,11 @@ namespace CookingApi.Infrastructure.Services.Implementations
           Type = dossier.Type,
           Text = dossier.Text,
           Tags = string.IsNullOrEmpty(dossier.Tags) ? null : dossier.Tags.Split('#', StringSplitOptions.RemoveEmptyEntries).Select(c => "#" + c).ToArray(),
+          RelatedDossiers = await _unitOfWork.RelatedDossiersRepository.Query().Where(c => c.DossierId == dossier.Id).Select(c => new RelatedDossierModel()
+          {
+            Id = c.RelatedDossierEntity.Id,
+            Name = c.RelatedDossierEntity.LastName + " " + c.RelatedDossierEntity.FirstName + " " + c.RelatedDossierEntity.ThirdName
+          }).ToListAsync(),
           DisproveDossier = dossier.DossierDisprove != null ? new Models.DTO.ViewModels.DossierDisprove()
           {
             Author = dossier.DossierDisprove.Author,
@@ -390,6 +417,26 @@ namespace CookingApi.Infrastructure.Services.Implementations
         if (isSuperAdmin)
         {
           dossier.Tags = dto.Tags;
+        }
+
+        var relatedDossiers = await _unitOfWork.RelatedDossiersRepository.Query().Where(c => c.DossierId == id).ToListAsync();
+        foreach (var relatedDossier in relatedDossiers)
+        {
+          await _unitOfWork.RelatedDossiersRepository.Delete(relatedDossier);
+        }
+
+        if (dto.RelatedDossiers is not null)
+        {
+          var corruptors = dto.RelatedDossiers.Distinct().Where(c => c != id);
+          foreach (var dossierId in corruptors)
+          {
+            var relatedDossier = new RelatedDossier()
+            {
+              DossierId = id,
+              RelatedDossierEntity = new Dossier() { Id = dossierId }
+            };
+            await _unitOfWork.RelatedDossiersRepository.AddCompositeEntity(relatedDossier);
+          }
         }
 
         switch (action)
@@ -528,6 +575,19 @@ namespace CookingApi.Infrastructure.Services.Implementations
       });
 
       return dossiers;
+    }
+
+    public async Task<List<CorruptorSearch>> SearchCorruptors(string searchText)
+    {
+      var dossierQuery = _unitOfWork.DossiersRepository.Query()
+        .Where(c => c.Type == Dossier.DossierType.Published || c.Type == Dossier.DossierType.DisprovePublished || c.Type == Dossier.DossierType.DisproveNew);
+
+      return await dossierQuery.Where(c => c.LastName.Contains(searchText) || c.FirstName.Contains(searchText)
+     || c.ThirdName.Contains(searchText)).OrderByDescending(c => c.Date).Take(10).Select(c => new CorruptorSearch()
+     {
+       Id = c.Id,
+       Name = c.LastName + " " + c.FirstName + " " + c.ThirdName,
+     }).ToListAsync();
     }
   }
 }

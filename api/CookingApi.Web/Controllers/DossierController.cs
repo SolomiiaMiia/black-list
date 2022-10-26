@@ -120,10 +120,18 @@ namespace CookingApi.Web.Controllers
 
     [HttpGet]
     [Route("search")]
-    public async Task<IActionResult> Get([FromQuery] Dossier.DossierType type, [FromServices] IAuthService authService, [FromQuery] string? searchText)
+    public async Task<IActionResult> Search([FromQuery] Dossier.DossierType type, [FromServices] IAuthService authService, [FromQuery] string? searchText)
     {
       var isAuthorized = authService.isAuthorized();
       var searchResults = await _dossierService.SearchDossier(string.IsNullOrEmpty(searchText)? "": searchText , type, isAuthorized);
+      return new OkObjectResult(searchResults);
+    }
+
+    [HttpGet]
+    [Route("corruptors")]
+    public async Task<IActionResult> Get([FromQuery] string? searchText)
+    {
+      var searchResults = await _dossierService.SearchCorruptors(string.IsNullOrEmpty(searchText) ? "" : searchText);
       return new OkObjectResult(searchResults);
     }
   }

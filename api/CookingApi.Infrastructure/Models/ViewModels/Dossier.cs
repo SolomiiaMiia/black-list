@@ -1,3 +1,4 @@
+using CookingApi.Infrastructure.Models.ViewModels;
 using static CookingApi.Domain.Entities.Dossier;
 
 namespace CookingApi.Infrastructure.Models.DTO.ViewModels
@@ -24,6 +25,7 @@ namespace CookingApi.Infrastructure.Models.DTO.ViewModels
     public List<File>? DossierFiles { get; set; }
 
     public DossierDisprove? DisproveDossier { get; set; }
-    public string[]? Tags {get;set;}
+    public string[]? Tags { get; set; }
+    public List<RelatedDossierModel>? RelatedDossiers { get; set; }
   }
 }
