@@ -36,5 +36,15 @@ namespace CookingApi.Infrastructure.Services.Implementations
         return this.GetUserByToken(token) != null;
       }
     }
+
+    public bool isAuthorizedInRole(string role)
+    {
+      var token = MyHttpContext.Current.Request.Headers["Security-Token"].ToString();
+      if (string.IsNullOrEmpty(token)) return false;
+      else
+      {
+        return this.GetUserByToken(token)?.Role == role;
+      }
+    }
   }
 }

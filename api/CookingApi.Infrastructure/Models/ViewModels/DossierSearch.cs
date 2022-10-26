@@ -1,4 +1,6 @@
+using Newtonsoft.Json;
 using static CookingApi.Domain.Entities.Dossier;
+using JsonIgnoreAttribute = Newtonsoft.Json.JsonIgnoreAttribute;
 
 namespace CookingApi.Infrastructure.Models.DTO.ViewModels
 {
@@ -13,5 +15,10 @@ namespace CookingApi.Infrastructure.Models.DTO.ViewModels
     public DossierStatus Status { get; set; }
     public DossierType Type { get; set; }
     public File? Photo { get; set; }
+    public string[]? Tags { get; set; }
+
+    //[JsonProperty("taglist")]
+    [JsonIgnore]
+    public string? tags { get; set; }
   }
 }

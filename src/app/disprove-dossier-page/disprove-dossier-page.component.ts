@@ -65,7 +65,8 @@ export class DisproveDossierPageComponent implements OnInit {
       author: this.fb.control('', { validators: [Validators.required] }),
       phone: this.fb.control('', { validators: Validators.pattern(new RegExp('^\\+?3?8?(0[5-9][0-9]\\d{7})$')) }),
       email: this.fb.control('', { validators: [Validators.email] }),
-      agreeForData: this.fb.control('', { validators: [Validators.required] })
+      agreeForData: this.fb.control('', { validators: [Validators.required] }),
+      agreeForCriminalLiability: this.fb.control('', { validators: [Validators.required] })
     });
 
     this.dossierForm.get('agreeForData')?.setValue(false);
@@ -87,7 +88,7 @@ export class DisproveDossierPageComponent implements OnInit {
   }
 
   canSubmit(): boolean {
-    return this.dossierForm.get('agreeForData')?.value == true;
+    return this.dossierForm.get('agreeForData')?.value == true && this.dossierForm.get('agreeForCriminalLiability')?.value == true;
   }
 
   public submit() {
@@ -122,6 +123,7 @@ export class DisproveDossierPageComponent implements OnInit {
     });
 
     formData.delete('agreeForData');
+    formData.delete('agreeForCriminalLiability');
 
     this.apiService.addDisproveDossier(this.id, formData).subscribe(id => {
 

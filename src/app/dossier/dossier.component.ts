@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { DossierDto } from '../models/dossierDto';
 import { DossierStatus, DossierType, EnumHelper } from '../models/enums';
 import { routingAnimation } from '../shared/animations/routing-animation';
-import { APIService } from '../shared/services/api.service'
+import { APIService } from '../shared/services/api.service';
 
 
 @Component({
@@ -24,6 +24,7 @@ export class DossierComponent implements OnInit {
   DossierTypes = DossierType;
 
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private apiService: APIService) {
     
   }
@@ -45,6 +46,10 @@ export class DossierComponent implements OnInit {
       this.loadDossierByUrl();
     }
     
+  }
+
+  onSelected(tag: any): void {
+    this.router.navigate(['/search'], { queryParams: { searchString: tag } });
   }
 
 

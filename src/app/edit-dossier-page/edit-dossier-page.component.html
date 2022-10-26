@@ -9,7 +9,7 @@
           <div class="listing-title">
             <span class="ti-files"></span>
             <h4 class="fw-bold">Редагувати досьє номер {{this.id}}</h4>
-            <p class="fw-bold">Дані про особу</p>
+            <p class="fw-bold">Дані про корупціонера</p>
           </div>
 
 
@@ -101,58 +101,66 @@
                 <app-file-preview *ngIf="this.dossier.dossierFiles" [files]="this.dossier.dossierFiles"> </app-file-preview>
               </div>
 
-                <ng-container *ngIf="!this.isAnonymous">
-                  <div class="listing-title">
-                    <span class="ti-files"></span>
-                    <p class="fw-bold">Контактні дані автора</p>
-                  </div>
+              <div class="col-md-12">
+                <label>Хеш-теги</label>
+                <div class="form-group">
+                  <tag-input formControlName="tags" theme="minimal" [removable]="this.isSuperAdmin" [hideForm]="!this.isSuperAdmin">
+                  </tag-input>
+                </div>
+              </div>
 
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="required-field">Автор</label>
-                      <input [readonly]="true" type="text" formControlName="author" class="form-control">
-                      <small *ngIf="this.submitted && !this.dossierForm.get('author')?.valid"
-                             class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+              <ng-container *ngIf="!this.isAnonymous">
+                <div class="listing-title">
+                  <span class="ti-files"></span>
+                  <p class="fw-bold">Контактні дані автора</p>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="required-field">Автор</label>
+                    <input [readonly]="true" type="text" formControlName="author" class="form-control">
+                    <small *ngIf="this.submitted && !this.dossierForm.get('author')?.valid"
+                           class="form-text text-danger ml-2">Це поле є обов'язковим для заповнення</small>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Контактний номер телефону</label>
+                    <input [readonly]="true" type="text" placeholder="+380xxxxxxxxx" formControlName="phone" class="form-control">
+                    <small *ngIf="this.submitted && !this.dossierForm.get('phone')?.valid"
+                           class="form-text text-danger ml-2">Не валідний номер телефону</small>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Адреса електронної пошти</label>
+                    <input [readonly]="true" placeholder="email@mail.com" type="text" formControlName="email" class="form-control">
+                    <small *ngIf="this.submitted && !this.dossierForm.get('email')?.valid"
+                           class="form-text text-danger ml-2">Не валідна адреса електронної пошти</small>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                </div>
+              </ng-container>
+              <div class="row container">
+                <div class="col-md-12">
+                  <div class="btn-admin">
+                    <div>
+                      <button type="submit" (click)="this.submit('save')" class="btn btn-simple-admin btn-color-primary margin">Зберегти</button>
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Контактний номер телефону</label>
-                      <input [readonly]="true" type="text" placeholder="+380xxxxxxxxx" formControlName="phone" class="form-control">
-                      <small *ngIf="this.submitted && !this.dossierForm.get('phone')?.valid"
-                             class="form-text text-danger ml-2">Не валідний номер телефону</small>
+                    <div *ngIf="this.dossier.type === this.DossierTypes.New || this.dossier.type === this.DossierTypes.Declined">
+                      <button type="submit" (click)="this.submit('publish')" class="btn btn-simple-admin">Опублікувати</button>
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Адреса електронної пошти</label>
-                      <input [readonly]="true" placeholder="email@mail.com" type="text" formControlName="email" class="form-control">
-                      <small *ngIf="this.submitted && !this.dossierForm.get('email')?.valid"
-                             class="form-text text-danger ml-2">Не валідна адреса електронної пошти</small>
+                    <div *ngIf="this.dossier.type !== this.DossierTypes.Declined">
+                      <button type="submit" (click)="this.submit('decline')" class="btn btn-simple-admin btn-color-danger">Відхилити</button>
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                  </div>
-                </ng-container>
-                <div class="row container">
-                  <div class="col-md-12">
-                    <div class="btn-admin">
-                      <div>
-                        <button type="submit" (click)="this.submit('save')" class="btn btn-simple-admin btn-color-primary margin">Зберегти</button>
-                      </div>
-                      <div *ngIf="this.dossier.type === this.DossierTypes.New || this.dossier.type === this.DossierTypes.Declined">
-                        <button type="submit" (click)="this.submit('publish')" class="btn btn-simple-admin">Опублікувати</button>
-                      </div>
-                      <div *ngIf="this.dossier.type !== this.DossierTypes.Declined">
-                        <button type="submit" (click)="this.submit('decline')" class="btn btn-simple-admin btn-color-danger">Відхилити</button>
-                      </div>
-                      <div *ngIf="this.isSuperAdmin">
-                        <button type="submit" (click)="this.delete()" class="btn btn-simple-admin btn-color-danger">Видалити</button>
-                      </div>
+                    <div *ngIf="this.isSuperAdmin">
+                      <button type="submit" (click)="this.delete()" class="btn btn-simple-admin btn-color-danger">Видалити</button>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 </form>
         </div>
       </div>

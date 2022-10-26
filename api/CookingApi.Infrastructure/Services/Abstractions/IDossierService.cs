@@ -16,7 +16,7 @@ namespace CookingApi.Infrastructure.Services.Abstractions
     Task DenyDossierDisprove(int id);
     Task<List<LatestDossier>> GetLatestDossiers(int take = 5);
     Task<Dossier> GetDossier(int id, bool skipCheck = false);
-    Task EditDossier(int id, DossierEditDto dto, string action);
+    Task EditDossier(int id, DossierEditDto dto, string action, bool isSuperAdmin);
     Task<List<Dossier>> GetFeed(int skip, bool skipCheck = false);
     Task<(string path, string mime)> GetFilePath(int id, bool skipCheck = false);
     Task<List<DossierSearch>> SearchDossier(string searchText, DossierType type, bool skipCheck = false);

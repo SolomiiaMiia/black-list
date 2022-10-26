@@ -27,13 +27,13 @@
 
   <tabset #staticTabs customClass="tabset">
     <tab [active]="this.activeTab === 'New'" id="New" heading="Нові досьє" customClass="customClass" (selectTab)="changeTab($event)">
-      <app-search #tabNew [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.New" *ngIf="this.activeTab === 'New'"></app-search>
+      <app-search #tabNew (searchEvent)="this.internalSearch($event)" [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.New" *ngIf="this.activeTab === 'New'"></app-search>
     </tab>
     <tab [active]="this.activeTab === 'Published'" id="Published" heading="Опубліковані" customClass="customClass" (selectTab)="changeTab($event)">
-      <app-search #tabPublished [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.Published" *ngIf="this.activeTab === 'Published'"></app-search>
+      <app-search #tabPublished (searchEvent)="this.internalSearch($event)" [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.Published" *ngIf="this.activeTab === 'Published'"></app-search>
     </tab>
     <tab [active]="this.activeTab === 'Declined'" class="text-white-50" id="Declined" heading="Відхилені" customClass="customClass" (selectTab)="changeTab($event)">
-      <app-search #tabDeclined [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.Declined" *ngIf="this.activeTab === 'Declined'"></app-search>
+      <app-search #tabDeclined (searchEvent)="this.internalSearch($event)" [searchText]="this.searchString" [isAdmin]="true" [dossierType]="DossierTypes.Declined" *ngIf="this.activeTab === 'Declined'"></app-search>
     </tab>
     <tab [active]="this.activeTab === 'Settings'" id="Settings" heading="Налаштування" customClass="customClass" (selectTab)="changeTab($event)">
       <app-admin-settings *ngIf="this.activeTab === 'Settings'"></app-admin-settings>

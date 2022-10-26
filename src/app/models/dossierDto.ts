@@ -28,6 +28,7 @@ export class DossierDto {
   public type!: DossierType;
   public photo: FileDto | null;
   public dossierFiles: FileDto[] | null;
+  public tags: string[] | null = null;
 
   //only for disproving
   public disproveDossier: DisproveDossierPageDto | null;

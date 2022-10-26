@@ -1,4 +1,4 @@
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DossierSmallDto } from '../models/dossierSmallDto';
 import { DossierType } from '../models/enums';
@@ -18,18 +18,29 @@ export class SearchComponent implements OnInit {
   @Input('isAdmin') isAdmin: boolean = false;
   @Input('dossierType') dossierType: DossierType = DossierType.Published;
   @Input('searchText') searchText: string = '';
+  @Output() searchEvent = new EventEmitter<string>();
   
   public searchResults : DossierSmallDto[] = [] 
 
   constructor(private apiService: APIService,
     private location: Location,
-    private route: ActivatedRoute  ) {
+    private route: ActivatedRoute) {
     this.searchText = this.route.snapshot.queryParams['searchString'] ?? '';
   }
 
 
   ngOnInit(): void {
     this.search();
+  }
+
+  internalSearch(searchText: string): void {
+    this.searchText = searchText;
+    if (!this.isAdmin) {
+      this.search();
+    }
+    else {
+      this.searchEvent.emit(searchText);
+    }
   }
 
   search(): void{

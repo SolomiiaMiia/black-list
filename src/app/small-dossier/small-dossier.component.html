@@ -18,6 +18,10 @@
             <span class="position text-ligh">{{dossier.position}} {{dossier.placeOfWork}}</span>
           </div>
           <p class="card-text text">{{dossier.address}}</p>
+          <div class="col-md-12">
+            <tag-input *ngIf="dossier.tags" (onSelect)="onSelected($event)" [(ngModel)]="dossier.tags" theme="minimal" [removable]="false" [hideForm]="true">
+            </tag-input>
+          </div>
         </div>
       </div>
     </div>

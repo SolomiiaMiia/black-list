@@ -44,7 +44,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
         Type = Dossier.DossierType.New,
         Author = "BlackList",
         Position = dto.Position,
-        PlaceOfWork = dto.PlaceOfWork
+        PlaceOfWork = dto.PlaceOfWork,
+        Tags = dto.Tags
       };
 
       if (!dossier.IsAnonymous)
@@ -339,6 +340,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
           Status = dossier.Status,
           Type = dossier.Type,
           Text = dossier.Text,
+          Tags = string.IsNullOrEmpty(dossier.Tags) ? null : dossier.Tags.Split('#', StringSplitOptions.RemoveEmptyEntries).Select(c => "#" + c).ToArray(),
           DisproveDossier = dossier.DossierDisprove != null ? new Models.DTO.ViewModels.DossierDisprove()
           {
             Author = dossier.DossierDisprove.Author,
@@ -373,7 +375,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
       }
     }
 
-    public async Task EditDossier(int id, DossierEditDto dto, string action)
+    public async Task EditDossier(int id, DossierEditDto dto, string action, bool isSuperAdmin)
     {
       var dossier = await _unitOfWork.DossiersRepository.Get(id);
       if (dossier is not null)
@@ -384,6 +386,11 @@ namespace CookingApi.Infrastructure.Services.Implementations
         dossier.Address = dto.Address;
         dossier.Position = dto.Position;
         dossier.PlaceOfWork = dto.PlaceOfWork;
+
+        if (isSuperAdmin)
+        {
+          dossier.Tags = dto.Tags;
+        }
 
         switch (action)
         {
@@ -480,7 +487,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
       var appBaseUrl = MyHttpContext.AppBaseUrl;
 
       var dossiers = await dossierQuery.Where(c => c.LastName.Contains(searchText) || c.FirstName.Contains(searchText)
-     || c.ThirdName.Contains(searchText) || c.Address.Contains(searchText)).OrderByDescending(c => c.Date).Select(c => new DossierSearch()
+     || c.ThirdName.Contains(searchText) || c.Address.Contains(searchText) || (c.Tags != null && c.Tags.Contains(searchText))).OrderByDescending(c => c.Date).Select(c => new DossierSearch()
      {
        Address = c.Address,
        Date = c.Date,
@@ -489,7 +496,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
        PlaceOfWork = c.PlaceOfWork,
        Position = c.Position,
        Status = c.Status,
-       Type = c.Type
+       Type = c.Type,
+       tags = c.Tags,
      }).ToListAsync();
 
       var ids = dossiers.Select(c => c.Id).ToList();
@@ -505,6 +513,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
 
       dossiers.ForEach(c =>
       {
+        c.Tags = string.IsNullOrEmpty(c.tags) ? null : c.tags.Split('#', StringSplitOptions.RemoveEmptyEntries).Select(c => "#" + c).ToArray();
+
         var file = files.FirstOrDefault(d => d.Id == c.Id);
         if (file != null)
         {

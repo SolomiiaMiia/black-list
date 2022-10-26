@@ -92,11 +92,13 @@ namespace CookingApi.Web.Controllers
     [AuthFilter("admin", "superAdmin")]
     [HttpPut]
     [Route("{id}")]
-    public async Task<IActionResult> ManageDenyPublishDossier(int id, [FromQuery] string action, [FromForm] DossierEditDto dto)
+    public async Task<IActionResult> ManageDenyPublishDossier(int id, [FromQuery] string action, [FromForm] DossierEditDto dto, [FromServices] IAuthService authService)
     {
       dto.Validate();
 
-      await _dossierService.EditDossier(id, dto, action);
+      bool isSuperAdmin = authService.isAuthorizedInRole("superAdmin");
+
+      await _dossierService.EditDossier(id, dto, action, isSuperAdmin);
       return Ok();
     }
 
@@ -121,7 +123,7 @@ namespace CookingApi.Web.Controllers
     public async Task<IActionResult> Get([FromQuery] Dossier.DossierType type, [FromServices] IAuthService authService, [FromQuery] string? searchText)
     {
       var isAuthorized = authService.isAuthorized();
-      var searchResults = await _dossierService.SearchDossier(String.IsNullOrEmpty(searchText)? "": searchText , type, isAuthorized);
+      var searchResults = await _dossierService.SearchDossier(string.IsNullOrEmpty(searchText)? "": searchText , type, isAuthorized);
       return new OkObjectResult(searchResults);
     }
   }

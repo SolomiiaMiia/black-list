@@ -16,6 +16,7 @@ CREATE TABLE [dbo].[Dossier]
     [Email] NVARCHAR(MAX) NULL,
     [Type] NVARCHAR(MAX) NOT NULL,
     [DisproveDossierId] INT NULL,
+    [Tags] NVARCHAR(MAX) NULL,
     CONSTRAINT FK_DossierDisproveDossier FOREIGN KEY ([DisproveDossierId]) REFERENCES DossierDisprove(Id),
 )
 GO
