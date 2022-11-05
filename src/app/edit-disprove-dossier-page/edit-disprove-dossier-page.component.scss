@@ -159,13 +159,14 @@
   }
 
   .btn-color-danger {
-    color: #ff6b6b;
-    border: 2px solid #ff6b6b;
+    color: #e64e4e;
+    border: 2px solid #e64e4e;
 
     &:hover {
       color: white;
-      background: #ff6b6b;
-      border: 2px solid #ff6b6b;
+      // background: #ff6b6b;
+      background:#e64e4e;
+      border: 2px solid #e64e4e;
     }
   }
 

@@ -1,17 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
-import { EditDossierPageComponent } from './edit-dossier-page.component';
+import { RouterModule } from "@angular/router";
 import { FroalaViewModule } from 'angular-froala-wysiwyg';
-import { FilePreviewModule } from '../file-preview/file-preview.module';
-
 import { TagInputModule } from 'ngx-chips';
-import { Settings } from '../shared/settings/settings';
-
-TagInputModule.withDefaults(Settings.TagsSettings());
-
+import { FilePreviewModule } from '../file-preview/file-preview.module';
+import { EditDossierPageComponent } from './edit-dossier-page.component';
 
 @NgModule({
   declarations: [

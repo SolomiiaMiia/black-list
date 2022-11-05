@@ -30,8 +30,9 @@
         padding: 10px;
         margin: 16px;
         position: relative;
-        border: 2px solid #ff6b6b;;
-        color: #ff6b6b;
+        border: 2px solid #ff6b6b;
+        // color: #ff6b6b;
+        color: #e64e4e;
         font-weight: 400;
         @media (max-width: 992px) {
           position: inherit;
@@ -41,8 +42,9 @@
       
         &:hover  {
           color: white;
-          background: #ea5555;
-          border: 2px solid #ea5555;
+        //   background: #ea5555;
+          background: #e64e4e;
+          border: 2px solid #e64e4e;
         }
         
       }

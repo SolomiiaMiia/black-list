@@ -43,6 +43,7 @@ export class AdminService {
     localStorage.setItem('settings', JSON.stringify(settings));
   }
 
+
   initSettings(): void {
     this.apiService.getSettings(true).subscribe(res => {
       this.saveSettings(res);

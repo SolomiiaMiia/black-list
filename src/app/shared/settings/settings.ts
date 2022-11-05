@@ -26,7 +26,8 @@ export class Settings {
         }]
       },
       dropdown: {
-        appendToBody: false
+        appendToBody: false,
+        limitItemsTo: 10,
       }
     }
   }

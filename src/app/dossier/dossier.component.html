@@ -25,6 +25,10 @@
               <tag-input *ngIf="this.dossier.tags" (onSelect)="onSelected($event)" [(ngModel)]="this.dossier.tags" theme="minimal" [removable]="false" [hideForm]="true">
               </tag-input>
             </div>
+            <div class="col-md-12">
+              <tag-input *ngIf="this.dossier.relatedDossiers" [identifyBy]="'id'" [displayBy]="'name'" (onSelect)="onSelectedDossier($event)" [(ngModel)]="this.dossier.relatedDossiers" theme="minimal" [removable]="false" [hideForm]="true">
+              </tag-input>
+            </div>
           </div>
           </div>
       </div>

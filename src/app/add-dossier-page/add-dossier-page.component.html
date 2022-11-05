@@ -11,11 +11,10 @@
             <h4 class="text-center pt-5 mb-4 text-white-70 fw-bold">Створити {{this.isAnonymous? 'анонімно':'' }} досьє</h4>
             <p class="fw-bold">Дані про корупціонера</p>
           </div>
-      
 
           <form [formGroup]="this.dossierForm">
             <div class="row">
-              <p class="info"> обов’язкові поля для заповнення</p >
+              <p class="info"> обов’язкові поля для заповнення</p>
               <div class="col-md-6">
                 <div class="form-group">
                   <label class="required-field">Прізвище</label>
@@ -107,6 +106,16 @@
                 </div>
               </div>
 
+              <div class="col-md-12">
+                <label>Пов'язані особи</label>
+                <div class="form-group">
+                  <tag-input secondaryPlaceholder="Пошук корупціонера" placeholder="Пошук корупціонера"  [onAdding]="onAddRelatedDossier" [modelAsStrings]="false" formControlName="relatedDossiers" [onlyFromAutocomplete]="true" [validators]="[]" theme="minimal">
+                    <tag-input-dropdown [identifyBy]="'id'" [displayBy]="'name'" [autocompleteObservable]='getRelatedDossiers'>
+                    </tag-input-dropdown>
+                  </tag-input>
+                </div>
+              </div>
+
               <ng-container *ngIf="!this.isAnonymous">
                 <div class="listing-title">
                   <span class="ti-files"></span>
@@ -145,8 +154,8 @@
                     <div class="md-checkbox" style="margin-top: 20px;">
                       <input type="checkbox" id="agreeForData" formControlName="agreeForData"
                              [checked]="this.dossierForm.get('agreeForData')?.value">
-                      <label for="agreeForData" class="required-field">Згода на обробку персональних даних</label>
-                      <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
+                      <label for="agreeForData" class="required-field">Згода про відповідальність</label>
+                      <a target="_blank" href="assets/files/Згода_про_відповідальність.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
                       <p *ngIf="this.submitted && !this.dossierForm.get('agreeForData')?.valid"
                          class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
                     </div>
@@ -156,11 +165,9 @@
                       <input type="checkbox" id="agreeForContract" formControlName="agreeForContract"
                              [checked]="this.dossierForm.get('agreeForContract')?.value">
                       <label for="agreeForContract" class="required-field dis-line">
-                        Публічний договір щодо співпраці
-                        автора досьє
-                        та сайту
+                        Згода на обробку персональних даних
                       </label>
-                      <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
+                      <a target="_blank" href="assets/files/Згода_на_обробку_персональних_даних.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
                       <p *ngIf="this.submitted && !this.dossierForm.get('agreeForContract')?.valid"
                          class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
                     </div>
@@ -170,9 +177,9 @@
                       <input type="checkbox" id="agreeForCriminalLiability" formControlName="agreeForCriminalLiability"
                              [checked]="this.dossierForm.get('agreeForCriminalLiability')?.value">
                       <label for="agreeForCriminalLiability" class="required-field dis-line">
-                        Кримінальна відповідальність
+                        Згода на коригування
                       </label>
-                      <a target="_blank" href="assets/files/sample.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
+                      <a target="_blank" href="assets/files/Згода_на_коригування.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
                       <p *ngIf="this.submitted && !this.dossierForm.get('agreeForCriminalLiability')?.valid"
                          class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
                     </div>

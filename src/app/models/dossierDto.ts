@@ -1,3 +1,4 @@
+import { CorruptorsDto } from "./corruptorsDto";
 import { DisproveDossierPageDto } from "./disproveDossierPageDto";
 import { DossierStatus, DossierType } from "./enums";
 import { FileDto } from "./fileDto";
@@ -29,6 +30,7 @@ export class DossierDto {
   public photo: FileDto | null;
   public dossierFiles: FileDto[] | null;
   public tags: string[] | null = null;
+  public relatedDossiers: CorruptorsDto[] | null = null;
 
   //only for disproving
   public disproveDossier: DisproveDossierPageDto | null;

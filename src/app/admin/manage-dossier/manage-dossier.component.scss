@@ -30,7 +30,8 @@ min-height: 300px;
 }
 
 ::ng-deep .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
-    background-color: #ff6b6b !important;
+    // background-color: #ff6b6b !important;
+    background-color: #e64e4e !important;
     border: none;
 }
 ::ng-deep .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
@@ -42,6 +43,14 @@ min-height: 300px;
 .disabled {
   pointer-events: none;
   cursor: not-allowed;
+}
+
+.search-box-text label {
+  color: white;
+}
+
+label{
+  color: red;
 }
 
 .nav-tabs .nav-link {

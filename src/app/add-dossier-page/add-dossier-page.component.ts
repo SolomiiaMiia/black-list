@@ -2,8 +2,12 @@ import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { TagModel } from 'ngx-chips/core/tag-model';
 import { serialize } from 'object-to-formdata';
+import { Observable } from 'rxjs/internal/Observable';
+import { of } from 'rxjs/internal/observable/of';
 import { AddDossierPageDto } from '../models/addDossierPageDto';
+import { CorruptorsDto } from '../models/corruptorsDto';
 import { SignedData, SignedDataPart } from '../models/signedDataDto';
 import { routingAnimation } from '../shared/animations/routing-animation';
 import { APIService } from '../shared/services/api.service';
@@ -60,6 +64,11 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
     }
   }
 
+  public getRelatedDossiers = (text: string): Observable<CorruptorsDto[]> => {
+    return this.apiService.searchCorruptors(text);
+  };
+
+  public onAddRelatedDossier = (tag: TagModel) => { return of(tag); }
 
   @HostListener('window:popstate', ['$event'])
   @HostListener('window:beforeunload', ['$event'])
@@ -147,10 +156,6 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
   }
 
   public submit() {
-    let dto = <AddDossierPageDto>this.dossierForm.value;
-    var tags = (<Array<string>><unknown>dto.tags)?.join('');
-    dto.tags = tags == '' ? null : tags;
-
     this.submitted = true;
     this.dossierForm.get('address')?.setValue(this.getAddressInput()?.value);
 
@@ -167,7 +172,6 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
         window.scroll(0, 0);
       }
     }
-
   }
 
   private postData(signedData?: SignedData[]) {
@@ -177,12 +181,11 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
     if (tags != '') {
       dto.tags = tags;
     }
+    dto.relatedDossiers = this.dossierForm.get('relatedDossiers')?.value.map((obj: { id: number; }) => obj.id);
 
     const formData = serialize(
       dto
     );
-
-    formData.append('relatedDossiers', '12');
 
     formData.delete('attachtments');
     formData.set('authorPhoto', this.photo);
@@ -243,3 +246,4 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
     window["signProcessor"].onSign(dossierName);
   }
 }
+

@@ -9,6 +9,12 @@ import { AdminService } from '../shared/services/admin.service';
 import { serialize } from 'object-to-formdata';
 import { NotifyService } from '../shared/services/notify.service';
 import { routingAnimation } from '../shared/animations/routing-animation';
+import { Observable } from 'rxjs/internal/Observable';
+import { CorruptorsDto } from '../models/corruptorsDto';
+import { of } from 'rxjs/internal/observable/of';
+import { TagModel } from 'ngx-chips/core/tag-model';
+import { EditDossierPageDto } from '../models/editDossierPageDto';
+import { filter, map } from 'rxjs';
 
 
 
@@ -56,6 +62,12 @@ export class EditDossierPageComponent implements OnInit {
     this.photo = event.target.files[0];
   }
 
+  public getRelatedDossiers = (text: string): Observable<CorruptorsDto[]> => {
+    return this.apiService.searchCorruptors(text).pipe(map(m => m.filter(i => i.id != this.id)));
+  };
+
+  public onAddRelatedDossier = (tag: TagModel) => { return of(tag); }
+
   private fillDossier() {
     this.isAnonymous = this.dossier.isAnonymous;
 
@@ -68,6 +80,7 @@ export class EditDossierPageComponent implements OnInit {
     this.dossierForm.get('address')?.setValue(this.dossier.address);
 
     this.dossierForm.get('tags')?.setValue(this.dossier.tags);
+    this.dossierForm.get('relatedDossiers')?.setValue(this.dossier.relatedDossiers?.map((obj) => Object.assign({ value: obj.id, display: obj.name }, obj)));
 
 
     if (!this.isAnonymous) {
@@ -107,6 +120,7 @@ export class EditDossierPageComponent implements OnInit {
       placeOfWork: this.fb.control(''),
       address: this.fb.control('', { validators: [Validators.required] }),
       tags: [[], []],
+      relatedDossiers: [[], []]
     });
   }
 
@@ -138,12 +152,11 @@ export class EditDossierPageComponent implements OnInit {
       var tags = (<Array<string>><unknown>dto.tags)?.join('');
       dto.tags = tags == '' ? null : tags;
 
+      dto.relatedDossiers = this.dossierForm.get('relatedDossiers')?.value.map((obj: { id: number; }) => obj.id);
+
       const formData = serialize(
         dto
       );
-
-      formData.append('relatedDossiers', '12');
-      formData.append('relatedDossiers', '25');
 
       formData.set('authorPhoto', this.photo);
 

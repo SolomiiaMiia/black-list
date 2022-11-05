@@ -4,10 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from "@angular/router";
 import { FroalaEditorModule } from 'angular-froala-wysiwyg';
 import { TagInputModule } from 'ngx-chips';
-import { Settings } from '../shared/settings/settings';
 import { AddDossierPageComponent } from './add-dossier-page.component';
-
-TagInputModule.withDefaults(Settings.TagsSettings());
 
 @NgModule({
   declarations: [

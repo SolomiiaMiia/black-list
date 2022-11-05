@@ -102,7 +102,8 @@
   position: absolute;
   top: 27%;
   right: 22%;
-  background: #ff6b6b;
+  // background: #ff6b6b;
+  background:#e64e4e;
   border-radius: 6px;
   text-align: center;
   transition: 0.3s;
@@ -113,7 +114,8 @@
   }
 
   &:hover {
-    background: #ea5555;
+    // background: #ea5555;
+    background:  #c14b4b;
     color: #fff;
   }
 

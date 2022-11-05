@@ -52,5 +52,8 @@ export class DossierComponent implements OnInit {
     this.router.navigate(['/search'], { queryParams: { searchString: tag } });
   }
 
+  onSelectedDossier(dossier: any): void {
+    this.router.navigate(['/dossier/' + dossier.id]);
+  }
 
 }

@@ -10,6 +10,7 @@ import { DisproveDossierPageDto } from '../../models/disproveDossierPageDto';
 import { AdminSettingsDto } from '../../models/adminSettingsDto';
 import { EditDossierPageDto } from '../../models/editDossierPageDto';
 import { LatestDossiersDto } from 'src/app/models/latestDossiersDto';
+import { CorruptorsDto } from '../../models/corruptorsDto';
 
 @Injectable({ providedIn: 'root' })
 export class APIService {
@@ -95,6 +96,13 @@ export class APIService {
   downloadFile(url: string): Observable<any> {
     return this.httpClient.get(url, { responseType: 'blob' } 
     );
+  }
+
+  //+
+  searchCorruptors(searchText: string): Observable<CorruptorsDto[]> {
+    //limit results for 20 max
+    let params = new HttpParams().set('searchText', searchText);
+    return this.httpClient.get<CorruptorsDto[]>(`${this.envService.apiUrl}/dossier/corruptors`, { params: params });
   }
 
 }

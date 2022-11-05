@@ -13,5 +13,6 @@ export class AddDossierPageDto {
   authorPhoto: any;
   attachtments: any;
   tags: string | null = '';
+  relatedDossiers: number[] | undefined;
 }
 

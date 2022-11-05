@@ -109,6 +109,16 @@
                 </div>
               </div>
 
+              <div class="col-md-12">
+                <label>Пов'язані особи</label>
+                <div class="form-group">
+                  <tag-input [removable]="this.isSuperAdmin" [hideForm]="!this.isSuperAdmin" secondaryPlaceholder="Пошук корупціонера" placeholder="Пошук корупціонера" [onAdding]="onAddRelatedDossier" [modelAsStrings]="false" formControlName="relatedDossiers" [onlyFromAutocomplete]="true" [validators]="[]" theme="minimal">
+                    <tag-input-dropdown [identifyBy]="'id'" [displayBy]="'name'" [autocompleteObservable]='getRelatedDossiers'>
+                    </tag-input-dropdown>
+                  </tag-input>
+                </div>
+              </div>
+
               <ng-container *ngIf="!this.isAnonymous">
                 <div class="listing-title">
                   <span class="ti-files"></span>
