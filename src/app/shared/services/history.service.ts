@@ -7,12 +7,18 @@ import { IHistoryDataDto } from '../../models/historyDataDto';
 })
 export class HistoryService {
   private lifetime: number = 2; // in hours
+  public key_AddDossier = 'add-dossier-history';
+  public key_AddDisproveDossier = 'add-disprove-dossier-history';
 
   saveHistory(key: string, data: any,): void {
     var modal = <IHistoryDataDto>{};
     modal.timestamp = new Date().valueOf();
     modal.data = data;
     localStorage.setItem(key, JSON.stringify(modal));
+  }
+
+  clearHistory(key: string) {
+    localStorage.removeItem(key);
   }
 
   getHistory(key: string): any {

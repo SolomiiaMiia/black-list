@@ -40,7 +40,7 @@ export class DisproveDossierPageComponent implements OnInit, IHistorySaver {
     return dto;
   }
   applyData() {
-    var historyData = <CreateDisproveDossierPageDto>this.historyService.getHistory('add-disprove-dossier-history');
+    var historyData = <CreateDisproveDossierPageDto>this.historyService.getHistory(this.historyService.key_AddDisproveDossier);
     if (historyData !== null) {
       this.dossierForm.patchValue(historyData);
     }
@@ -49,7 +49,7 @@ export class DisproveDossierPageComponent implements OnInit, IHistorySaver {
   @HostListener('window:popstate', ['$event'])
   @HostListener('window:beforeunload', ['$event'])
   onPopState(event: any) {
-    this.historyService.saveHistory('add-disprove-dossier-history', this.getData());
+    this.historyService.saveHistory(this.historyService.key_AddDisproveDossier, this.getData());
   }
 
   ngOnInit(): void {
@@ -151,6 +151,8 @@ export class DisproveDossierPageComponent implements OnInit, IHistorySaver {
     formData.delete('agreeForCriminalLiability');
 
     this.apiService.addDisproveDossier(this.id, formData).subscribe(id => {
+
+      this.historyService.clearHistory(this.historyService.key_AddDisproveDossier);
 
       const navigationExtras: NavigationExtras = {
         state: {

@@ -28,7 +28,7 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
   public hasFileSizeError: boolean = false;
   private photo: any;
   private attachtments: File[] = [];
-  public requireSign: boolean = false;
+  public requireSign: boolean = false; 
 
   constructor(private fb: FormBuilder,
     private apiService: APIService,
@@ -46,9 +46,10 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
     return dto;
   }
   applyData() {
-    var historyData = <AddDossierPageDto>this.historyService.getHistory('add-dossier-history');
+    var historyData = <AddDossierPageDto>this.historyService.getHistory(this.historyService.key_AddDossier);
     if (historyData !== null) {     
       this.dossierForm.patchValue(historyData);
+      this.getAddressInput().value = historyData.address;
     }
   }
 
@@ -73,7 +74,7 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
   @HostListener('window:popstate', ['$event'])
   @HostListener('window:beforeunload', ['$event'])
   onPopState(event: any) {
-    this.historyService.saveHistory('add-dossier-history', this.getData());
+    this.historyService.saveHistory(this.historyService.key_AddDossier, this.getData());
   }
 
   private addScripts(url: string, callback?: Function) {
@@ -204,6 +205,8 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
     
 
     this.apiService.addDossier(formData).subscribe(id => {
+
+      this.historyService.clearHistory(this.historyService.key_AddDossier);
 
       const navigationExtras: NavigationExtras = {
         state: {
