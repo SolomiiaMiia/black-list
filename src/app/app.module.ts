@@ -19,6 +19,7 @@ import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
 import { TagInputModule } from 'ngx-chips';
 import { Settings } from './shared/settings/settings';
 
+
 TagInputModule.withDefaults(Settings.TagsSettings());
 
 

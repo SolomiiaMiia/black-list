@@ -1,0 +1,35 @@
+.main-block {
+  padding: 50px 0;
+  background-color: black;
+  color: #f9fafb;
+
+  @media (max-width: 992px) {
+    padding: 44px 0;
+  }
+
+  .firstHalf {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .text-big {
+      font-weight: bold;
+      font-size: 41px;
+      text-align: center;
+    }
+
+    .text-small {
+      color: ghostwhite;
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px;
+      text-align: center;
+      margin: 30px 0 15px;
+    }
+
+    .link{
+      text-decoration: none;
+      color: #f9fafb;
+    }
+  }
+}
+

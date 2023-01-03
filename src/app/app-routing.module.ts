@@ -52,6 +52,10 @@ const routes: Routes = [
     loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
   },
   {
+    path: 'about-us',
+    loadChildren: () => import('./about-us/about-us.module').then(m => m.AboutUsModule)
+  },
+  {
     path: '404',
     loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule)
   },
