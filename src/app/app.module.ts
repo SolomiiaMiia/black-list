@@ -20,6 +20,7 @@ import { TagInputModule } from 'ngx-chips';
 import { Settings } from './shared/settings/settings';
 
 
+
 TagInputModule.withDefaults(Settings.TagsSettings());
 
 
@@ -27,7 +28,6 @@ TagInputModule.withDefaults(Settings.TagsSettings());
 @NgModule({
   declarations: [
     AppComponent
-
   ],
   imports: [
     BrowserModule,
