@@ -1,9 +1,11 @@
+using System.IO.Compression;
 using CookingApi.Domain.Entities;
 using CookingApi.Infrastructure.Models.DTO.Dossier;
 using CookingApi.Infrastructure.Models.DTO.DossierDisprove;
 using CookingApi.Infrastructure.Services.Abstractions;
 using CookingApi.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CookingApi.Web.Controllers
 {
@@ -118,12 +120,39 @@ namespace CookingApi.Web.Controllers
       return File(bytes, mime, Path.GetFileName(filePath));
     }
 
+    [HttpGet("{id}/files")]
+    public async Task<IActionResult> GetFiles(int id, bool isDisprove)
+    {
+      var files = await _dossierService.GetDossierFiles(id, isDisprove);
+
+      var tempArchive = Path.Combine(_dossierService.GetWebRootPath(), "temp", $"archive-{Guid.NewGuid()}.zip");
+
+      using (var archive = ZipFile.Open(tempArchive, ZipArchiveMode.Create))
+      {
+
+        foreach (var file in files)
+        {
+          archive.CreateEntryFromFile(
+              file.Path,
+             file.Name,
+              CompressionLevel.SmallestSize
+          );
+        }
+      }
+
+      var bytes = await System.IO.File.ReadAllBytesAsync(tempArchive);
+
+      System.IO.File.Delete(tempArchive);
+
+      return File(bytes, Application.Zip, "archive.zip");
+    }
+
     [HttpGet]
     [Route("search")]
     public async Task<IActionResult> Search([FromQuery] Dossier.DossierType type, [FromServices] IAuthService authService, [FromQuery] string? searchText)
     {
       var isAuthorized = authService.isAuthorized();
-      var searchResults = await _dossierService.SearchDossier(string.IsNullOrEmpty(searchText)? "": searchText , type, isAuthorized);
+      var searchResults = await _dossierService.SearchDossier(string.IsNullOrEmpty(searchText) ? "" : searchText, type, isAuthorized);
       return new OkObjectResult(searchResults);
     }
 

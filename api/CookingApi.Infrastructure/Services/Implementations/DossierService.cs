@@ -31,6 +31,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
 
     public void SetWebRootPath(string webRootPath) => _webRootPath = webRootPath;
 
+    public string GetWebRootPath() => _webRootPath;
+
     public async Task<int> CreateDossier(DossierCreateDto dto)
     {
       var dossier = new Dossier()
@@ -370,6 +372,7 @@ namespace CookingApi.Infrastructure.Services.Implementations
           }).ToListAsync(),
           DisproveDossier = dossier.DossierDisprove != null ? new Models.DTO.ViewModels.DossierDisprove()
           {
+            Id = dossier.DossierDisprove.Id,
             Author = dossier.DossierDisprove.Author,
             Date = dossier.DossierDisprove.Date,
             Text = dossier.DossierDisprove.Text,
@@ -500,7 +503,6 @@ namespace CookingApi.Infrastructure.Services.Implementations
           var dossier = file.DossierId.HasValue ? await _unitOfWork.DossiersRepository.Get(file.DossierId.Value) : await _unitOfWork.DossiersRepository.Query().Fetch(c => c.DossierDisprove)
               .Where(c => c.DossierDisprove != null && c.DossierDisprove.Id == file.DossierDisproveId.Value).FirstOrDefaultAsync();
           if (dossier.Type == Dossier.DossierType.Declined || dossier.Type == Dossier.DossierType.New) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Досьє не опубліковане");
-
         }
 
         return (file.Path, file.MimeType);
@@ -508,6 +510,23 @@ namespace CookingApi.Infrastructure.Services.Implementations
       else
       {
         throw new CookingException(HttpStatusCode.NotFound, "Файл не знайдено");
+      }
+    }
+
+    public async Task<List<DownloadFile>> GetDossierFiles(int id, bool isDisprove)
+    {
+      var dossier = !isDisprove ? await _unitOfWork.DossiersRepository.Get(id) : await _unitOfWork.DossiersRepository.Query().Fetch(c => c.DossierDisprove)
+                    .Where(c => c.DossierDisprove != null && c.DossierDisprove.Id == id).FirstOrDefaultAsync();
+      if (dossier.Type == Dossier.DossierType.Declined || dossier.Type == Dossier.DossierType.New) throw new CookingException(HttpStatusCode.UnprocessableEntity, "Досьє не опубліковане");
+
+      var files = await _unitOfWork.FilesRepository.Query().Where(c => (isDisprove ? c.DossierDisproveId == id : c.DossierId == id) && c.Type == File.FileType.Attachtment).ToListAsync();
+      if (files.Any())
+      {
+        return files.Select(c => new DownloadFile() { Name = c.Name, Path = c.Path }).ToList();
+      }
+      else
+      {
+        throw new CookingException(HttpStatusCode.NotFound, "Файлів не знайдено");
       }
     }
 

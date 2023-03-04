@@ -19,7 +19,7 @@
           <hr>
           <div class="row">
             <div class="col-md-12">
-              <app-file-preview *ngIf="this.dossier.dossierFiles" [files]="this.dossier.dossierFiles"> </app-file-preview>
+              <app-file-preview *ngIf="this.dossier.dossierFiles" [id]="this.dossier.id" [isDisprove]="false" [files]="this.dossier.dossierFiles"> </app-file-preview>
             </div>
             <div class="col-md-12">
               <tag-input *ngIf="this.dossier.tags" (onSelect)="onSelected($event)" [(ngModel)]="this.dossier.tags" theme="minimal" [removable]="false" [hideForm]="true">
@@ -88,7 +88,7 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <app-file-preview *ngIf="this.dossier.disproveDossier?.dossierFiles" [files]="this.dossier.disproveDossier?.dossierFiles"> </app-file-preview>
+                <app-file-preview *ngIf="this.dossier.disproveDossier?.dossierFiles" [id]="this.dossier.disproveDossier?.id ?? 0" [isDisprove]="true" [files]="this.dossier.disproveDossier?.dossierFiles"> </app-file-preview>
               </div>
             </div>
           </div>

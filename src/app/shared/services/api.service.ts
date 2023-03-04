@@ -105,4 +105,9 @@ export class APIService {
     return this.httpClient.get<CorruptorsDto[]>(`${this.envService.apiUrl}/dossier/corruptors`, { params: params });
   }
 
+  downloadAllFiles(id: number, isDisprove: boolean): Observable<any> {
+    return this.httpClient.get(`${this.envService.apiUrl}/dossier/${id}/files?isDisprove=${isDisprove}`, { responseType: 'blob' }
+    );
+  }
+
 }

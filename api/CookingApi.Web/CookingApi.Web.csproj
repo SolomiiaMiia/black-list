@@ -57,6 +57,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Dossiers\6\" />
+    <Folder Include="wwwroot\temp\" />
     <Folder Include="wwwroot\Settings\" />
   </ItemGroup>
 

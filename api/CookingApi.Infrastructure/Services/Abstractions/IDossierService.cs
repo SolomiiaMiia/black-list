@@ -21,5 +21,7 @@ namespace CookingApi.Infrastructure.Services.Abstractions
     Task<(string path, string mime)> GetFilePath(int id, bool skipCheck = false);
     Task<List<DossierSearch>> SearchDossier(string searchText, DossierType type, bool skipCheck = false);
     Task<List<CorruptorSearch>> SearchCorruptors(string searchText);
+    public string GetWebRootPath();
+    public Task<List<DownloadFile>> GetDossierFiles(int id, bool isDisprove);
   }
 }

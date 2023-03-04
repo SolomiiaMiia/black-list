@@ -21,7 +21,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label class="required-field">Підтверджуючі додатки до тексту (файли, фото та ін.)</label>
-                  <app-file-preview *ngIf="this.dossier.disproveDossier?.dossierFiles" [files]="this.dossier.disproveDossier?.dossierFiles"> </app-file-preview>
+                  <app-file-preview *ngIf="this.dossier.disproveDossier?.dossierFiles" [disableDownloadAll]="true" [files]="this.dossier.disproveDossier?.dossierFiles"> </app-file-preview>
                 </div>
               </div>
 

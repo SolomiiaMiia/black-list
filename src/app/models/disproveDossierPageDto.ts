@@ -1,4 +1,5 @@
 export class DisproveDossierPageDto {
+  id: number = 0;
   dossierFiles: any;
   phone: string = '';
   email: string = '';

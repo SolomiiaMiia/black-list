@@ -60,7 +60,7 @@
                 </div>
               </div>
               <div class="col-md-12">
-                <app-file-preview *ngIf="this.dossier.photo" [files]="[this.dossier.photo]"> </app-file-preview>
+                <app-file-preview *ngIf="this.dossier.photo" [disableDownloadAll]="true" [files]="[this.dossier.photo]"> </app-file-preview>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
@@ -98,7 +98,7 @@
                 </div>
               </div>
               <div class="col-md-12">
-                <app-file-preview *ngIf="this.dossier.dossierFiles" [files]="this.dossier.dossierFiles"> </app-file-preview>
+                <app-file-preview *ngIf="this.dossier.dossierFiles" [disableDownloadAll]="true" [files]="this.dossier.dossierFiles"> </app-file-preview>
               </div>
 
               <div class="col-md-12">

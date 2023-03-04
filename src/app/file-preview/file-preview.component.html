@@ -4,11 +4,11 @@
       <div class="col-md-4 col-12 file">
         <div class="row">
           <div class="col-md-2 col-2">
-          <i [ngClass]="{'fa-file-signature': file.name.substr(-4) === '.p7s', 'fa-paperclip': file.name.substr(-4) !== '.p7s'}"
-             class="file-icon fa fa-xl a-thin "> </i>
+            <i [ngClass]="{'fa-file-signature': file.name.substr(-4) === '.p7s', 'fa-paperclip': file.name.substr(-4) !== '.p7s'}"
+               class="file-icon fa fa-xl a-thin "> </i>
           </div>
           <div title="{{file.name}}" class="col-md-8 col-8 file-name ">
-            {{file.name}} 
+            {{file.name}}
           </div>
           <div class="col-md-2 col-2 file-download">
             <a title="Завантажити {{file.name}}" style="cursor:pointer" [routerLink]="" (click)="this.download(file.url, file.name)"><i class="fa-xl fa-solid fa-file-arrow-down"></i></a>
@@ -16,5 +16,21 @@
         </div>
       </div>
     </ng-container>
+  </div>
+  <div class="row" *ngIf="!this.disableDownloadAll && this.files.length>0">
+    <div class="col-md-4 col-12 file">
+      <div class="row">
+        <div class="col-md-2 col-2">
+          <i [ngClass]="{'fa-archive': true}"
+             class="file-icon fa fa-xl a-thin "> </i>
+        </div>
+        <div title="Завантажити архівом" class="col-md-8 col-8 file-name ">
+          Завантажити архівом
+        </div>
+        <div class="col-md-2 col-2 file-download">
+          <a title="Завантажити" style="cursor:pointer" [routerLink]="" (click)="this.downloadAll()"><i class="fa-xl fa-solid fa-file-arrow-down"></i></a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

@@ -12,6 +12,9 @@ import { APIService } from '../shared/services/api.service';
 export class FilePreviewComponent implements OnInit {
 
   @Input() files: FileDto[] = [];
+  @Input() id!: number;
+  @Input() isDisprove!: boolean;
+  @Input() disableDownloadAll: boolean = false;
 
   constructor(private apiService: APIService) { }
 
@@ -22,6 +25,14 @@ export class FilePreviewComponent implements OnInit {
     this.apiService.downloadFile(url).subscribe(data => {
       const blob = new Blob([data]);
       saveAs(blob, name);
+    });
+
+  }
+
+  downloadAll(): void {
+    this.apiService.downloadAllFiles(this.id, this.isDisprove).subscribe(data => {
+      const blob = new Blob([data]);
+      saveAs(blob, 'файли.zip');
     });
 
   }
