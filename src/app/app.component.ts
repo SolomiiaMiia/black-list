@@ -12,8 +12,7 @@ import { routingAnimation } from './shared/animations/routing-animation';
 export class AppComponent {
   title = 'black-list';
 
-  constructor(public loaderService: LoaderService,) {
-
+  constructor(public loaderService: LoaderService) {
   }
   
 }
