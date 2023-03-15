@@ -21,6 +21,7 @@ import { Settings } from './shared/settings/settings';
 
 
 
+
 TagInputModule.withDefaults(Settings.TagsSettings());
 
 

@@ -6,7 +6,6 @@ footer {
     position: inherit;
   }
 
-
   .location {
     @media (max-width: 992px) {
       text-align: center;
@@ -70,14 +69,14 @@ footer {
       }
 
       a {
-        color: #8a3c3c;
+        color: #e64e4e;
         font-size: 22px;
         opacity: 0.6;
         transition: 0.3s;
 
         &:hover {
           opacity: 1;
-          color: #a82f2f;
+          color: #d23939;
 
         }
       }
@@ -105,6 +104,20 @@ footer {
       }
     }
   }
+
+
+
+
+  .social {
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+    font-size: 12px !important;
+  }
+  
+.rounded-circle{
+  border-radius: 50%;
+  border-color: red;
+}
 
 }
 

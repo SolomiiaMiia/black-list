@@ -23,7 +23,6 @@ const routes: Routes = [
     path: 'add-dossier/complete',
     loadChildren: () => import('../complete-dossier/complete-dossier.module').then(m => m.CompleteDossierModule)
   },
-
 ];
 
 @NgModule({
