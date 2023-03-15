@@ -19,9 +19,9 @@ namespace CookingApi.Infrastructure.Models.DTO.DossierDisprove
       if (string.IsNullOrWhiteSpace(Text) || string.IsNullOrWhiteSpace(Author))
         throw new CookingException(HttpStatusCode.UnprocessableEntity, "Не валідні дані");
 
-      if (this.Attachtments != null && this.Attachtments.Any(c => c.Length > 1024 * 1024 * 10))
+      if (this.Attachtments != null && this.Attachtments.Any(c => c.Length > 1024 * 1024 * 50))
       {
-        throw new CookingException(HttpStatusCode.RequestEntityTooLarge, "Максимальний розмір одного файлу - 10МB");
+        throw new CookingException(HttpStatusCode.RequestEntityTooLarge, "Максимальний розмір одного файлу - 50МB");
       }
     }
   }

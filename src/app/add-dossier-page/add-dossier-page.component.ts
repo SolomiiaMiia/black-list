@@ -144,7 +144,7 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
       this.attachtments = [];
       this.hasFileSizeError = false;
       for (var i = 0; i < event.target.files.length; i++) {
-        if (event.target.files[i].size > 1024 * 1024 * 10) {
+        if (event.target.files[i].size > 1024 * 1024 * 50) {
           this.hasFileSizeError = true;
           break;
         }
