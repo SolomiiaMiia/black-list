@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FroalaViewModule } from 'angular-froala-wysiwyg';
 import { PreviewDossierComponent } from './preview-dossier.component';
-import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
   declarations: [PreviewDossierComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FroalaViewModule.forRoot(),
   ],
   exports:[PreviewDossierComponent]
 })

@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, HostListener, Inject, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { TagModel } from 'ngx-chips/core/tag-model';
@@ -9,6 +9,7 @@ import { of } from 'rxjs/internal/observable/of';
 import { AddDossierPageDto } from '../models/addDossierPageDto';
 import { CorruptorsDto } from '../models/corruptorsDto';
 import { SignedData, SignedDataPart } from '../models/signedDataDto';
+import { PreviewDossierComponent } from '../preview-dossier/preview-dossier.component';
 import { routingAnimation } from '../shared/animations/routing-animation';
 import { APIService } from '../shared/services/api.service';
 import { HistoryService, IHistorySaver } from '../shared/services/history.service';
@@ -23,6 +24,7 @@ import { HistoryService, IHistorySaver } from '../shared/services/history.servic
 
 export class AddDossierPageComponent implements OnInit, IHistorySaver {
   @Input() public dossierForm: FormGroup = new FormGroup({});
+  @ViewChild('preview') preview!: PreviewDossierComponent;
   public submitted: boolean = false;
   public isAnonymous: boolean = false;
   public hasFileSizeError: boolean = false;
@@ -157,6 +159,7 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
   }
 
   public submit() {
+    this.preview.dto = <AddDossierPageDto>this.dossierForm.value;
     this.submitted = true;
     this.dossierForm.get('address')?.setValue(this.getAddressInput()?.value);
 
