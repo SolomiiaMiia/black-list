@@ -1,6 +1,6 @@
 <div *ngIf="dto" class="container main-block">
   <div class="row p-2 border-style-top">
-    <div class="col-sm-3 "></div>
+    <div class="col-sm-2"></div>
     <div class="col-sm-3 ">
       <span class="f-size">
         Прізвище
@@ -11,20 +11,20 @@
         {{dto.lastName}}
       </span>
     </div>
-    <div class="col-sm-3 "></div>
+    <div class="col-sm-2"></div>
   </div>
   <div class="row p-2">
-    <div class="col-sm-3 "></div>
+    <div class="col-sm-2"></div>
     <div class="col-sm-3">
       <span class="f-size">Ім'я</span>
     </div>
     <div class="col-sm-6">
       <span>{{dto.firstName}} </span>
     </div>
-    <div class="col-sm-3 "></div>
+    <div class="col-sm-2"></div>
   </div>
   <div class="row p-2">
-    <div class="col-sm-3 "></div>
+    <div class="col-sm-2"></div>
     <div class="col-sm-3">
       <span class="f-size">По Батькові</span>
     </div>
@@ -34,7 +34,7 @@
     <div class="col-sm-3 "></div>
   </div>
   <div class="row p-2">
-    <div class="col-sm-3 "></div>
+    <div class="col-sm-2"></div>
     <div class="col-sm-3">
       <span class="f-size">Посада</span>
     </div>
@@ -44,7 +44,7 @@
     <div class="col-sm-3 "></div>
   </div>
   <div class="row p-2">
-    <div class="col-sm-3 "></div>
+    <div class="col-sm-2"></div>
     <div class="col-sm-3">
       <span class="f-size">Місце роботи</span>
     </div>
@@ -54,61 +54,65 @@
     <div class="col-sm-3 "></div>
   </div>
   <div class="row p-2">
-    <div class="col-sm-3 "></div>
+    <div class="col-sm-2"></div>
     <div class="col-sm-3">
       <span class="f-size">Адреса</span>
     </div>
     <div class="col-sm-6">
       <span>{{dto.address}}</span>
     </div>
-    <div class="col-sm-3 "></div>
+    <div class="col-sm-2"></div>
   </div>
   <div class="row p-2">
-    <div class="col-sm-3"></div>
+    <div class="col-sm-2"></div>
     <div class="col-sm-3"> <span class="f-size">Текст, що викриває особу, підозрювану у корупції</span></div>
     </div>
   <div class="row p-2">
-    <div class="col-sm-3 ">
+    <div class="col-sm-2">
     </div>
-    <div class="booking-checkbox text-light p-2 col-sm-8">
+    <div class="booking-checkbox text-light p-2 col-sm-10">
       <div [froalaView]="dto.text" class="text p-2" rows="3"></div>
     </div>
   </div>
   <div class="row p-2">
+    <div class="col-sm-2"></div>
     <div class="col-sm-3">
-      <span>Фото особи</span>
+      <span class="f-size">Фото особи</span>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-6">
       <span>{{authorPhoto??'відсутнє'}}</span>
     </div>
   </div>
   <div class="row p-2">
+    <div class="col-sm-2"></div>
     <div class="col-sm-3">
-      <span>Підтверджуючі додатки до тексту (файли, фото та ін.)</span>
+      <span class="f-size">Підтверджуючі додатки до тексту (файли, фото та ін.)</span>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-7">
       <span>{{attachtments.length>0?attachtments:'відсутні'}}</span>
     </div>
   </div>
   <div class="row p-2">
+    <div class="col-sm-2"></div>
     <div class="col-sm-3">
-      <span>Хеш-теги</span>
+      <span class="f-size">Хеш-теги</span>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-6">
       <span>{{dto.tags}}</span>
     </div>
   </div>
   <div class="row p-2">
+    <div class="col-sm-2"></div>
     <div class="col-sm-3">
-      <span>Пов'язані особи</span>
+      <span class="f-size">Пов'язані особи</span>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-6">
       <span>{{relatedDossiers.length>0?relatedDossiers:'відсутні'}}</span>
     </div>
   </div>
   <ng-container *ngIf="!dto.isAnonymous">
     <div class="row p-2">
-      <div class="col-sm-3 "></div>
+      <div class="col-sm-2"></div>
       <div class="col-sm-3">
         <span class="f-size">Автор</span>
       </div>
@@ -118,17 +122,17 @@
       <div class="col-sm-3 "></div>
     </div>
     <div class="row p-2">
-      <div class="col-sm-3 "></div>
+      <div class="col-sm-2"></div>
       <div class="col-sm-3">
         <span class="f-size">Контактний номер телефону</span>
       </div>
       <div class="col-sm-6">
         <span>{{dto.phone}}</span>
       </div>
-      <div class="col-sm-3 "></div>
+      <div class="col-sm-2"></div>
     </div>
     <div class="row p-2 border-style-bottom">
-      <div class="col-sm-3 "></div>
+      <div class="col-sm-2"></div>
       <div class="col-sm-3">
         <span class="f-size">Адреса електронної пошти</span>
       </div>
