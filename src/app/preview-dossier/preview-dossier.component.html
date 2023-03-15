@@ -1,12 +1,12 @@
-<div *ngIf="dto" class="container">
-  <div class="row p-2">
+<div *ngIf="dto" class="container main-block">
+  <div class="row p-2 border-style-top">
     <div class="col-sm-3 "></div>
     <div class="col-sm-3 ">
-      <span>
+      <span class="f-size">
         Прізвище
       </span>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-6">
       <span>
         {{dto.lastName}}
       </span>
@@ -16,9 +16,9 @@
   <div class="row p-2">
     <div class="col-sm-3 "></div>
     <div class="col-sm-3">
-      <span>Ім'я</span>
+      <span class="f-size">Ім'я</span>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-6">
       <span>{{dto.firstName}} </span>
     </div>
     <div class="col-sm-3 "></div>
@@ -26,9 +26,9 @@
   <div class="row p-2">
     <div class="col-sm-3 "></div>
     <div class="col-sm-3">
-      <span>По Батькові</span>
+      <span class="f-size">По Батькові</span>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-6">
       <span>{{dto.thirdName}} </span>
     </div>
     <div class="col-sm-3 "></div>
@@ -36,9 +36,9 @@
   <div class="row p-2">
     <div class="col-sm-3 "></div>
     <div class="col-sm-3">
-      <span>Посада</span>
+      <span class="f-size">Посада</span>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-6">
       <span>{{dto.position}} </span>
     </div>
     <div class="col-sm-3 "></div>
@@ -46,9 +46,9 @@
   <div class="row p-2">
     <div class="col-sm-3 "></div>
     <div class="col-sm-3">
-      <span>Місце роботи</span>
+      <span class="f-size">Місце роботи</span>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-6">
       <span>{{dto.placeOfWork}}</span>
     </div>
     <div class="col-sm-3 "></div>
@@ -56,25 +56,31 @@
   <div class="row p-2">
     <div class="col-sm-3 "></div>
     <div class="col-sm-3">
-      <span>Адреса</span>
+      <span class="f-size">Адреса</span>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-6">
       <span>{{dto.address}}</span>
     </div>
     <div class="col-sm-3 "></div>
   </div>
   <div class="row p-2">
-    <div class="booking-checkbox text-light p-2">
-      <div [froalaView]="dto.text" class="text border-bottom p-2" rows="3"></div>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-3"> <span class="f-size">Текст, що викриває особу, підозрювану у корупції</span></div>
+    </div>
+  <div class="row p-2">
+    <div class="col-sm-3 ">
+    </div>
+    <div class="booking-checkbox text-light p-2 col-sm-8">
+      <div [froalaView]="dto.text" class="text p-2" rows="3"></div>
     </div>
   </div>
   <ng-container *ngIf="!dto.isAnonymous">
     <div class="row p-2">
       <div class="col-sm-3 "></div>
       <div class="col-sm-3">
-        <span>Автор</span>
+        <span class="f-size">Автор</span>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-6">
         <span>{{dto.author}}</span>
       </div>
       <div class="col-sm-3 "></div>
@@ -82,19 +88,19 @@
     <div class="row p-2">
       <div class="col-sm-3 "></div>
       <div class="col-sm-3">
-        <span>Контактний номер телефону</span>
+        <span class="f-size">Контактний номер телефону</span>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-6">
         <span>{{dto.phone}}</span>
       </div>
       <div class="col-sm-3 "></div>
     </div>
-    <div class="row p-2">
+    <div class="row p-2 border-style-bottom">
       <div class="col-sm-3 "></div>
       <div class="col-sm-3">
-        <span>Адреса електронної пошти</span>
+        <span class="f-size">Адреса електронної пошти</span>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-6">
         <span>{{dto.email}}</span>
       </div>
       <div class="col-sm-3 "></div>

@@ -1,3 +1,28 @@
-span{
+
+
+.main-block {
+  padding: 50px 0;
+  font-family: 'Roboto', sans-serif;
+
+  @media (max-width: 992px) {
+    padding: 44px 0;
+  }
+
+  span {
     color: white
+  }
+
+  .f-size{
+    font-size: 18px;
+    color: #f9fafb;
+  }
+  .border-style-top {
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+  }
+
+  .border-style-bottom {
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+  }
 }
