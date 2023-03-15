@@ -68,6 +68,38 @@
       <div [froalaView]="dto.text" class="text border-bottom p-2" rows="3"></div>
     </div>
   </div>
+  <div class="row p-2">
+    <div class="col-sm-3">
+      <span>Фото особи</span>
+    </div>
+    <div class="col-sm-3">
+      <span>{{authorPhoto??'відсутнє'}}</span>
+    </div>
+  </div>
+  <div class="row p-2">
+    <div class="col-sm-3">
+      <span>Підтверджуючі додатки до тексту (файли, фото та ін.)</span>
+    </div>
+    <div class="col-sm-3">
+      <span>{{attachtments.length>0?attachtments:'відсутні'}}</span>
+    </div>
+  </div>
+  <div class="row p-2">
+    <div class="col-sm-3">
+      <span>Хеш-теги</span>
+    </div>
+    <div class="col-sm-3">
+      <span>{{dto.tags}}</span>
+    </div>
+  </div>
+  <div class="row p-2">
+    <div class="col-sm-3">
+      <span>Пов'язані особи</span>
+    </div>
+    <div class="col-sm-3">
+      <span>{{relatedDossiers.length>0?relatedDossiers:'відсутні'}}</span>
+    </div>
+  </div>
   <ng-container *ngIf="!dto.isAnonymous">
     <div class="row p-2">
       <div class="col-sm-3 "></div>

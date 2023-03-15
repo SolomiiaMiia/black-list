@@ -160,6 +160,10 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
 
   public submit() {
     this.preview.dto = <AddDossierPageDto>this.dossierForm.value;
+    this.preview.authorPhoto = this.photo?.name;
+    this.preview.attachtments = this.attachtments.map(c => c.name);
+    this.preview.relatedDossiers = this.dossierForm.get('relatedDossiers')?.value.map((obj: { name: string; }) => obj.name);
+
     this.submitted = true;
     this.dossierForm.get('address')?.setValue(this.getAddressInput()?.value);
 
