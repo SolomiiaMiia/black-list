@@ -30,7 +30,8 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
   public hasFileSizeError: boolean = false;
   private photo: any;
   private attachtments: File[] = [];
-  public requireSign: boolean = false; 
+  public requireSign: boolean = false;
+  public showPreview: boolean = false;
 
   constructor(private fb: FormBuilder,
     private apiService: APIService,
@@ -158,27 +159,37 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
     }
   }
 
-  public submit() {
+
+  public openPreview() {
     this.preview.dto = <AddDossierPageDto>this.dossierForm.value;
     this.preview.authorPhoto = this.photo?.name;
     this.preview.attachtments = this.attachtments.map(c => c.name);
     this.preview.relatedDossiers = this.dossierForm.get('relatedDossiers')?.value.map((obj: { name: string; }) => obj.name);
+    this.showPreview = true;
+    window.scroll(0, 0);
+  }
 
+  public finishPreview() {
+    this.showPreview = false;
+    if (this.isAnonymous) {
+      this.postData();
+    } else {
+      this.requireSign = true;
+      window.scroll(0, 0);
+    }
+  }
+
+  public hidePreview() {
+    this.showPreview = false;
+    window.scroll(0, 0);
+  }
+
+  public submit() {
     this.submitted = true;
     this.dossierForm.get('address')?.setValue(this.getAddressInput()?.value);
 
     if (this.dossierForm.valid && !this.hasFileSizeError) {
-
-      if (this.isAnonymous) {
-
-        this.postData();
-
-      } else {
-
-        this.requireSign = true;
-
-        window.scroll(0, 0);
-      }
+      this.openPreview();
     }
   }
 

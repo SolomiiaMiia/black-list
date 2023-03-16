@@ -456,3 +456,22 @@ html body div #mainBlock .Block{
   border-top: 2px solid white;
   border-bottom: 2px solid white;
 }
+
+.btn-simple-admin {
+  display: block;
+  padding: 10px 35px;
+  margin: 12px;
+  border: 2px solid #408309;
+  color: #408309;
+  font-weight: 400;
+
+  @media (max-width: 720px) {
+    margin: 12px 0;
+  }
+
+  &:hover {
+    color: white;
+    background: #6c944e;
+    border: 2px solid #6c944e;
+  }
+}

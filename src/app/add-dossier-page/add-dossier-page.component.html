@@ -2,7 +2,7 @@
 <script src="/assets/sign.processor.js" async></script>
 
 <section class="main-block" [style.background-color]="this.requireSign ? 'white' : 'black'">
-  <div class="container-fluid" [style.display]="!this.requireSign ? 'block' : 'none'">
+  <div class="container-fluid" [style.display]="!this.requireSign && !this.showPreview ? 'block' : 'none'">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="listing-wrap">
@@ -11,7 +11,6 @@
             <h4 class="text-center pt-5 mb-4 text-white-70 fw-bold">Створити {{this.isAnonymous? 'анонімно':'' }} досьє</h4>
             <p class="fw-bold">Дані про корупціонера</p>
           </div>
-
           <form [formGroup]="this.dossierForm">
             <div class="row">
               <p class="info"> обов’язкові поля для заповнення</p>
@@ -191,7 +190,7 @@
                   <div class="btn-wrap btn-wrap2">
                     <button type="submit" (click)="submit()" class="btn btn-simple"
                             [disabled]="!this.canSubmit()">
-                      Надіслати
+                      Попередній перегляд
                     </button>
                   </div>
                 </div>
@@ -202,7 +201,7 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid" [style.display]="this.requireSign ? 'block' : 'none'">
+  <div class="container-fluid" [style.display]="this.requireSign && !this.showPreview ? 'block' : 'none'">
     <div class="row justify-content-center" style="height:82vh">
       <!-- <div class="col-md-8"> -->
         <!-- <div class="listing-wrap"> -->
@@ -212,11 +211,29 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid" [style.display]="true ? 'block' : 'none'">
+  <div class="container-fluid" [style.display]="this.showPreview ? 'block' : 'none'">
+    <h4 class="text-center pt-5 mb-4 text-white-70 fw-bold">Попередній перегляд досьє</h4>
     <div class="row justify-content-center">
       <div class="col-md-8">
-    <app-preview-dossier #preview></app-preview-dossier>
-  </div>
+        <app-preview-dossier #preview></app-preview-dossier>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="btn-wrap btn-wrap2">
+              <button type="button" (click)="hidePreview()" class="btn btn-simple">
+                Назад
+              </button>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="btn-wrap btn-wrap2">
+              <button type="button" (click)="finishPreview()" class="btn btn-simple-admin"
+                      [disabled]="!this.canSubmit()">
+                Надіслати
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
