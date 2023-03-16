@@ -1,5 +1,5 @@
 <div *ngIf="dto" class="container main-block">
-  <div class="row p-2 border-style-top">
+  <div class="row p-2 bc">
     <div class="col-sm-4">
       <span class="f-size">
         Прізвище
@@ -19,7 +19,7 @@
       <span>{{dto.firstName}} </span>
     </div>
   </div>
-  <div class="row p-2">
+  <div class="row p-2 bc">
     <div class="col-sm-4">
       <span class="f-size">По Батькові</span>
     </div>
@@ -35,7 +35,7 @@
       <span>{{dto.position}} </span>
     </div>
   </div>
-  <div class="row p-2">
+  <div class="row p-2 bc">
     <div class="col-sm-4">
       <span class="f-size">Місце роботи</span>
     </div>
@@ -51,7 +51,7 @@
       <span>{{dto.address}}</span>
     </div>
   </div>
-  <div class="row p-2">
+  <div class="row p-2 bc">
     <div class="col-sm-12"> <span class="f-size">Текст, що викриває особу, підозрювану у корупції</span></div>
     </div>
   <div class="row p-2">
@@ -59,7 +59,7 @@
       <div [froalaView]="dto.text" class="text p-2" rows="3"></div>
     </div>
   </div>
-  <div class="row p-2">
+  <div class="row p-2 bc">
     <div class="col-sm-4">
       <span class="f-size">Фото особи</span>
     </div>
@@ -75,7 +75,7 @@
       <span>{{attachtments.length>0?attachtments:'відсутні'}}</span>
     </div>
   </div>
-  <div class="row p-2">
+  <div class="row p-2 bc">
     <div class="col-sm-4">
       <span class="f-size">Хеш-теги</span>
     </div>
@@ -92,7 +92,7 @@
     </div>
   </div>
   <ng-container *ngIf="!dto.isAnonymous">
-    <div class="row p-2">
+    <div class="row p-2 bc">
       <div class="col-sm-4">
         <span class="f-size">Автор</span>
       </div>
@@ -108,7 +108,7 @@
         <span>{{dto.phone}}</span>
       </div>
     </div>
-    <div class="row p-2 border-style-bottom">
+    <div class="row p-2 bc">
       <div class="col-sm-4">
         <span class="f-size">Адреса електронної пошти</span>
       </div>
