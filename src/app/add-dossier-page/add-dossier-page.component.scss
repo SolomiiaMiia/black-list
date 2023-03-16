@@ -481,3 +481,7 @@ html body div #mainBlock .Block{
     border: 2px solid #6c944e;
   }
 }
+
+::ng-deep p[data-f-id="pbf"] {
+  display: none;
+}
