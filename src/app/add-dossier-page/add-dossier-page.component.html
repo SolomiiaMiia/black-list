@@ -163,9 +163,7 @@
                     <div class="md-checkbox">
                       <input type="checkbox" id="agreeForContract" formControlName="agreeForContract"
                              [checked]="this.dossierForm.get('agreeForContract')?.value">
-                      <label for="agreeForContract" class="required-field dis-line">
-                        Згода на обробку персональних даних
-                      </label>
+                      <label for="agreeForContract" class="required-field dis-line">Згода на обробку персональних даних</label>
                       <a target="_blank" href="assets/files/Згода на обробку персональних даних.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
                       <p *ngIf="this.submitted && !this.dossierForm.get('agreeForContract')?.valid"
                          class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>
@@ -175,9 +173,7 @@
                     <div class="md-checkbox">
                       <input type="checkbox" id="agreeForCriminalLiability" formControlName="agreeForCriminalLiability"
                              [checked]="this.dossierForm.get('agreeForCriminalLiability')?.value">
-                      <label for="agreeForCriminalLiability" class="required-field dis-line">
-                        Згода на корегування
-                      </label>
+                      <label for="agreeForCriminalLiability" class="required-field dis-line">Згода на корегування</label>
                       <a target="_blank" href="assets/files/Згода на корегування.pdf" class="link"><i class="fa-solid fa-eye"></i></a>
                       <p *ngIf="this.submitted && !this.dossierForm.get('agreeForCriminalLiability')?.valid"
                          class="form-text text-danger ml-2 small">Це поле є обов'язковим для заповнення</p>

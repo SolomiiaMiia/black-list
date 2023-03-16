@@ -142,7 +142,7 @@
     content: "";
     position: absolute;
     left: 0;
-    top: 0;
+    top: 3px;
   }
 
   .md-checkbox label:before {
@@ -167,7 +167,7 @@
 
   .md-checkbox input[type="checkbox"]:checked + label:after {
     transform: rotate(-45deg);
-    top: 5px;
+    top: 8px;
     left: 4px;
     width: 12px;
     height: 6px;

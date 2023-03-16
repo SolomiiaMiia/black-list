@@ -162,6 +162,7 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
 
   public openPreview() {
     this.preview.dto = <AddDossierPageDto>this.dossierForm.value;
+    this.preview.dto.isAnonymous = this.isAnonymous;
     this.preview.authorPhoto = this.photo?.name;
     this.preview.attachtments = this.attachtments.map(c => c.name);
     this.preview.relatedDossiers = this.dossierForm.get('relatedDossiers')?.value.map((obj: { name: string; }) => obj.name);
