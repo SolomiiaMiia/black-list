@@ -109,8 +109,22 @@ h4 {
 }
 
 .hero-title{
-
-  letter-spacing:3px;
+  .spacing{
+    letter-spacing:3px;
+  }
+  .link{
+    text-decoration: none;
+    color: #bdbdbd;
+    font-family: 'Roboto', sans-serif;
+    &:hover {
+      color:#c14b4b;
+    }
+  }
+  .subtext{
+    color: #bdbdbd;
+    margin-top: 25px;
+    font-family: 'Roboto', sans-serif;
+  }
 }
 
 @keyframes hero-wrap {
@@ -151,6 +165,7 @@ h3 {
   border: 1px solid #ccc;
   margin: 40px 0 0;
 
+
   @media (max-width: 767px) {
     position: relative;
     width: 100%;
@@ -171,7 +186,6 @@ h3 {
 
   .btn-add {
     top: 17%;
-
     @media (max-width: 767px) {
       top: 0px;
       left: 0;
@@ -233,6 +247,7 @@ h3 {
 
 .search-box-title {
   margin: 7px 0 0;
+  font-family: 'Roboto', sans-serif;
 
   @media (max-width: 768px) {
     display: block;
@@ -331,6 +346,7 @@ h3 {
 }
 
 .float-child {
+  font-family: 'Roboto', sans-serif;
   &:first-child {
     margin-right: 10px;
 
@@ -359,6 +375,7 @@ h3 {
     color: #fff;
     padding: 20px 46px;
     font-size: 18px;
+    font-family: 'Roboto', sans-serif;
 
     @media (max-width: 1200px) {
       padding: 18px 6px;
@@ -372,6 +389,7 @@ h3 {
 }
 
 .float-child-an {
+  font-family: 'Roboto', sans-serif;
   &:first-child {
     margin-right: 10px;
   }
@@ -433,6 +451,7 @@ h3 {
     color: #fff;
     padding: 20px 46px;
     font-size: 18px;
+    font-family: 'Roboto', sans-serif;
 
     @media (max-width: 1200px) {
       padding: 18px 31px;
