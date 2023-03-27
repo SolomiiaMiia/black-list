@@ -109,6 +109,9 @@ h4 {
 }
 
 .hero-title{
+  @media (max-width: 740px) {
+    margin-top: 60px;
+  }
   .spacing{
     letter-spacing:3px;
   }
