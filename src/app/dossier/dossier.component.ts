@@ -5,6 +5,7 @@ import { DossierDto } from '../models/dossierDto';
 import { DossierStatus, DossierType, EnumHelper } from '../models/enums';
 import { routingAnimation } from '../shared/animations/routing-animation';
 import { APIService } from '../shared/services/api.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class DossierComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private apiService: APIService) {
+    private apiService: APIService,
+    private titleService: Title) {
     
   }
 
@@ -37,6 +39,7 @@ export class DossierComponent implements OnInit {
       }),
     ).subscribe(res => {
       this.dossier = res;
+      this.titleService.setTitle(res.lastName + " " + res.firstName + " " + res.thirdName + "  | BLACKLIST.UA");
     });
     
   }
