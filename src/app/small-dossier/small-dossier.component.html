@@ -15,7 +15,7 @@
         <div class="portfolio-heading">
           <h5 class="card-title text-center m-3 title">{{dossier.fullName}}</h5>
           <div class="card-rating card-rating-null">
-            <span class="position text-ligh">{{dossier.position}} {{dossier.placeOfWork}}</span>
+            <span class="position text-ligh">{{dossier.position}}, {{dossier.placeOfWork  | slice:1:50 }} ...</span>
           </div>
           <p class="card-text text">{{dossier.address}}</p>
           <div class="col-md-12">

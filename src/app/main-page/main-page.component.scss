@@ -47,7 +47,6 @@ h2 {
 
 h3 {
   font-size: 27px;
-  font-family: 'Roboto', sans-serif;
 
   @media (max-width: 992px) {
     font-size: 20px;
@@ -119,7 +118,6 @@ h4 {
   .link{
     text-decoration: none;
     color: #bdbdbd;
-    font-family: 'Roboto', sans-serif;
     &:hover {
       color:#c14b4b;
     }
@@ -127,7 +125,6 @@ h4 {
   .subtext{
     color: #bdbdbd;
     margin-top: 25px;
-    font-family: 'Roboto', sans-serif;
   }
 }
 
@@ -218,7 +215,6 @@ h3 {
 .search-form {
   margin: 0;
   color: rgb(196, 196, 196);
-  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 300;
   border: none;
@@ -251,7 +247,6 @@ h3 {
 
 .search-box-title {
   margin: 7px 0 0;
-  font-family: 'Roboto', sans-serif;
 
   @media (max-width: 768px) {
     display: block;
@@ -342,15 +337,14 @@ h3 {
       display: flex;
       width: 100%;
       min-height: 1px;
-      padding-right: 15px;
-      padding-left: 15px;
+      padding-right: 29px;
+      // padding-left: 15px;
       flex-direction: column;
     }
   }
 }
 
 .float-child {
-  font-family: 'Roboto', sans-serif;
   &:first-child {
     margin-right: 10px;
 
@@ -379,7 +373,6 @@ h3 {
     color: #fff;
     padding: 20px 46px;
     font-size: 18px;
-    font-family: 'Roboto', sans-serif;
 
     @media (max-width: 1200px) {
       padding: 18px 6px;
@@ -393,7 +386,6 @@ h3 {
 }
 
 .float-child-an {
-  font-family: 'Roboto', sans-serif;
   &:first-child {
     margin-right: 10px;
   }
@@ -455,7 +447,6 @@ h3 {
     color: #fff;
     padding: 20px 46px;
     font-size: 18px;
-    font-family: 'Roboto', sans-serif;
 
     @media (max-width: 1200px) {
       padding: 18px 31px;
@@ -544,7 +535,6 @@ h3 {
     }
 
     p {
-      font-family: 'Roboto', sans-serif;
       color: #7c7c7c;
       font-size: 18px;
     }
