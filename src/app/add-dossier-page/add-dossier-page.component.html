@@ -61,11 +61,33 @@
                   <input type="text" formControlName="placeOfWork" class="form-control">
                 </div>
               </div>
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
                 <div class="form-group">
                   <label class="required-field">Адреса</label>
                   <div id="visicom-autocomplete">
                     <a href="https://api.visicom.ua/" target="_blank"></a>
+                  </div>
+                  <small *ngIf="this.submitted && !this.checkAddress()" class="form-text text-danger ml-2">
+                    Це поле є обов'язковим для заповнення
+                  </small>
+                </div>
+              </div> -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="required-field">Область</label>
+                  <div id="visicom-autocomplete">
+                    <a href="https://api.visicom.ua/" target="_blank"></a>
+                  </div>
+                  <small *ngIf="this.submitted && !this.checkAddress()" class="form-text text-danger ml-2">
+                    Це поле є обов'язковим для заповнення
+                  </small>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="required-field">Населений пункт</label>
+                  <div id="visicom-autocomplete">
+                    <a href="#" target="_blank"></a>
                   </div>
                   <small *ngIf="this.submitted && !this.checkAddress()" class="form-text text-danger ml-2">
                     Це поле є обов'язковим для заповнення
