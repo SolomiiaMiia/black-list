@@ -59,9 +59,5 @@ export class DossierComponent implements OnInit {
     this.router.navigate(['/dossier/' + dossier.id]);
   }
 
-  selectedDossier(dossier: any): void {
-    this.router.navigate(dossier.id);
-  }
-
 
 }

@@ -2,7 +2,7 @@
   <div class="container d-flex justify-content-center">
     <div class="row d-flex justify-content-center">
       <div class="hero-title">
-        <h1 class="text-white-100 fw-bold" (click)="selectedDossier($event)">{{dossier.firstName}} {{dossier.lastName}} {{dossier.thirdName}}</h1>
+        <h1 (click)="onSelectedDossier(dossier)" class="text-white-100 fw-bold" >{{dossier.firstName}} {{dossier.lastName}} {{dossier.thirdName}} </h1>
         <h2 class="text-white-100 fw-bold"><i class="fa fa-light fa-clipboard mx-2"></i> Досьє номер {{dossier.id}}</h2>
       </div>
     </div>
@@ -57,6 +57,14 @@
             <div class="address">
               <span><i class="fa fa-light fa-user-circle"></i></span>
               <p>{{dossier.author}} </p>
+            </div>
+            <div class="address">
+              <span><i class="fa fa-picture-o"></i></span>
+              <p>{{dossier.region}} </p>
+            </div>
+            <div class="address">
+              <span><i class="fa fa-light fa-user-circle"></i></span>
+              <p>{{dossier.locality}} </p>
             </div>
             <div class="address">
               <span><i class="fa fa-light" [class]="dossier.status === DossierStatuses.New? 'fa-thumbs-down': dossier.status === DossierStatuses.HasDisprove?'fa-spinner': 'fa-thumbs-up'"></i></span>

@@ -33,6 +33,13 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
   public requireSign: boolean = false;
   public showPreview: boolean = false;
 
+  public selectedValue: string = '';
+  public dropdownVisible: boolean = false;
+  public values: string[] = ['Вінницька', 'Волинська', 'Дніпропетровська',' Донецька', 'Житомирська','Закарпатська',' Запорізька',
+    'Івано-Франківська','Київська','Кіровоградська','Луганська','Львівська','Миколаївська','Одеська','Полтавська','Рівненська',
+    'Сумська','Тернопільська','Харківська','Херсонська','Хмельницька','Черкаська','Чернівецька','Чернігівська'
+  ];
+
   constructor(private fb: FormBuilder,
     private apiService: APIService,
     private route: ActivatedRoute,
@@ -108,6 +115,8 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
       position: this.fb.control(''),
       placeOfWork: this.fb.control(''),
       address: this.fb.control('', { validators: [Validators.required] }),
+      region:  this.fb.control(''),
+      locality: this.fb.control(''),
       attachtments: this.fb.control(''), //can be multiple attachtments
       text: this.fb.control('', { validators: [Validators.required] }),
       tags: [[], []],
@@ -267,5 +276,18 @@ export class AddDossierPageComponent implements OnInit, IHistorySaver {
     let dossierName = `${dto.lastName} ${dto.firstName} ${dto.thirdName}.txt`;
     window["signProcessor"].onSign(dossierName);
   }
+
+
+  
+
+  public toggleDropdown() {
+    this.dropdownVisible = !this.dropdownVisible;
+  }
+
+  public selectValue(value: string) {
+    this.selectedValue = value;
+    setTimeout(() => this.dropdownVisible = false, 100);
+  }
+
 }
 
