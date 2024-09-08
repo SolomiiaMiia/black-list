@@ -12,6 +12,8 @@ export class DossierSmallDto {
   public position: string = '';
   public placeOfWork: string = '';
   public address: string = '';
+  public region: string = '';
+  public locality: string = '';
   public date: Date = new Date();
   public status!: DossierStatus;
   public type!: DossierType;
