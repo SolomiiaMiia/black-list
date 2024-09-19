@@ -12,6 +12,8 @@ namespace CookingApi.Infrastructure.Models.DTO.Dossier
     public string? Position { get; set; }
     public string? PlaceOfWork { get; set; }
     public string Address { get; set; }
+    public string Region { get; set; }
+    public string Locality { get; set; }
     public IFormFile? AuthorPhoto { get; set; }
     public string? Tags { get; set; }
     public List<int>? RelatedDossiers { get; set; }

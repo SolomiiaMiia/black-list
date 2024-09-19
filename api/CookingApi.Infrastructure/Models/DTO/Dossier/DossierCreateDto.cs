@@ -12,6 +12,8 @@ namespace CookingApi.Infrastructure.Models.DTO.Dossier
     public string? Position { get; set; }
     public string? PlaceOfWork { get; set; }
     public string Address { get; set; }
+    public string Region { get; set; }
+    public string Locality { get; set; }
     public string Text { get; set; }
     public bool IsAnonymous { get; set; }
     public string? Author { get; set; }
@@ -20,7 +22,7 @@ namespace CookingApi.Infrastructure.Models.DTO.Dossier
     public IFormFile? AuthorPhoto { get; set; }
     public List<IFormFile>? Attachtments { get; set; }
     public List<IFormFile>? SignAttachtments { get; set; }
-    public string? Tags { get;set; }
+    public string? Tags { get; set; }
     public List<int>? RelatedDossiers { get; set; }
 
     public void Validate()

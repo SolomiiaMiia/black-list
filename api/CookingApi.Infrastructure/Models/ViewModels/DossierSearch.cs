@@ -11,6 +11,8 @@ namespace CookingApi.Infrastructure.Models.DTO.ViewModels
     public string? Position { get; set; }
     public string? PlaceOfWork { get; set; }
     public string Address { get; set; }
+    public string Region { get; set; }
+    public string Locality { get; set; }
     public DateTime Date { get; set; }
     public DossierStatus Status { get; set; }
     public DossierType Type { get; set; }

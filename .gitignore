@@ -45,3 +45,4 @@ slnx.sqlite
 /api/CookingApi.Web/wwwroot/Dossiers
 *.dbmdl
 *.jfm
+/.vs/slnx.sqlite

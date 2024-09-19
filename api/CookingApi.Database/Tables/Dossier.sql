@@ -7,6 +7,8 @@ CREATE TABLE [dbo].[Dossier]
     [Position] NVARCHAR(MAX)  NULL,
     [PlaceOfWork] NVARCHAR(MAX) NULL,
     [Address] NVARCHAR(MAX) NOT NULL,
+    [Region] NVARCHAR(MAX) NULL,
+    [Locality] NVARCHAR(MAX) NULL,
     [Date] DATETIME2 NOT NULL,
     [Status] NVARCHAR(MAX) NOT NULL,
     [Text] NVARCHAR(MAX) NOT NULL,

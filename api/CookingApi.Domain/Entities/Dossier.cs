@@ -22,6 +22,8 @@ namespace CookingApi.Domain.Entities
     public virtual string? Position { get; set; }
     public virtual string? PlaceOfWork { get; set; }
     public virtual string Address { get; set; }
+    public virtual string Region { get; set; }
+    public virtual string Locality { get; set; }
     public virtual DateTime Date { get; set; }
     public virtual string Text { get; set; }
     public virtual bool IsAnonymous { get; set; }
@@ -48,6 +50,8 @@ namespace CookingApi.Domain.Entities
       Property(x => x.Position);
       Property(x => x.PlaceOfWork);
       Property(x => x.Address);
+      Property(x => x.Region);
+      Property(x => x.Locality);
       Property(x => x.Date);
       Property(x => x.Text);
       Property(x => x.IsAnonymous);

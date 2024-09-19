@@ -12,6 +12,8 @@ namespace CookingApi.Infrastructure.Models.DTO.ViewModels
     public string? Position { get; set; }
     public string? PlaceOfWork { get; set; }
     public string Address { get; set; }
+    public string Region { get; set; }
+    public string Locality { get; set; }
     public string Text { get; set; }
     public bool IsAnonymous { get; set; }
     public string? Author { get; set; }

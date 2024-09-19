@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Linq.Expressions;
 using System.Net;
 using CookingApi.Domain.DAL.Base;
@@ -38,6 +39,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
       var dossier = new Dossier()
       {
         Address = dto.Address,
+        Region = dto.Region,
+        Locality = dto.Locality,
         Date = DateTime.Now,
         FirstName = dto.FirstName,
         LastName = dto.LastName,
@@ -351,6 +354,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
         {
           Id = dossier.Id,
           Address = dossier.Address,
+          Region = dossier.Region,
+          Locality = dossier.Locality,
           Author = dossier.Author,
           Date = dossier.Date,
           Email = dossier.Email,
@@ -414,6 +419,8 @@ namespace CookingApi.Infrastructure.Services.Implementations
         dossier.LastName = dto.LastName;
         dossier.ThirdName = dto.ThirdName;
         dossier.Address = dto.Address;
+        dossier.Region = dto.Region;
+        dossier.Locality = dto.Locality;
         dossier.Position = dto.Position;
         dossier.PlaceOfWork = dto.PlaceOfWork;
 
@@ -553,9 +560,11 @@ namespace CookingApi.Infrastructure.Services.Implementations
       var appBaseUrl = MyHttpContext.AppBaseUrl;
 
       var dossiers = await dossierQuery.Where(c => c.LastName.Contains(searchText) || c.FirstName.Contains(searchText)
-     || c.ThirdName.Contains(searchText) || c.Address.Contains(searchText) || (c.Tags != null && c.Tags.Contains(searchText))).OrderByDescending(c => c.Date).Select(c => new DossierSearch()
+     || c.ThirdName.Contains(searchText) || c.Address.Contains(searchText) || c.Region.Contains(searchText) || c.Locality.Contains(searchText) || (c.Tags != null && c.Tags.Contains(searchText))).OrderByDescending(c => c.Date).Select(c => new DossierSearch()
      {
        Address = c.Address,
+       Region = c.Region,
+       Locality = c.Locality,
        Date = c.Date,
        Id = c.Id,
        FullName = c.LastName + " " + c.FirstName + " " + c.ThirdName,
