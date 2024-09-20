@@ -36,6 +36,14 @@ export class EditDossierPageComponent implements OnInit {
   public isSuperAdmin: boolean;
   private photo: any;
 
+  public selectedValue: string = '';
+  public dropdownVisible: boolean = false;
+  public values: string[] = ['Вінницька', 'Волинська', 'Дніпропетровська',' Донецька', 'Житомирська','Закарпатська',' Запорізька',
+    'Івано-Франківська','Київська','Кіровоградська','Луганська','Львівська','Миколаївська','Одеська','Полтавська','Рівненська',
+    'Сумська','Тернопільська','Харківська','Херсонська','Хмельницька','Черкаська','Чернівецька','Чернігівська'
+  ];
+
+
   constructor(private fb: FormBuilder,
     private apiService: APIService,
     private route: ActivatedRoute,
@@ -78,6 +86,8 @@ export class EditDossierPageComponent implements OnInit {
     this.dossierForm.get('position')?.setValue(this.dossier.position);
     this.dossierForm.get('placeOfWork')?.setValue(this.dossier.placeOfWork);
     this.dossierForm.get('address')?.setValue(this.dossier.address);
+    this.dossierForm.get('region')?.setValue(this.dossier.region);
+    this.dossierForm.get('locality')?.setValue(this.dossier.locality);
 
     this.dossierForm.get('tags')?.setValue(this.dossier.tags);
     this.dossierForm.get('relatedDossiers')?.setValue(this.dossier.relatedDossiers?.map((obj) => Object.assign({ value: obj.id, display: obj.name }, obj)));
@@ -119,6 +129,8 @@ export class EditDossierPageComponent implements OnInit {
       position: this.fb.control(''),
       placeOfWork: this.fb.control(''),
       address: this.fb.control('', { validators: [Validators.required] }),
+      locality: this.fb.control(''),
+      region: this.fb.control(''),
       tags: [[], []],
       relatedDossiers: [[], []]
     });
@@ -184,7 +196,6 @@ export class EditDossierPageComponent implements OnInit {
       }
     }
   }
-
   public delete() {
     if (confirm(`Видалити досьє ${this.id} назавжди?`)) {
       this.apiService.deleteDossier(this.id).subscribe(res => {
@@ -193,4 +204,14 @@ export class EditDossierPageComponent implements OnInit {
       });
     }
   }
+
+  public toggleDropdown() {
+    this.dropdownVisible = !this.dropdownVisible;
+  }
+
+  public selectValue(value: string) {
+    this.selectedValue = value;
+    setTimeout(() => this.dropdownVisible = false, 100);
+  }
+
 }

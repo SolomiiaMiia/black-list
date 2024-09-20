@@ -58,11 +58,11 @@
               <span><i class="fa fa-light fa-user-circle"></i></span>
               <p>{{dossier.author}} </p>
             </div>
-            <div class="address">
+            <div class="address" *ngIf="dossier.region">
               <span><i class="fa fa-regular fa-location-dot"></i></span>
               <p>{{dossier.region}} </p>
             </div>
-            <div class="address">
+            <div class="address" *ngIf="dossier.locality">
               <span><i class="fa fa-solid fa-image"></i></span>
               <p>{{dossier.locality}} </p>
             </div>

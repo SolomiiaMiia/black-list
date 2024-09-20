@@ -82,13 +82,28 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Область</label>
-                  <input type="text" formControlName="region"  class="form-control">
+                  <div class="dropdown-container">
+                    <input 
+                    formControlName="region" 
+                      type="text" 
+                      class="dropdown-input"  
+                      [(ngModel)]="selectedValue" 
+                      (focus)="toggleDropdown()" 
+                      placeholder="Наведіть мишу або натисніть" 
+                    />
+                    <div class="dropdown-content" *ngIf="dropdownVisible">
+                      <a *ngFor="let value of values" 
+                        (mousedown)="selectValue(value)">
+                        {{ value }}
+                      </a>
+                    </div>
+                </div>
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>НАселений пункт</label>
+                  <label>Населений пункт</label>
                   <input type="text" formControlName="locality" class="form-control">
                 </div>
               </div>
