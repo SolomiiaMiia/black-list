@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routingAnimation } from '../shared/animations/routing-animation';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact',
@@ -10,9 +11,10 @@ import { routingAnimation } from '../shared/animations/routing-animation';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Контакти | BLACKLIST.UA");
   }
 
 }

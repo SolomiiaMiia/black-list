@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '../../shared/services/admin.service';
 import { APIService } from '../../shared/services/api.service';
 import { routingAnimation } from 'src/app/shared/animations/routing-animation';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   templateUrl: './login-page.component.html',
@@ -20,10 +21,12 @@ export class LoginPageComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private apiService: APIService,
     private adminService: AdminService,
-    @Inject(DOCUMENT) private document: Document) {
+    @Inject(DOCUMENT) private document: Document,
+    private titleService: Title) {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Особистий кабінет | BLACKLIST.UA");
     this.createForm();
   }
 
