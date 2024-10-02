@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
       }),
       mergeMap(route => route.data)
     ).subscribe(event => {
-      const title = event['title'] || 'BLACKLIST.UA'; // Default title if not set in route data
+      const title = event['title'] || 'Антикорупційна платформа | BLACKLIST.UA'; // Default title if not set in route data
       this.titleService.setTitle(title);
     });
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DossierDto } from '../models/dossierDto';
 import { routingAnimation } from '../shared/animations/routing-animation';
 import { APIService } from '../shared/services/api.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class FeedComponent implements OnInit {
 
   public feedEnabled: boolean = true;
 
-  constructor(private apiService: APIService) {
+  constructor(private apiService: APIService,
+    private titleService: Title) {
   }
 
   public searchResults: DossierDto[] = [];
@@ -33,6 +35,7 @@ export class FeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.onScroll();
+    this.titleService.setTitle("Досьє на корупціонерів  | BLACKLIST.UA");
   }
 
 }

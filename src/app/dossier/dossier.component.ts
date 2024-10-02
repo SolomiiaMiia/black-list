@@ -39,7 +39,7 @@ export class DossierComponent implements OnInit {
       }),
     ).subscribe(res => {
       this.dossier = res;
-      this.titleService.setTitle(res.lastName + " " + res.firstName + " " + res.thirdName + "  | BLACKLIST.UA");
+      this.titleService.setTitle("Досьє " + res.lastName + " " + res.firstName + " " + res.thirdName + "  | BLACKLIST.UA");
     });
     
   }
