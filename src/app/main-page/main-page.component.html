@@ -55,23 +55,21 @@
     </div>
   </div>
 </section>
-<section class="main-block gray">
-  <div class="float-container ">
+<section class="main-block gray py-5" style="height: 420px;">
+  <div class="container">
     <div class="row">
-      <div class="col-lg-6">
-        <div class="grid d-flex justify-content-center">
-          <figure class="effect-chico">
-            <iframe max-width="700" width="400px" height="400" [src]="this.videoLink" title="YouTube video player" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
-          </figure>
+      <!-- Блок для відео -->
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <div class="video-container">
+          <iframe width="560" height="315" [src]="this.videoLink" title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
+      
+      <!-- Блок для зображень -->
       <div class="col-lg-6">
-        <div class="grid d-flex justify-content-center">
-          <figure class="effect-chico">
-            <app-carousel [images]="this.pictures" class="app-carousel"></app-carousel>
-          </figure>
+        <div class="image-container">
+          <app-carousel [images]="this.pictures" id="app-carousel"></app-carousel>
         </div>
       </div>
     </div>
